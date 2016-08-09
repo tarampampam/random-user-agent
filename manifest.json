@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extension_name__",
+  "short_name": "random-user-agent",
+  "description": "__MSG_extension_desc__",
+  "author": "github.com/tarampampam",
+
+  "default_locale": "en",
+  "version": "2.0.1a",
+
+  "icons": {
+    "16": "/img/16x16.png",
+    "48": "/img/48x48.png",
+    "128": "/img/128x128.png"
+  },
+
+  "options_ui": {
+    "page": "/html/options.html",
+    "chrome_style": true,
+    "open_in_tab": false
+  },
+
+  "browser_action": {
+    "default_icon": "/img/48x48.png",
+    "default_popup": "/html/popup.html",
+    "default_title": "__MSG_extension_name__"
+  },
+
+  "background": {
+    "page": "/html/background.html",
+    "persistent": true
+  },
+
+  "minimum_chrome_version": "49.0",
+  "permissions": ["webRequest", "webRequestBlocking", "\u003Call_urls\u003E", "storage", "tabs"]
+}

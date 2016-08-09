@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="../css/options.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div id="main">
+      <h3>General settings</h3>
+      <p>Change the behavior of the switcher to best fit your needs:</p>
+
+      <div class="block switches-at-left">
+        <div class="left">
+          <div class="toggle">
+            <input checked type="checkbox" id="extension_enabled" />
+            <label for="extension_enabled"></label>
+          </div>
+        </div>
+        <div class="right">
+          <label for="extension_enabled">Enable Agent switcher</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+          <div class="toggle">
+            <input checked type="checkbox" id="auto_renew" />
+            <label for="auto_renew"></label>
+          </div>
+        </div>
+        <div class="right">
+          <label for="auto_renew">Automatically change the User-Agent after specified period of time</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+          <input type="number" id="auto_renew_interval" placeholder="5" min="1" max="1440" />
+        </div>
+        <div class="right">
+          <label for="auto_renew_interval">Time (in minutes) to automatically update the User-Agent</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+          <div class="toggle">
+            <input checked type="checkbox" id="auto_renew_onstartup" />
+            <label for="auto_renew_onstartup"></label>
+          </div>
+        </div>
+        <div class="right">
+          <label for="auto_renew_onstartup">Change User-Agent on browser startup</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+          <div class="toggle">
+            <input checked type="checkbox" id="sync_enabled" />
+            <label for="sync_enabled"></label>
+          </div>
+        </div>
+        <div class="right">
+          <label for="sync_enabled">Sync extension settings between browsers</label>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <hr />
+
+      <h3>Custom User-Agent</h3>
+      <p class="no-bottom-padding">Set a specific User-Agent:</p>
+
+      <input type="text" id="custom_useragent" class="full-width" placeholder="Your custom User-Agent string" maxlength="256" required />
+
+      <div class="block switches-at-left">
+        <div class="left">
+          <div class="toggle">
+            <input checked type="checkbox" id="custom_useragent_enabled" />
+            <label for="custom_useragent_enabled"></label>
+          </div>
+        </div>
+        <div class="right">
+          <label for="custom_useragent_enabled">Use specified User-Agent</label>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <hr />
+
+      <h3>Agent switcher options</h3>
+      <p class="no-bottom-padding">Here you can change the agent switching behavior:</p>
+
+      <div id="generator_settings" class="block"></div>
+
+      <hr />
+
+      <h3>Exceptions</h3>
+      <p class="">Disable Agent Switching when a website matches the following rules (one per line):</p>
+      <textarea class="full-width" id="exceptions_patterns" rows="9" placeholder="Your exception rules"></textarea>
+      <p class="hint">You can use wildcards such as <strong>*</strong> and <strong>?</strong>. <strong>*</strong> will match any length of characters <em>(e.g. *google.com will match www.google.com, mail.google.com, etc.)</em>, <strong>?</strong> will match only a single character <em>(e.g. www.?oogle.com will match www.moogle.com, www.google.com, www.woogle.com, etc.)</em></p>
+    </div>
+
+    <script type="text/javascript" src="../js/UI.js"></script>
+    <script type="text/javascript" src="../js/UAGenerator.js"></script>
+    <script type="text/javascript" src="../js/pages/options.js"></script>
+  </body>
+</html>

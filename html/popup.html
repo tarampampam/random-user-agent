@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="../css/popup.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <div id="main">
+      <div class="block user_agent">
+        <h2>Active user-agent</h2>
+        <div class="active">
+          <h5 class="actual-user-agent">Loading..</h5>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="block active">
+        <div class="left">
+          <h2>Enabled on this domain</h2>
+        </div>
+        <div class="right">
+          <div class="toggle">
+            <input type="checkbox" id="toggle" class="enabled-on-this-domain" />
+            <label for="toggle"></label>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <hr />
+
+      <div class="block actions">
+        <ul>
+          <li class="change-enabled-state disable"><i class="material-icons">pause_circle_outline</i><span>Pause switcher</span></li>
+          <li class="change-enabled-state enable"><i class="material-icons">play_circle_outline</i><span>Unpause switcher</span></li>
+          <li class="renew-useragent"><i class="material-icons">autorenew</i><span>Get new agent</span></li>
+          <li class="open-settings-panel"><i class="material-icons">settings</i><span>Open settings</span></li>
+        </ul>
+      </div>
+
+      <div class="block footer">
+        <a class="bugreport-link" href="#">Bug report</a>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../js/UI.js"></script>
+    <script type="text/javascript" src="../js/pages/popup.js"></script>
+  </body>
+</html>
