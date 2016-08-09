@@ -32,5 +32,7 @@
   },
 
   "minimum_chrome_version": "49.0",
-  "permissions": ["webRequest", "webRequestBlocking", "\u003Call_urls\u003E", "storage", "tabs"]
+  "permissions": [
+    "webRequest", "webRequestBlocking", "*://*/*", "storage", "tabs"
+  ]
 }

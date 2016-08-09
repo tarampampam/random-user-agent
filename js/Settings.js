@@ -109,6 +109,13 @@ var Settings = new Proxy({
     });
   }
 }, {
+  /**
+   * Getter
+   *
+   * @param   {object} target
+   * @param   {string} name
+   * @returns {mixed}
+   */
   get: function(target, name) {
     var result = undefined;
     if (name in target.data) {
@@ -122,11 +129,20 @@ var Settings = new Proxy({
     }
     return result;
   },
+
+  /**
+   * Setter
+   *
+   * @param   {object} target
+   * @param   {string} name
+   * @param   {mixed} value
+   * @returns {boolean}
+   */
   set: function(target, name, value) {
     if (name in target.data) {
       target.data[name] = value;
       // Save changes in storage
-      target.save.call(target, name, value);
+      target.save.call(target);
     }
     if (name in target) {
       target[name] = value;
