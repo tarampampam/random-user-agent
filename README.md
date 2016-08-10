@@ -22,6 +22,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.0.4** - Fixed manifest file error
 * **2.0.3.1** - Small fixes
 * **2.0.3** - Fixed synchronization event
 * **2.0.2** - Added JS-protection, changed icons, added russian localization, small fixes
