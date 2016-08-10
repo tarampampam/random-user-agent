@@ -25,7 +25,6 @@
    * @type Timer
    */
   var useragent_renew_timer = new Timer('User-Agent renew timer', function() {
-    console.log('"' + useragent_renew_timer.getName() + '" event called');
     API.useragent.renew();
   });
 
@@ -68,5 +67,17 @@
       UI.changeStateIcon(API.settings.getEnabled() === true ? 'active' : 'inactive');
     });
   }
+
+  /**
+   * Auto settings sync
+   */
+  chrome.storage.onChanged.addListener(function() {
+    if (Settings.sync === true) {
+      Settings.load(function() {
+        console.info('Settings synchronized');
+      });
+    }
+  });
+
 
 })();
