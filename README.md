@@ -13,9 +13,11 @@ User-Agent - a string that is sent along to any website you visit. This is a sor
 - Information about some of the plugins installed on the browser;
 - Other information that identifies and exposes you.
 
-In order to stop this information being leaked out onto the web, I created this extension. Once installed, your browsers "User-Agent" will be automatically replaced after a specified period of time, significantly increasing your anonymity.
+This extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.
 
-> Thanks to @Ohblindone for english localization
+Source code: https://github.com/tarampampam/random-user-agent
+
+> Thanks to [@SmudgedMuffin](https://github.com/SmudgedMuffin) for english localization
 
 Version History (Changelog)
 ----
