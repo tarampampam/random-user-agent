@@ -1,11 +1,9 @@
 Random User-Agent
 =========
 
-English:
-
 Automatically replaces the User-Agent after a specified time interval
 
-![Screenshot](http://oi58.tinypic.com/2znpqc5.jpg)
+![Screenshot](https://cloud.githubusercontent.com/assets/7326800/17556809/3434e974-5f2e-11e6-9d26-865a2c264841.jpg)
 
 ### Get the Plugin! [Google Webstore]
 
@@ -17,12 +15,13 @@ User-Agent - a string that is sent along to any website you visit. This is a sor
 
 In order to stop this information being leaked out onto the web, I created this extension. Once installed, your browsers "User-Agent" will be automatically replaced after a specified period of time, significantly increasing your anonymity.
 
-Thanks to @Ohblindone for english translate.
+> Thanks to @Ohblindone for english localization
 
 Version History (Changelog)
 ----
 
-* **2.0.1** -
+* **2.0.2** - Added JS-protection, changed icons, added russian localization, small fixes
+* **2.0.1** - Extension totally re-writed, repository re-created
 * **1.5.5** - Updated User-Agent strings. (Updated the extension to use more "current" browsers)
 * **1.5.4** - Fixed issue where auto-refresh interval wouldn't change
 * **1.5.3** - Minor syntax amendments related to 'use strict'

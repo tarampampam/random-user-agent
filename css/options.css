@@ -1,11 +1,12 @@
 @import url('ui.css');
 
 html, body {
-  width: 510px;
   font-size: 14px;
 }
   body {
     padding: 0 1em 0.5em 1em;
+    width: 510px;
+    margin: 0 auto;
   }
 
 p {
