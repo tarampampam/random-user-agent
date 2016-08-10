@@ -20,6 +20,7 @@ In order to stop this information being leaked out onto the web, I created this 
 Version History (Changelog)
 ----
 
+* **2.0.3.1** - Small fixes
 * **2.0.3** - Fixed synchronization event
 * **2.0.2** - Added JS-protection, changed icons, added russian localization, small fixes
 * **2.0.1** - Extension totally re-writed, repository re-created

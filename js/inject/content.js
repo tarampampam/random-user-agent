@@ -26,7 +26,6 @@ chrome.runtime.sendMessage({action: 'settings.getEnabled'}, function(enabled){
               action: 'exceptions.uriMatch', data: {uri: window.location.href}
             }, function(uri_match){
               if (uri_match === false) {
-                console.warn('work');
                 chrome.runtime.sendMessage({action: 'useragent.get'}, function(useragent){
                   if (typeof useragent === 'string' && useragent !== '') {
                     var d = document.documentElement,

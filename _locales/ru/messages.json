@@ -1,7 +1,4 @@
 {
-  "extension_name": {
-    "message": "Random User-Agent"
-  },
   "extension_desc": {
     "message": "Автоматически заменяет User-Agent через заданный промежуток времени на случайный, тем самым скрывая настоящий"
   },
