@@ -17,11 +17,13 @@ This extension has been created to stop data leakage. It automatically replaces 
 
 Source code: https://github.com/tarampampam/random-user-agent
 
-> Thanks to [@SmudgedMuffin](https://github.com/SmudgedMuffin) for english localization
+> Thanks to [@SmudgedMuffin](https://github.com/SmudgedMuffin) for English localization
+> Thanks to [@nazarpc](https://github.com/nazar-pc) for Ukrainian localization
 
 Version History (Changelog)
 ----
 
+* **2.0.5** - Added ukrainian localization, removed font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icon set
 * **2.0.4** - Fixed manifest file error
 * **2.0.3.1** - Small fixes
 * **2.0.3** - Fixed synchronization event
