@@ -22,7 +22,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
-* **2.0.5** - Added ukrainian localization, removed font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icon set
+* **2.0.5** - Added Ukrainian localization, removed font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icons set
 * **2.0.4** - Fixed manifest file error
 * **2.0.3.1** - Small fixes
 * **2.0.3** - Fixed synchronization event
