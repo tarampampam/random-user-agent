@@ -7,6 +7,7 @@
 random-user-agent
   └── _locales
       └── de
+          └── full_description.txt
           └── messages.json
 ```
 
@@ -26,6 +27,7 @@ And translated:
   }
 }
 ```
+After that - translate `%your_locale%\full_description.txt` file content.
 
 **Step four**. Make sure your file encoding is UTF-8 and has valid format ([you can check it here](http://jsonlint.com/)).
 

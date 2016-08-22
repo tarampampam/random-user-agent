@@ -1,12 +1,7 @@
 {
   "extension_desc": {
-    "message": "Automatically change the User-Agent after specified period of time to a randomly selected one, thus hiding your real user agent from the public.",
-    "description": "Extension short description"
-  },
-
-  "extension_desc_full": {
-    "message": "User-Agent - a string that is sent along to any website you visit. This is a sort of \"fingerprint\" your browser leaves behind which contains:\n- The name and version of your browser;\n- The name of the operating system (Mac, Windows, Linux, etc.) and its version;\n- Information about some of the plugins installed on the browser;\n- Other information that identifies and exposes you.\n\nThis extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.\n\nSource code: https://github.com/tarampampam/random-user-agent",
-    "description": "Extension full description"
+    "message": "Automatically change the User-Agent after specified period of time to a randomly selected one, thus hiding your real user agent",
+    "description": "Short description. Limit: 132 chars"
   },
 
   "active_useragent": {
