@@ -1,112 +1,112 @@
 {
   "extension_desc": {
-    "message": "Automatically change the User-Agent after specified period of time to a random, thus hiding the real one",
-    "description": "Extension description"
+    "message": "Automatically change the User-Agent after specified period of time to a randomly selected one, thus hiding your real user agent from the public.",
+    "description": ""
   },
 
   "extension_desc_full": {
-    "message": "",
-    "description": "User-Agent - a string that is sent along to any website you visit. This is a sort of \"fingerprint\" your browser leaves behind which contains:\n- The name and version of your browser;\n- The name of the operating system (Mac, Windows, Linux, etc.) and its version;\n- Information about some of the plugins installed on the browser;\n- Other information that identifies and exposes you.\n\nThis extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.\n\nSource code: https://github.com/tarampampam/random-user-agent"
+    "message": "User-Agent - a string that is sent along to any website you visit. This is a sort of \"fingerprint\" your browser leaves behind which contains:\n- The name and version of your browser;\n- The name of the operating system (Mac, Windows, Linux, etc.) and its version;\n- Information about some of the plugins installed on the browser;\n- Other information that identifies and exposes you.\n\nThis extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.\n\nSource code: https://github.com/tarampampam/random-user-agent",
+    "description": ""
   },
 
   "active_useragent": {
-    "message": "",
-    "description": "Active user-agent"
+    "message": "Current Active user-agent",
+    "description": ""
   },
   "active_useragent_loading": {
-    "message": "",
-    "description": "Loading.."
+    "message": "Loading...",
+    "description": ""
   },
   "enabled_on_this_domain": {
-    "message": "",
-    "description": "Enabled on this domain"
+    "message": "Enabled on this domain",
+    "description": ""
   },
   "pause_switcher": {
-    "message": "",
-    "description": "Pause switcher"
+    "message": "Pause Switcher",
+    "description": ""
   },
   "unpause_switcher": {
-    "message": "",
-    "description": "Unpause switcher"
+    "message": "Resume Switcher",
+    "description": ""
   },
   "get_new_agent": {
-    "message": "",
-    "description": "Get new agent"
+    "message": "Get new agent",
+    "description": ""
   },
   "open_settings": {
-    "message": "",
-    "description": "Open settings"
+    "message": "Open settings",
+    "description": ""
   },
   "bug_report": {
-    "message": "",
-    "description": "Bug report"
+    "message": "Bug report",
+    "description": ""
   },
 
   "general_settings": {
-    "message": "",
-    "description": "General settings"
+    "message": "General Settings",
+    "description": ""
   },
   "general_settings_hint": {
-    "message": "",
-    "description": "Change the behavior of the switcher to best fit your needs:"
+    "message": "Change the behavior of the switcher to best fit your needs.",
+    "description": ""
   },
   "enable_switcher": {
-    "message": "",
-    "description": "Enable Agent switcher"
+    "message": "Enable Agent switcher",
+    "description": ""
   },
   "auto_renew": {
-    "message": "",
-    "description": "Automatically change the User-Agent after specified period of time"
+    "message": "Automatically change the User-Agent after specified period of time",
+    "description": ""
   },
   "auto_renew_interval": {
-    "message": "",
-    "description": "Time (in minutes) to automatically update the User-Agent"
+    "message": "Time (in minutes) to automatically update the User-Agent",
+    "description": ""
   },
   "javascript_protection_enabled": {
-    "message": "",
-    "description": "Hide real User-Agent from detection by javascript (experemental)"
+    "message": "Protect against detection by javascript (experemental)",
+    "description": ""
   },
   "auto_renew_onstartup": {
-    "message": "",
-    "description": "Change User-Agent on browser startup"
+    "message": "Change User-Agent on browser startup",
+    "description": ""
   },
   "sync_enabled": {
-    "message": "",
-    "description": "Sync extension settings between browsers"
+    "message": "Sync extension settings between browsers",
+    "description": ""
   },
 
   "custom_useragent": {
-    "message": "",
-    "description": "Custom User-Agent"
+    "message": "Custom User-Agent",
+    "description": ""
   },
   "custom_useragent_hint": {
-    "message": "",
-    "description": "Set a specific User-Agent:"
+    "message": "Set a specific User-Agent:",
+    "description": ""
   },
   "custom_useragent_enabled": {
-    "message": "",
-    "description": "Use specified User-Agent"
+    "message": "Use specified User-Agent",
+    "description": ""
   },
 
   "agent_switcher_options": {
-    "message": "",
-    "description": "Agent switcher options"
+    "message": "Agent switcher options",
+    "description": ""
   },
   "agent_switcher_options_hint": {
-    "message": "",
-    "description": "Disable Agent Switching when a website matches the following rules (one per line):"
+    "message": "Disable Agent Switching when a website matches the following rules (one per line):",
+    "description": ""
   },
 
   "exceptions": {
-    "message": "",
-    "description": "Exceptions"
+    "message": "Exceptions",
+    "description": ""
   },
   "exceptions_hint": {
-    "message": "",
-    "description": "Disable Agent Switching when a website matches the following rules (one per line):"
+    "message": "Disable Agent Switching when a website matches the following rules (one per line):",
+    "description": ""
   },
   "exceptions_description": {
-    "message": "",
-    "description": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"
+    "message": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)",
+    "description": ""
   }
 }
