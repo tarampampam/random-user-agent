@@ -10,7 +10,22 @@ random-user-agent
           └── messages.json
 ```
 
-**Step three**. Open `%your_locale%\messages.json` file. Translate all lines in `description` into the `message` field an delete `description` after translation.
+**Step three**. Open `%your_locale%\messages.json` file. Translate all lines in `message` fields. For example, original:
+```
+{
+  "active_useragent_loading": {
+    "message": "Loading..."
+  }
+}
+```
+And translated:
+```
+{
+  "active_useragent_loading": {
+    "message": "Laden..."
+  }
+}
+```
 
 **Step four**. Make sure your file encoding is UTF-8 and has valid format ([you can check it here](http://jsonlint.com/)).
 
