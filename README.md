@@ -1,36 +1,43 @@
-Random (Hide) User-Agent
+Random User-Agent
 =========
 
-Автоматически заменяет User-Agent через заданный интервал времени на случайный, тем самым скрывая настоящий.
+Automatically replaces the User-Agent after a specified time interval
 
-![Screenshot](http://oi58.tinypic.com/2znpqc5.jpg)
+![Screenshot](https://cloud.githubusercontent.com/assets/7326800/17556809/3434e974-5f2e-11e6-9d26-865a2c264841.jpg)
 
-### Ссылка на плагин в [Google Webstore]
+### Get the Plugin! [Google Webstore]
 
-User-Agent - это строка, которая передается браузером вместе с запросом любой страницы в интернете. Это ваш своеобразный "отпечаток", в котором содержится:
-- Название и версия вашего браузера;
-- Название операционной системы (Mac, Windows, Linux и т.д.) и её версия;
-- Информация о некоторых установленных плагинах в системе;
-- Прочая информация, идентифицирующая и раскрывающая вас.
+User-Agent - a string that is sent along to any website you visit. This is a sort of "fingerprint" your browser leaves behind which contains:
+- The name and version of your browser;
+- The name of the operating system (Mac, Windows, Linux, etc.) and its version;
+- Information about some of the plugins installed on the browser;
+- Other information that identifies and exposes you.
 
-Для того, что бы прекратить эту утечку данных и было создано это расширение. Данные "User-Agent" автоматически подменяются через указанный интервал времени, значительно повышая вашу анонимность.
+This extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.
 
-История изменений
+Source code: https://github.com/tarampampam/random-user-agent
+
+> Thanks to [@SmudgedMuffin](https://github.com/SmudgedMuffin) for English localization, and [@nazarpc](https://github.com/nazar-pc) for Ukrainian localization
+
+Version History (Changelog)
 ----
 
-* **2.0.1** - 
-* **1.5.5** - Обновлены версии имитируемых браузеров на более-и-менее актуальные
-* **1.5.4** - Исправлена ошибка "не смены интервала автообновления"
-* **1.5.3** - Мелкие синтаксические поправки, связанный с 'use strict'
-* **1.5.2** - Исправлена ошибка загрузки настроек (порожденная предыдущим исправлением =))
-* **1.5.1** - Исправлена ошибка загрузки настроек (после перезапуска браузера загружались только дефолтные)
-* **1.5** - Добавлена возможность списка исключений, изменены дефолтные настройки, исключен файл "content.js", мелкие исправления
-* **1.4.1** - Обновлены языковые пакеты, незначительные доработки
-* **1.4** - Переработан алгоритм смены User-Agent'а - теперь НЕ происходит выбор из одного предустановленного варианта, теперь он полноценно генерируется - спасибо [randexp.js] за это. Убрано поле "Description" как не нужное. Большое количество мелких доработок
-* **1.3** - Добавлена немецкая (de) локализация, исправлены баги инициализации при отсутствующих настройках, обновлена функция загрузки настроек, мелкие доработки
-* **1.2** - Первый релиз на гитхабе
+* **2.0.5** - Added Ukrainian localization, removed font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icons set
+* **2.0.4** - Fixed manifest file error
+* **2.0.3.1** - Small fixes
+* **2.0.3** - Fixed synchronization event
+* **2.0.2** - Added JS-protection, changed icons, added russian localization, small fixes
+* **2.0.1** - Extension totally re-writed, repository re-created
+* **1.5.5** - Updated User-Agent strings. (Updated the extension to use more "current" browsers)
+* **1.5.4** - Fixed issue where auto-refresh interval wouldn't change
+* **1.5.3** - Minor syntax amendments related to 'use strict'
+* **1.5.2** - Fixed a bug with loading settings (caused by the previous version update =) )
+* **1.5.1** - Fixed a bug with loading settings (default only after restarting the browser)
+* **1.5** - Added exclusion (exception) list, changed the default settings, excluded files "content.js", minor bug fixes
+* **1.4.1** - Updated language packs, minor improvements
+* **1.4** - Redesigned User-agent's algorithm change - no longer selects from one preset option, it now generates fully - have randexp.js to thank for it. Removed the field "Description" as it was not correct. A large number of small improvements
+* **1.3** - Added German (de) localization, fixed bugs in the absence of initialization
+* **1.2** - First release on Github
 
 [Google Webstore]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
 [randexp.js]:http://github.com/fent/randexp.js
-
-**Make love, not war!**

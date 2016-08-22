@@ -1,6 +1,5 @@
 @import url('normalize.min.css');
-@import url('../fonts/materialicons.css');
-@import url('../fonts/roboto.css');
+@import url('../fonts/flaticon.css');
 
 @keyframes moveRight {
   0%{width:18px;-webkit-transform:translateX(0);transform:translateX(0)}
@@ -21,7 +20,7 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto';
+  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 a,
@@ -87,7 +86,7 @@ hr {
   }
   .block h2 {
     font-size: 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
 
 .toggle,

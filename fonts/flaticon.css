@@ -1,0 +1,24 @@
+/**
+ * From icons pack: http://www.flaticon.com/packs/free-basic-ui-elements
+ */
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("flaticon/flaticon.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-family: Flaticon;
+  font-size: 0.85em;
+  font-style: normal;
+  margin-left: 0;
+  font-feature-settings: 'liga';
+}
+
+.flaticon-play-button:before { content: "\f102"; font-size: 0.9em; }
+.flaticon-pause:before { content: "\f101"; font-size: 0.9em; }
+.flaticon-arrows:before { content: "\f100"; }
+.flaticon-settings:before { content: "\f103"; }

@@ -1,8 +1,82 @@
 {
-  "extension_name": {
-    "message": "Random User-Agent"
-  },
   "extension_desc": {
     "message": "Автоматически заменяет User-Agent через заданный промежуток времени на случайный, тем самым скрывая настоящий"
+  },
+
+  "active_useragent": {
+    "message": "Используемый user-agent"
+  },
+  "active_useragent_loading": {
+    "message": "Загрузка.."
+  },
+  "enabled_on_this_domain": {
+    "message": "Включен на этом домене"
+  },
+  "pause_switcher": {
+    "message": "Приостановить подмену"
+  },
+  "unpause_switcher": {
+    "message": "Возобновить подмену"
+  },
+  "get_new_agent": {
+    "message": "Установить новый"
+  },
+  "open_settings": {
+    "message": "Открыть настройки"
+  },
+  "bug_report": {
+    "message": "Сообщить об ошибке"
+  },
+
+  "general_settings": {
+    "message": "Основные настройки"
+  },
+  "general_settings_hint": {
+    "message": "Измените настройки работы расширения по вашему усмотрению:"
+  },
+  "enable_switcher": {
+    "message": "Включить работу расширения"
+  },
+  "auto_renew": {
+    "message": "Автоматически обновлять User-Agent через заданный промежуток времени"
+  },
+  "auto_renew_interval": {
+    "message": "Период времени (в минутах) для автоматического изменения"
+  },
+  "javascript_protection_enabled": {
+    "message": "Скрывать настоящий User-Agent при определении средствами javascript (экспериментально)"
+  },
+  "auto_renew_onstartup": {
+    "message": "Автоматически обновлять User-Agent при запуске браузера"
+  },
+  "sync_enabled": {
+    "message": "Синхронизировать настройки между браузерами"
+  },
+
+  "custom_useragent": {
+    "message": "Свой User-Agent"
+  },
+  "custom_useragent_hint": {
+    "message": "Вы можете указать свой User-Agent:"
+  },
+  "custom_useragent_enabled": {
+    "message": "Использовать свой User-Agent"
+  },
+
+  "agent_switcher_options": {
+    "message": "Настройки генератора"
+  },
+  "agent_switcher_options_hint": {
+    "message": "Укажите те типы браузеров, User-Agent которых следует генерировать:"
+  },
+
+  "exceptions": {
+    "message": "Исключения"
+  },
+  "exceptions_hint": {
+    "message": "Отключить подмену User-Agent на ресурсах, адрес которых соответствует следующим правилам (по одному на строку):"
+  },
+  "exceptions_description": {
+    "message": "Вы можете использовать специальные символы, такие как * и ?. * соответствует любым символам любой длины (т.е. *google.com будет соответствовать google.com, www.google.com, mail.google.com и т.д.). ? соответствует одиночному произвольному символу (т.е. www.?oogle.com будет соответствовать www.oogle.com, www.moogle.com, www.woogle.com и т.д.)"
   }
 }

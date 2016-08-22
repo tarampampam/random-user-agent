@@ -76,12 +76,12 @@ a:active {
           height: 1em;
           font-size: 1.8em;
           position: absolute;
-          top: 0.23em;
+          top: 0.16em;
           opacity: 0.8;
           cursor: inherit;
         }
         .block.actions ul li span {
-          padding-left: 2em;
+          padding-left: 2.2em;
           cursor: inherit;
         }
       @keyframes blinking-background-important {

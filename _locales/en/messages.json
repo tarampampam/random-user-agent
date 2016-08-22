@@ -1,8 +1,112 @@
 {
-  "extension_name": {
-    "message": "Random User-Agent"
-  },
   "extension_desc": {
-    "message": "Automatically change the User-Agent after specified period of time to a random, thus hiding the real one"
+    "message": "Automatically change the User-Agent after specified period of time to a random, thus hiding the real one",
+    "description": "Extension description"
+  },
+
+  "extension_desc_full": {
+    "message": "",
+    "description": "User-Agent - a string that is sent along to any website you visit. This is a sort of \"fingerprint\" your browser leaves behind which contains:\n- The name and version of your browser;\n- The name of the operating system (Mac, Windows, Linux, etc.) and its version;\n- Information about some of the plugins installed on the browser;\n- Other information that identifies and exposes you.\n\nThis extension has been created to stop data leakage. It automatically replaces User-Agent strings after a specified period of time with a randomly selected one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.\n\nSource code: https://github.com/tarampampam/random-user-agent"
+  },
+
+  "active_useragent": {
+    "message": "",
+    "description": "Active user-agent"
+  },
+  "active_useragent_loading": {
+    "message": "",
+    "description": "Loading.."
+  },
+  "enabled_on_this_domain": {
+    "message": "",
+    "description": "Enabled on this domain"
+  },
+  "pause_switcher": {
+    "message": "",
+    "description": "Pause switcher"
+  },
+  "unpause_switcher": {
+    "message": "",
+    "description": "Unpause switcher"
+  },
+  "get_new_agent": {
+    "message": "",
+    "description": "Get new agent"
+  },
+  "open_settings": {
+    "message": "",
+    "description": "Open settings"
+  },
+  "bug_report": {
+    "message": "",
+    "description": "Bug report"
+  },
+
+  "general_settings": {
+    "message": "",
+    "description": "General settings"
+  },
+  "general_settings_hint": {
+    "message": "",
+    "description": "Change the behavior of the switcher to best fit your needs:"
+  },
+  "enable_switcher": {
+    "message": "",
+    "description": "Enable Agent switcher"
+  },
+  "auto_renew": {
+    "message": "",
+    "description": "Automatically change the User-Agent after specified period of time"
+  },
+  "auto_renew_interval": {
+    "message": "",
+    "description": "Time (in minutes) to automatically update the User-Agent"
+  },
+  "javascript_protection_enabled": {
+    "message": "",
+    "description": "Hide real User-Agent from detection by javascript (experemental)"
+  },
+  "auto_renew_onstartup": {
+    "message": "",
+    "description": "Change User-Agent on browser startup"
+  },
+  "sync_enabled": {
+    "message": "",
+    "description": "Sync extension settings between browsers"
+  },
+
+  "custom_useragent": {
+    "message": "",
+    "description": "Custom User-Agent"
+  },
+  "custom_useragent_hint": {
+    "message": "",
+    "description": "Set a specific User-Agent:"
+  },
+  "custom_useragent_enabled": {
+    "message": "",
+    "description": "Use specified User-Agent"
+  },
+
+  "agent_switcher_options": {
+    "message": "",
+    "description": "Agent switcher options"
+  },
+  "agent_switcher_options_hint": {
+    "message": "",
+    "description": "Disable Agent Switching when a website matches the following rules (one per line):"
+  },
+
+  "exceptions": {
+    "message": "",
+    "description": "Exceptions"
+  },
+  "exceptions_hint": {
+    "message": "",
+    "description": "Disable Agent Switching when a website matches the following rules (one per line):"
+  },
+  "exceptions_description": {
+    "message": "",
+    "description": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"
   }
 }

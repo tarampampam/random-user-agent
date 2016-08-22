@@ -1,5 +1,20 @@
 /* global Settings, UAGenerator */
 
+/**
+ * This file is part of Random User-Agent Browser Extension
+ * @link https://github.com/tarampampam/random-user-agent
+ *
+ * Copyright (C) 2016 tarampampam <github.com/tarampampam>
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified copies of this license
+ * document, and changing it is allowed as long as the name is changed.
+ *
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING,
+ * DISTRIBUTION AND MODIFICATION
+ *
+ * 0. You just DO WHAT THE FUCK YOU WANT TO.
+ */
+
 "use strict";
 
 /**
@@ -190,6 +205,33 @@ var API = {
     },
 
     /**
+     * Get replacing User-Agent for Javascript enabled state
+     *
+     * @returns {boolean}
+     */
+    getJavascriptProtectionEnabled: function(){
+      return Settings.javascript_protection_enabled;
+    },
+
+    /**
+     * Set replacing User-Agent for Javascript enabled state
+     *
+     * @param   {object} params
+     * @returns {boolean}
+     */
+    setJavascriptProtectionEnabled: function(params) {
+      var enabled = (typeof params === 'object' && params.hasOwnProperty('enabled')) ? params.enabled : null;
+      if (typeof enabled === 'boolean') {
+        Settings.javascript_protection_enabled = enabled;
+        console.log('Use replacing User-Agent for Javascript enabled state is "' + enabled + '" now');
+        return true;
+      } else {
+        console.error('Invalid input data format - property "enabled" must be boolean');
+      }
+      return false;
+    },
+
+    /**
      * Get custom User-Agent
      *
      * @returns {boolean}
@@ -304,14 +346,15 @@ var API = {
    */
   exceptions: {
     /**
-     * Test uri for mathing in exceptions list
+     * Test uri for pattern match
      *
      * @param   {object} params
-     * @returns {Boolean}
+     * @returns {boolean}
      */
-    uriMatch: function(params) {
-      var uri = (typeof params === 'object' && params.hasOwnProperty('uri')) ? params.uri : null;
-      if (typeof uri === 'string' && uri !== '') {
+    uriPatternMatch: function(params) {
+      var uri     = (typeof params === 'object' && params.hasOwnProperty('uri'))     ? params.uri : null;
+      var pattern = (typeof params === 'object' && params.hasOwnProperty('pattern')) ? params.pattern : null;
+      if (typeof uri === 'string' && typeof pattern === 'string') {
         /**
          * Wildcard string search
          *
@@ -330,8 +373,26 @@ var API = {
           rule = rule.split('?').join('.?');
           return new RegExp('^' + rule + '$', regexp_flag).test(string);
         };
+        if (wildcardStringSearch(uri, pattern)) {
+          return true;
+        }
+      } else {
+        console.error('Invalid input data format - property "uri" and "pattern" must be strings');
+      }
+      return false;
+    },
+
+    /**
+     * Test uri for mathing in exceptions list
+     *
+     * @param   {object} params
+     * @returns {boolean}
+     */
+    uriMatch: function(params) {
+      var uri = (typeof params === 'object' && params.hasOwnProperty('uri')) ? params.uri : null;
+      if (typeof uri === 'string' && uri !== '') {
         for (var exceptions = this.get(), i = 0, len = exceptions.length; i < len; ++i) {
-          if (wildcardStringSearch(uri, exceptions[i])) {
+          if (this.uriPatternMatch({uri: uri, pattern: exceptions[i]})) {
             return true;
           }
         }

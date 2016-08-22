@@ -1,5 +1,20 @@
 /* global Node, chrome */
 
+/**
+ * This file is part of Random User-Agent Browser Extension
+ * @link https://github.com/tarampampam/random-user-agent
+ *
+ * Copyright (C) 2016 tarampampam <github.com/tarampampam>
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified copies of this license
+ * document, and changing it is allowed as long as the name is changed.
+ *
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING,
+ * DISTRIBUTION AND MODIFICATION
+ *
+ * 0. You just DO WHAT THE FUCK YOU WANT TO.
+ */
+
 "use strict";
 
 /**
@@ -180,5 +195,41 @@ var UI = {
         break;
     }
     return chrome.browserAction.setIcon({path: image_src}, function(){});
+  },
+
+  /**
+   * Call callback for all elements with not empty attribute like 'data-%data_attrib_name%'
+   *
+   * @param   {string} data_attrib_name
+   * @param   {callable} callback
+   * @returns {void}
+   */
+  forEachWithDataAttrib: function(data_attrib_name, callback) {
+    if ((typeof data_attrib_name === 'string') && (data_attrib_name !== '') && (typeof callback === 'function')) {
+      for (var elements = document.body.getElementsByTagName('*'), i = 0, len = elements.length; i < len; i++) {
+        var $el = elements[i], data_attrib_value = $el.getAttribute('data-' + data_attrib_name);
+        if (data_attrib_value !== '' && data_attrib_value !== null) {
+          callback.call(null, $el, data_attrib_value);
+        }
+      }
+    }
+  },
+
+  /**
+   * Locatize element content with 'chrome.i18n'
+   *
+   * @param   {object} $el
+   * @param   {string} data_attrib_value
+   * @returns {boolean}
+   */
+  localizeElement: function($el, data_attrib_value) {
+    if (typeof $el !== 'undefined' && typeof data_attrib_value === 'string') {
+      var localized_text = chrome.i18n.getMessage(data_attrib_value);
+      if (typeof localized_text === 'string' && localized_text !== '') {
+        $el.innerHTML = localized_text;
+        return true;
+      }
+    }
+    return false;
   }
 };

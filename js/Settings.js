@@ -1,5 +1,20 @@
 /* global chrome */
 
+/**
+ * This file is part of Random User-Agent Browser Extension
+ * @link https://github.com/tarampampam/random-user-agent
+ *
+ * Copyright (C) 2016 tarampampam <github.com/tarampampam>
+ *
+ * Everyone is permitted to copy and distribute verbatim or modified copies of this license
+ * document, and changing it is allowed as long as the name is changed.
+ *
+ * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE TERMS AND CONDITIONS FOR COPYING,
+ * DISTRIBUTION AND MODIFICATION
+ *
+ * 0. You just DO WHAT THE FUCK YOU WANT TO.
+ */
+
 "use strict";
 
 var Settings = new Proxy({
@@ -19,6 +34,8 @@ var Settings = new Proxy({
     // Custom User-Agent settings
     custom_useragent_enabled: false,
     custom_useragent_value: null,
+    // Replace User-Agent by javascript detection
+    javascript_protection_enabled: false,
     // Generator settings
     generator_types: ['chrome_win', 'chrome_mac', 'chrome_linux'],
     // Exceptions settings
@@ -79,7 +96,7 @@ var Settings = new Proxy({
    * Save settings in storage
    *
    * @param   {callable} callback
-   * @returns {void}
+   * @returns {void|boolean}
    */
   save: function(callback) {
     var self = this,
@@ -97,7 +114,7 @@ var Settings = new Proxy({
    * Remove all settings from storage
    *
    * @param   {callable} callback
-   * @returns {void}
+   * @returns {void|boolean}
    */
   clear: function(callback) {
     var self = this,
@@ -109,6 +126,13 @@ var Settings = new Proxy({
     });
   }
 }, {
+  /**
+   * Getter
+   *
+   * @param   {object} target
+   * @param   {string} name
+   * @returns {mixed}
+   */
   get: function(target, name) {
     var result = undefined;
     if (name in target.data) {
@@ -122,11 +146,24 @@ var Settings = new Proxy({
     }
     return result;
   },
+
+  /**
+   * Setter
+   *
+   * @param   {object} target
+   * @param   {string} name
+   * @param   {mixed} value
+   * @returns {boolean}
+   */
   set: function(target, name, value) {
     if (name in target.data) {
       target.data[name] = value;
       // Save changes in storage
-      target.save.call(target, name, value);
+      if (typeof target.save === 'function') {
+        target.save.call(target);
+      } else {
+        console.error('Invalid save() settings method!');
+      }
     }
     if (name in target) {
       target[name] = value;
