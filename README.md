@@ -1,5 +1,6 @@
-Random User-Agent
-=========
+[![GitHub license](https://img.shields.io/badge/license-WTFPL-blue.svg)](https://raw.githubusercontent.com/tarampampam/nod32-update-mirror/master/LICENSE) ![Language](https://img.shields.io/badge/language-javascript-yellowgreen.svg)
+
+# Random User-Agent
 
 Automatically replaces the User-Agent after a specified time interval
 
