@@ -22,7 +22,7 @@
  */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   // request example:
-  //   {action: 'exceptions_add', data: {pattern: 'some_pattern*'}}
+  //   {action: 'exceptions.add', data: {pattern: 'some_pattern*'}}
   if (typeof request === 'object') {
     var result;
     if (request.hasOwnProperty('action') && typeof request.action === 'string') {
