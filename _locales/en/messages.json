@@ -68,7 +68,7 @@
     "message": "Agent switcher options"
   },
   "agent_switcher_options_hint": {
-    "message": "Disable Agent Switching when a website matches the following rules (one per line):"
+    "message": "Here you can change the agent switching behavior:"
   },
 
   "exceptions": {
