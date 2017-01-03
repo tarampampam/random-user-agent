@@ -170,7 +170,7 @@ var UAGenerator = function() {
       },
       iphone: {
         name: 'Safari on iPhone',
-        regexp: ['Mozilla\\/5\\.0 \\(iPhone\\; U\\; CPU iPhone OS [7-9]_[2-3]_[1-3] like Mac OS X\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[6-7]\\.0 Mobile\\/8(J|F|C)[1-4](8a|90|) Safari\\/6533\\.18\\.5']
+        regexp: ['Mozilla\\/5\\.0 \\(iPhone\\; U\\; CPU iPhone OS [7-10]_[0-4]_[0-4] like Mac OS X\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[6-7]\\.0 Mobile\\/8(J|F|C)[1-4](8a|90|) Safari\\/6533\\.18\\.5']
       },
       ipad: {
         name: 'Safari on iPad',
