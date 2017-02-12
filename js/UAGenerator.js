@@ -92,12 +92,12 @@ var UAGenerator = function() {
       bit32: ['(NetBSD amd64|Linux amd64|Ubuntu\\; Linux|SunOS sun4u|Gentoo)'],
       bit64: ['(NetBSD i686|Linux i686|Linux x86_64|Ubuntu\\; Linux|SunOS sun4u|Gentoo)']
     },
-    applewebkit: ['AppleWebKit\\/(53[5-7]\\.[1-3][1-7])', 'AppleWebKit\\/(53[5-8]\\.[1-2][0-9]\\.[1-3][0-9])'],
+    applewebkit: ['AppleWebKit\\/(60[1-5]\\.[1-7]\\.[1-8])', 'AppleWebKit\\/(53[5-8]\\.[1-2][0-9]\\.[1-3][0-9])'],
     browsers_versions: {
-      chrome:  ['5[2-7]\\.0\\.27[0-4][0-9]\\.[1-9][0-9]'],
-      safari:  ['5\\.[0-1]\\.[1-5]', '6\\.0', '7\\.0\\.[1-3]'],
-      firefox: ['4[7-9]\\.[0-3]'],
-      opera:   ['1[5-9]\\.0\\.11[0-9][0-9]\\.([1-2]|)[1-9][0-9]']
+      chrome:  ['5[6-8]\\.0\\.2[8-9][0-4][0-9]\\.[1-9][0-9]'],
+      safari:  ['10\\.[0-1]\\.[1-5]', '6\\.0', '7\\.0\\.[1-3]'],
+      firefox: ['5[0-5]\\.[0-3](a|b||)'],
+      opera:   ['4[1-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]']
     }
   };
 
