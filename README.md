@@ -23,6 +23,8 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.1** - Fix JS-protection method (issue #10)
+* **2.1.0.1** - Fix translation error
 * **2.1.0** - All tests passed, stable release
 * **2.0.5** - Added Ukrainian localization, removed font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icons set
 * **2.0.4** - Fixed manifest file error
