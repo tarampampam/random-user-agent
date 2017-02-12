@@ -15,50 +15,55 @@
  * 0. You just DO WHAT THE FUCK YOU WANT TO.
  */
 
-chrome.runtime.sendMessage({action: 'settings.getEnabled'}, function(enabled){
+chrome.runtime.sendMessage([
+  {action: 'settings.getEnabled'},
+  {action: 'settings.getJavascriptProtectionEnabled'},
+  {action: 'useragent.get'},
+  {action: 'exceptions.uriMatch', data: {uri: window.location.href}} // Make wildcard search in exceptions list
+], function(results) {
+  var enabled = results[0],
+    js_protection_enabled = results[1],
+    useragent = results[2],
+    uri_match = results[3];
+
+  var consoleMessage = function (message_text) {
+    if (typeof message_text === 'string') {
+      console.debug('%c [Random User-Agent] '+message_text+' ', 'background: transparent; color: rgba(0,0,0,0.45)');
+    }
+  };
+
   if (enabled === true) {
-    chrome.runtime.sendMessage({action: 'settings.getJavascriptProtectionEnabled'}, function(js_protection_enabled){
-      if (js_protection_enabled === true) {
-        chrome.runtime.sendMessage({action: 'useragent.get'}, function(useragent){
-          if (typeof useragent === 'string') {
-            // Make wildcard search in exceptions list
-            chrome.runtime.sendMessage({
-              action: 'exceptions.uriMatch', data: {uri: window.location.href}
-            }, function(uri_match){
-              if (uri_match === false) {
-                chrome.runtime.sendMessage({action: 'useragent.get'}, function(useragent){
-                  if (typeof useragent === 'string' && useragent !== '') {
-                    var d = document.documentElement,
-                          injection_code = '(' + function(new_useragent) {
-                          if (typeof window === 'object' && typeof window.navigator === 'object') {
-                            navigator = Object.create(window.navigator);
-                            Object.defineProperties(navigator, {
-                              userAgent:  {get: function() {return new_useragent;}},
-                              appVersion: {get: function() {return new_useragent;}}
-                            });
-                            Object.defineProperty(window, 'navigator', {
-                              value: navigator, configurable: false, enumerable: false, writable: false
-                            });
-                          }
-                        } + ')("' + useragent.replace(/([\"\'])/g, '\\$1') + '");';
-                    d.setAttribute('onreset', injection_code);
-                    d.dispatchEvent(new CustomEvent('reset'));
-                    d.removeAttribute('onreset');
-                    if (typeof navigator === 'object') {
-                      Object.defineProperties(navigator, {
-                        userAgent:  {get: function() {return useragent;}},
-                        appVersion: {get: function() {return useragent;}}
-                      });
-                    }
-                  } else {
-                    console.warn('User-Agent JavaScript protection disabled!');
-                  }
-                });
-              }
+    if (js_protection_enabled === true) {
+      if (typeof useragent === 'string' && useragent !== '') {
+        if (uri_match === false) {
+          consoleMessage('Use fake User-Agent: ' + useragent);
+          var d = document.documentElement,
+                injection_code = '(' + function(new_useragent) {
+                if (typeof window === 'object' && typeof window.navigator === 'object') {
+                  navigator = Object.create(window.navigator);
+                  Object.defineProperties(navigator, {
+                    userAgent:  {get: function() {return new_useragent;}},
+                    appVersion: {get: function() {return new_useragent;}}
+                  });
+                  Object.defineProperty(window, 'navigator', {
+                    value: navigator, configurable: false, enumerable: false, writable: false
+                  });
+                }
+              } + ')("' + useragent.replace(/([\"\'])/g, '\\$1') + '");';
+          d.setAttribute('onreset', injection_code);
+          d.dispatchEvent(new CustomEvent('reset'));
+          d.removeAttribute('onreset');
+          if (typeof navigator === 'object') {
+            Object.defineProperties(navigator, {
+              userAgent:  {get: function() {return useragent;}},
+              appVersion: {get: function() {return useragent;}}
             });
           }
-        });
+        }
       }
-    });
+    } else {
+      consoleMessage('User-Agent JavaScript protection disabled!');
+    }
   }
+
 });

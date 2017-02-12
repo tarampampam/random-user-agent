@@ -17,14 +17,14 @@
 
 "use strict";
 
-(function() {
+(function () {
 
   /**
    * Auto User-Agent renew timer
    *
    * @type Timer
    */
-  var useragent_renew_timer = new Timer('User-Agent renew timer', function() {
+  var useragent_renew_timer = new Timer('User-Agent renew timer', function () {
     API.useragent.renew();
   });
 
@@ -35,7 +35,7 @@
    * @param   {mixed} value
    * @returns {void}
    */
-  Settings.onSet = function(name, value) {
+  Settings.onSet = function (name, value) {
     switch (name) {
       case 'enabled':
         UI.changeStateIcon(value === true ? 'active' : 'inactive');
@@ -56,7 +56,7 @@
    * Load extension settings
    */
   if (!Settings.hasOwnProperty('isLoaded') || Settings.isLoaded !== true) {
-    Settings.load(function() {
+    Settings.load(function () {
       if (API.settings.getRenewOnstartupEnabled()) {
         API.useragent.renew();
       }
@@ -71,13 +71,12 @@
   /**
    * Auto settings sync
    */
-  chrome.storage.onChanged.addListener(function() {
+  chrome.storage.onChanged.addListener(function () {
     if (Settings.sync === true) {
-      Settings.load(function() {
+      Settings.load(function () {
         console.info('Settings synchronized');
       });
     }
   });
-
 
 })();
