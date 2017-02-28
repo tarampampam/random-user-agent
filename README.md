@@ -4,7 +4,7 @@
 
 Automatically replaces the User-Agent after a specified time interval
 
-![Screenshot](https://cloud.githubusercontent.com/assets/7326800/17556809/3434e974-5f2e-11e6-9d26-865a2c264841.jpg)
+![Screenshot](https://raw.githubusercontent.com/tarampampam/random-user-agent/master/webstore_content/slides/slide-1.jpg)
 
 ### Get the Plugin! [Google Webstore]
 
