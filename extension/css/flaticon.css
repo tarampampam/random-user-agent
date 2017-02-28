@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Flaticon";
-  src: url("flaticon/flaticon.woff") format("woff");
+  src: url("../fonts/flaticon/flaticon.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

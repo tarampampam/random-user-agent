@@ -1,5 +1,5 @@
 @import url('normalize.min.css');
-@import url('../fonts/flaticon.css');
+@import url('flaticon.css');
 
 @keyframes moveRight {
   0%{width:18px;-webkit-transform:translateX(0);transform:translateX(0)}
