@@ -1,3 +1,7 @@
 /nbproject
 /*.zip
 /crx
+/temp
+/tmp
+/node_modules
+/.build
