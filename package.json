@@ -1,0 +1,36 @@
+{
+  "name": "random-user-agent",
+  "version": "0.0.0a",
+  "description": "Chromium-based browsers extension",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarampampam/random-user-agent.git"
+  },
+  "author": "paramtamtam <https://github.com/tarampampam>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/tarampampam/random-user-agent/issues"
+  },
+  "homepage": "https://github.com/tarampampam/random-user-agent#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-cssimport": "^5.0.0",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-import-css": "^0.1.3",
+    "gulp-uglify": "^2.0.1",
+    "gulp-uncss": "^1.0.6",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.0.0",
+    "imagemin-pngquant": "^5.0.0",
+    "jsonfile": "^2.4.0",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {}
+}
