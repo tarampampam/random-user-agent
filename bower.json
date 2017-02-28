@@ -1,0 +1,25 @@
+{
+  "name": "random-user-agent",
+  "homepage": "https://github.com/tarampampam/random-user-agent",
+  "authors": [
+    "paramtamtam <https://github.com/tarampampam>"
+  ],
+  "description": "Chromium-based browsers extension",
+  "main": "",
+  "keywords": [
+    "chromium",
+    "extension"
+  ],
+  "license": "WTFPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "extension/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "randexp": "^0.4.4"
+  }
+}
