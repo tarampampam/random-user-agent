@@ -168,6 +168,21 @@
   });
 
   /**
+   * Open donation link
+   */
+  chrome.runtime.sendMessage({action: 'links.donate'}, function(donate_uri) {
+    UI.forEachCssClass('donate-link', function($el) {
+      if (typeof donate_uri === 'string' && donate_uri !== '') {
+        UI.addEvent($el, 'click', function() {
+          chrome.tabs.create({ url: donate_uri });
+        });
+      } else {
+        UI.addCssClass($el, 'hidden');
+      }
+    });
+  });
+
+  /**
    * Auto-height hack
    */
   var autoheight_interval = window.setInterval(function() {

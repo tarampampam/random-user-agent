@@ -28,6 +28,9 @@
   "bug_report": {
     "message": "Bug report"
   },
+  "make_donation" : {
+    "message": "Make a donation"
+  },
 
   "general_settings": {
     "message": "General Settings"

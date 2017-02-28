@@ -633,6 +633,9 @@ var API = {
   links: {
     bugreport: function() {
       return Settings.links_bugreport;
+    },
+    donate: function() {
+      return Settings.links_donate;
     }
   }
 };

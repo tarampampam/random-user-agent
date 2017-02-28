@@ -25,13 +25,11 @@ chrome.runtime.sendMessage([
     js_protection_enabled = results[1],
     useragent = results[2],
     uri_match = results[3];
-
   var consoleMessage = function (message_text) {
     if (typeof message_text === 'string') {
       console.debug('%c [Random User-Agent] '+message_text+' ', 'background: transparent; color: rgba(0,0,0,0.45)');
     }
   };
-
   if (enabled === true) {
     if (js_protection_enabled === true) {
       if (typeof useragent === 'string' && useragent !== '') {
@@ -65,5 +63,4 @@ chrome.runtime.sendMessage([
       consoleMessage('User-Agent JavaScript protection disabled!');
     }
   }
-
 });

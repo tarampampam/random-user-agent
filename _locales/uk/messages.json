@@ -27,6 +27,9 @@
   "bug_report": {
     "message": "Повідомити про помилку"
   },
+  "make_donation" : {
+    "message": "Купити автору кави"
+  },
 
   "general_settings": {
     "message": "Основні налаштування"
