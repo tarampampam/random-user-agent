@@ -17,6 +17,7 @@
   "homepage": "https://github.com/fent/randexp.js",
   "ignore": [
     "**/.*",
+    "coverage",
     "gulpfile.js",
     "lib",
     "package.json",
@@ -24,15 +25,14 @@
     "node_modules",
     "test"
   ],
-  "version": "0.4.4",
-  "_release": "0.4.4",
+  "version": "0.4.5",
+  "_release": "0.4.5",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.4",
-    "commit": "cb9817f8e4a4b93c75e57a68b08dfc0e8b0ab624"
+    "tag": "v0.4.5",
+    "commit": "435fbbeaca7bb872db180e2c7d54ec9a1f0dda8f"
   },
   "_source": "https://github.com/fent/randexp.js.git",
   "_target": "^0.4.4",
-  "_originalSource": "randexp",
-  "_direct": true
+  "_originalSource": "randexp"
 }
