@@ -23,6 +23,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.4** - Text adjustments
 * **2.1.3** - Up generated browsers versions
 * **2.1.2** - Added gulp & bower supports, added donation link, refactoring
 * **2.1.1** - Up generated browsers versions, fix JS-protection method (issue #10)
