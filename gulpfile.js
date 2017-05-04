@@ -1,33 +1,33 @@
 var gulp = require('gulp'),
-    jsonfile = require('jsonfile'),
-    runSequence = require('run-sequence'),
-    minifyCss = require('gulp-clean-css'),
-    importCss = require('gulp-import-css'),
-    htmlmin = require('gulp-html-minifier'),
-    cssImport = require('gulp-cssimport'),
-    uglify = require('gulp-uglify'),
-    imagemin = require('gulp-imagemin'),
-    pngquant = require('imagemin-pngquant'),
-    zip = require('gulp-zip'),
-    chalk = require('chalk'),
-    gutil = require('gulp-util'),
-    clean = require('gulp-clean');
+  jsonfile = require('jsonfile'),
+  runSequence = require('run-sequence'),
+  minifyCss = require('gulp-clean-css'),
+  importCss = require('gulp-import-css'),
+  htmlmin = require('gulp-html-minifier'),
+  cssImport = require('gulp-cssimport'),
+  uglify = require('gulp-uglify'),
+  imagemin = require('gulp-imagemin'),
+  pngquant = require('imagemin-pngquant'),
+  zip = require('gulp-zip'),
+  chalk = require('chalk'),
+  gutil = require('gulp-util'),
+  clean = require('gulp-clean');
 
 /**
  * Settings.
  */
 
 var src_dir = './extension',
-    vendor_dir = '/js/3rd',
-    manifest_path = src_dir + '/manifest.json',
-    build_dir = './.build',
-    builds_dir = './builds';
+  vendor_dir = '/js/3rd',
+  manifest_path = src_dir + '/manifest.json',
+  build_dir = './.build',
+  builds_dir = './builds';
 
 /**
  * HTML.
  */
 
-gulp.task('html', function()  {
+gulp.task('html', function () {
   return gulp.src(src_dir + '/html/**/*.html')
     .pipe(htmlmin({
       collapseWhitespace: true
@@ -110,8 +110,8 @@ gulp.task('copy-files', function () {
 
 gulp.task('pack', function () {
   var manifest = jsonfile.readFileSync(manifest_path),
-      timestamp = (new Date).toISOString().replace(/z|t/gi,' ').trim().replace(/\:/g,'-').replace(/\s/g,'_'),
-      build_file_name = 'build_v' + manifest.version + '_' + timestamp + '.zip';
+    timestamp = (new Date).toISOString().replace(/z|t/gi, ' ').trim().replace(/\:/g, '-').replace(/\s/g, '_'),
+    build_file_name = 'build_v' + manifest.version + '_' + timestamp + '.zip';
   return gulp.src(build_dir + '/**/*')
     .pipe(zip(build_file_name))
     .pipe(gulp.dest(builds_dir))
