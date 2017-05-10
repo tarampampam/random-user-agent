@@ -81,8 +81,8 @@ var UAGenerator = function() {
     },
     media_server: ['( Media Center PC [4-6]\\.0\\;|)'],
     windows: {
-      v5:   ['Windows NT 5\\.[0-1]'],
-      v6up: ['Windows NT [6-8]\\.[0-1]']
+      v5:   ['Windows NT 5\\.[01]'],
+      v6up: ['Windows NT 6\\.[0-3]']
     },
     macos: {
       v10_8:   ['Intel Mac OS X 10_8_[2-8]', 'Intel Mac OS X 10\\.8\\.[2-8]'],
