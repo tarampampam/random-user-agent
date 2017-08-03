@@ -81,8 +81,9 @@ var UAGenerator = function() {
     },
     media_server: ['( Media Center PC [4-6]\\.0\\;|)'],
     windows: {
-      v5:   ['Windows NT 5\\.[01]'],
-      v6up: ['Windows NT 6\\.[0-3]']
+      v5:   ['Windows NT 5\\.1'],
+      v6:   ['Windows NT 6\\.[0-3]'],
+      v6up: ['Windows NT 6\\.[0-3]', 'Windows NT 10\\.0'],
     },
     macos: {
       v10_8:   ['Intel Mac OS X 10_8_[2-8]', 'Intel Mac OS X 10\\.8\\.[2-8]'],
@@ -120,11 +121,11 @@ var UAGenerator = function() {
       },
       v9: {
         name: 'Internet Explorer 9',
-        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows.v6up) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/[5-4]\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/[5-4]\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
       },
       v10: {
         name: 'Internet Explorer 10',
-        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6up) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/[5-6]\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
+        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/[5-6]\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
       }
     },
     chrome: {
@@ -158,7 +159,7 @@ var UAGenerator = function() {
     safari: {
       win: {
         name: 'Safari on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; ' + this.get(this.patterns.windows.v6up) + '\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/' + this.get(this.patterns.browsers_versions.safari) + ' Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; NT 6\\.[01]\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[3-5]\\.0\\.[1-4] Safari\\/(\\2)']
       },
       mac: {
         name: 'Safari on Mac',
