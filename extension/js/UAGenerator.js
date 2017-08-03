@@ -33,7 +33,7 @@ var UAGenerator = function() {
   /**
    * Test - var is an array?
    *
-   * @param   {mixed} obj
+   * @param   {*} obj
    * @returns {boolean}
    */
   this.isArray = function(obj) {
@@ -43,7 +43,7 @@ var UAGenerator = function() {
   /**
    * Test - var is a string?
    *
-   * @param   {mixed} obj
+   * @param   {*} obj
    * @returns {boolean}
    */
   this.isString = function(obj) {
@@ -53,7 +53,7 @@ var UAGenerator = function() {
   /**
    * Test - var is defined?
    *
-   * @param   {mixed} obj
+   * @param   {*} obj
    * @returns {boolean}
    */
   this.isUndefined = function(obj) {
@@ -63,8 +63,8 @@ var UAGenerator = function() {
   /**
    * Get random array item
    *
-   * @param   {array} array
-   * @returns {array|null}
+   * @param   {Array} array
+   * @returns {Array|null}
    */
   this.get = function(array) {
     return this.isArray(array) ? array[Math.floor(Math.random() * array.length)] : null;
@@ -83,7 +83,7 @@ var UAGenerator = function() {
     windows: {
       v5:   ['Windows NT 5\\.1'],
       v6:   ['Windows NT 6\\.[0-3]'],
-      v6up: ['Windows NT 6\\.[0-3]', 'Windows NT 10\\.0'],
+      v6up: ['Windows NT 6\\.[0-3]', 'Windows NT 10\\.0']
     },
     macos: {
       v10_8:   ['Intel Mac OS X 10_8_[2-8]', 'Intel Mac OS X 10\\.8\\.[2-8]'],
@@ -216,7 +216,7 @@ var UAGenerator = function() {
    *
    * @param   {object} object
    * @param   {string} key_name
-   * @returns {array}
+   * @returns {Array}
    */
   this.getAllByKeyName = function(object, key_name) {
     var result = [];
