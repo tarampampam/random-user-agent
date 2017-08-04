@@ -23,6 +23,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.7** - Small UA generator fixes
 * **2.1.6** - Small UA generator fixes
 * **2.1.5** - Try to fix "Issue #15"
 * **2.1.4** - Text adjustments
