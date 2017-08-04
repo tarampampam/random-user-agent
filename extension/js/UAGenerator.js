@@ -95,9 +95,9 @@ var UAGenerator = function() {
     },
     applewebkit: ['AppleWebKit\\/(60[1-5]\\.[1-7]\\.[1-8])', 'AppleWebKit\\/(53[5-8]\\.[1-2][0-9]\\.[1-3][0-9])'],
     browsers_versions: {
-      chrome:  ['(60|5[7-9])\\.0\\.30[2-8][0-8]\\.[1-9][0-9]'],
+      chrome:  ['(59|6[0-2])\\.0\\.3[01][2-8][0-8]\\.[1-9][0-9]'],
       safari:  ['10\\.[0-1]\\.[1-5]', '6\\.0', '7\\.0\\.[1-3]'],
-      firefox: ['5[3-5]\\.[0-3](a|b||)'],
+      firefox: ['5[3-7]\\.[0-3](a|b||)'],
       opera:   ['4[4-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]']
     }
   };
@@ -113,19 +113,19 @@ var UAGenerator = function() {
       },
       v7: {
         name: 'Internet Explorer 7',
-        regexp: ['Mozilla\\/(5|4|4)\\.0 \\((compatible|compatible|Windows\\; U)\\; MSIE 7\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\;( WOW64\\;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/4\\.0 \\((compatible|compatible|Windows\\; U)\\; MSIE 7\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\;( WOW64\\;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)']
       },
       v8: {
         name: 'Internet Explorer 8',
-        regexp: ['Mozilla\\/(5|5|4)\\.0 \\(compatible\\; MSIE 8\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\; Trident\\/4\\.0\\; (WOW64|WOW64|GTB7\\.[2-6])\\; InfoPath\\.[2-3]\\;( SV1\\;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/4\\.0 \\(compatible\\; MSIE 8\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\; Trident\\/4\\.0\\; (WOW64|WOW64|GTB7\\.[2-6])\\; InfoPath\\.[2-3]\\;( SV1\\;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)']
       },
       v9: {
         name: 'Internet Explorer 9',
-        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/[5-4]\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/5\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
       },
       v10: {
         name: 'Internet Explorer 10',
-        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/[5-6]\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
+        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/6\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
       }
     },
     chrome: {
