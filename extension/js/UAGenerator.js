@@ -86,7 +86,8 @@ var UAGenerator = function() {
       v6up: ['Windows NT 6\\.[0-3]', 'Windows NT 10\\.0']
     },
     macos: {
-      v10: ['Intel Mac OS X 10([._])(9|1[0-3])\\1[0-4]']
+      v10_blink: ['Intel Mac OS X 10_(9|1[0-3])_[0-4]'],
+      v10_firefox: ['Intel Mac OS X 10\\.(9|1[0-3])']
     },
     linux: {
       bit32: ['(NetBSD amd64|Linux amd64|Ubuntu\\; Linux|SunOS sun4u|Gentoo)'],
@@ -134,7 +135,7 @@ var UAGenerator = function() {
       },
       mac: {
         name: 'Chrome on Mac',
-        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\; ' + this.get(this.patterns.macos.v10) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\; ' + this.get(this.patterns.macos.v10_blink) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2)']
       },
       linux: {
         name: 'Chrome on Linux',
@@ -148,7 +149,7 @@ var UAGenerator = function() {
       },
       mac: {
         name: 'Firefox on Mac',
-        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\;( U\\; | )' + this.get(this.patterns.macos.v10) + '\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\3)']
+        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\;( U\\; | )' + this.get(this.patterns.macos.v10_firefox) + '\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\3)']
       },
       linux: {
         name: 'Firefox on Linux',
@@ -162,7 +163,7 @@ var UAGenerator = function() {
       },
       mac: {
         name: 'Safari on Mac',
-        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\;( U\\; | )' + this.get(this.patterns.macos.v10) + '\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/' + this.get(this.patterns.browsers_versions.safari) + ' Safari\\/(\\4)']
+        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\;( U\\; | )' + this.get(this.patterns.macos.v10_blink) + '\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/' + this.get(this.patterns.browsers_versions.safari) + ' Safari\\/(\\4)']
       },
       linux: {
         name: 'Safari on Linux',
@@ -184,7 +185,7 @@ var UAGenerator = function() {
       },
       mac: {
         name: 'Opera on Mac',
-        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\; ' + this.get(this.patterns.macos.v10) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\; ' + this.get(this.patterns.macos.v10_blink) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
       },
       linux: {
         name: 'Opera on Linux',
