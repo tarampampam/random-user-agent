@@ -144,7 +144,7 @@ var UAGenerator = function() {
       xbox: {
         name: 'Edge on Xbox',
         regexp: ['']
-      },
+      }
     },*/
     chrome: {
       win: {
