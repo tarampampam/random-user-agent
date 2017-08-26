@@ -126,8 +126,26 @@ var UAGenerator = function() {
       v10: {
         name: 'Internet Explorer 10',
         regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/6\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
+      },
+      v11: {
+        name: 'Internet Explorer 11',
+        regexp: ['Mozilla\\/5\\.0 \\(Windows NT (?:6\\.[1-3]|10\\.0); (?:WOW64; )?Trident\\/7\\.0; rv:11\\.0\\) like Gecko']
       }
     },
+/*    edge: {
+      desktop: {
+        name: 'Edge on Windows',
+        regexp: ['']
+      },
+      mobile: {
+        name: 'Edge on Mobile',
+        regexp: ['']
+      },
+      xbox: {
+        name: 'Edge on Xbox',
+        regexp: ['']
+      },
+    },*/
     chrome: {
       win: {
         name: 'Chrome on Windows',
