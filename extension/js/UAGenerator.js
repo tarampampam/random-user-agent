@@ -66,8 +66,10 @@ var UAGenerator = function() {
    * @param   {Array} array
    * @returns {Array|null}
    */
-  this.get = function(array) {
-    return this.isArray(array) ? array[Math.floor(Math.random() * array.length)] : null;
+  this.get = function(array, start, end) {
+    if (typeof start == 'undefined') start = 0;
+    if (typeof end == 'undefined') end = array.length - 1;
+    return this.isArray(array) ? array[Math.floor(Math.random() * (end - start + 1)) + start] : null;
   };
 
   /**
@@ -80,11 +82,7 @@ var UAGenerator = function() {
       v2up: ['( \\.NET CLR [2-3]\\.[1-8]\\.[3-5]07[0-9][0-9]\\;|)']
     },
     media_server: ['( Media Center PC [4-6]\\.0\\;|)'],
-    windows: {
-      v5:   ['Windows NT 5\\.1'],
-      v6:   ['Windows NT 6\\.[0-3]'],
-      v6up: ['Windows NT 6\\.[0-3]', 'Windows NT 10\\.0']
-    },
+    windows: ['Windows NT 5\\.1', 'Windows NT 6\\.0', 'Windows NT 6\\.1', 'Windows NT 6\\.2', 'Windows NT 6\\.3', 'Windows NT 10\\.0'],
     macos: {
       v10_blink: ['Intel Mac OS X 10_(9|1[0-3])_[0-4]'],
       v10_firefox: ['Intel Mac OS X 10\\.(9|1[0-3])']
@@ -109,47 +107,47 @@ var UAGenerator = function() {
     ie: {
       v6: {
         name: 'Internet Explorer 6',
-        regexp: ['Mozilla\\/4\\.0 \\(compatible\\; MSIE 6\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\;( SV1\\;||)' + this.get(this.patterns.net_clr.v2up) + ' ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/4\\.0 \\(compatible\\; MSIE 6\\.0\\; ' + this.get(this.patterns.windows, 0, 0) + '\\;( SV1\\;||)' + this.get(this.patterns.net_clr.v2up) + ' ' + this.get(this.patterns.locales) + '\\)']
       },
       v7: {
         name: 'Internet Explorer 7',
-        regexp: ['Mozilla\\/4\\.0 \\((compatible|compatible|Windows\\; U)\\; MSIE 7\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\;( WOW64\\;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/4\\.0 \\((compatible|compatible|Windows\\; U)\\; MSIE 7\\.0\\; ' + this.get(this.patterns.windows, 0, 1) + '\\;( WOW64\\;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)']
       },
       v8: {
         name: 'Internet Explorer 8',
-        regexp: ['Mozilla\\/4\\.0 \\(compatible\\; MSIE 8\\.0\\; ' + this.get(this.patterns.windows.v5) + '\\; Trident\\/4\\.0\\; (WOW64|WOW64|GTB7\\.[2-6])\\; InfoPath\\.[2-3]\\;( SV1\\;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/4\\.0 \\(compatible\\; MSIE 8\\.0\\; ' + this.get(this.patterns.windows, 0, 2) + '\\; Trident\\/4\\.0\\; (WOW64|WOW64|GTB7\\.[2-6])\\; InfoPath\\.[2-3]\\;( SV1\\;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)']
       },
       v9: {
         name: 'Internet Explorer 9',
-        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/5\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla\\/5\\.0 \\((compatible|Windows\\; U)\\; MSIE 9\\.0\\; ' + this.get(this.patterns.windows, 1, 2) + '\\; (Win64\\; x64\\; |WOW64\\; |)' + 'Trident\\/5\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7]\\;|||)( \\.NET4\\.0(C|E)\\;) ' + this.get(this.patterns.locales) + '\\)']
       },
       v10: {
         name: 'Internet Explorer 10',
-        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows.v6) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/6\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
+        regexp: ['Mozilla\\/5\\.0 \\(compatible\\; MSIE 10\\.0\\; ' + this.get(this.patterns.windows, 2, 2) + '\\;( InfoPath\\.[2-3]\\;|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64\\; |)Trident\\/6\\.0(\\; ' + this.get(this.patterns.locales) + '|)\\)']
       },
       v11: {
         name: 'Internet Explorer 11',
-        regexp: ['Mozilla\\/5\\.0 \\(Windows NT (?:6\\.[1-3]|10\\.0); (?:WOW64; )?Trident\\/7\\.0; rv:11\\.0\\) like Gecko']
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows, 2, 5) + '; (?:WOW64; )?Trident\\/7\\.0; rv:11\\.0\\) like Gecko']
       }
     },
-/*    edge: {
+    edge: {
       desktop: {
         name: 'Edge on Windows',
-        regexp: ['']
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/42\\.0\\.2311\\.135 Safari/537\\.36 Edge/12\\.246']
       },
-      mobile: {
+      /*mobile: {
         name: 'Edge on Mobile',
         regexp: ['']
       },
       xbox: {
         name: 'Edge on Xbox',
         regexp: ['']
-      }
-    },*/
+      }*/
+    },
     chrome: {
       win: {
         name: 'Chrome on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows.v6up) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows, 2) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2)']
       },
       mac: {
         name: 'Chrome on Mac',
@@ -163,7 +161,7 @@ var UAGenerator = function() {
     firefox: {
       win: {
         name: 'Firefox on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows.v6up) + '\\; (WOW64|Win64)\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows, 2) + '\\; (WOW64|Win64)\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\2)']
       },
       mac: {
         name: 'Firefox on Mac',
@@ -199,7 +197,7 @@ var UAGenerator = function() {
     opera: {
       win: {
         name: 'Opera on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows.v6up) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows, 2) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
       },
       mac: {
         name: 'Opera on Mac',
