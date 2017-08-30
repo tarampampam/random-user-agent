@@ -173,15 +173,11 @@ var UAGenerator = function() {
     safari: {
       win: {
         name: 'Safari on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; NT 6\\.[01]\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[3-5]\\.0\\.[1-4] Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; NT (5\\.1|6\\.[01])\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[3-5]\\.0\\.[1-4] Safari\\/(\\2)']
       },
       mac: {
         name: 'Safari on Mac',
         regexp: ['Mozilla\\/5\\.0 \\(Macintosh\\;( U\\; | )' + this.get(this.patterns.macos.v10_blink) + '\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/' + this.get(this.patterns.browsers_versions.safari) + ' Safari\\/(\\4)']
-      },
-      linux: {
-        name: 'Safari on Linux',
-        regexp: ['Mozilla\\/5\\.0 \\(X11\\; ' + this.get(this.patterns.linux.bit64) + '\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/' + this.get(this.patterns.browsers_versions.safari) + ' Safari\\/(\\3)']
       },
       iphone: {
         name: 'Safari on iPhone',
