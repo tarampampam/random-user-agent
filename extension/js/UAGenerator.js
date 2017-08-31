@@ -145,7 +145,7 @@ var UAGenerator = function() {
     chrome: {
       win: {
         name: 'Chrome on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\3)']
       },
       mac: {
         name: 'Chrome on Mac',
@@ -159,7 +159,7 @@ var UAGenerator = function() {
     firefox: {
       win: {
         name: 'Firefox on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '\\; (WOW64|Win64)\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '\\; (WOW64|Win64)\\; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko\\/20100101 Firefox\\/(\\3)']
       },
       mac: {
         name: 'Firefox on Mac',
@@ -173,7 +173,7 @@ var UAGenerator = function() {
     safari: {
       win: {
         name: 'Safari on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; NT (5\\.1|6\\.[01])\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[3-5]\\.0\\.[1-4] Safari\\/(\\2)']
+        regexp: ['Mozilla\\/5\\.0 \\(Windows\\; U\\; NT (5\\.1|6\\.[01])\\; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version\\/[3-5]\\.0\\.[1-4] Safari\\/(\\3)']
       },
       mac: {
         name: 'Safari on Mac',
@@ -191,7 +191,7 @@ var UAGenerator = function() {
     opera: {
       win: {
         name: 'Opera on Windows',
-        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla\\/5\\.0 \\(' + this.get(this.patterns.windows) + '(\\; Win64\\; x64|\\; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome\\/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari\\/(\\3) OPR/' + this.get(this.patterns.browsers_versions.opera)]
       },
       mac: {
         name: 'Opera on Mac',
