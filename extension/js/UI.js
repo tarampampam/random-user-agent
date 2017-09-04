@@ -182,7 +182,7 @@ var UI = {
    * Change extension icon (based on state)
    *
    * @param   {string} state
-   * @returns {Promise}
+   * @returns {void}
    */
   changeStateIcon: function(state) {
     var image_src;
@@ -197,7 +197,7 @@ var UI = {
         image_src = '/img/48x48t.png';
         break;
     }
-    return chrome.browserAction.setIcon({path: image_src}, function(){});
+    chrome.browserAction.setIcon({path: image_src});
   },
 
   /**
