@@ -28,6 +28,12 @@
     API.useragent.renew();
   });
 
+  var updateIconForSite = function(site) {
+    var state = 'disabled';
+    if (API.settings.getEnabled()) state = API.exceptions.uriMatch({uri: site}) ? 'inactive' : 'active';
+    UI.changeStateIcon(state)
+  }
+
   /**
    * Declare actions on settings changes
    *
@@ -38,7 +44,7 @@
   Settings.onSet = function (name, value) {
     switch (name) {
       case 'enabled':
-        UI.changeStateIcon(value === true ? 'active' : 'inactive');
+        UI.changeStateIcon(value === true ? 'active' : 'disabled');
         break;
       case 'renew_interval':
         useragent_renew_timer.setInterval(value);
@@ -64,7 +70,7 @@
       if (API.settings.getRenewEnabled()) {
         useragent_renew_timer.start();
       }
-      UI.changeStateIcon(API.settings.getEnabled() === true ? 'active' : 'inactive');
+      UI.changeStateIcon(API.settings.getEnabled() === true ? 'active' : 'disabled');
     });
   }
 
@@ -77,6 +83,16 @@
         console.info('Settings synchronized');
       });
     }
+  });
+
+  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status == 'loading') updateIconForSite(tab.url);
+  });
+
+  chrome.tabs.onActivated.addListener(function(activeInfo) {
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      updateIconForSite(tabs[0].url);
+    });
   });
 
 })();
