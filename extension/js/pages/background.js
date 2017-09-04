@@ -86,7 +86,7 @@
   });
 
   chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status == 'loading') updateIconForSite(tab.url);
+    if (changeInfo.status === 'loading') updateIconForSite(tab.url);
   });
 
   chrome.tabs.onActivated.addListener(function(activeInfo) {
