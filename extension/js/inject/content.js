@@ -35,8 +35,7 @@ chrome.runtime.sendMessage([
       if (typeof useragent === 'string' && useragent !== '') {
         if (uri_match === false) {
           consoleMessage('Use fake User-Agent: ' + useragent);
-          var d = document.documentElement,
-                injection_code = '(' + function(new_useragent) {
+          var injection_code = '(' + function(new_useragent) {
                 if (typeof window === 'object' && typeof window.navigator === 'object') {
                   navigator = Object.create(window.navigator);
                   Object.defineProperties(navigator, {
@@ -48,9 +47,10 @@ chrome.runtime.sendMessage([
                   });
                 }
               } + ')("' + useragent.replace(/([\"\'])/g, '\\$1') + '");';
-          d.setAttribute('onreset', injection_code);
-          d.dispatchEvent(new CustomEvent('reset'));
-          d.removeAttribute('onreset');
+          var script = document.createElement('script');
+          script.textContent = injection_code;
+          document.documentElement.appendChild(script);
+          script.remove();
           if (typeof navigator === 'object') {
             Object.defineProperties(navigator, {
               userAgent:  {get: function() {return useragent;}},
