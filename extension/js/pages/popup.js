@@ -43,8 +43,8 @@
     if (UI.isCheckbox($el)) {
       var getThisPageUri = function(callback) {
         if (typeof chrome.tabs === 'object') {
-          chrome.tabs && chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
-            callback.call(null, tab[0].url);
+          chrome.tabs && chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            callback.call(null, tabs[0].url);
           });
         } else {
           callback.call(null, window.location.href);
