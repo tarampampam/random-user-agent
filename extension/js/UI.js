@@ -182,22 +182,24 @@ var UI = {
    * Change extension icon (based on state)
    *
    * @param   {string} state
+   * @param   {number} tabId
    * @returns {void}
    */
-  changeStateIcon: function(state) {
-    var image_src;
+  changeStateIcon: function(state, tabId) {
+    var details = {};
     switch (state) {
       case 'active':
-        image_src = '/img/48x48.png';
+        details.path = '/img/48x48.png';
         break;
       case 'inactive':
-        image_src = '/img/48x48g.png';
+        details.path = '/img/48x48g.png';
         break;
       default:
-        image_src = '/img/48x48t.png';
+        details.path = '/img/48x48t.png';
         break;
     }
-    chrome.browserAction.setIcon({path: image_src});
+    if (typeof tabId === 'number') details.tabId = tabId;
+    chrome.browserAction.setIcon(details);
   },
 
   /**
