@@ -28,10 +28,10 @@
     API.useragent.renew();
   });
 
-  var updateIconForSite = function(site) {
+  var updateIconForSite = function(tab) {
     var state = 'disabled';
-    if (API.settings.getEnabled()) state = API.exceptions.uriMatch({uri: site}) ? 'inactive' : 'active';
-    UI.changeStateIcon(state)
+    if (API.settings.getEnabled()) state = API.exceptions.uriMatch({uri: tab.url}) ? 'inactive' : 'active';
+    UI.changeStateIcon(state, tab.id);
   }
 
   /**
@@ -86,12 +86,12 @@
   });
 
   chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    if (changeInfo.status === 'loading') updateIconForSite(tab.url);
+    if (changeInfo.status === 'loading') updateIconForSite(tab);
   });
 
   chrome.tabs.onActivated.addListener(function(activeInfo) {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      updateIconForSite(tabs[0].url);
+      updateIconForSite(tabs[0]);
     });
   });
 
