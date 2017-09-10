@@ -139,7 +139,7 @@ var UI = {
   },
 
   /**
-   * Test element - is inpit?
+   * Test element - is input?
    *
    * @param   {object} $el
    * @returns {boolean}
@@ -182,19 +182,24 @@ var UI = {
    * Change extension icon (based on state)
    *
    * @param   {string} state
-   * @returns {boolean}
+   * @param   {number} tabId
+   * @returns {void}
    */
-  changeStateIcon: function(state) {
-    var image_src;
+  changeStateIcon: function(state, tabId) {
+    var details = {};
     switch (state) {
       case 'active':
-        image_src = '/img/48x48.png';
+        details.path = '/img/48x48.png';
+        break;
+      case 'inactive':
+        details.path = '/img/48x48g.png';
         break;
       default:
-        image_src = '/img/48x48g.png';
+        details.path = '/img/48x48t.png';
         break;
     }
-    return chrome.browserAction.setIcon({path: image_src}, function(){});
+    if (typeof tabId === 'number') details.tabId = tabId;
+    chrome.browserAction.setIcon(details);
   },
 
   /**
