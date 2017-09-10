@@ -89,10 +89,4 @@
     if (changeInfo.status === 'loading') updateIconForSite(tab);
   });
 
-  chrome.tabs.onActivated.addListener(function(activeInfo) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      updateIconForSite(tabs[0]);
-    });
-  });
-
 })();
