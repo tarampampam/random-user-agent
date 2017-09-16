@@ -145,15 +145,15 @@ var UAGenerator = function() {
     chrome: {
       win: {
         name: 'Chrome on Windows',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\3)']
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
       },
       mac: {
         name: 'Chrome on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\2)']
+        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
       },
       linux: {
         name: 'Chrome on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\3)']
+        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
       }
     },
     firefox: {
@@ -191,15 +191,15 @@ var UAGenerator = function() {
     opera: {
       win: {
         name: 'Opera on Windows',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\3) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
       },
       mac: {
         name: 'Opera on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\2) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
       },
       linux: {
         name: 'Opera on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/(\\3) OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
       }
     }
   };
