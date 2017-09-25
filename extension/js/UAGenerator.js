@@ -131,7 +131,7 @@ var UAGenerator = function() {
     edge: {
       desktop: {
         name: 'Edge on Windows',
-        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/42\\.0\\.2311\\.135 Safari/537\\.36 Edge/12\\.246']
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/51\\.0\\.2704\\.79 Safari/537\\.36 Edge/14\\.14393']
       },
       /*mobile: {
         name: 'Edge on Mobile',
