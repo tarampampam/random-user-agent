@@ -25,12 +25,12 @@
     "node_modules",
     "test"
   ],
-  "version": "0.4.5",
-  "_release": "0.4.5",
+  "version": "0.4.6",
+  "_release": "0.4.6",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.5",
-    "commit": "435fbbeaca7bb872db180e2c7d54ec9a1f0dda8f"
+    "tag": "v0.4.6",
+    "commit": "a6a573ea9c525db60768d594c877a1644a9e3134"
   },
   "_source": "https://github.com/fent/randexp.js.git",
   "_target": "^0.4.4",
