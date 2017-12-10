@@ -2,6 +2,8 @@
 
 *, :after, :before {
   cursor: default;
+  user-select: none;
+  -moz-user-select: none; /* Firefox still requires their prefix */
 }
 
 html, body {
