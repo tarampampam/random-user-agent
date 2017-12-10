@@ -27,7 +27,7 @@ var Settings = new Proxy({
     useragent: null,
     // Auto renew settings
     renew_enabled: true,
-    renew_interval: 10 * 60 * 1000, // In microseconds only!
+    renew_interval: 10 * 60 * 1000, // In milliseconds
     renew_onstartup: true,
     // Store settings in localstorage or in cloud?
     sync: true,
@@ -35,7 +35,7 @@ var Settings = new Proxy({
     custom_useragent_enabled: false,
     custom_useragent_value: null,
     // Replace User-Agent by javascript detection
-    javascript_protection_enabled: false,
+    javascript_protection_enabled: true,
     // Generator settings
     generator_types: ['chrome_win', 'chrome_mac', 'chrome_linux'],
     // Exceptions settings
