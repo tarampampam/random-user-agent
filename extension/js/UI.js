@@ -149,7 +149,7 @@ var UI = {
   },
 
   /**
-   * Test element - is inpit checkbox?
+   * Test element - is input checkbox?
    *
    * @param   {object} $el
    * @returns {boolean}
@@ -159,7 +159,7 @@ var UI = {
   },
 
   /**
-   * Test element - is inpit text?
+   * Test element - is input text?
    *
    * @param   {object} $el
    * @returns {boolean}
@@ -169,7 +169,7 @@ var UI = {
   },
 
   /**
-   * Test element - is inpit number?
+   * Test element - is input number?
    *
    * @param   {object} $el
    * @returns {boolean}
