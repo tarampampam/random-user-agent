@@ -369,8 +369,13 @@ var API = {
          */
         var wildcardStringSearch = function(string, rule, caseinsensitive) {
           var regexp_flag = (caseinsensitive === false) ? '' : 'i';
-          rule = rule.split('*').join('.*');
-          rule = rule.split('?').join('.?');
+
+          // Escape regex tokens, except for * and ?
+          rule = rule.replace(/[[\]{}()+.\\^$|]/g, '\\$&');
+
+          // Replace * and ? with their regex counterparts
+          rule = rule.replace(/[*?]/g, '.$&');
+
           return new RegExp('^' + rule + '$', regexp_flag).test(string);
         };
         if (wildcardStringSearch(uri, pattern)) {
