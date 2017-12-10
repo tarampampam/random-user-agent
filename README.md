@@ -6,7 +6,7 @@ Automatically replaces the User-Agent after a specified time interval
 
 ![Screenshot](https://raw.githubusercontent.com/tarampampam/random-user-agent/master/webstore_content/slides/slide-1.jpg)
 
-### Get the Plugin! [Google Webstore]
+### Get the Plugin! [Google Webstore] & [Firefox Add-ons]
 
 User-Agent - a string that is sent along to any website you visit. This is a sort of "fingerprint" your browser leaves behind which contains:
 - The name and version of your browser;
@@ -23,6 +23,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.9** - Safari version update, preparations for Firefox version, regex fixes and JavaScript support enabled by default (88be3bd, 64f9eba, e2812b9, e34ba2d, ea9b9ba, 5f53fe3)
 * **2.1.8** - Fixes by @neroux
 * **2.1.7** - Small UA generator fixes
 * **2.1.6** - Small UA generator fixes
@@ -52,3 +53,4 @@ Version History (Changelog)
 
 [Google Webstore]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
 [randexp.js]:http://github.com/fent/randexp.js
+[Firefox Add-ons]:https://addons.mozilla.org/firefox/addon/random_user_agent/
