@@ -55,6 +55,17 @@ Version History (Changelog)
 * **1.3** - Added German (de) localization, fixed bugs in the absence of initialization
 * **1.2** - First release on Github
 
+### Building from sources
+
+For a building extension from sources _(and pack as a `zip` file)_ use next commands:
+
+```bash
+$ cd /path/to/the/sources
+$ gulp
+```
+
+> You can install `gulp` globally with next command: `$ sudo npm install -g gulp`
+
 [Google Webstore]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
 [randexp.js]:http://github.com/fent/randexp.js
 [Firefox Add-ons]:https://addons.mozilla.org/firefox/addon/random_user_agent/
