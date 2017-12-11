@@ -1,6 +1,8 @@
-[![GitHub license](https://img.shields.io/badge/license-WTFPL-blue.svg)](https://raw.githubusercontent.com/tarampampam/nod32-update-mirror/master/LICENSE) ![Language](https://img.shields.io/badge/language-javascript-yellowgreen.svg)
-
 # Random User-Agent
+
+![StyleCI](https://styleci.io/repos/65311086/shield?style=flat&maxAge=30)
+[![GitHub license](https://img.shields.io/badge/license-WTFPL-blue.svg)](https://raw.githubusercontent.com/tarampampam/nod32-update-mirror/master/LICENSE)
+![Language](https://img.shields.io/badge/language-javascript-yellowgreen.svg)
 
 Automatically replaces the User-Agent after a specified time interval
 
@@ -23,8 +25,9 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.10** - Added `zh_CN` localization (thx to [@yfdyh000](https://github.com/yfdyh000))
 * **2.1.9** - Safari version update, preparations for Firefox version, regex fixes and JavaScript support enabled by default (88be3bd, 64f9eba, e2812b9, e34ba2d, ea9b9ba, 5f53fe3)
-* **2.1.8** - Fixes by @neroux
+* **2.1.8** - Fixes by [@neroux](https://github.com/neroux)
 * **2.1.7** - Small UA generator fixes
 * **2.1.6** - Small UA generator fixes
 * **2.1.5** - Try to fix "Issue #15"
