@@ -1,8 +1,9 @@
 # Random User-Agent
 
-![StyleCI](https://styleci.io/repos/65311086/shield?style=flat&maxAge=30)
 [![GitHub license](https://img.shields.io/badge/license-WTFPL-blue.svg)](https://raw.githubusercontent.com/tarampampam/nod32-update-mirror/master/LICENSE)
 ![Language](https://img.shields.io/badge/language-javascript-yellowgreen.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ca0e129db186bac5f1b4/maintainability)](https://codeclimate.com/github/tarampampam/random-user-agent/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ca0e129db186bac5f1b4/test_coverage)](https://codeclimate.com/github/tarampampam/random-user-agent/test_coverage)
 
 Automatically replaces the User-Agent after a specified time interval
 
