@@ -57,7 +57,7 @@
   },
 
   "custom_useragent": {
-    "message": "Власний User-Agent"
+    "message": "Власний User-Agent (по одному на рядок)"
   },
   "custom_useragent_hint": {
     "message": "Ви можете вказати власний User-Agent:"
