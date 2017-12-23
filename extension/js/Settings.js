@@ -34,6 +34,7 @@ var Settings = new Proxy({
     // Custom User-Agent settings
     custom_useragent_enabled: false,
     custom_useragent_value: null,
+    custom_useragent_list: [],
     // Replace User-Agent by javascript detection
     javascript_protection_enabled: true,
     // Generator settings
