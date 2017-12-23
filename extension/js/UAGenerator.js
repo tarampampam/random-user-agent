@@ -85,16 +85,13 @@ var UAGenerator = function() {
       v10_blink:   ['Intel Mac OS X 10_(9|1[0-3])_[0-4]'],
       v10_firefox: ['Intel Mac OS X 10\\.(9|1[0-3])']
     },
-    linux: {
-      bit32: ['(NetBSD amd64|Linux amd64|Ubuntu; Linux|SunOS sun4u|Gentoo)'],
-      bit64: ['(NetBSD i686|Linux i686|Linux x86_64|Ubuntu; Linux|SunOS sun4u|Gentoo)']
-    },
     applewebkit: ['AppleWebKit/(60[1-5]\\.[1-7]\\.[1-8])', 'AppleWebKit/(53[5-8]\\.[1-2][0-9]\\.[1-3][0-9])'],
     browsers_versions: {
       chrome:  ['6[2-5]\\.0\\.32(?:02|39|82)\\.[1-9]{1,3}'],
       safari:  ['1[01]\\.[0-1]\\.[1-5]', '7\\.0\\.[1-3]'],
       firefox: ['5[2-9]\\.0'],
-      opera:   ['4[4-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]']
+      opera:   ['4[4-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]'],
+      edge:    ['Chrome/51\\.0\\.2704\\.79 Safari/537\\.36 Edge/14\\.14393', 'Chrome/52\\.0\\.2743\\.116 Safari/537\\.36 Edge/15\\.15063']
     }
   };
 
@@ -131,7 +128,7 @@ var UAGenerator = function() {
     edge: {
       desktop: {
         name: 'Edge on Windows',
-        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/51\\.0\\.2704\\.79 Safari/537\\.36 Edge/14\\.14393']
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)]
       },
       /*mobile: {
         name: 'Edge on Mobile',
@@ -167,7 +164,7 @@ var UAGenerator = function() {
       },
       linux: {
         name: 'Firefox on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11; ' + this.get(this.patterns.linux.bit64) + '; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\2)']
+        regexp: ['Mozilla/5\\.0 \\(X11; (NetBSD i686|Linux i686|Linux x86_64|Ubuntu; Linux|SunOS sun4u|Gentoo); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\2)']
       }
     },
     safari: {
