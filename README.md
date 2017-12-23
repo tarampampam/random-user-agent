@@ -26,6 +26,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.1.11** - [Issue fixed where non-keyboard input of option values was ignored](https://github.com/tarampampam/random-user-agent/commit/660b8002b05fb0c8f050e11e0fa419357b5bd99b) ([#40](https://github.com/tarampampam/random-user-agent/issues/40)) and [update of Chrome versions](https://github.com/tarampampam/random-user-agent/commit/a6dd025cc60755f54e760317fd1014eb2699d25a)
 * **2.1.10** - Added `zh_CN` localization (thx to [@yfdyh000](https://github.com/yfdyh000))
 * **2.1.9** - Safari version update, preparations for Firefox version, regex fixes and JavaScript support enabled by default (88be3bd, 64f9eba, e2812b9, e34ba2d, ea9b9ba, 5f53fe3)
 * **2.1.8** - Fixes by [@neroux](https://github.com/neroux)
