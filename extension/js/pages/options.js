@@ -103,21 +103,21 @@
   /**
    * Custom user-agent
    */
-  chrome.runtime.sendMessage({action: 'settings.getCustomUseragent'},
+  chrome.runtime.sendMessage({action: 'settings.getCustomUseragentList'},
     function (useragent) {
-      UI.getElementById('custom_useragent', function ($el) {
-        if (UI.isInputText($el)) {
-          $el.value = (typeof useragent === 'string') ? useragent : '';
-          UI.addEvent($el, 'change', function () {
-            var max_length = 256;
-            $el.value = ($el.value.length > max_length) ? $el.value.substr(0, max_length) : $el.value;
-            chrome.runtime.sendMessage({
-              action: 'settings.setCustomUseragent',
-              data: {useragent: $el.value}
+      if (Object.prototype.toString.call(useragent) === '[object Array]') {
+        UI.getElementById('custom_useragent_list', function ($el) {
+          if (UI.isTextarea($el)) {
+            $el.value = useragent.join('\n');
+            UI.addEvent($el, 'change', function () {
+              chrome.runtime.sendMessage({
+                action: 'settings.setCustomUseragentList',
+                data: {useragents: $el.value.split('\n')}
+              }, function(result) { result !== true && console.error('API method "settings.setCustomUseragentList" failed'); });
             });
-          });
-        }
-      });
+          }
+        });
+      } else console.error('API method "settings.getCustomUseragentList" returned an invalid response (no array)');
     });
 
   /**
