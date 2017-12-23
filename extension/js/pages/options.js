@@ -73,7 +73,7 @@
       typeof interval === 'number' ? UI.getElementById('auto_renew_interval', function ($el) {
         if (UI.isInputNumber($el) || UI.isInputText($el)) {
           $el.value = interval;
-          UI.addEvent($el, 'keyup', function () {
+          UI.addEvent($el, 'change', function () {
             var new_interval = parseInt($el.value, 10), max_value = 1440;
             $el.value = (new_interval > max_value) ? max_value : $el.value;
             chrome.runtime.sendMessage({
@@ -108,7 +108,7 @@
       UI.getElementById('custom_useragent', function ($el) {
         if (UI.isInputText($el)) {
           $el.value = (typeof useragent === 'string') ? useragent : '';
-          UI.addEvent($el, 'keyup', function () {
+          UI.addEvent($el, 'change', function () {
             var max_length = 256;
             $el.value = ($el.value.length > max_length) ? $el.value.substr(0, max_length) : $el.value;
             chrome.runtime.sendMessage({
@@ -206,7 +206,7 @@
         UI.getElementById('exceptions_patterns', function ($el) {
           if (UI.isTextarea($el)) {
             $el.value = exceptions.join('\n');
-            UI.addEvent($el, 'keyup', function () {
+            UI.addEvent($el, 'change', function () {
               var new_exceptions = $el.value.split('\n');
               chrome.runtime.sendMessage({
                 action: 'exceptions.set',
