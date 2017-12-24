@@ -93,7 +93,6 @@ var Settings = new Proxy({
 
       // Migrate the single custom agent to the array
       if (typeof self.custom_useragent_value === 'string' && self.custom_useragent_value != '') {
-		  console.log('UA migrated')
         self.custom_useragent_list = [ self.custom_useragent_value ];
         self.custom_useragent_value = null;
       }
