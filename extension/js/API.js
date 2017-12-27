@@ -264,11 +264,11 @@ var API = {
     },
 
     setCustomUseragentList: function(params){
-      let useragents = (typeof params === 'object' && params.hasOwnProperty('useragents')) ? params.useragents : null;
+      var useragents = (typeof params === 'object' && params.hasOwnProperty('useragents')) ? params.useragents : null;
       if (Object.prototype.toString.call(useragents) === '[object Array]') {
-        let new_useragents = [];
-        for (let ua of useragents) {
-          ua = ua.toString().trim();
+        var new_useragents = [];
+        for (var i = 0; i < useragents.length; i++) {
+          var ua = useragents[i].toString().trim();
           if (ua !== '') new_useragents.push(ua);
         }
         Settings.custom_useragent_list = new_useragents;
