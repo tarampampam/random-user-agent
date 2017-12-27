@@ -34,6 +34,7 @@ var Settings = new Proxy({
     // Custom User-Agent settings
     custom_useragent_enabled: false,
     custom_useragent_value: null,
+    custom_useragent_list: [],
     // Replace User-Agent by javascript detection
     javascript_protection_enabled: true,
     // Generator settings
@@ -89,6 +90,13 @@ var Settings = new Proxy({
           }
         }
       }
+
+      // Migrate the single custom agent to the array
+      if (typeof self.custom_useragent_value === 'string' && self.custom_useragent_value != '') {
+        self.custom_useragent_list = [ self.custom_useragent_value ];
+        self.custom_useragent_value = null;
+      }
+
       self.isLoaded = true;
       return (typeof callback === 'function') ? callback.call(null, self.data) : self.data;
     });

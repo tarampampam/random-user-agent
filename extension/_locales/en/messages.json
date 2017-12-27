@@ -58,7 +58,7 @@
   },
 
   "custom_useragent": {
-    "message": "Custom user agent"
+    "message": "Custom user agent (one per line)"
   },
   "custom_useragent_hint": {
     "message": "Set a specific user agent:"

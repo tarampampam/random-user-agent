@@ -58,7 +58,7 @@
   },
 
   "custom_useragent": {
-    "message": "自定义用户代理"
+    "message": "自定义用户代理（一行一个规则）"
   },
   "custom_useragent_hint": {
     "message": "设置指定的用户代理："

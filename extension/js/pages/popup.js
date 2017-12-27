@@ -125,10 +125,6 @@
         }
       });
     });
-    // Hide item if custom user-agent is enabled
-    chrome.runtime.sendMessage({action: 'settings.getCustomUseragentEnabled'}, function(is_enabled) {
-      is_enabled === true && UI.addCssClass($el, 'hidden');
-    });
   });
 
   /**

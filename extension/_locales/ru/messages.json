@@ -57,7 +57,7 @@
   },
 
   "custom_useragent": {
-    "message": "Свой User-Agent"
+    "message": "Свой User-Agent (по одному на строку)"
   },
   "custom_useragent_hint": {
     "message": "Вы можете указать свой User-Agent:"

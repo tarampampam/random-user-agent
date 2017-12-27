@@ -197,6 +197,7 @@ var API = {
       if (typeof enabled === 'boolean') {
         Settings.custom_useragent_enabled = enabled;
         console.log('Use custom User-Agent enabled state is "' + enabled + '" now');
+        API.useragent.renew();
         return true;
       } else {
         console.error('Invalid input data format - property "enabled" must be boolean');
@@ -256,6 +257,26 @@ var API = {
         console.error('Invalid input data format - property "useragent" must be string');
       }
       return false;
+    },
+
+    getCustomUseragentList: function(){
+      return Settings.custom_useragent_list;
+    },
+
+    setCustomUseragentList: function(params){
+      let useragents = (typeof params === 'object' && params.hasOwnProperty('useragents')) ? params.useragents : null;
+      if (Object.prototype.toString.call(useragents) === '[object Array]') {
+        let new_useragents = [];
+        for (let ua of useragents) {
+          ua = ua.toString().trim();
+          if (ua !== '') new_useragents.push(ua);
+        }
+        Settings.custom_useragent_list = new_useragents;
+        console.log('Custom user agent list updated with: ' + Settings.custom_useragent_list.join(', '));
+        return true;
+      }
+
+      return false;
     }
   },
 
@@ -295,14 +316,8 @@ var API = {
      * @returns {string|null}
      */
     get: function() {
-      if (Settings.custom_useragent_enabled === true) {
-        if (typeof Settings.custom_useragent_value === 'string') {
-          return Settings.custom_useragent_value;
-        }
-      } else {
-        if (typeof Settings.useragent === 'string') {
-          return Settings.useragent;
-        }
+      if (typeof Settings.useragent === 'string') {
+        return Settings.useragent;
       }
       return null;
     },
@@ -329,12 +344,15 @@ var API = {
      * @returns {boolean}
      */
     renew: function() {
-      var new_useragent = this.getNew();
+      var new_useragent;
+      if (Settings.custom_useragent_enabled) new_useragent = Settings.custom_useragent_list[Math.floor(Math.random() * Settings.custom_useragent_list.length)];
+        else new_useragent = this.getNew();
+
       if (typeof new_useragent === 'string' && new_useragent !== '') {
         if (this.set({useragent: new_useragent})) {
           return true;
         }
-      }
+      } else console.error('Could not renew user agent');
       return false;
     }
   },
