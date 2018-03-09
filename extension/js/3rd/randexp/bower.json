@@ -3,7 +3,7 @@
   "description": "Create random strings that match a given regular expression.",
   "main": "build/randexp.min.js",
   "authors": [
-    "Roly Fentanes (https://github.com/fent)"
+    "fent (https://github.com/fent)"
   ],
   "license": "MIT",
   "keywords": [
@@ -24,5 +24,6 @@
     "bower_components",
     "node_modules",
     "test"
-  ]
+  ],
+  "version": "0.4.9"
 }
