@@ -30,6 +30,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.2.2** - Major user agent update
 * **2.2.1** - Fixed options windows height in Chrome 65
 * **2.2.0** - [Added support for more than one custom user agent (chosen at random as well)](https://github.com/tarampampam/random-user-agent/commit/4aed6f999a378f0e676349ada2e57e13a0a0ece9) and [Edge 52 support](https://github.com/tarampampam/random-user-agent/commit/cd260fdd3781df169f5b83439e1c24e11ff45f9c)
 * **2.1.11** - [Issue fixed where non-keyboard input of option values was ignored](https://github.com/tarampampam/random-user-agent/commit/660b8002b05fb0c8f050e11e0fa419357b5bd99b) ([#40](https://github.com/tarampampam/random-user-agent/issues/40)) and [update of Chrome versions](https://github.com/tarampampam/random-user-agent/commit/a6dd025cc60755f54e760317fd1014eb2699d25a)
