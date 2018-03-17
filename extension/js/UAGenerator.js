@@ -82,14 +82,14 @@ var UAGenerator = function() {
     media_server: ['( Media Center PC [4-6]\\.0;|)'],
     windows: ['Windows NT (6\\.[1-3]|10\\.0)'],
     macos: {
-      v10_blink:   ['Intel Mac OS X 10_(9|1[0-3])_[0-4]'],
-      v10_firefox: ['Intel Mac OS X 10\\.(9|1[0-3])']
+      v10_blink:   ['Intel Mac OS X 10_(1[0-3])_[0-4]'],
+      v10_firefox: ['Intel Mac OS X 10\\.(1[0-3])']
     },
     applewebkit: ['AppleWebKit/(60[1-5]\\.[1-7]\\.[1-8])', 'AppleWebKit/(53[5-8]\\.[1-2][0-9]\\.[1-3][0-9])'],
     browsers_versions: {
-      chrome:  ['6[2-5]\\.0\\.32(?:02|39|82)\\.[1-9]{1,3}'],
-      safari:  ['1[01]\\.[0-1]\\.[1-5]', '7\\.0\\.[1-3]'],
-      firefox: ['5[2-9]\\.0'],
+      chrome:  ['(64\\.0\\.3282|65\\.0\\.3325|66\\.0\\.3359|67\\.0\\.3371)\\.[1-9]{1,3}'],
+      safari:  ['1[01]\\.[0-1]\\.[1-5]'],
+      firefox: ['(6[01]|59)\\.0'],
       opera:   ['4[4-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]'],
       edge:    ['Chrome/51\\.0\\.2704\\.79 Safari/537\\.36 Edge/14\\.14393', 'Chrome/52\\.0\\.2743\\.116 Safari/537\\.36 Edge/15\\.15063']
     }
@@ -168,21 +168,17 @@ var UAGenerator = function() {
       }
     },
     safari: {
-      win: {
-        name: 'Safari on Windows',
-        regexp: ['Mozilla/5\\.0 \\(Windows; U; NT (5\\.1|6\\.[01]); ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/[3-5]\\.0\\.[1-4] Safari/(\\3)']
-      },
       mac: {
         name: 'Safari on Mac',
         regexp: ['Mozilla/5\\.0 \\(Macintosh;( U; | )' + this.get(this.patterns.macos.v10_blink) + '; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Safari/(\\4)']
       },
       iphone: {
         name: 'Safari on iPhone',
-        regexp: ['Mozilla/5\\.0 \\(iPhone; U; CPU iPhone OS [7-9]_[2-3]_[1-3] like Mac OS X; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/[6-7]\\.0 Mobile/8(J|F|C)[1-4](8a|90|) Safari/6533\\.18\\.5']
+        regexp: ['Mozilla/5\\.0 \\(iPhone; U; CPU iPhone OS 11_[0-3]_[0-9] like Mac OS X; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/6533\\.18\\.5']
       },
       ipad: {
         name: 'Safari on iPad',
-        regexp: ['Mozilla/5\\.0 \\(iPad;( U;|) CPU OS [7-9]_[0-2](_2|) like Mac OS X(; ' + this.get(this.patterns.locales) + ')\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/(\\5)']
+        regexp: ['Mozilla/5\\.0 \\(iPad;( U;|) CPU OS 11_[0-3](_2|) like Mac OS X(; ' + this.get(this.patterns.locales) + ')\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/(\\5)']
       }
     },
     opera: {
