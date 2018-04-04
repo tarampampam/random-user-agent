@@ -27,7 +27,7 @@ chrome.runtime.sendMessage([
     uri_match = results[3];
   var consoleMessage = function (message_text) {
     if (typeof message_text === 'string') {
-      console.debug('%c [Random User-Agent] '+message_text+' ', 'background: transparent; color: rgba(0,0,0,0.45)');
+      console.log('[Random User-Agent] '+message_text);
     }
   };
   if (enabled === true) {
