@@ -114,7 +114,7 @@ var Settings = new Proxy({
         data = {};
     data[self.data.storage_key] = self.data;
     storage.set(data, function() {
-      var error = chrome.runtime.lastError, is_error = (typeof error !== 'undefined');
+      var error = chrome.runtime.lastError, is_error = (typeof error !== 'undefined' && error !== null);
       is_error && console.error(error) || console.info('Settings saved');
       return (typeof callback === 'function') ? callback.call(null, !is_error) : !is_error;
     });
@@ -130,7 +130,7 @@ var Settings = new Proxy({
     var self = this,
         storage = (self.data.sync === true) ? chrome.storage.sync : chrome.storage.local;
     storage.clear(function() {
-      var error = chrome.runtime.lastError, is_error = (typeof error !== 'undefined');
+      var error = chrome.runtime.lastError, is_error = (typeof error !== 'undefined' && error !== null);
       is_error && console.error(error) || console.warn('Settings cleared');
       return (typeof callback === 'function') ? callback.call(null, !is_error) : !is_error;
     });
