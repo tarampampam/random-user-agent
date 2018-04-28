@@ -30,6 +30,7 @@ Source code: https://github.com/tarampampam/random-user-agent
 Version History (Changelog)
 ----
 
+* **2.2.4** - Fixes for #12 and #56
 * **2.2.3** - [cf1446f](https://github.com/tarampampam/random-user-agent/commit/cf1446f6bfdcba7b7f505a9fe653bf98a8a1bea2) and [a865956](https://github.com/tarampampam/random-user-agent/commit/a86595668389b764ac5402a602826ed7c1546832)
 * **2.2.2** - Major user agent update
 * **2.2.1** - Fixed options windows height in Chrome 65
