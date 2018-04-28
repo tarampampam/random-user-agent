@@ -79,8 +79,19 @@ var Settings = new Proxy({
    */
   load: function(callback) {
     var self = this,
-        storage = (self.data.sync === true) ? chrome.storage.sync : chrome.storage.local;
+        storage = localStorage['config_store'] === 'local' ? chrome.storage.local : chrome.storage.sync;
     storage.get(self.data.storage_key, function(stored_settings) {
+      // Firefox workaround when storage sync has been disabled
+      // https://github.com/tarampampam/random-user-agent/issues/56
+      if (chrome.runtime.lastError && chrome.runtime.lastError.message.includes('webextensions.storage.sync.enabled'))
+      {
+        console.log('Sync disabled, falling back to local storage');
+        localStorage['config_store'] = 'local';
+        self.data.sync = false;
+        self.load(callback);
+        return;
+      }
+
       console.info('Settings loaded');
       if (stored_settings.hasOwnProperty(self.data.storage_key)) {
         stored_settings = stored_settings[self.data.storage_key];
@@ -115,9 +126,22 @@ var Settings = new Proxy({
     data[self.data.storage_key] = self.data;
     storage.set(data, function() {
       var error = chrome.runtime.lastError, is_error = (typeof error !== 'undefined' && error !== null);
+
+      // Firefox workaround when storage sync has been disabled
+      // https://github.com/tarampampam/random-user-agent/issues/56
+      if (is_error && chrome.runtime.lastError.message.includes('webextensions.storage.sync.enabled'))
+      {
+        console.log('Sync disabled, falling back to local storage');
+        self.data.sync = false;
+        self.save(callback);
+        return;
+      }
+
       is_error ? console.error(error) : console.info('Settings saved');
       return (typeof callback === 'function') ? callback.call(null, !is_error) : !is_error;
     });
+
+    localStorage['config_store'] = self.data.sync ? 'sync' : 'local';
   },
 
   /**
