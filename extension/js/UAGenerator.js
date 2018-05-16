@@ -91,9 +91,9 @@ var UAGenerator = function() {
       safari:  ['1[01]\\.[0-1]\\.[1-5]'],
       firefox: ['(6[01]|59)\\.0'],
       opera:   ['4[4-6]\\.0\\.2[1-3][0-9][0-9]\\.([1-2]|)[1-9][0-9]'],
-      edge:    ['Chrome/51\\.0\\.2704\\.79 Safari/537\\.36 Edge/14\\.14393',
-		  'Chrome/52\\.0\\.2743\\.116 Safari/537\\.36 Edge/15\\.15063',
-		  'Chrome/58\\.0\\.3029\\.110 Safari/537\\.36 Edge/16\\.16299']
+      edge:    ['Chrome/52\\.0\\.2743\\.116 Safari/537\\.36 Edge/15\\.15063',
+          'Chrome/58\\.0\\.3029\\.110 Safari/537\\.36 Edge/16\\.16299',
+          'Chrome/64\\.0\\.3282\\.140 Safari/537\\.36 Edge/17\\.17134']
     }
   };
 
@@ -135,11 +135,11 @@ var UAGenerator = function() {
       /*mobile: {
         name: 'Edge on Mobile',
         regexp: ['']
-      },
+      },*/
       xbox: {
         name: 'Edge on Xbox',
-        regexp: ['']
-      }*/
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64; Xbox; Xbox One\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)]
+      }
     },
     chrome: {
       win: {
