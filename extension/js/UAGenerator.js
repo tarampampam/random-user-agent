@@ -167,6 +167,10 @@ var UAGenerator = function() {
       linux: {
         name: 'Firefox on Linux',
         regexp: ['Mozilla/5\\.0 \\(X11; (NetBSD i686|Linux i686|Linux x86_64|Ubuntu; Linux|SunOS sun4u|Gentoo); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\2)']
+      },
+      android: {
+        name: 'Firefox on Android',
+        regexp: ['Mozilla/5\\.0 \\(Android (?:6\\.0(?:\\.1)?|7\\.(?:0|1(?:\\.[12])?)|8\\.[01]|9\\.0); Mobile; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/\\1 Firefox/\\1']
       }
     },
     safari: {
