@@ -25,7 +25,7 @@ This extension has been created to stop data leakage. It automatically replaces 
 
 Source code: https://github.com/tarampampam/random-user-agent
 
-> Thanks to [@SmudgedMuffin](https://github.com/SmudgedMuffin) for English localization, and [@nazarpc](https://github.com/nazar-pc) for Ukrainian localization
+> Thanks to SmudgedMuffin for English localization, and [@nazarpc](https://github.com/nazar-pc) for Ukrainian localization
 
 Version History (Changelog)
 ----
