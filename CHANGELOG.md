@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.6
+
+### Changed
+
+- Updated browser versions
+
 ## v2.2.5
 
 ### Changed
