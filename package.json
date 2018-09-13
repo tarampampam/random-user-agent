@@ -29,7 +29,7 @@
     "gulp-util": "^3.0.8",
     "gulp-zip": "^4.0.0",
     "imagemin-pngquant": "^5.0.0",
-    "jsonfile": "^2.4.0",
+    "jsonfile": "^5.0.0",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {}
