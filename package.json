@@ -30,7 +30,7 @@
     "gulp-zip": "^4.0.0",
     "imagemin-pngquant": "^6.0.0",
     "jsonfile": "^5.0.0",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^2.2.1"
   },
   "dependencies": {}
 }
