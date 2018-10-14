@@ -18,7 +18,7 @@
   "homepage": "https://github.com/tarampampam/random-user-agent#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
+    "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^3.0.3",
     "gulp-cssimport": "^6.0.1",
     "gulp-html-minifier": "^0.1.8",
