@@ -79,7 +79,7 @@ var Settings = new Proxy({
    */
   load: function(callback) {
     var self = this,
-        storage = localStorage['config_store'] === 'local' ? chrome.storage.local : chrome.storage.sync;
+        storage = localStorage['config_store'] === 'sync' ? chrome.storage.sync : chrome.storage.local;
     storage.get(self.data.storage_key, function(stored_settings) {
       // Firefox workaround when storage sync has been disabled
       // https://github.com/tarampampam/random-user-agent/issues/56
@@ -100,12 +100,6 @@ var Settings = new Proxy({
             self.data[value] = stored_settings[value];
           }
         }
-      }
-
-      // Migrate the single custom agent to the array
-      if (typeof self.custom_useragent_value === 'string' && self.custom_useragent_value != '') {
-        self.custom_useragent_list = [ self.custom_useragent_value ];
-        self.custom_useragent_value = null;
       }
 
       self.isLoaded = true;
