@@ -10,7 +10,7 @@ var gulp = require('gulp'),
   pngquant = require('imagemin-pngquant'),
   zip = require('gulp-zip'),
   chalk = require('chalk'),
-  gutil = require('gulp-util'),
+  fancy = require('fancy-log'),
   clean = require('gulp-clean');
 
 /**
@@ -116,7 +116,7 @@ gulp.task('pack', function () {
     .pipe(zip(build_file_name))
     .pipe(gulp.dest(builds_dir))
     .on('end', function () {
-      gutil.log('Build saved into archive: ' + chalk.green(builds_dir + '/' + build_file_name));
+      fancy('Build saved into archive: ' + chalk.green(builds_dir + '/' + build_file_name));
     });
 });
 
