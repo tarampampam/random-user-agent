@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.2.7
+
+### Changed
+
+- Update of user agent versions
+- Legacy code removed
+
 ## v2.2.6
 
 ### Changed
