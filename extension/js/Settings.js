@@ -42,7 +42,7 @@ var Settings = new Proxy({
     // Exceptions settings
     exceptions_list: ['chrome://*'],
     // Any links
-    links_bugreport: 'https://github.com/tarampampam/random-user-agent/issues/new',
+    links_bugreport: 'https://github.com/tarampampam/random-user-agent/issues/new?template=bug_report.md',
     // Donation link
     links_donate: 'http://yasobe.ru/na/paramtamtam'
   },
