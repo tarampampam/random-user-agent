@@ -35,6 +35,7 @@ about: Create a report to help us improve
  - OS: [e.g. `iOS`, `Linux`, `Windows`]
  - Browser: [e.g. `Chrome`, `Firefox`]
  - Version: [e.g. `67.0.3396.62 64 bit`]
+ - User Agent under which the issue appears: [e.g. `Chrome 70`, `Firefox 62`]
 
 ## Additional context
 
