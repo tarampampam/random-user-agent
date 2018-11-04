@@ -26,7 +26,7 @@ about: Create a report to help us improve
 
 > If applicable, add screenshots to help explain your problem.
 >
-> Google chrome: **Menu &rarr; Settings &rarr; More tools &rarr; Extensions &rarr; Developer mode (check) &rarr; Random User-Agent &rarr; Background Page** &rarr; [Press **PrtScn**]
+> Google Chrome: **Menu → Settings → More tools → Extensions → Developer mode (check) → Random User-Agent → Background Page** → [Press **PrtScn**]
 
 ## System information
 
