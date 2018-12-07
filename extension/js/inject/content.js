@@ -25,16 +25,10 @@ chrome.runtime.sendMessage([
     js_protection_enabled = results[1],
     useragent = results[2],
     uri_match = results[3];
-  var consoleMessage = function (message_text) {
-    if (typeof message_text === 'string') {
-      console.log('[Random User-Agent] '+message_text);
-    }
-  };
   if (enabled === true) {
     if (js_protection_enabled === true) {
       if (typeof useragent === 'string' && useragent !== '') {
         if (uri_match === false) {
-          consoleMessage('Use fake User-Agent: ' + useragent);
           var injection_code = '(' + function(new_useragent) {
                 if (typeof window === 'object' && typeof window.navigator === 'object') {
                   navigator = Object.create(window.navigator);
@@ -59,8 +53,6 @@ chrome.runtime.sendMessage([
           }
         }
       }
-    } else {
-      consoleMessage('User-Agent JavaScript protection disabled!');
     }
   }
 });

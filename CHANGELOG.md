@@ -1,5 +1,12 @@
 # Changelog
 
+## master
+
+### Changed
+
+- Removed calls to `console.log()` from the content script to
+  prevent websites detecting this extension
+
 ## v2.2.7
 
 ### Changed
@@ -18,7 +25,7 @@
 ### Changed
 
 - Updated Chrome, Firefox, and Edge versions
- 
+
 ### Added
 
 - Support for Firefox on Android
@@ -229,9 +236,9 @@
 ### Added
 
 - Added exclusion (exception) list
- 
+
 ### Changed
- 
+
 - Default settings
 - Excluded files "content.js"
 
