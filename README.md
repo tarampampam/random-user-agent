@@ -48,13 +48,12 @@ Take a look [here][link_changeslog].
 
 For a building extension from sources _(and pack as a `zip` file)_ use next commands:
 
+> Installed `docker-ce` is required
+
 ```bash
 $ cd /path/to/the/sources
-$ bower update # optional
-$ gulp
+$ make build
 ```
-
-> You can install `gulp` globally with next command: `$ sudo npm install -g gulp`
 
 [badge_release_version]:https://img.shields.io/github/release/tarampampam/random-user-agent.svg?style=flat-square&maxAge=120
 [badge_websore_version]:https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&maxAge=120
