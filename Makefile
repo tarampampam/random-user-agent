@@ -18,10 +18,10 @@ help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[32m%-13s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 install: ## Install all dependencies
-	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn install
+	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" sh -c "yarn install && ./node_modules/.bin/bower install"
 
 update: install ## Update all dependencies
-	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn upgrade --no-progress --non-interactive
+	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" sh -c "yarn upgrade --no-progress --non-interactive && ./node_modules/.bin/bower update"
 
 build: clean install ## Build application bundle
 	$(docker_bin) run $(RUN_ARGS) -e "NODE_ENV=production" -t "$(NODE_IMAGE)" npm run build
