@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.9
+
+### Changed
+
+- Fix for an incomplete Chrome user agent - [0265aa3](https://github.com/tarampampam/random-user-agent/commit/0265aa3058a97953e38f253e22e262cb8285e87e)
+
 ## v2.2.8
 
 ### Changed
