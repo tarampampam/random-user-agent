@@ -55,6 +55,14 @@
     }
   };
 
+  // Hiding the JS protection option on Firefox. Could become a problem if the extension is ported
+  // to Edge or Chrome starts to support the "browser" object.
+  if (typeof browser == 'object')
+  {
+    const js = document.querySelector('#javascript_protection_enabled').closest('div.left');
+    [js, js.nextElementSibling].forEach(e => e.style.display = 'none');
+  }
+
   /**
    * Switcher enabled
    */
