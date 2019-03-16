@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.2.10
+
+### Removed (Firefox-only)
+
+- Removed on Firefox the JavaScript preference as well as the script overriding the user agent ([f04e149](https://github.com/tarampampam/random-user-agent/commit/f04e149fed0adc9caa7cf70f4cbf22254fcf2cdb) and [2569b90](https://github.com/tarampampam/random-user-agent/commit/2569b90e2ff63d9d6ec26bf9e9465f777997b7a3)).
+  This addresses #60 and fixes #59 and #98
+
 ## v2.2.9
 
 ### Changed
