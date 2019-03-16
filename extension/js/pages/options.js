@@ -60,7 +60,7 @@
   if (typeof browser == 'object')
   {
     var js = document.querySelector('#javascript_protection_enabled').closest('div.left');
-    [js, js.nextElementSibling].forEach(e => e.style.display = 'none');
+    [js, js.nextElementSibling].forEach(function(e) {e.style.display = 'none';});
   }
 
   /**
