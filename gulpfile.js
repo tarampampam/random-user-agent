@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
   jsonfile = require('jsonfile'),
-  runSequence = require('run-sequence'),
   minifyCss = require('gulp-clean-css'),
   importCss = require('gulp-import-css'),
   htmlmin = require('gulp-html-minifier'),
@@ -27,63 +26,68 @@ var src_dir = './extension',
  * HTML.
  */
 
-gulp.task('html', function () {
+function html()
+{
   return gulp.src(src_dir + '/html/**/*.html')
     .pipe(htmlmin({
       collapseWhitespace: true
     }))
     .pipe(gulp.dest(build_dir + '/html/'));
-});
+
+}
 
 /**
  * Scripts.
  */
 
-gulp.task('js', function (callback) {
-  return runSequence('js-app', 'js-vendor', callback);
-});
-
-gulp.task('js-app', function () {
+function js_app()
+{
   return gulp.src(src_dir + '/js/**/*.js')
     .pipe(uglify({
       //mangle: false
     }))
     .pipe(gulp.dest(build_dir + '/js/'));
-});
+}
 
-gulp.task('js-vendor', function () {
+function js_vendor()
+{
   return gulp.src(src_dir + vendor_dir + '/**/*.js')
     .pipe(uglify())
     .pipe(gulp.dest(build_dir + vendor_dir));
-});
+}
+
+const js = gulp.series(js_app, js_vendor);
 
 /**
  * CSS.
  */
 
-gulp.task('css', function () {
+function css()
+{
   return gulp.src(src_dir + '/css/*.css')
     .pipe(importCss())
     .pipe(minifyCss({
       processImport: false
     }))
     .pipe(gulp.dest(build_dir + '/css'));
-});
+}
 
 /**
  * Fonts.
  */
 
-gulp.task('fonts', function () {
+function fonts()
+{
   return gulp.src(src_dir + '/fonts/**/*')
     .pipe(gulp.dest(build_dir + '/fonts/'));
-});
+}
 
 /**
  * Images.
  */
 
-gulp.task('images', function () {
+function images()
+{
   return gulp.src(src_dir + '/img/**/*')
     .pipe(imagemin({
       progressive: true,
@@ -91,24 +95,26 @@ gulp.task('images', function () {
       use: [pngquant()]
     }))
     .pipe(gulp.dest(build_dir + '/img/'));
-});
+}
 
 /**
  * Copy files.
  */
 
-gulp.task('copy-files', function () {
+function copy_files()
+{
   gulp.src([manifest_path])
     .pipe(gulp.dest(build_dir));
   return gulp.src(src_dir + '/_locales/**/*.json')
     .pipe(gulp.dest(build_dir + '/_locales/'));
-});
+}
 
 /**
  * Pack build to single archive.
  */
 
-gulp.task('pack', function () {
+function pack()
+{
   var manifest = jsonfile.readFileSync(manifest_path),
     timestamp = (new Date).toISOString().replace(/z|t/gi, ' ').trim().replace(/\:/g, '-').replace(/\s/g, '_'),
     build_file_name = 'build_v' + manifest.version + '_' + timestamp + '.zip';
@@ -118,34 +124,36 @@ gulp.task('pack', function () {
     .on('end', function () {
       fancy('Build saved into archive: ' + chalk.green(builds_dir + '/' + build_file_name));
     });
-});
+}
 
 /**
  * Remove build directory.
  */
 
-gulp.task('build-clean', function () {
-  return gulp.src(build_dir)
+function build_clean()
+{
+  return gulp.src(build_dir, {allowEmpty: true})
     .pipe(clean());
-});
+}
 
 /**
  * TASKS.
  */
 
-gulp.task('watch', function () {
+function watch()
+{
   gulp.watch(src_dir + '/html/**/*.html', ['html']);
   gulp.watch([src_dir + '/js/**/*.js', src_dir + vendor_dir + '/**/*.js'], ['js']);
   gulp.watch([src_dir + '/css/**/*.css'], ['css']);
   gulp.watch(src_dir + '/fonts/**/*', ['fonts']);
   gulp.watch(src_dir + '/img/**/*', ['images']);
   gulp.watch([manifest_path, src_dir + '/_locales/**/*.json'], ['copy-files']);
-});
+}
 
-gulp.task('build', ['css', 'html', 'fonts', 'js', 'images', 'copy-files']);
+const build = gulp.series(gulp.parallel(css, html, fonts, js, images), copy_files);
 
-gulp.task('clean', ['build-clean']);
 
-gulp.task('default', function (callback) {
-  return runSequence('build', 'pack', 'clean', callback);
-});
+exports.watch = watch;
+exports.build = build;
+exports.clean = build_clean;
+exports.default = gulp.series(build, pack, build_clean);

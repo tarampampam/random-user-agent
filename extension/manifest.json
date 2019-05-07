@@ -6,7 +6,7 @@
   "author": "github.com/tarampampam",
 
   "default_locale": "en",
-  "version": "2.2.7",
+  "version": "2.2.10",
 
   "icons": {
     "16": "/img/16x16.png",
@@ -35,6 +35,7 @@
     "all_frames": true,
     "js": ["/js/inject/content.js"],
     "matches": ["*://*/*"],
+    "match_about_blank": true,
     "run_at": "document_start"
   }],
 
