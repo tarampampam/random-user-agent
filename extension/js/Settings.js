@@ -38,7 +38,7 @@ var Settings = new Proxy({
     // Replace User-Agent by javascript detection
     javascript_protection_enabled: true,
     // Generator settings
-    generator_types: ['chrome_win', 'chrome_mac', 'chrome_linux'],
+    generator_types: ['chrome_win', 'chrome_mac', 'chrome_linux', 'firefox_win', 'firefox_mac', 'firefox_linux'],
     // Exceptions settings
     exceptions_list: ['chrome://*'],
     // Any links
