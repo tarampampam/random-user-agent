@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.2.11
+
+### Changed
+
+- Update of user agent versions
+- Update of underlying regular expression library
+
 ## v2.2.10
 
 ### Removed (Firefox-only)
