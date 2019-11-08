@@ -97,38 +97,46 @@ var UAGenerator = function() {
 
   /**
    * User-Agent regex patterns
+   * compat field is the list of the browser engines this particular UA is compatible with
    */
   this.useragents = {
     ie: {
       v6: {
         name: 'Internet Explorer 6',
-        regexp: ['Mozilla/4\\.0 \\(compatible; MSIE 6\\.0; Windows NT 5\\.1;( SV1;||)' + this.get(this.patterns.net_clr.v2up) + ' ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla/4\\.0 \\(compatible; MSIE 6\\.0; Windows NT 5\\.1;( SV1;||)' + this.get(this.patterns.net_clr.v2up) + ' ' + this.get(this.patterns.locales) + '\\)'],
+        compat: ['WebKit','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       v7: {
         name: 'Internet Explorer 7',
-        regexp: ['Mozilla/4\\.0 \\((compatible|compatible|Windows; U); MSIE 7\\.0; Windows NT (5\\.1|6\\.0);( WOW64;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla/4\\.0 \\((compatible|compatible|Windows; U); MSIE 7\\.0; Windows NT (5\\.1|6\\.0);( WOW64;|)' + this.get(this.patterns.net_clr.v1) + this.get(this.patterns.media_server) + ' InfoPath\\.[1-3]; ' + this.get(this.patterns.locales) + '\\)'],
+        compat: ['WebKit','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       v8: {
         name: 'Internet Explorer 8',
-        regexp: ['Mozilla/4\\.0 \\(compatible; MSIE 8\\.0; Windows NT (5\\.1|6\\.[01]); Trident/4\\.0; (WOW64|WOW64|GTB7\\.[2-6]); InfoPath\\.[2-3];( SV1;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla/4\\.0 \\(compatible; MSIE 8\\.0; Windows NT (5\\.1|6\\.[01]); Trident/4\\.0; (WOW64|WOW64|GTB7\\.[2-6]); InfoPath\\.[2-3];( SV1;|)' + this.get(this.patterns.net_clr.v1) + ' ' + this.get(this.patterns.locales) + '\\)'],
+        compat: ['WebKit','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       v9: {
         name: 'Internet Explorer 9',
-        regexp: ['Mozilla/5\\.0 \\((compatible|Windows; U); MSIE 9\\.0; Windows NT 6\\.[01]; (Win64; x64; |WOW64; |)' + 'Trident/5\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7];|||)( \\.NET4\\.0(C|E);) ' + this.get(this.patterns.locales) + '\\)']
+        regexp: ['Mozilla/5\\.0 \\((compatible|Windows; U); MSIE 9\\.0; Windows NT 6\\.[01]; (Win64; x64; |WOW64; |)' + 'Trident/5\\.0;' + this.get(this.patterns.net_clr.v2up) + this.get(this.patterns.media_server) + '( Zune 4\\.[0-7];|||)( \\.NET4\\.0(C|E);) ' + this.get(this.patterns.locales) + '\\)'],
+        compat: ['WebKit','Blink','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       v10: {
         name: 'Internet Explorer 10',
-        regexp: ['Mozilla/5\\.0 \\(compatible; MSIE 10\\.0; Windows NT 6\\.[12];( InfoPath\\.[2-3];|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64; |)Trident/6\\.0(; ' + this.get(this.patterns.locales) + '|)\\)']
+        regexp: ['Mozilla/5\\.0 \\(compatible; MSIE 10\\.0; Windows NT 6\\.[12];( InfoPath\\.[2-3];|)' + this.get(this.patterns.net_clr.v2up) + ' (WOW64; |)Trident/6\\.0(; ' + this.get(this.patterns.locales) + '|)\\)'],
+        compat: ['WebKit','Blink','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       v11: {
         name: 'Internet Explorer 11',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '; (?:WOW64; )?Trident/7\\.0; rv:11\\.0\\) like Gecko']
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '; (?:WOW64; )?Trident/7\\.0; rv:11\\.0\\) like Gecko'],
+        compat: ['WebKit','Blink','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     },
     edge: {
       desktop: {
         name: 'Edge on Windows',
-        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)]
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)],
+        compat: ['WebKit','Blink','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       /*mobile: {
         name: 'Edge on Mobile',
@@ -136,67 +144,81 @@ var UAGenerator = function() {
       },*/
       xbox: {
         name: 'Edge on Xbox',
-        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64; Xbox; Xbox One\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)]
+        regexp: ['Mozilla/5\\.0 \\(Windows NT 10\\.0; Win64; x64; Xbox; Xbox One\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) ' + this.get(this.patterns.browsers_versions.edge)],
+        compat: ['WebKit','Blink','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     },
     chrome: {
       win: {
         name: 'Chrome on Windows',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36'],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       mac: {
         name: 'Chrome on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
+        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36'],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       linux: {
         name: 'Chrome on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36']
+        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36'],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     },
     firefox: {
       win: {
         name: 'Firefox on Windows',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '; (WOW64|Win64); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\3)']
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '; (WOW64|Win64); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\3)'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       mac: {
         name: 'Firefox on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh;( U; | )' + this.get(this.patterns.macos.v10_firefox) + '; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\3)']
+        regexp: ['Mozilla/5\\.0 \\(Macintosh;( U; | )' + this.get(this.patterns.macos.v10_firefox) + '; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\3)'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       linux: {
         name: 'Firefox on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11; (NetBSD i686|Linux i686|Linux x86_64|Ubuntu; Linux|SunOS sun4u|Gentoo); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\2)']
+        regexp: ['Mozilla/5\\.0 \\(X11; (NetBSD i686|Linux i686|Linux x86_64|Ubuntu; Linux|SunOS sun4u|Gentoo); rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/20100101 Firefox/(\\2)'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       android: {
         name: 'Firefox on Android',
-        regexp: ['Mozilla/5\\.0 \\(Android (?:6\\.0(?:\\.1)?|7\\.(?:0|1(?:\\.[12])?)|8\\.[01]|9\\.0); Mobile; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/\\1 Firefox/\\1']
+        regexp: ['Mozilla/5\\.0 \\(Android (?:6\\.0(?:\\.1)?|7\\.(?:0|1(?:\\.[12])?)|8\\.[01]|9\\.0); Mobile; rv:(' + this.get(this.patterns.browsers_versions.firefox) + ')\\) Gecko/\\1 Firefox/\\1'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     },
     safari: {
       mac: {
         name: 'Safari on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh;( U; | )' + this.get(this.patterns.macos.v10_blink) + '; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Safari/(\\4)']
+        regexp: ['Mozilla/5\\.0 \\(Macintosh;( U; | )' + this.get(this.patterns.macos.v10_blink) + '; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Safari/(\\4)'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       iphone: {
         name: 'Safari on iPhone',
-        regexp: ['Mozilla/5\\.0 \\(iPhone; U; CPU iPhone OS 11_[0-3]_[0-9] like Mac OS X; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/6533\\.18\\.5']
+        regexp: ['Mozilla/5\\.0 \\(iPhone; U; CPU iPhone OS 11_[0-3]_[0-9] like Mac OS X; ' + this.get(this.patterns.locales) + '\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/6533\\.18\\.5'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       ipad: {
         name: 'Safari on iPad',
-        regexp: ['Mozilla/5\\.0 \\(iPad;( U;|) CPU OS 11_[0-3](_2|) like Mac OS X(; ' + this.get(this.patterns.locales) + ')\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/(\\5)']
+        regexp: ['Mozilla/5\\.0 \\(iPad;( U;|) CPU OS 11_[0-3](_2|) like Mac OS X(; ' + this.get(this.patterns.locales) + ')\\) ' + this.get(this.patterns.applewebkit) + ' \\(KHTML, like Gecko\\) Version/' + this.get(this.patterns.browsers_versions.safari) + ' Mobile/8(J|F|C)[1-4](8a|90|) Safari/(\\5)'],
+        compat: ['WebKit','Gecko','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     },
     opera: {
       win: {
         name: 'Opera on Windows',
-        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(' + this.get(this.patterns.windows) + '(; Win64; x64|; WOW64|)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       mac: {
         name: 'Opera on Mac',
-        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(Macintosh; ' + this.get(this.patterns.macos.v10_blink) + '\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       },
       linux: {
         name: 'Opera on Linux',
-        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)]
+        regexp: ['Mozilla/5\\.0 \\(X11;( U; | )Linux (x86_64|i686)\\) AppleWebKit/537\\.36 \\(KHTML, like Gecko\\) Chrome/(' + this.get(this.patterns.browsers_versions.chrome) + ') Safari/537\\.36 OPR/' + this.get(this.patterns.browsers_versions.opera)],
+        compat: ['WebKit','Blink','Servo','Goanna','NetSurf','KHTML','Trident','EdgeHTML','Presto']
       }
     }
   };
