@@ -1,0 +1,102 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+    tags-ignore:
+      - '**'
+  pull_request:
+
+jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-actions>
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get yarn cache directory path # Docs: <https://github.com/actions/cache/blob/master/examples.md#node---yarn>
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1 # Docs: <https://github.com/actions/cache/blob/master/examples.md#node---yarn>
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Execute tests
+        run: yarn test:cover
+
+      - uses: codecov/codecov-action@v1 # Docs: <https://github.com/codecov/codecov-action>
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+          fail_ci_if_error: false
+
+  build:
+    name: Build extension
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get yarn cache directory path # Docs: <https://github.com/actions/cache/blob/master/examples.md#node---yarn>
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v1 # Docs: <https://github.com/actions/cache/blob/master/examples.md#node---yarn>
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build && yarn build:zip
+
+  lint-markdown:
+    name: Lint markdown files
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Lint changelog file
+        uses: docker://avtodev/markdown-lint:v1 # Action page: <https://github.com/avto-dev/markdown-lint>
+        with:
+          rules: '/lint/rules/changelog.js'
+          config: '/lint/config/changelog.yml'
+          args: './CHANGELOG.md'
+
+      - name: Lint another markdown files
+        uses: docker://avtodev/markdown-lint:v1 # Action page: <https://github.com/avto-dev/markdown-lint>
+        with:
+          rules: '/lint/rules/changelog.js'
+          config: '/lint/config/changelog.yml'
+          args: "--ignore ./CHANGELOG.md --ignore './extension/**' '**/*.md'"

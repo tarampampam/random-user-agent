@@ -1,0 +1,86 @@
+{
+  "extension_desc": {
+    "message": "Automatically change the user agent after specified period of time to a randomly selected one, thus hiding your real user agent",
+    "description": "Short description. Limit: 132 chars"
+  },
+
+  "active_useragent": {
+    "message": "Current active user agent"
+  },
+  "active_useragent_loading": {
+    "message": "Loading..."
+  },
+  "enabled_on_this_domain": {
+    "message": "Enabled on this domain"
+  },
+  "pause_switcher": {
+    "message": "Pause Switcher"
+  },
+  "unpause_switcher": {
+    "message": "Resume Switcher"
+  },
+  "get_new_agent": {
+    "message": "Get new agent"
+  },
+  "open_settings": {
+    "message": "Open settings"
+  },
+  "bug_report": {
+    "message": "Bug report"
+  },
+  "make_donation" : {
+    "message": "Make a donation"
+  },
+
+  "general_settings": {
+    "message": "General Settings"
+  },
+  "general_settings_hint": {
+    "message": "Change the behavior of the switcher to best fit your needs."
+  },
+  "enable_switcher": {
+    "message": "Enable Agent switcher"
+  },
+  "auto_renew": {
+    "message": "Automatically change the user agent after specified period of time"
+  },
+  "auto_renew_interval": {
+    "message": "Time (in minutes) to automatically update the user agent"
+  },
+  "javascript_protection_enabled": {
+    "message": "Protect against detection by Javascript (experimental)"
+  },
+  "auto_renew_onstartup": {
+    "message": "Change User-Agent on browser startup"
+  },
+  "sync_enabled": {
+    "message": "Sync extension settings between browsers"
+  },
+
+  "custom_useragent": {
+    "message": "Custom user agent (one per line)"
+  },
+  "custom_useragent_hint": {
+    "message": "Set a specific user agent:"
+  },
+  "custom_useragent_enabled": {
+    "message": "Use specified user agent"
+  },
+
+  "agent_switcher_options": {
+    "message": "User agents"
+  },
+  "agent_switcher_options_hint": {
+    "message": "Select the browsers whose user agents should be used:"
+  },
+
+  "exceptions": {
+    "message": "Exceptions"
+  },
+  "exceptions_hint": {
+    "message": "Disable agent switching when a website matches the following rules (one per line):"
+  },
+  "exceptions_description": {
+    "message": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"
+  }
+}

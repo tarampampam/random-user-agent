@@ -1,0 +1,51 @@
+{
+    "manifest_version": 2,
+    "name": "Random User-Agent",
+    "short_name": "random-user-agent",
+    "description": "__MSG_extension_desc__",
+    "author": "github.com/tarampampam",
+    "default_locale": "en",
+    "version": "%will be set during build process%",
+    "icons": {
+        "16": "/img/icons/16x16.png",
+        "48": "/img/icons/48x48.png",
+        "128": "/img/icons/128x128.png"
+    },
+    "options_ui": {
+        "page": "/options/options.html",
+        "chrome_style": true,
+        "open_in_tab": false
+    },
+    "browser_action": {
+        "default_icon": "/img/icons/48x48.png",
+        "default_popup": "/popup/popup.html",
+        "default_title": "Random User-Agent"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": true
+    },
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "js": [
+                "/inject/content.js"
+            ],
+            "matches": [
+                "*://*/*"
+            ],
+            "match_about_blank": true,
+            "run_at": "document_start"
+        }
+    ],
+    "minimum_chrome_version": "49.0",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "*://*/*",
+        "storage",
+        "tabs"
+    ]
+}

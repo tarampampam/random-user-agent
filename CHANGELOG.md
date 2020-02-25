@@ -1,5 +1,15 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
+
+## UNRELEASED
+
+### Changed
+
+- WIP
+
 ## v2.2.11
 
 ### Changed
@@ -9,16 +19,23 @@
 
 ## v2.2.10
 
-### Removed (Firefox-only)
+### Removed
 
-- Removed on Firefox the JavaScript preference as well as the script overriding the user agent ([f04e149](https://github.com/tarampampam/random-user-agent/commit/f04e149fed0adc9caa7cf70f4cbf22254fcf2cdb) and [2569b90](https://github.com/tarampampam/random-user-agent/commit/2569b90e2ff63d9d6ec26bf9e9465f777997b7a3)).
-  This addresses #60 and fixes #59 and #98
+- (Firefox-only) Removed on Firefox the JavaScript preference as well as the script overriding the user agent ([f04e149] and [2569b90]; this addresses [#60] and fixes [#59] and [#98])
+
+[f04e149]:https://github.com/tarampampam/random-user-agent/commit/f04e149fed0adc9caa7cf70f4cbf22254fcf2cdb
+[2569b90]:https://github.com/tarampampam/random-user-agent/commit/2569b90e2ff63d9d6ec26bf9e9465f777997b7a3
+[#60]:https://github.com/tarampampam/random-user-agent/issues/60
+[#59]:https://github.com/tarampampam/random-user-agent/issues/59
+[#98]:https://github.com/tarampampam/random-user-agent/issues/98
 
 ## v2.2.9
 
 ### Changed
 
-- Fix for an incomplete Chrome user agent - [0265aa3](https://github.com/tarampampam/random-user-agent/commit/0265aa3058a97953e38f253e22e262cb8285e87e)
+- Fix for an incomplete Chrome user agent [0265aa3]
+
+[0265aa3]:https://github.com/tarampampam/random-user-agent/commit/0265aa3058a97953e38f253e22e262cb8285e87e
 
 ## v2.2.8
 
@@ -44,7 +61,7 @@
 ### Changed
 
 - Updated Chrome, Firefox, and Edge versions
- 
+
 ### Added
 
 - Support for Firefox on Android
@@ -55,11 +72,17 @@
 
 - Fixes for [#12] and [#56]
 
+[#12]:https://github.com/tarampampam/random-user-agent/issues/12
+[#56]:https://github.com/tarampampam/random-user-agent/issues/56
+
 ## v2.2.3
 
 ### Changed
 
-- [cf1446f](https://github.com/tarampampam/random-user-agent/commit/cf1446f6bfdcba7b7f505a9fe653bf98a8a1bea2) and [a865956](https://github.com/tarampampam/random-user-agent/commit/a86595668389b764ac5402a602826ed7c1546832)
+- [cf1446f] and [a865956]
+
+[cf1446f]:https://github.com/tarampampam/random-user-agent/commit/cf1446f6bfdcba7b7f505a9fe653bf98a8a1bea2
+[a865956]:https://github.com/tarampampam/random-user-agent/commit/a86595668389b764ac5402a602826ed7c1546832
 
 ## v2.2.2
 
@@ -77,14 +100,21 @@
 
 ### Changed
 
-- [Added support for more than one custom user agent (chosen at random as well)](https://github.com/tarampampam/random-user-agent/commit/4aed6f999a378f0e676349ada2e57e13a0a0ece9) and [Edge 52 support](https://github.com/tarampampam/random-user-agent/commit/cd260fdd3781df169f5b83439e1c24e11ff45f9c)
+- [Added support for more than one custom user agent (chosen at random as well)][4aed6f9]
+- [Edge 52 support][cd260fd]
+
+[4aed6f9]:https://github.com/tarampampam/random-user-agent/commit/4aed6f999a378f0e676349ada2e57e13a0a0ece9
+[cd260fd]:https://github.com/tarampampam/random-user-agent/commit/cd260fdd3781df169f5b83439e1c24e11ff45f9c
 
 ## v2.1.11
 
 ### Changed
 
 - Issue fixed where non-keyboard input of option values was ignored [#40]
-- [Update of Chrome versions](https://github.com/tarampampam/random-user-agent/commit/a6dd025cc60755f54e760317fd1014eb2699d25a)
+- [Update of Chrome versions][a6dd025]
+
+[#40]:https://github.com/tarampampam/random-user-agent/issues/40
+[a6dd025]:https://github.com/tarampampam/random-user-agent/commit/a6dd025cc60755f54e760317fd1014eb2699d25a
 
 ## v2.1.10
 
@@ -101,7 +131,7 @@
 
 ## v2.1.8
 
-### Fixes
+### Fixed
 
 - Fixes by [@neroux](https://github.com/neroux)
 
@@ -122,6 +152,8 @@
 ### Fixed
 
 - Issue fix [#15]
+
+[#15]:https://github.com/tarampampam/random-user-agent/issues/15
 
 ## v2.1.4
 
@@ -154,13 +186,10 @@
 
 ### Fixed
 
+- Translation error
 - JS-protection method [#10]
 
-## v2.1.0.1
-
-### Fixed
-
-- Fix translation error
+[#10]:https://github.com/tarampampam/random-user-agent/issues/10
 
 ## v2.1.0
 
@@ -176,7 +205,7 @@
 
 ### Removed
 
-- Font 'Roboto', font 'Material Icons' replaced with 'Flaticon' costom icons set
+- Font `Roboto`, font `Material Icons` replaced with `Flaticon` custom icons set
 
 ## v2.0.4
 
@@ -184,7 +213,7 @@
 
 - Fixed manifest file error
 
-## v2.0.3.1
+## v2.0.3-1
 
 ### Fixed
 
@@ -205,9 +234,6 @@
 ### Changed
 
 - Icons
-
-### Added
-
 - Russian localization
 
 ### Fixed
@@ -218,7 +244,7 @@
 
 ### Changed
 
-- Extension totally re-writed, repository re-created
+- Extension totally rewrote, repository re-created
 
 ## v1.5.5
 
@@ -250,14 +276,14 @@
 
 - A bug with loading settings (default only after restarting the browser)
 
-## v1.5
+## v1.5.0
 
 ### Added
 
 - Added exclusion (exception) list
- 
+
 ### Changed
- 
+
 - Default settings
 - Excluded files "content.js"
 
@@ -271,7 +297,7 @@
 
 - Updated language packs, minor improvements
 
-## v1.4
+## v1.4.0
 
 ### Changed
 
@@ -285,14 +311,17 @@
 
 - A large number of small improvements
 
-## v1.3
+## v1.3.0
 
 ### Added
 
 - Added German (de) localization, fixed bugs in the absence of initialization
 
-## v1.2
+## v1.2.0
 
 ### Changed
 
 - First release on Github
+
+[keepachangelog]:https://keepachangelog.com/en/1.0.0/
+[semver]:https://semver.org/spec/v2.0.0.html

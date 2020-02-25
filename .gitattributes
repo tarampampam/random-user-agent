@@ -1,5 +1,7 @@
 * text=auto
 
-/.github export-ignore
-/builds  export-ignore
-/.*      export-ignore
+/*.md        export-ignore
+/Makefile    export-ignore
+/[Dd]ocker*  export-ignore
+/.*          export-ignore
+*.test.js    export-ignore
