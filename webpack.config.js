@@ -75,7 +75,7 @@ const config = {
         }),
         new CopyPlugin([
             {from: 'img', to: 'img'},
-            {from: '_locales', to: '_locales', ignore: ['full_description.txt', '*.md']},
+            {from: '_locales', to: '_locales', ignore: ['*.txt', '*.md', '*.test.*']},
             {from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml},
             {from: 'options/options.html', to: 'options/options.html', transform: transformHtml},
             {
