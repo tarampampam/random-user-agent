@@ -10,17 +10,17 @@ const config = {
     mode: process.env.NODE_ENV,
     context: __dirname + '/src',
     entry: {
-        'background': './background.js',
-        'popup/popup': './popup/popup.js',
-        'options/options': './options/options.js',
-        'inject/content': './inject/content.js',
+        'background': './background.ts',
+        'popup/popup': './popup/popup.ts',
+        'options/options': './options/options.ts',
+        'inject/content': './inject/content.ts',
     },
     output: {
         path: __dirname + '/dist',
         filename: '[name].js',
     },
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.ts', '.js', '.vue', '.json'],
     },
     module: {
         rules: [
@@ -32,6 +32,14 @@ const config = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.ts$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    appendTsSuffixTo: [/\.vue$/]
+                }
             },
             {
                 test: /\.css$/,

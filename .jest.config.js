@@ -9,7 +9,7 @@ module.exports = {
     clearMocks: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    collectCoverageFrom: ['**/src/**/*.{js,vue}', '**/public/**/*.{js,json}', '!**/node_modules/**'],
+    collectCoverageFrom: ['**/src/**/*.{js,ts,vue}', '**/public/**/*.{js,json}', '!**/node_modules/**'],
 
     // The directory where Jest should output its coverage files
     coverageDirectory: 'coverage',
@@ -30,7 +30,7 @@ module.exports = {
         'vue',
         'json',
         //"jsx",
-        //"ts",
+        "ts",
         //"tsx",
         //"node"
     ],
@@ -43,7 +43,7 @@ module.exports = {
 
     // The glob patterns Jest uses to detect test files
     testMatch: [
-        '**/?(*.)+(spec|test).js',
+        '**/?(*.)+(spec|test).ts',
     ],
 
     // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
@@ -56,6 +56,7 @@ module.exports = {
     transform: {
         '^.+\\.js$': 'babel-jest',
         '^.+\\.vue$': 'vue-jest',
+        '^.+\\.ts?$': 'ts-jest',
     },
 
     // Indicates whether each individual test should be reported during the run

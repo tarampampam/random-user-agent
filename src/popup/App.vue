@@ -1,15 +1,19 @@
 <template>
     <div>
-        <p>Hello world!</p>
+        <p>Hello world! From {{ from }}</p>
     </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
     data() {
-        return {};
+        return {
+            from: 'Indostan'
+        };
     },
-};
+});
 </script>
 
 <style lang="scss" scoped>

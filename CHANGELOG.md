@@ -8,7 +8,9 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- WIP
+- Done migrate to typescript [#116]
+
+[#116]:https://github.com/tarampampam/random-user-agent/issues/116
 
 ## v2.2.11
 

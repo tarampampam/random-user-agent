@@ -17,6 +17,7 @@
 
 // Do not execute JS protection on Firefox. Could become a problem if the extension is ported
 // to Edge or Chrome starts to support the "browser" object.
+// @ts-ignore TODO: should removed
 if (typeof browser === 'undefined') {
     // code
 }
