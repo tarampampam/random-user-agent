@@ -1,3 +1,5 @@
+import TabIconDetails = chrome.browserAction.TabIconDetails;
+
 export const
     STATE_ACTIVE = 'active',
     STATE_INACTIVE = 'inactive',
@@ -6,26 +8,19 @@ export const
 export class ExtensionIcon {
     /**
      * Set icon based on state.
-     *
-     * @param {string} state
-     * @param {number|null} tabId
      */
-    static setState(state, tabId) {
+    static setState(state: string, tabId: number | null) {
         /**
          * @type {chrome.browserAction.TabIconDetails}
          */
-        let details = {
+        let details: TabIconDetails = {
             /**
              * Relative image path or a dictionary {size -> relative image path} pointing to icon to be set.
-             *
-             * @type {string|null}
              */
             path: undefined,
 
             /**
              * Limits the change to when a particular tab is selected. Automatically resets when the tab is closed.
-             *
-             * @type {number|null}
              */
             tabId: undefined,
         };
