@@ -1,6 +1,6 @@
 {
     "name": "random-user-agent",
-    "version": "3.0.0-dev",
+    "version": "3.0.0",
     "description": "Chromium-based browsers extension",
     "keywords": [
         "browser",
