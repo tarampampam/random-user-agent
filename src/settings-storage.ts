@@ -16,9 +16,6 @@ interface ISettingsStructure {
     links_donate: string
 }
 
-/**
- * Extension settings structure class with default values.
- */
 const settingsStructure: ISettingsStructure = {
     /**
      * Unique key for storing in storage.
