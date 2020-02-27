@@ -2,7 +2,6 @@
   "extension_desc": {
     "message": "Автоматично замінює User-Agent через заданий проміжок часу на випадковий, тим самим приховуючи справжній"
   },
-
   "active_useragent": {
     "message": "Активний user-agent"
   },
@@ -27,10 +26,9 @@
   "bug_report": {
     "message": "Повідомити про помилку"
   },
-  "make_donation" : {
+  "make_donation": {
     "message": "Купити автору кави"
   },
-
   "general_settings": {
     "message": "Основні налаштування"
   },
@@ -55,7 +53,6 @@
   "sync_enabled": {
     "message": "Синхронізувати налаштування між браузерами"
   },
-
   "custom_useragent": {
     "message": "Власний User-Agent (по одному на рядок)"
   },
@@ -65,14 +62,12 @@
   "custom_useragent_enabled": {
     "message": "Використовувати власний User-Agent"
   },
-
   "agent_switcher_options": {
     "message": "Налаштування генератора"
   },
   "agent_switcher_options_hint": {
     "message": "Вкажіть ті типи браузерів, User-Agent яких слід генерувати:"
   },
-
   "exceptions": {
     "message": "Винятки"
   },

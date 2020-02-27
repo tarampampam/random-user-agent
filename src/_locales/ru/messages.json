@@ -2,7 +2,6 @@
   "extension_desc": {
     "message": "Автоматически заменяет User-Agent через заданный промежуток времени на случайный, тем самым скрывая настоящий"
   },
-
   "active_useragent": {
     "message": "Используемый user-agent"
   },
@@ -27,10 +26,9 @@
   "bug_report": {
     "message": "Сообщить об ошибке"
   },
-  "make_donation" : {
+  "make_donation": {
     "message": "Купить автору кофе"
   },
-
   "general_settings": {
     "message": "Основные настройки"
   },
@@ -55,7 +53,6 @@
   "sync_enabled": {
     "message": "Синхронизировать настройки между браузерами"
   },
-
   "custom_useragent": {
     "message": "Свой User-Agent (по одному на строку)"
   },
@@ -65,14 +62,12 @@
   "custom_useragent_enabled": {
     "message": "Использовать свой User-Agent"
   },
-
   "agent_switcher_options": {
     "message": "Настройки генератора"
   },
   "agent_switcher_options_hint": {
     "message": "Укажите те типы браузеров, User-Agent которых следует генерировать:"
   },
-
   "exceptions": {
     "message": "Исключения"
   },

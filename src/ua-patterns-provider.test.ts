@@ -1,5 +1,5 @@
 describe('Class has', () => {
-    test.skip('required methods', () => {
-        // Not implemented yet
-    });
+  test.skip('required methods', () => {
+    // Not implemented yet
+  });
 });

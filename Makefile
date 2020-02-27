@@ -9,8 +9,8 @@ SHELL = /bin/sh
 NODE_IMAGE = tarampampam/node:12-alpine
 RUN_ARGS = --rm -v "$(cwd):/src:cached" --workdir "/src" -u "$(shell id -u):$(shell id -g)"
 
-.PHONY : help install lint test update build clean watch
-.SILENT : help install lint test update build watch
+.PHONY : help install lint test test-cover update build clean watch
+.SILENT : help install lint test test-cover update build watch
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -29,6 +29,9 @@ lint: ## Execute linters
 
 test: ## Execute tests
 	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn test
+
+test-cover: ## Execute tests with code coverage
+	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn test:cover
 
 update: ## Update all dependencies
 	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn upgrade --no-progress --non-interactive

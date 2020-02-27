@@ -1,21 +1,21 @@
 <template>
-    <div>
-        <p>Hello options!</p>
-    </div>
+  <div>
+    <p>Hello options!</p>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+  import Vue from 'vue';
 
-export default Vue.extend({
+  export default Vue.extend({
     data() {
-        return {};
+      return {};
     },
-});
+  });
 </script>
 
 <style lang="scss" scoped>
-    p {
-        font-size: 20px;
-    }
+  p {
+    font-size: 20px;
+  }
 </style>
