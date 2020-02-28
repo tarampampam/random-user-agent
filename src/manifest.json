@@ -5,7 +5,7 @@
   "description": "__MSG_extension_desc__",
   "author": "github.com/tarampampam",
   "default_locale": "en",
-  "version": "%will be set during build process%",
+  "version": "%will-be-set-during-build-process%",
   "icons": {
     "16": "/img/icons/16x16.png",
     "48": "/img/icons/48x48.png",

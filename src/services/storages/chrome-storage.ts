@@ -4,6 +4,8 @@
  * If "prefer sync storage" is set to `true`, and while working with `chrome.storage.sync` storage error happened - as
  * fallback will be used `chrome.storage.local` storage.
  *
+ * @link <https://github.com/tarampampam/random-user-agent/issues/56>
+ *
  * Requires Chrome 34 and above.
  *
  * @link <https://developer.chrome.com/extensions/storage>
@@ -63,11 +65,11 @@ export default class ChromeStorage implements Services.Storage {
   get(key: string): Promise<{ [key: string]: any }> {
     const storage = this.preferSyncStorage
       ? chrome.storage.sync
-      : chrome.storage.local;
+      : chrome.storage.local; // @todo refactor
 
     return new Promise((resolve: ({}: { [key: string]: any }) => void, reject: (_: Error) => void): void => {
       storage.get(key, (items): void => {
-        let error = chrome.runtime.lastError;
+        const error = chrome.runtime.lastError;
 
         // if some error happened
         if (error) {
@@ -80,12 +82,12 @@ export default class ChromeStorage implements Services.Storage {
 
           // try to repeat this action with `*.local` storage
           chrome.storage.local.get(key, (items) => {
-            let error = chrome.runtime.lastError;
+            const localError = chrome.runtime.lastError;
 
             // check for error again
-            if (error) {
+            if (localError) {
               // and if any error happened - call `reject` action
-              reject(new Error(error.message));
+              reject(new Error(localError.message));
 
               return;
             }
@@ -120,7 +122,7 @@ export default class ChromeStorage implements Services.Storage {
 
     return new Promise((resolve: () => void, reject: (_: Error) => void): void => {
       storage.set(data, (): void => {
-        let error = chrome.runtime.lastError;
+        const error = chrome.runtime.lastError;
 
         // if some error happened
         if (error) {
@@ -133,12 +135,12 @@ export default class ChromeStorage implements Services.Storage {
 
           // try to repeat this action with `*.local` storage
           chrome.storage.local.set(data, (): void => {
-            let error = chrome.runtime.lastError;
+            const localError = chrome.runtime.lastError;
 
             // check for error again
-            if (error) {
+            if (localError) {
               // and if any error happened - call `reject` action
-              reject(new Error(error.message));
+              reject(new Error(localError.message));
 
               return;
             }
