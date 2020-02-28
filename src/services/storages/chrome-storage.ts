@@ -13,16 +13,26 @@
  */
 export default class ChromeStorage implements Services.Storage {
   // Use synchronized storage, if it is possible
-  private readonly preferSyncStorage: boolean;
+  private preferSyncStorage: boolean;
 
   /**
    * Creates new chrome storage instance.
    */
-  constructor(preferSyncStorage: boolean) {
+  public constructor(preferSyncStorage: boolean) {
     this.preferSyncStorage = preferSyncStorage;
   }
 
-  clear(): Promise<void> {
+  /**
+   * Change "synchronized storage is preferred" state.
+   */
+  public setPreferSyncStorage(prefer: boolean): void {
+    this.preferSyncStorage = prefer;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public clear(): Promise<void> {
     const storage = this.preferSyncStorage
       ? chrome.storage.sync
       : chrome.storage.local;
@@ -62,7 +72,10 @@ export default class ChromeStorage implements Services.Storage {
     });
   }
 
-  get(key: string): Promise<{ [key: string]: any }> {
+  /**
+   * @inheritDoc
+   */
+  public get(key: string): Promise<{ [key: string]: any }> {
     const storage = this.preferSyncStorage
       ? chrome.storage.sync
       : chrome.storage.local; // @todo refactor
@@ -113,7 +126,10 @@ export default class ChromeStorage implements Services.Storage {
     });
   }
 
-  set(key: string, value: { [key: string]: any }): Promise<void> {
+  /**
+   * @inheritDoc
+   */
+  public set(key: string, value: { [key: string]: any }): Promise<void> {
     const storage = this.preferSyncStorage
       ? chrome.storage.sync
       : chrome.storage.local;

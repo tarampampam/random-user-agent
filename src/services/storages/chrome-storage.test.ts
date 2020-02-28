@@ -50,7 +50,7 @@ describe('chrome storage (using chrome.storage.LOCAL)', (): void => {
 
     return chromeStorage.set('foo', {bar: 'baz'})
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('test runtime error');
@@ -91,7 +91,7 @@ describe('chrome storage (using chrome.storage.LOCAL)', (): void => {
 
     return chromeStorage.get('foo')
       .then(() => {
-        throw new Error('.then must not be called')
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('test runtime error');
@@ -114,7 +114,7 @@ describe('chrome storage (using chrome.storage.LOCAL)', (): void => {
 
     return chromeStorage.get('foo')
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('Storage does not contains expected data');
@@ -153,7 +153,7 @@ describe('chrome storage (using chrome.storage.LOCAL)', (): void => {
 
     return chromeStorage.clear()
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('test runtime error');
@@ -211,7 +211,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
         expect(localSet).toHaveBeenCalledWith({foo: {bar: 'baz'}}, expect.any(Function));
       })
       .catch((error: Error) => {
-        throw new Error('.catch must not be called: ' + error.message);
+        fail(new Error('.catch must not be called: ' + error.message));
       })
   });
 
@@ -237,7 +237,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
 
     return chromeStorage.set('foo', {bar: 'baz'})
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('another runtime error');
@@ -289,7 +289,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
         expect(value).toEqual({bar: 'baz'});
       })
       .catch((error: Error) => {
-        throw new Error('.catch must not be called: ' + error.message);
+        fail(new Error('.catch must not be called: ' + error.message));
       })
   });
 
@@ -314,7 +314,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
 
     return chromeStorage.get('foo')
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('test runtime error');
@@ -344,7 +344,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
 
     return chromeStorage.get('foo')
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('Local storage does not contains expected data');
@@ -383,7 +383,7 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
 
     return chromeStorage.clear()
       .then(() => {
-        throw new Error('.then must not be called');
+        fail(new Error('.then must not be called'));
       })
       .catch((error: Error) => {
         expect(error.message).toEqual('test runtime error');
@@ -412,7 +412,69 @@ describe('chrome storage (using chrome.storage.SYNC)', (): void => {
         expect(syncClear).toHaveBeenCalledWith(expect.any(Function));
       })
       .catch((error: Error) => {
-        throw new Error('.catch must not be called: ' + error.message);
+        fail(new Error('.catch must not be called: ' + error.message));
       })
   });
+});
+
+describe('chrome storage changes preferred storage', (): void => {
+  it('local changes to sync', (): Promise<void> => {
+    expect.assertions(2);
+
+    const chromeStorage = new ChromeStorage(false);
+
+    const syncClear = jest.fn().mockImplementation((callback: Function) => callback());
+    const localClear = jest.fn().mockImplementation((callback: Function) => callback());
+
+    (global as any).chrome = {storage: {sync: {clear: syncClear}, local: {clear: localClear}}};
+    setLastRuntimeError(undefined);
+
+    return chromeStorage.clear()
+      .then(() => {
+        expect(localClear).toHaveBeenCalledWith(expect.any(Function));
+
+        chromeStorage.setPreferSyncStorage(true);
+
+        chromeStorage.clear()
+          .then(() => {
+            expect(syncClear).toHaveBeenCalledWith(expect.any(Function));
+          })
+          .catch((error: Error) => {
+            fail(new Error('.catch after changing preferred storage must not be called: ' + error.message));
+          })
+      })
+      .catch((error: Error) => {
+        fail(new Error('.catch must not be called: ' + error.message));
+      })
+  });
+
+  it('local sync to local', (): Promise<void> => {
+    expect.assertions(2);
+
+    const chromeStorage = new ChromeStorage(true);
+
+    const syncClear = jest.fn().mockImplementation((callback: Function) => callback());
+    const localClear = jest.fn().mockImplementation((callback: Function) => callback());
+
+    (global as any).chrome = {storage: {sync: {clear: syncClear}, local: {clear: localClear}}};
+    setLastRuntimeError(undefined);
+
+    return chromeStorage.clear()
+      .then(() => {
+        expect(syncClear).toHaveBeenCalledWith(expect.any(Function));
+
+        chromeStorage.setPreferSyncStorage(false);
+
+        chromeStorage.clear()
+          .then(() => {
+            expect(localClear).toHaveBeenCalledWith(expect.any(Function));
+          })
+          .catch((error: Error) => {
+            fail(new Error('.catch after changing preferred storage must not be called: ' + error.message));
+          })
+      })
+      .catch((error: Error) => {
+        fail(new Error('.catch must not be called: ' + error.message));
+      })
+  })
 });
