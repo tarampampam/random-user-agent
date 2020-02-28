@@ -27,7 +27,7 @@
     "watch": "npm run build -- --watch",
     "watch:dev": "cross-env HMR=true npm run build:dev -- --watch",
     "lint": "echo \"Error: no lint specified\" && exit 1",
-    "test": "jest --config=./.jest.config.js --no-cache",
+    "test": "jest --config=./.jest.config.js",
     "test:cover": "jest --config=./.jest.config.js --coverage --no-cache"
   },
   "engines": {
