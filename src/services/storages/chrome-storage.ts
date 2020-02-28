@@ -22,7 +22,7 @@ export default class ChromeStorage implements Services.Storage {
       ? chrome.storage.sync
       : chrome.storage.local;
 
-    return new Promise((resolve, reject): void => {
+    return new Promise((resolve: Function, reject: Function): void => {
       // execute `clear` method for `*.local` or `*.sync` storage
       storage.clear(() => {
         let error = chrome.runtime.lastError;
@@ -62,7 +62,7 @@ export default class ChromeStorage implements Services.Storage {
       ? chrome.storage.sync
       : chrome.storage.local;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: Function, reject: Function) => {
       storage.get(key, (items): void => {
         let error = chrome.runtime.lastError;
 
@@ -98,7 +98,7 @@ export default class ChromeStorage implements Services.Storage {
         }
 
         if (!items.hasOwnProperty(key)) {
-          reject(new Error('Sync storage does not contains expected data'));
+          reject(new Error('Storage does not contains expected data'));
 
           return;
         }
@@ -115,7 +115,7 @@ export default class ChromeStorage implements Services.Storage {
 
     const data = {[key]: value};
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: Function, reject: Function) => {
       storage.set(data, () => {
         let error = chrome.runtime.lastError;
 
