@@ -313,4 +313,22 @@ describe('settings', () => {
 
     settings.setSynchronizationEnabled(true);
   });
+
+  it('ChromeStorage is used bt default (use global chrome object mocking for a test)', (): Promise<void> => {
+    expect.assertions(1);
+
+    // use `clear` method as most simple case
+    const clear = jest.fn().mockImplementation((callback: Function) => {
+      callback();
+    });
+
+    (global as any).chrome = {storage: {sync: {clear}}, runtime: {lastError: undefined}};
+
+    const settings = new Settings;
+
+    return settings.clear()
+      .then(() => {
+        expect(clear).toHaveBeenCalledWith(expect.any(Function));
+      })
+  });
 });
