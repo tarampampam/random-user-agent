@@ -1,4 +1,5 @@
 import Settings, {GeneratorType} from "@/settings";
+import ChromeStorage from "@/services/storages/chrome-storage";
 
 /**
  * Generates random string.
@@ -216,7 +217,7 @@ describe('settings', () => {
             'custom_useragent_list',
             'javascript_protection_enabled',
             'generator_types',
-            'exceptions_list'
+            'exceptions_list',
           ].forEach((requiredKey: string) => {
             expect(value).toHaveProperty(requiredKey);
           });
@@ -299,7 +300,17 @@ describe('settings', () => {
       })
   });
 
-  test.skip('method `setSynchronizationEnabled()` calls `setPreferSyncStorage()` on ChromeStorage only', () => {
-    // Not implemented yet
+  it('method `setSynchronizationEnabled()` calls `setPreferSyncStorage()` on ChromeStorage only', () => {
+    expect.assertions(1);
+
+    class Foo extends ChromeStorage {
+      public setPreferSyncStorage(prefer: boolean): void {
+        expect(prefer).toEqual(true);
+      }
+    }
+
+    const settings = new Settings(new Foo(true));
+
+    settings.setSynchronizationEnabled(true);
   });
 });
