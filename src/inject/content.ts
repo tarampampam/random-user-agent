@@ -19,5 +19,5 @@
 // to Edge or Chrome starts to support the "browser" object.
 // @ts-ignore TODO: should removed
 if (typeof browser === 'undefined') {
-    // code
+  // code
 }

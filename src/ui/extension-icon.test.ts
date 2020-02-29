@@ -1,7 +1,7 @@
-import { ExtensionIcon, STATE_ACTIVE, STATE_DEFAULT, STATE_INACTIVE } from './extension-icon';
+import {STATE_ACTIVE} from './extension-icon';
 
 describe('Extension icon', () => {
-    it('constants values is correct', () => {
-        expect(STATE_ACTIVE).toBe('active');
-    });
+  it('constants values is correct', () => {
+    expect(STATE_ACTIVE).toBe('active');
+  });
 });

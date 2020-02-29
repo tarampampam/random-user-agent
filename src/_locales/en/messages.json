@@ -3,7 +3,6 @@
     "message": "Automatically change the user agent after specified period of time to a randomly selected one, thus hiding your real user agent",
     "description": "Short description. Limit: 132 chars"
   },
-
   "active_useragent": {
     "message": "Current active user agent"
   },
@@ -28,10 +27,9 @@
   "bug_report": {
     "message": "Bug report"
   },
-  "make_donation" : {
+  "make_donation": {
     "message": "Make a donation"
   },
-
   "general_settings": {
     "message": "General Settings"
   },
@@ -56,7 +54,6 @@
   "sync_enabled": {
     "message": "Sync extension settings between browsers"
   },
-
   "custom_useragent": {
     "message": "Custom user agent (one per line)"
   },
@@ -66,14 +63,12 @@
   "custom_useragent_enabled": {
     "message": "Use specified user agent"
   },
-
   "agent_switcher_options": {
     "message": "User agents"
   },
   "agent_switcher_options_hint": {
     "message": "Select the browsers whose user agents should be used:"
   },
-
   "exceptions": {
     "message": "Exceptions"
   },
