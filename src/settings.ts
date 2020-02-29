@@ -211,7 +211,7 @@ export default class Settings {
    */
   public setSynchronizationEnabled(state: boolean): void {
     if (this.storage instanceof ChromeStorage) {
-      this.storage.setPreferSyncStorage(state); // @todo: test this case
+      this.storage.setPreferSyncStorage(state);
     }
 
     this.settings.sync = state;

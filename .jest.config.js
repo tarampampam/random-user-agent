@@ -18,10 +18,10 @@ module.exports = {
   coverageReporters: [
     'text-summary',
     'html',
-    //"json",
-    //"text",
-    //"lcov",
-    "clover"
+    'clover'
+    //'json',
+    //'text',
+    //'lcov',
   ],
 
   // An array of file extensions your modules use
@@ -29,10 +29,10 @@ module.exports = {
     'js',
     'vue',
     'json',
-    //"jsx",
-    "ts",
-    //"tsx",
-    //"node"
+    'ts',
+    //'jsx',
+    //'tsx',
+    //'node'
   ],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
@@ -49,8 +49,8 @@ module.exports = {
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   testURL: 'http://localhost',
 
-  // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
-  // timers: "real",
+  // Setting this value to 'fake' allows the use of fake timers for functions such as 'setTimeout'
+  // timers: 'real',
 
   // A map from regular expressions to paths to transformers
   transform: {
