@@ -1,6 +1,12 @@
 import ChromeStorage from "@/services/storages/chrome-storage";
 
-export type GeneratorType = 'chrome_win' | 'chrome_mac' | 'chrome_linux' | 'firefox_win' | 'firefox_mac' | 'firefox_linux';
+export type GeneratorType =
+  'chrome_win'
+  | 'chrome_mac'
+  | 'chrome_linux'
+  | 'firefox_win'
+  | 'firefox_mac'
+  | 'firefox_linux';
 
 /**
  * Property names should not be changed in compatibility reasons with previous versions of the extension.
@@ -87,7 +93,7 @@ export default class Settings {
     return new Promise((resolve: () => void, reject: (_: Error) => void) => {
       this.storage
         .get(this.STORAGE_KEY)
-        .then((data) => {
+        .then((data: { [key: string]: any }) => {
           this.settings = {...this.settings, ...data};
           this.loaded = true;
 
