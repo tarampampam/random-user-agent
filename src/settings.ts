@@ -12,6 +12,8 @@ export type GeneratorType =
  * Property names should not be changed in compatibility reasons with previous versions of the extension.
  */
 interface IStorableSettingsStructure {
+  [key: string]: any;
+
   // Extension is enabled?
   enabled: boolean;
 
@@ -49,6 +51,8 @@ interface IStorableSettingsStructure {
   exceptions_list: string[];
 }
 
+type changesHandler = (key: string) => void;
+
 export default class Settings {
   // Unique key for storing in storage
   private readonly STORAGE_KEY = 'extension_settings_v2';
@@ -72,11 +76,28 @@ export default class Settings {
     exceptions_list: ['chrome://*'],
   };
 
+  // This closure will be called on each settings changing
+  private onSettingsChanged: changesHandler = () => void {};
+
   // This flag indicates that settings already loaded from storage or not
   private loaded: boolean = false;
 
   public constructor(storage?: Services.Storage) {
     this.storage = storage ?? new ChromeStorage(this.settings.sync);
+
+    this.settings = new Proxy(this.settings, {
+      set: (target: IStorableSettingsStructure, key: string, value: any): boolean => {
+        target[key] = value;
+        this.onSettingsChanged(key);
+
+        return true;
+      }
+    });
+  }
+
+  // Set changes settings handler
+  public setOnSettingsChanged(fn: changesHandler) {
+    this.onSettingsChanged = fn;
   }
 
   /**
