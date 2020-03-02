@@ -9,9 +9,8 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Changed
 
 - Done migrate to typescript [#116]
-- New settings storage implementation [#119]
+- New settings storage implementation (it allows to trigger custom handler on changes) [#119]
 - Indent size now equals `2`
-- Settings allows to trigger custom handler on settings changes
 
 [#116]:https://github.com/tarampampam/random-user-agent/issues/116
 [#116]:https://github.com/tarampampam/random-user-agent/issues/119

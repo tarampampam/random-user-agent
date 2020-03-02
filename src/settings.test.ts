@@ -344,5 +344,43 @@ describe('settings', () => {
     defaultSettings.setCustomUserAgent(generateRandomString()); // trigger!
 
     expect(handler).toHaveBeenCalledTimes(2);
-  })
+  });
+
+  it('settings changes trigger handler continue working after loading', (): Promise<void> => {
+    expect.assertions(1);
+
+    const storageMock = new class implements Services.Storage {
+      clear(): Promise<void> {
+        return new Promise((): void => {
+          // do nothing
+        });
+      }
+
+      get(key: string): Promise<{ [key: string]: any }> {
+        return new Promise((resolve: Function, reject: Function): void => {
+          resolve({foo: 'bar'}); // previously unknown property trigger handler too
+        });
+      }
+
+      set(key: string, value: { [key: string]: any }): Promise<void> {
+        return new Promise((resolve: Function, reject: Function): void => {
+          // do nothing
+        });
+      }
+    };
+
+    const settings = new Settings(storageMock);
+    const handler = jest.fn();
+
+    settings.setOnSettingsChanged(handler); // NOT trigger
+
+    settings.setUserAgent(generateRandomString()); // trigger!
+
+    return settings.load()
+      .then(() => {
+        settings.setUserAgent(generateRandomString()); // trigger!
+
+        expect(handler).toHaveBeenCalledTimes(3);
+      });
+  });
 });

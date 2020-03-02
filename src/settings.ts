@@ -96,7 +96,7 @@ export default class Settings {
   }
 
   // Set changes settings handler
-  public setOnSettingsChanged(fn: changesHandler) {
+  public setOnSettingsChanged(fn: changesHandler): void {
     this.onSettingsChanged = fn;
   }
 
@@ -115,7 +115,10 @@ export default class Settings {
       this.storage
         .get(this.STORAGE_KEY)
         .then((data: { [key: string]: any }) => {
-          this.settings = {...this.settings, ...data};
+          for (let key in data) {
+            this.settings[key] = data[key];
+          }
+
           this.loaded = true;
 
           resolve();
