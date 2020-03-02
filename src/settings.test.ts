@@ -300,7 +300,7 @@ describe('settings', () => {
       })
   });
 
-  it('method `setSynchronizationEnabled()` calls `setPreferSyncStorage()` on ChromeStorage only', () => {
+  it('method `setSynchronizationEnabled()` calls `setPreferSyncStorage()` on ChromeStorage only', (): void => {
     expect.assertions(1);
 
     class Foo extends ChromeStorage {
@@ -331,4 +331,18 @@ describe('settings', () => {
         expect(clear).toHaveBeenCalledWith(expect.any(Function));
       })
   });
+
+  it('settings changes trigger handler function', (): void => {
+    const handler = jest.fn();
+
+    defaultSettings.setOnSettingsChanged(handler); // NOT trigger
+
+    defaultSettings.getExceptionsList();
+    defaultSettings.getCustomUserAgent();
+
+    defaultSettings.setUserAgent(generateRandomString()); // trigger!
+    defaultSettings.setCustomUserAgent(generateRandomString()); // trigger!
+
+    expect(handler).toHaveBeenCalledTimes(2);
+  })
 });
