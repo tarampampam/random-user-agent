@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <h2 data-l10n="active_useragent">Active user-agent</h2>
+      <h2>{{ i18n('active_useragent', 'Active user-agent') }}</h2>
       <div class="current">
         <p class="selectable tt">{{ activeUserAgent }}</p>
       </div>
@@ -9,46 +9,46 @@
 
     <section>
       <div class="enabled-on-this-domain" v-for="checkbox_id in ['enabled']">
-        <strong data-l10n="enabled_on_this_domain">
-          <label :for="checkbox_id">Enabled on this domain</label>
+        <strong>
+          <label :for="checkbox_id">{{ i18n('enabled_on_this_domain', 'Enabled on this domain') }}</label>
         </strong>
         <iosCheckbox :id="checkbox_id"></iosCheckbox>
       </div>
       <ul>
         <li>
           <img src="/assets/img/buttons/pause.svg" alt="pause">
-          <span>{{ localize('pause_switcher') }}</span>
-          <span data-l10n="pause_switcher">Pause switcher</span>
+          <span>{{ i18n('pause_switcher', 'Pause switcher') }}</span>
         </li>
         <li class="blinking-background">
           <img src="/assets/img/buttons/start.svg" alt="unpause">
-          <span data-l10n="unpause_switcher">Unpause switcher</span>
+          <span>{{ i18n('unpause_switcher', 'Unpause switcher') }}</span>
         </li>
         <li>
           <img src="/assets/img/buttons/repeat.svg" alt="new">
-          <span data-l10n="get_new_agent">Get new agent</span>
+          <span>{{ i18n('get_new_agent', 'Get new agent') }}</span>
         </li>
         <li>
           <img src="/assets/img/buttons/settings.svg" alt="settings">
-          <span data-l10n="open_settings">Open settings</span>
+          <span>{{ i18n('open_settings', 'Open settings') }}</span>
         </li>
       </ul>
     </section>
 
     <footer>
-      <a href="#" data-l10n="make_donation">Donate</a> |
-      <a href="#" data-l10n="bug_report">Bug report</a>
+      <a href="#">{{ i18n('make_donation', 'Donate') }}</a> |
+      <a href="#">{{ i18n('bug_report', 'Bug report') }}</a>
     </footer>
-
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import iosCheckbox from '@/components/ios-checkbox.vue';
+  import i18nMixin from '@/components/mixins/i18n'
 
   export default Vue.extend({
     components: { iosCheckbox },
+    mixins: [i18nMixin],
     data: (): { [key: string]: any } => {
       return {
         // activeUserAgent: 'Loading..',
@@ -56,13 +56,6 @@
           'ОдиннацитиклассницаОдиннацитиклассница ОдиннацитиклассницаОдиннацитиклассницаОдиннацитиклассница' +
           'Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница',
       };
-    },
-
-    methods: {
-      // localize entry
-      localize: (key: string): string => {
-        return chrome.i18n.getMessage(key);
-      },
     },
   });
 </script>

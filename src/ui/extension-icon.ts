@@ -27,15 +27,15 @@ export class ExtensionIcon {
 
     switch (state) {
       case STATE_ACTIVE:
-        details.path = '/img/icons/48x48.png';
+        details.path = '/assets/img/icons/48x48.png';
         break;
 
       case STATE_INACTIVE:
-        details.path = '/img/icons/48x48g.png';
+        details.path = '/assets/img/icons/48x48g.png';
         break;
 
       default: // STATE_DEFAULT
-        details.path = '/img/icons/48x48t.png';
+        details.path = '/assets/img/icons/48x48t.png';
         break;
     }
 
