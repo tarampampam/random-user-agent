@@ -10,9 +10,9 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    'background': './background.ts',
-    'popup/popup': './popup/popup.ts',
-    'options/options': './options/options.ts',
+    'background': './pages/background.ts',
+    'popup/popup': './pages/popup/popup.ts',
+    'options/options': './pages/options/options.ts',
     'inject/content': './inject/content.ts',
   },
   output: {
@@ -21,6 +21,9 @@ const config = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
+    alias: {
+      '@': __dirname + '/src',
+    }
   },
   module: {
     rules: [
@@ -82,10 +85,10 @@ const config = {
       filename: '[name].css',
     }),
     new CopyPlugin([
-      {from: 'img', to: 'img'},
+      {from: __dirname + '/assets', to: 'assets', ignore: ['*.zip', '*.tag.gz']},
       {from: '_locales', to: '_locales', ignore: ['*.txt', '*.md', '*.test.*']},
-      {from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml},
-      {from: 'options/options.html', to: 'options/options.html', transform: transformHtml},
+      {from: 'pages/popup/popup.html', to: 'popup/popup.html', transform: transformHtml},
+      {from: 'pages/options/options.html', to: 'options/options.html', transform: transformHtml},
       {
         from: 'manifest.json',
         to: 'manifest.json',
