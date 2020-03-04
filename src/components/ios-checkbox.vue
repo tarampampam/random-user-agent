@@ -70,7 +70,7 @@
 
   .toggle-light {
     + .toggle-btn {
-      background: #f0f0f0;
+      background: #f04742;
       border-radius: 1.5em;
       padding: 2px;
       transition: all .3s ease;
