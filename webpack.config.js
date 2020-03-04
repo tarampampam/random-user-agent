@@ -10,17 +10,17 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    'background': './pages/background.ts',
     'popup/popup': './pages/popup/popup.ts',
     'options/options': './pages/options/options.ts',
-    'inject/content': './inject/content.ts',
+    'background': './scripts/background.ts',
+    'inject': './scripts/inject.ts',
   },
   output: {
     path: __dirname + '/dist',
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: ['.ts', '.js', '.vue'],
     alias: {
       '@': __dirname + '/src',
     }
@@ -57,6 +57,12 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       global: 'window',
+    }),
+    new webpack.BannerPlugin({ // link: <https://webpack.js.org/plugins/banner-plugin/>
+      banner: 'This file is part of "Random User-Agent" Browser Extension.\n' +
+        '@link <https://github.com/tarampampam/random-user-agent>\n' +
+        'Released under the WTFPL License.',
+      entryOnly: true,
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({

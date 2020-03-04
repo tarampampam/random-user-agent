@@ -43,8 +43,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import iosCheckbox from '@/components/ios-checkbox.vue';
-  import i18nMixin from '@/mixins/i18n'
+  import iosCheckbox from '@/pages/components/ios-checkbox.vue';
+  import i18nMixin from '@/pages/mixins/i18n'
 
   export default Vue.extend({
     components: { iosCheckbox },
