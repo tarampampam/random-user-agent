@@ -34,6 +34,7 @@
     "node": ">=12"
   },
   "dependencies": {
+    "jsonrpc-lite": "^2.1.0",
     "randexp": "^0.5.3",
     "vue": "^2.6.10"
   },

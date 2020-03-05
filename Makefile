@@ -32,6 +32,7 @@ test: ## Execute tests
 
 test-cover: ## Execute tests with code coverage
 	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn test:cover
+	-sensible-browser ./coverage/index.html
 
 update: ## Update all dependencies
 	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" yarn upgrade --no-progress --non-interactive
