@@ -6,19 +6,18 @@ import {
   RequestObject,
   SuccessObject
 } from "jsonrpc-lite";
-import {IRpcRouter, RouteHandler} from "@/services/irpc";
 import {JsonRpc} from "jsonrpc-lite/jsonrpc";
-import {PromiseRejection, PromiseResolution} from "promise.allsettled/types";
 import * as allSettled from "promise.allsettled";
+import {Services} from "@/services/services";
 
-export default class RpcRouter implements IRpcRouter {
+export default class RpcRouter implements Services.RPC.Router {
   // Registered routes map
-  private routes: { [method: string]: RouteHandler } = {};
+  private routes: { [method: string]: Services.RPC.RouteHandler } = {};
 
   /**
    * @inheritDoc
    */
-  public on(method: string, call: RouteHandler): void {
+  public on(method: string, call: Services.RPC.RouteHandler): void {
     this.routes[method] = call;
   }
 
@@ -80,55 +79,44 @@ export default class RpcRouter implements IRpcRouter {
       ? parsed
       : [parsed];
 
-    let requestsQueue: Promise<JsonRpc>[] = [];
+    const requestsQueue: Promise<JsonRpc | void>[] = [];
 
-    // iterate over all parsed requests
-    requestsArray.forEach((rpcRequest) => {
-      // and push new promise into requests queue as promise
-      requestsQueue.push(new Promise((resolve: (response?: SuccessObject) => void, reject: (error?: ErrorObject | JsonRpcError) => void): void => {
-        const payload = rpcRequest.payload;
+    return new Promise<JsonRpc | JsonRpc[]>((resolve: (response?: JsonRpc | JsonRpc[]) => void): void => {
+      // iterate over all parsed requests
+      requestsArray.forEach((rpcRequest) => {
+        // and push new promise into requests queue as promise
+        requestsQueue.push(new Promise((queuedResolve: (response?: SuccessObject) => void, queuedReject: (error?: ErrorObject | JsonRpcError) => void): void => {
+          const payload = rpcRequest.payload;
 
-        if (payload instanceof RequestObject || payload instanceof NotificationObject) {
-          this.handleRequest(payload)
-            .then((response) => resolve(response))
-            .catch((error) => reject(error));
-        } else if (payload instanceof JsonRpcError) {
-          reject(new ErrorObject(Number.MIN_SAFE_INTEGER, payload)); // ID must be null. Issue: <https://github.com/teambition/jsonrpc-lite/issues/19>
-        } else {
-          reject();
-        }
-      }))
-    });
+          if (payload instanceof RequestObject || payload instanceof NotificationObject) {
+            this.handleRequest(payload)
+              .then((response) => queuedResolve(response))
+              .catch((error) => queuedReject(error));
+          } else {
+            queuedReject(new ErrorObject(Number.MIN_SAFE_INTEGER, payload as JsonRpcError)); // ID must be `null`. Issue: <https://github.com/teambition/jsonrpc-lite/issues/19>
+          }
+        }))
+      });
 
-    return new Promise<JsonRpc | JsonRpc[]>((resolve, reject): void => {
       allSettled(requestsQueue)
         .then((results) => {
-          const
-            fulfilled: JsonRpc[] = [],
-            rejected: ErrorObject[] = [];
+          const summary: JsonRpc[] = [];
 
+          // push results into summary array
           results.forEach(result => {
-            if (result.status === 'fulfilled') {
-              fulfilled.push((result as PromiseResolution<JsonRpc>).value);
-            } else {
-              rejected.push((result as PromiseRejection<ErrorObject>).reason);
+            if (result.status === 'fulfilled' && result.value instanceof JsonRpc) {
+              summary.push(result.value);
+            } else if (result.status === 'rejected' && result.reason instanceof JsonRpc) {
+              summary.push(result.reason);
             }
           });
 
-          if (rejected.length > 0) {
-            if (!Array.isArray(parsed)) {
-              reject(rejected[0]);
-            } else {
-              reject(rejected);
-            }
-          } else if (fulfilled.length > 0) {
-            if (!Array.isArray(parsed)) {
-              resolve(fulfilled[0]);
-            } else {
-              resolve(fulfilled);
-            }
+          if (!Array.isArray(parsed)) {
+            resolve(summary[0]);
+          } else if (summary.length > 0) {
+            resolve(summary);
           } else {
-            throw new Error('Unexpected handling result');
+            resolve();
           }
         });
     });

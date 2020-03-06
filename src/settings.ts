@@ -1,5 +1,5 @@
 import ChromeStorage from "@/services/storages/chrome-storage";
-import IStorage from "@/services/istorage";
+import {Services} from "@/services/services";
 
 export type GeneratorType =
   'chrome_win'
@@ -59,7 +59,7 @@ export default class Settings {
   private readonly STORAGE_KEY = 'extension_settings_v2';
 
   // Settings storage
-  private readonly storage: IStorage;
+  private readonly storage: Services.Storage;
 
   // Settings state with defaults
   private settings: IStorableSettingsStructure = {
@@ -83,7 +83,7 @@ export default class Settings {
   // This flag indicates that settings already loaded from storage or not
   private loaded: boolean = false;
 
-  public constructor(storage?: IStorage) {
+  public constructor(storage?: Services.Storage) {
     this.storage = storage ?? new ChromeStorage(this.settings.sync);
 
     this.settings = new Proxy(this.settings, {

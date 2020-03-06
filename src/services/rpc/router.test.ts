@@ -9,7 +9,8 @@ import {
   RpcParams,
   SuccessObject
 } from "jsonrpc-lite";
-import {RouteHandler} from "@/services/irpc";
+import {Services} from "@/services/services";
+import RouteHandler = Services.RPC.RouteHandler;
 
 describe('RPC router can', (): void => {
   const proxyHandler: RouteHandler = (params?: RpcParams): Defined => {
@@ -208,12 +209,14 @@ describe('RPC router can', (): void => {
 
     return router.handleRawRequest(request("1", 'foobar'))
       .then((response) => {
-        fail(new Error('.then must not be called'));
+        const r = response as ErrorObject;
+
+        expect(r.id).toEqual("1");
+        expect(r.error.code).toEqual(-32601);
+        expect(r.error.message).toEqual('Method not found');
       })
-      .catch((error: ErrorObject) => {
-        expect(error.id).toEqual("1");
-        expect(error.error.code).toEqual(-32601);
-        expect(error.error.message).toEqual('Method not found');
+      .catch((error) => {
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 
@@ -228,12 +231,14 @@ describe('RPC router can', (): void => {
 
     return router.handleRawRequest({jsonrpc: '2.0', method: 1, params: "bar"})
       .then((response) => {
-        fail(new Error('.then must not be called'));
+        const r = response as ErrorObject;
+
+        //expect(r.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
+        expect(r.error.code).toEqual(-32600);
+        expect(r.error.message).toEqual('Invalid request');
       })
       .catch((error: ErrorObject) => {
-        //expect(error.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
-        expect(error.error.code).toEqual(-32600);
-        expect(error.error.message).toEqual('Invalid request');
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 
@@ -248,12 +253,14 @@ describe('RPC router can', (): void => {
 
     return router.handleRawRequest([])
       .then((response) => {
-        fail(new Error('.then must not be called'));
+        const r = response as ErrorObject;
+
+        //expect(error.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
+        expect(r.error.code).toEqual(-32600);
+        expect(r.error.message).toEqual('Invalid request');
       })
       .catch((error: ErrorObject) => {
-        //expect(error.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
-        expect(error.error.code).toEqual(-32600);
-        expect(error.error.message).toEqual('Invalid request');
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 
@@ -270,10 +277,7 @@ describe('RPC router can', (): void => {
 
     return router.handleRawRequest([1])
       .then((response) => {
-        fail(new Error('.then must not be called'));
-      })
-      .catch((error) => {
-        const e = error as ErrorObject[];
+        const e = response as ErrorObject[];
 
         expect(e).toHaveLength(1);
         expect(Array.isArray(e)).toEqual(true);
@@ -281,6 +285,9 @@ describe('RPC router can', (): void => {
         //expect(error[0].id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
         expect(e[0].error.code).toEqual(-32600);
         expect(e[0].error.message).toEqual('Invalid request');
+      })
+      .catch((error) => {
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 
@@ -299,10 +306,7 @@ describe('RPC router can', (): void => {
 
     return router.handleRawRequest([1, 2, 3])
       .then((response) => {
-        fail(new Error('.then must not be called'));
-      })
-      .catch((error) => {
-        const e = error as ErrorObject[];
+        const e = response as ErrorObject[];
 
         expect(e).toHaveLength(3);
         expect(Array.isArray(e)).toEqual(true);
@@ -312,6 +316,41 @@ describe('RPC router can', (): void => {
           expect(err.error.code).toEqual(-32600);
           expect(err.error.message).toEqual('Invalid request');
         });
+      })
+      .catch((error) => {
+        fail(new Error('.catch must not be called: ' + error));
+      })
+  });
+
+  it('handle with Batch (all notifications)', (): Promise<void> => {
+    /**
+     * --> [
+     *   {"jsonrpc": "2.0", "method": "notify_sum", "params": [1,2,4]},
+     *   {"jsonrpc": "2.0", "method": "notify_hello", "params": [7]}
+     * ]
+     * <-- //Nothing is returned for all notification batches
+     */
+    expect.assertions(1);
+
+    const router = new RpcRouter();
+
+    router.on('notify_sum', (params?: RpcParams): Defined => {
+      return 1;
+    });
+
+    router.on('notify_hello', (params?: RpcParams): Defined => {
+      return 2;
+    });
+
+    return router.handleRawRequest([
+      {'jsonrpc': '2.0', 'method': 'notify_sum', 'params': [1, 2, 4]},
+      {'jsonrpc': '2.0', 'method': 'notify_hello', 'params': [7]}
+    ])
+      .then((response) => {
+        expect(response).toBeUndefined();
+      })
+      .catch((error) => {
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 
@@ -333,7 +372,7 @@ describe('RPC router can', (): void => {
      *   {"jsonrpc": "2.0", "result": ["hello", 5], "id": "9"}
      * ]
      */
-    expect.assertions(4);
+    expect.assertions(7);
 
     const router = new RpcRouter();
 
@@ -348,7 +387,7 @@ describe('RPC router can', (): void => {
     router.on('subtract', (params?: RpcParams): Defined => {
       const p = params as number[];
 
-      return p[1] - p[0];
+      return p[0] - p[1];
     });
 
     router.on('get_data', (params?: RpcParams): Defined => {
@@ -356,27 +395,30 @@ describe('RPC router can', (): void => {
     });
 
     return router.handleRawRequest([
-      request("1", "sum", [1, 2, 4]),
-      notification("notify_hello", [7]),
-      request("2", "subtract", [42, 23]),
-      {"foo": "boo"},
-      request("5", "foo.get", {"name": "myself"}),
-      request("9", "get_data"),
-
+      request('1', 'sum', [1, 2, 4]),
+      notification('notify_hello', [7]),
+      request('2', 'subtract', [42, 23]),
+      {foo: 'boo'},
+      request('5', 'foo.get', {'name': 'myself'}),
+      request('9', 'get_data'),
     ])
       .then((response) => {
-        const r = response as SuccessObject[];
+        const r = response as Array<SuccessObject | ErrorObject>;
 
-        expect(r).toHaveLength(3);
+        expect(r).toHaveLength(5);
         expect(Array.isArray(r)).toEqual(true);
 
-        console.log(r);
-      }, )
-      .catch((error) => {
-        const e = error as ErrorObject[];
+        expect((r.filter((el) => el.id === '1')[0] as SuccessObject).result).toEqual(7);
+        expect((r.filter((el) => el.id === '2')[0] as SuccessObject).result).toEqual(19);
+        expect((r.filter((el) => el.id === '5')[0] as ErrorObject).error.code).toEqual(-32601);
 
-        expect(e).toHaveLength(2);
-        expect(Array.isArray(e)).toEqual(true);
+        // expect((r.filter((el) => el.id === null)[0] as ErrorObject).error.code).toEqual(-32600); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
+        expect((r.filter((el) => el.id === Number.MIN_SAFE_INTEGER)[0] as ErrorObject).error.code).toEqual(-32600);
+
+        expect((r.filter((el) => el.id === '9')[0] as SuccessObject).result).toEqual(["hello", 5]);
+      })
+      .catch((error) => {
+        fail(new Error('.catch must not be called: ' + error));
       })
   });
 });

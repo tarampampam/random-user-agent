@@ -1,6 +1,6 @@
 import Settings, {GeneratorType} from "@/settings";
 import ChromeStorage from "@/services/storages/chrome-storage";
-import IStorage from "@/services/istorage";
+import {Services} from "@/services/services";
 
 /**
  * Generates random string.
@@ -10,7 +10,7 @@ const generateRandomString = (): string => {
 };
 
 describe('settings', () => {
-  const defaultStorageMock = new class implements IStorage {
+  const defaultStorageMock = new class implements Services.Storage {
     clear(): Promise<void> {
       return new Promise((resolve: Function, reject: Function): void => {
         // do nothing
@@ -105,7 +105,7 @@ describe('settings', () => {
       exceptions_list: [generateRandomString()],
     };
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((): void => {
           // do nothing
@@ -152,7 +152,7 @@ describe('settings', () => {
   it('settings loading with error rejects promise', (): Promise<void> => {
     expect.assertions(3);
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((): void => {
           // do nothing
@@ -189,7 +189,7 @@ describe('settings', () => {
   it('can save settings into storage', (): Promise<void> => {
     expect.assertions(13);
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((): void => {
           // do nothing
@@ -236,7 +236,7 @@ describe('settings', () => {
   it('settings saving with error rejects promise', (): Promise<void> => {
     expect.assertions(1);
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((): void => {
           // do nothing
@@ -270,7 +270,7 @@ describe('settings', () => {
   it('can clear settings in storage', (): Promise<void> => {
     expect.assertions(1);
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((resolve: Function, reject: Function): void => {
           reject(new Error('test error')) // use error for future asserting
@@ -350,7 +350,7 @@ describe('settings', () => {
   it('settings changes trigger handler continue working after loading', (): Promise<void> => {
     expect.assertions(1);
 
-    const storageMock = new class implements IStorage {
+    const storageMock = new class implements Services.Storage {
       clear(): Promise<void> {
         return new Promise((): void => {
           // do nothing
