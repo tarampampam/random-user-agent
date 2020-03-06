@@ -1,4 +1,5 @@
 import {Defined, NotificationObject, RequestObject, RpcParams, SuccessObject} from "jsonrpc-lite";
+import {JsonRpc} from "jsonrpc-lite/jsonrpc";
 
 // Handler MUST throw an error if something goes wrong or required parameter was not passed
 export type RouteHandler = (params?: RpcParams) => Defined;
@@ -21,4 +22,9 @@ export interface IRpcRouter {
    * `RequestObject` is sent, if handler throws an error).
    */
   handleRequest(request: RequestObject | NotificationObject): Promise<SuccessObject>
+
+  /**
+   * Handle raw rpc requests (single or batch).
+   */
+  handleRawRequest(object: object | object[]): Promise<JsonRpc | JsonRpc[]>;
 }

@@ -6,9 +6,10 @@ import {
   RequestObject,
   SuccessObject
 } from "jsonrpc-lite";
-
 import {IRpcRouter, RouteHandler} from "@/services/irpc";
 import {JsonRpc} from "jsonrpc-lite/jsonrpc";
+import {PromiseRejection, PromiseResolution} from "promise.allsettled/types";
+import * as allSettled from "promise.allsettled";
 
 export default class RpcRouter implements IRpcRouter {
   // Registered routes map
@@ -67,6 +68,9 @@ export default class RpcRouter implements IRpcRouter {
     });
   }
 
+  /**
+   * @inheritDoc
+   */
   public handleRawRequest(object: object | object[]): Promise<JsonRpc | JsonRpc[]> {
     // parse passed object or array of objects
     const parsed = parseJsonRpcObject(object as JsonRpc);
@@ -89,7 +93,7 @@ export default class RpcRouter implements IRpcRouter {
             .then((response) => resolve(response))
             .catch((error) => reject(error));
         } else if (payload instanceof JsonRpcError) {
-          reject(payload);
+          reject(new ErrorObject(Number.MIN_SAFE_INTEGER, payload)); // ID must be null. Issue: <https://github.com/teambition/jsonrpc-lite/issues/19>
         } else {
           reject();
         }
@@ -97,16 +101,36 @@ export default class RpcRouter implements IRpcRouter {
     });
 
     return new Promise<JsonRpc | JsonRpc[]>((resolve, reject): void => {
-      Promise
-        .all(requestsQueue)
-        .then((responses) => {
-          if (!Array.isArray(parsed)) {
-            resolve(responses[0]);
+      allSettled(requestsQueue)
+        .then((results) => {
+          const
+            fulfilled: JsonRpc[] = [],
+            rejected: ErrorObject[] = [];
+
+          results.forEach(result => {
+            if (result.status === 'fulfilled') {
+              fulfilled.push((result as PromiseResolution<JsonRpc>).value);
+            } else {
+              rejected.push((result as PromiseRejection<ErrorObject>).reason);
+            }
+          });
+
+          if (rejected.length > 0) {
+            if (!Array.isArray(parsed)) {
+              reject(rejected[0]);
+            } else {
+              reject(rejected);
+            }
+          } else if (fulfilled.length > 0) {
+            if (!Array.isArray(parsed)) {
+              resolve(fulfilled[0]);
+            } else {
+              resolve(fulfilled);
+            }
           } else {
-            resolve(responses);
+            throw new Error('Unexpected handling result');
           }
-        })
-        .catch((error) => reject(error));
+        });
     });
   }
 }

@@ -1,3 +1,5 @@
+import IStorage from "@/services/istorage";
+
 /**
  * This storage implementation uses `chrome.storage.(sync|local)` storage's.
  *
@@ -11,7 +13,7 @@
  * @link <https://developer.chrome.com/extensions/storage>
  * @link <https://developer.chrome.com/extensions/runtime#property-lastError>
  */
-export default class ChromeStorage implements Services.Storage {
+export default class ChromeStorage implements IStorage {
   // Use synchronized storage, if it is possible
   private preferSyncStorage: boolean;
 
