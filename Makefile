@@ -49,4 +49,4 @@ shell: ## Start shell into container with node
 		$(RUN_ARGS) -ti "$(NODE_IMAGE)" sh
 
 clean: ## Make some clean
-	-rm -Rf "$(cwd)/dist" "$(cwd)/dist-zip" "$(cwd)/coverage"
+	-rm -Rf "$(cwd)/dist" "$(cwd)/dist-zip" "$(cwd)/coverage" "$(cwd)/"*.log

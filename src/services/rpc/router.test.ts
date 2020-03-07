@@ -10,10 +10,9 @@ import {
   SuccessObject
 } from "jsonrpc-lite";
 import {Services} from "@/services/services";
-import RouteHandler = Services.RPC.RouteHandler;
 
 describe('RPC router can', (): void => {
-  const proxyHandler: RouteHandler = (params?: RpcParams): Defined => {
+  const proxyHandler: Services.RPC.MethodHandler = (params?: RpcParams): Defined => {
     // proxy request into response
     return params === undefined
       ? null
@@ -23,37 +22,31 @@ describe('RPC router can', (): void => {
   it('register and handleRequest request', (): Promise<void> => {
     expect.assertions(2);
 
-    const router = new RpcRouter();
-
+    const router = new RpcRouter;
     router.on('foo', proxyHandler);
 
     return router.handleRequest(new RequestObject(66, 'foo', {bar: 'baz'}))
       .then((response) => {
-        expect(response.id).toEqual(66);
-        expect(response.result).toEqual({bar: 'baz'});
-      })
-      .catch((error: ErrorObject) => {
-        fail(new Error('.catch must not be called: ' + error.error.message));
-      })
+        const r = response as SuccessObject;
+
+        expect(r.id).toEqual(66);
+        expect(r.result).toEqual({bar: 'baz'});
+      });
   });
 
   it('resolve promise without response on notifications', (): Promise<void> => {
     expect.assertions(1);
 
-    const router = new RpcRouter();
-
+    const router = new RpcRouter;
     router.on('bar', proxyHandler);
 
     return router.handleRequest(new NotificationObject('bar', {bar: 'baz'}))
       .then((response) => {
         expect(response).toBeUndefined();
-      })
-      .catch((error: ErrorObject) => {
-        fail(new Error('.catch must not be called: ' + error.error.message));
-      })
+      });
   });
 
-  it('reject promise on handler error', (): Promise<void> => {
+  it('resolve promise on handler error', (): Promise<void> => {
     expect.assertions(1);
 
     const router = new RpcRouter();
@@ -64,47 +57,39 @@ describe('RPC router can', (): void => {
 
     return router.handleRequest(new RequestObject(66, 'bar', {bar: 'baz'}))
       .then((response) => {
-        fail(new Error('.then must not be called'));
-      })
-      .catch((error: ErrorObject) => {
-        expect(error.error.message).toEqual('test error');
-      })
+        expect((response as ErrorObject).error.message).toEqual('test error');
+      });
   });
 
-  it('reject promise when unknown method requested', (): Promise<void> => {
+  it('resolve promise when unknown method requested', (): Promise<void> => {
     expect.assertions(2);
 
     const router = new RpcRouter();
 
     return router.handleRequest(new RequestObject(66, 'bar', {bar: 'baz'}))
       .then((response) => {
-        fail(new Error('.then must not be called'));
-      })
-      .catch((error: ErrorObject) => {
-        expect(error.error.message).toEqual('Method not found');
-        expect(error.error.code).toEqual(-32601);
-      })
+        const r = response as ErrorObject;
+
+        expect(r.error.message).toEqual('Method not found');
+        expect(r.error.code).toEqual(-32601);
+      });
   });
 
-  it('reject promise when unknown method requested (notification sent)', (): Promise<void> => {
+  it('resolve promise when unknown method requested (notification sent)', (): Promise<void> => {
     expect.assertions(1);
 
     const router = new RpcRouter();
 
     return router.handleRequest(new NotificationObject('bar', {bar: 'baz'}))
       .then((response) => {
-        fail(new Error('.then must not be called'));
-      })
-      .catch((error: ErrorObject) => {
-        expect(error).toBeUndefined();
-      })
+        expect(response).toBeUndefined();
+      });
   });
 
   it('handle single raw request', (): Promise<void> => {
     expect.assertions(2);
 
-    const router = new RpcRouter();
-
+    const router = new RpcRouter;
     router.on('foo', proxyHandler);
 
     return router.handleRawRequest({jsonrpc: '2.0', method: 'foo', params: {bar: 'baz'}, id: 66})
@@ -113,17 +98,13 @@ describe('RPC router can', (): void => {
 
         expect(r.id).toEqual(66);
         expect(r.result).toEqual({bar: 'baz'});
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle batch raw request', (): Promise<void> => {
     expect.assertions(3);
 
-    const router = new RpcRouter();
-
+    const router = new RpcRouter;
     router.on('foo', proxyHandler);
 
     return router.handleRawRequest([
@@ -135,19 +116,12 @@ describe('RPC router can', (): void => {
 
         expect(r).toHaveLength(2);
 
-        const first = r.filter((answer) => {
-          return answer.id === 66
-        })[0];
-        const second = r.filter((answer) => {
-          return answer.id === 77
-        })[0];
+        const first = r.filter((answer) => answer.id === 66)[0];
+        const second = r.filter((answer) => answer.id === 77)[0];
 
         expect(first.result).toEqual({bar: 'baz'});
         expect(second.result).toEqual({baz: 'blah'});
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle request with named parameters', (): Promise<void> => {
@@ -157,7 +131,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(2);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     router.on('subtract', (params?: RpcParams): Defined => {
       const p = params as { [key: string]: number };
@@ -171,10 +145,7 @@ describe('RPC router can', (): void => {
 
         expect(r.id).toEqual(3);
         expect(r.result).toEqual(19);
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle request typeof Notification', (): Promise<void> => {
@@ -183,7 +154,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(1);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     router.on('update', (params?: RpcParams): Defined => {
       return 1;
@@ -192,10 +163,7 @@ describe('RPC router can', (): void => {
     return router.handleRawRequest(notification('update', [1, 2, 3, 4, 5]))
       .then((response) => {
         expect(response).toBeUndefined();
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle non-existent method', (): Promise<void> => {
@@ -205,7 +173,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(3);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     return router.handleRawRequest(request("1", 'foobar'))
       .then((response) => {
@@ -214,10 +182,7 @@ describe('RPC router can', (): void => {
         expect(r.id).toEqual("1");
         expect(r.error.code).toEqual(-32601);
         expect(r.error.message).toEqual('Method not found');
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle invalid Request object', (): Promise<void> => {
@@ -227,7 +192,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(2);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     return router.handleRawRequest({jsonrpc: '2.0', method: 1, params: "bar"})
       .then((response) => {
@@ -236,10 +201,7 @@ describe('RPC router can', (): void => {
         //expect(r.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
         expect(r.error.code).toEqual(-32600);
         expect(r.error.message).toEqual('Invalid request');
-      })
-      .catch((error: ErrorObject) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle empty array', (): Promise<void> => {
@@ -249,7 +211,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(2);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     return router.handleRawRequest([])
       .then((response) => {
@@ -258,10 +220,7 @@ describe('RPC router can', (): void => {
         //expect(error.id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
         expect(r.error.code).toEqual(-32600);
         expect(r.error.message).toEqual('Invalid request');
-      })
-      .catch((error: ErrorObject) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle invalid Batch (but not empty)', (): Promise<void> => {
@@ -273,7 +232,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(4);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     return router.handleRawRequest([1])
       .then((response) => {
@@ -285,10 +244,7 @@ describe('RPC router can', (): void => {
         //expect(error[0].id).toEqual(null); // Issue created: <https://github.com/teambition/jsonrpc-lite/issues/19>
         expect(e[0].error.code).toEqual(-32600);
         expect(e[0].error.message).toEqual('Invalid request');
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle with invalid Batch', (): Promise<void> => {
@@ -302,7 +258,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(8);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     return router.handleRawRequest([1, 2, 3])
       .then((response) => {
@@ -316,10 +272,7 @@ describe('RPC router can', (): void => {
           expect(err.error.code).toEqual(-32600);
           expect(err.error.message).toEqual('Invalid request');
         });
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle with Batch (all notifications)', (): Promise<void> => {
@@ -332,7 +285,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(1);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     router.on('notify_sum', (params?: RpcParams): Defined => {
       return 1;
@@ -348,10 +301,7 @@ describe('RPC router can', (): void => {
     ])
       .then((response) => {
         expect(response).toBeUndefined();
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 
   it('handle Batch', (): Promise<void> => {
@@ -374,7 +324,7 @@ describe('RPC router can', (): void => {
      */
     expect.assertions(7);
 
-    const router = new RpcRouter();
+    const router = new RpcRouter;
 
     router.on('sum', (params?: RpcParams): Defined => {
       return (params as number[]).reduce((a, b) => a + b);
@@ -416,9 +366,6 @@ describe('RPC router can', (): void => {
         expect((r.filter((el) => el.id === Number.MIN_SAFE_INTEGER)[0] as ErrorObject).error.code).toEqual(-32600);
 
         expect((r.filter((el) => el.id === '9')[0] as SuccessObject).result).toEqual(["hello", 5]);
-      })
-      .catch((error) => {
-        fail(new Error('.catch must not be called: ' + error));
-      })
+      });
   });
 });

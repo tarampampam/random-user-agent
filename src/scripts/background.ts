@@ -1,3 +1,3 @@
-// import RpcRouter from "@/services/rpc/router";
-//
-// let rpcRouter = new RpcRouter;
+import RpcRouter from "@/services/rpc/router";
+
+let rpcRouter = new RpcRouter;

@@ -1,4 +1,4 @@
-import {Defined, NotificationObject, RequestObject, RpcParams, SuccessObject} from "jsonrpc-lite";
+import {Defined, ErrorObject, NotificationObject, RequestObject, RpcParams, SuccessObject} from "jsonrpc-lite";
 import {JsonRpc} from "jsonrpc-lite/jsonrpc";
 
 declare namespace Services {
@@ -22,31 +22,31 @@ declare namespace Services {
 
 declare namespace Services.RPC {
   // Handler MUST throw an error if something goes wrong or required parameter was not passed
-  export type RouteHandler = (params?: RpcParams) => Defined;
+  export type MethodHandler = (params?: RpcParams) => Defined;
 
   /**
-   * RPC router can register handlers for processing RPC requests and handleRequest them.
+   * RPC router can register handlers for processing RPC requests and handle them.
    *
-   * It uses JsonRPC requests/responses format.
+   * It uses `JsonRPC 2.0` requests/responses format.
    */
   export interface Router {
     /**
      * Register handler for RPC method.
      */
-    on(method: string, call: RouteHandler): void;
+    on(method: string, call: MethodHandler): void;
 
     /**
      * Handle RPC request using registered handler.
      *
-     * `NotificationObject` wil be handled **without** response resolving. Errors will be returned as rejection.
+     * `NotificationObject` wil be handled **without** response resolving. Errors will be returned as regular resolve.
      */
-    handleRequest(request: RequestObject | NotificationObject): Promise<SuccessObject>
+    handleRequest(request: RequestObject | NotificationObject): Promise<SuccessObject | ErrorObject | undefined>
 
     /**
      * Handle raw rpc requests (single or batch).
      *
      * Rejection will be handled only on internal errors (`SuccessObject` and `ErrorObject` will be resolved).
      */
-    handleRawRequest(object: object | object[]): Promise<JsonRpc | JsonRpc[]>;
+    handleRawRequest(object: object | object[]): Promise<JsonRpc | JsonRpc[] | undefined>;
   }
 }

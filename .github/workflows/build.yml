@@ -77,6 +77,11 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
       - name: Build
         run: yarn build && yarn build:zip
 
+      - uses: actions/upload-artifact@master
+        with:
+          name: extension
+          path: ./dist-zip/*.zip
+
   lint-markdown:
     name: Lint markdown files
     runs-on: ubuntu-latest
