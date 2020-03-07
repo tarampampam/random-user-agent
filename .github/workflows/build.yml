@@ -79,7 +79,7 @@ jobs: # Docs: <https://help.github.com/en/articles/workflow-syntax-for-github-ac
 
       - uses: actions/upload-artifact@master
         with:
-          name: extension
+          name: packed build(s)
           path: ./dist-zip
 
   lint-markdown:
