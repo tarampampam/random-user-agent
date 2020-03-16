@@ -14,4 +14,8 @@ describe('it can', (): void => {
         expect(version.build).toMatch(/\d+/);
       })
   });
+
+  test.skip('test using HTTP mock', () => {
+    // Not implemented yet
+  });
 });
