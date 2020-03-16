@@ -10,17 +10,20 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    'background': './background.ts',
-    'popup/popup': './popup/popup.ts',
-    'options/options': './options/options.ts',
-    'inject/content': './inject/content.ts',
+    'popup/popup': './pages/popup/popup.ts',
+    'options/options': './pages/options/options.ts',
+    'background': './scripts/background.ts',
+    'inject': './scripts/inject.ts',
   },
   output: {
     path: __dirname + '/dist',
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: ['.ts', '.js', '.vue'],
+    alias: {
+      '@': __dirname + '/src',
+    }
   },
   module: {
     rules: [
@@ -36,8 +39,9 @@ const config = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
+        //exclude: /node_modules/,
         options: {
+          allowTsInNodeModules: true,
           appendTsSuffixTo: [/\.vue$/]
         }
       },
@@ -49,43 +53,27 @@ const config = {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader?indentedSyntax'],
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg|ico)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: '/images/',
-          emitFile: false,
-        },
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: '/fonts/',
-          emitFile: false,
-        },
-      },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
       global: 'window',
     }),
+    new webpack.BannerPlugin({ // link: <https://webpack.js.org/plugins/banner-plugin/>
+      banner: 'This file is part of "Random User-Agent" Browser Extension.\n' +
+        '@link <https://github.com/tarampampam/random-user-agent>\n' +
+        'Released under the WTFPL License.',
+      entryOnly: true,
+    }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
     new CopyPlugin([
-      {from: 'img', to: 'img'},
+      {from: __dirname + '/assets', to: 'assets', ignore: ['*.zip', '*.tag.gz']},
       {from: '_locales', to: '_locales', ignore: ['*.txt', '*.md', '*.test.*']},
-      {from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml},
-      {from: 'options/options.html', to: 'options/options.html', transform: transformHtml},
+      {from: 'pages/popup/popup.html', to: 'popup/popup.html', transform: transformHtml},
+      {from: 'pages/options/options.html', to: 'options/options.html', transform: transformHtml},
       {
         from: 'manifest.json',
         to: 'manifest.json',
@@ -119,6 +107,7 @@ if (process.env.HMR === 'true') {
     new ExtensionReloader({
       manifest: __dirname + '/src/manifest.json',
     }),
+    new webpack.SourceMapDevToolPlugin({}),
   ]);
 }
 

@@ -1,5 +1,3 @@
-/* global chrome */
-
 /*!
  * This file is part of Random User-Agent Browser Extension
  * @link https://github.com/tarampampam/random-user-agent

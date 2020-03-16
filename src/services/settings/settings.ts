@@ -1,4 +1,5 @@
 import ChromeStorage from "@/services/storages/chrome-storage";
+import {Services} from "@/services/services";
 
 export type GeneratorType =
   'chrome_win'

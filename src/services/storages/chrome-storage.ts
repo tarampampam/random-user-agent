@@ -1,3 +1,5 @@
+import {Services} from "@/services/services";
+
 /**
  * This storage implementation uses `chrome.storage.(sync|local)` storage's.
  *

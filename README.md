@@ -53,6 +53,10 @@ For local extension development you should:
 - Build extension with "changes watching" - `make watch`
 - Open in your Google Chrome [extensions page](chrome://extensions/), switch "Developer mode" **on**, press "Load unpacked extension" and specify path to the directory `./dist` in cloned in first step directory
 
+> For direct extension pages opening you can use links in following format _(`some-unique-extension-id` can be found on [extensions page](chrome://extensions/))_:
+> - `chrome-extension://some-unique-extension-id/popup/popup.html`
+> - `chrome-extension://some-unique-extension-id/options/options.html`
+
 Localization guide [located here](./src/_locales/readme.md).
 
 ## Testing
