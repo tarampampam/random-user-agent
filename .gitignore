@@ -1,8 +1,22 @@
+# IDEs
 /nbproject
 /.idea
-/*.zip
-/crx
+/.vscode
+
+# Builds
+/dist
+/dist-zip
+
+# Vendors
+/node_modules
+
+# Temp dirs & trash
 /temp
 /tmp
-/node_modules
-/.build
+/coverage
+/*.log
+.DS_Store
+
+# etc.
+## Use `yarn` only
+/package.lock
