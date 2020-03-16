@@ -39,8 +39,9 @@ const config = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        exclude: /node_modules/,
+        //exclude: /node_modules/,
         options: {
+          allowTsInNodeModules: true,
           appendTsSuffixTo: [/\.vue$/]
         }
       },
@@ -106,6 +107,7 @@ if (process.env.HMR === 'true') {
     new ExtensionReloader({
       manifest: __dirname + '/src/manifest.json',
     }),
+    new webpack.SourceMapDevToolPlugin({}),
   ]);
 }
 

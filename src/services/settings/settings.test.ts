@@ -1,4 +1,4 @@
-import Settings, {GeneratorType} from "@/settings";
+import Settings, {GeneratorType} from "@/services/settings/settings";
 import ChromeStorage from "@/services/storages/chrome-storage";
 import {Services} from "@/services/services";
 

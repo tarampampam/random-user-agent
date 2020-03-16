@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input class="toggle toggle-light" :id="id" type="checkbox" checked />
+    <input class="toggle toggle-light" :id="id" type="checkbox" :checked="checked" />
     <label class="toggle-btn" :for="id"></label>
   </div>
 </template>
@@ -12,6 +12,10 @@
       id: {
         default: 'checkbox-id',
         type: String
+      },
+      checked: {
+        default: false,
+        type: Boolean
       },
     }
   };

@@ -3,7 +3,7 @@
     <header>
       <h2>{{ i18n('active_useragent', 'Active user-agent') }}</h2>
       <div class="current">
-        <p class="selectable tt">{{ activeUserAgent }}</p>
+        <p class="selectable tt">{{ activeUserAgent || '(╯°□°)╯︵ ┻━┻' }}</p>
       </div>
     </header>
 
@@ -12,14 +12,14 @@
         <strong>
           <label :for="checkbox_id">{{ i18n('enabled_on_this_domain', 'Enabled on this domain') }}</label>
         </strong>
-        <iosCheckbox :id="checkbox_id"></iosCheckbox>
+        <iosCheckbox :id="checkbox_id" :checked="isEnabledOnThisDomain"></iosCheckbox>
       </div>
       <ul>
-        <li>
+        <li v-if="isEnabled">
           <img src="/assets/img/buttons/pause.svg" alt="pause">
           <span>{{ i18n('pause_switcher', 'Pause switcher') }}</span>
         </li>
-        <li class="blinking-background">
+        <li v-else class="blinking-background">
           <img src="/assets/img/buttons/start.svg" alt="unpause">
           <span>{{ i18n('unpause_switcher', 'Unpause switcher') }}</span>
         </li>
@@ -44,18 +44,30 @@
 <script lang="ts">
   import Vue from 'vue';
   import iosCheckbox from '@/pages/components/ios-checkbox.vue';
-  import i18nMixin from '@/pages/mixins/i18n'
+  import i18nMixin from '@/pages/mixins/i18n';
+  import {ErrorObject, request, SuccessObject} from "jsonrpc-lite/jsonrpc";
+  import {GET_ACTIVE_USERAGENT} from "@/services/rpc/constants";
 
   export default Vue.extend({
-    components: { iosCheckbox },
+    components: {iosCheckbox},
     mixins: [i18nMixin],
     data: (): { [key: string]: any } => {
       return {
-        // activeUserAgent: 'Loading..',
-        activeUserAgent: 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:67.0) Gecko/20100101 Firefox/67.0 ' +
-          'ОдиннацитиклассницаОдиннацитиклассница ОдиннацитиклассницаОдиннацитиклассницаОдиннацитиклассница' +
-          'Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница Одиннацитиклассница',
+        activeUserAgent: 'Loading..',
+        isEnabled: false,
+        isEnabledOnThisDomain: false,
       };
+    },
+    methods: {
+      //
+    },
+    mounted: function () {
+      // Get active (current) useragent
+      chrome.runtime.sendMessage(request(1, GET_ACTIVE_USERAGENT), (response: SuccessObject | ErrorObject) => {
+        this.activeUserAgent = response instanceof SuccessObject
+          ? response.result
+          : response.error?.message;
+      });
     },
   });
 </script>

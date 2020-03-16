@@ -6,7 +6,7 @@ import {
   parseJsonRpcObject,
   RequestObject,
   SuccessObject
-} from "jsonrpc-lite";
+} from "jsonrpc-lite/jsonrpc";
 import {Services} from "@/services/services";
 
 export default class RpcRouter implements Services.RPC.Router {
@@ -16,7 +16,7 @@ export default class RpcRouter implements Services.RPC.Router {
   /**
    * @inheritDoc
    */
-  public on(method: string, call: Services.RPC.MethodHandler): void {
+  public on(method: Services.RPC.MethodName, call: Services.RPC.MethodHandler): void {
     this.routes[method] = call;
   }
 
@@ -25,7 +25,7 @@ export default class RpcRouter implements Services.RPC.Router {
    */
   public handleRequest(request: RequestObject | NotificationObject): Promise<SuccessObject | ErrorObject | undefined> {
     return new Promise((resolve: (response?: SuccessObject | ErrorObject) => void): void => {
-      const method = request.method;
+      const method: Services.RPC.MethodName = request.method;
       let response: ErrorObject | SuccessObject | undefined = undefined;
 
       if (!this.routes[method]) {
