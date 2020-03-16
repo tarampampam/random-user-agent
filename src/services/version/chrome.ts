@@ -46,7 +46,7 @@ export default class Chrome {
             return reject(new Error('Version data was not found in server response'));
           }
 
-          // explode version parts
+          // explode version value into parts
           const parts = stableVersion.trim().split('.');
 
           if (parts.length !== 4) {
