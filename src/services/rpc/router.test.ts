@@ -19,6 +19,18 @@ describe('RPC router can', (): void => {
       : params;
   };
 
+  it('allows to check - method is registered or not?', (): void => {
+    expect.assertions(2);
+
+    const router = new RpcRouter;
+
+    expect(router.hasMethod('foo')).toBeFalsy();
+
+    router.on('foo', proxyHandler);
+
+    expect(router.hasMethod('foo')).toBeTruthy();
+  });
+
   it('register and handleRequest request', (): Promise<void> => {
     expect.assertions(2);
 
@@ -301,6 +313,38 @@ describe('RPC router can', (): void => {
     ])
       .then((response) => {
         expect(response).toBeUndefined();
+      });
+  });
+
+  it('handle with Batch (all notifications)', (): Promise<void> => {
+    /**
+     * --> [
+     *   {"jsonrpc": "2.0", "method": "gen_error", "id": "1"},
+     *   {"jsonrpc": "2.0", "method": "gen_error"}
+     * ]
+     * <-- [
+     *   {"jsonrpc": "2.0", "error": {"code": 123, "message": "Some error message"}, "id": "1"},
+     * ]
+     */
+    expect.assertions(3);
+
+    const router = new RpcRouter;
+
+    router.on('gen_error', (params?: RpcParams): Defined => {
+      throw new Error('Some error message');
+    });
+
+    return router.handleRawRequest([
+      {'jsonrpc': '2.0', 'method': 'gen_error', 'id': '1'},
+      {'jsonrpc': '2.0', 'method': 'gen_error'}
+    ])
+      .then((response) => {
+        const r = response as Array<ErrorObject>;
+
+        expect(Array.isArray(r)).toEqual(true);
+        expect(r).toHaveLength(1);
+
+        expect((r.filter((el) => el.id === '1')[0]).error.message).toEqual('Some error message');
       });
   });
 

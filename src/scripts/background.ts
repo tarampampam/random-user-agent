@@ -9,7 +9,7 @@ const rpcHandlers = new RpcHandlers(settings);
 // Load settings from storage
 settings.load()
   .then((): void => {
-    // @todo: renew UA ig UA renewing on startup is enabled
+    // @todo: renew UA if UA renewing on startup is enabled
     // @todo: set auto-renew timer interval (using built-in chrome timer)
     // @todo: start renewal timer
     // @todo: update extension icon state
@@ -20,12 +20,12 @@ settings.load()
 rpcHandlers.registerFor(rpcRouter);
 
 /**
- * Register listener for processing incoming runtime messages.
+ * Register listener for incoming runtime messages processing.
  *
  * @link <https://developer.chrome.com/extensions/messaging>
  * @link <https://developer.chrome.com/extensions/runtime#event-onMessage>
  */
-chrome.runtime.onMessage.addListener((request: any, sender, sendResponse: Function) => {
+chrome.runtime.onMessage.addListener((request: any, sender, sendResponse: Function): boolean => {
   rpcRouter.handleRawRequest(request)
     .then((response): void => {
       console.debug(request, ' --> ', response);

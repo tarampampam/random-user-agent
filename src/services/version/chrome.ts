@@ -20,7 +20,7 @@ export default class Chrome {
             os: 'win' | 'win64' | 'ios' | 'cros' | 'mac' | 'linux' | 'android' | 'webview';
 
             versions: {
-              [key: string]: any;
+              [key: string]: string;
               channel: 'dev' | 'beta' | 'stable';
               v8_version: string;
               version: string;
