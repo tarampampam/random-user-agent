@@ -23,6 +23,13 @@ export default class RpcRouter implements Services.RPC.Router {
   /**
    * @inheritDoc
    */
+  public hasMethod(method: string): boolean {
+    return this.routes.hasOwnProperty(method);
+  }
+
+  /**
+   * @inheritDoc
+   */
   public handleRequest(request: RequestObject | NotificationObject): Promise<SuccessObject | ErrorObject | undefined> {
     return new Promise((resolve: (response?: SuccessObject | ErrorObject) => void): void => {
       const method: Services.RPC.MethodName = request.method;

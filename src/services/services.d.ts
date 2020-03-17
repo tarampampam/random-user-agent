@@ -55,6 +55,11 @@ declare namespace Services.RPC {
     on(method: Services.RPC.MethodName, call: MethodHandler): void;
 
     /**
+     * Determine if method registered.
+     */
+    hasMethod(method: string): boolean;
+
+    /**
      * Handle RPC request using registered handler.
      *
      * `NotificationObject` wil be handled **without** response resolving. Errors will be returned as regular resolve.

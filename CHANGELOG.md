@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - Indent size now equals `2`
 
 [#116]:https://github.com/tarampampam/random-user-agent/issues/116
-[#116]:https://github.com/tarampampam/random-user-agent/issues/119
+[#119]:https://github.com/tarampampam/random-user-agent/issues/119
 
 ## v2.2.11
 
