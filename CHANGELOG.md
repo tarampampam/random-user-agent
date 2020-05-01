@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.2.12
+
+### Changed
+
+- Update of user agent versions
+
 ## v2.2.11
 
 ### Changed
