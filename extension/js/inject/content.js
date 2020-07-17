@@ -39,7 +39,7 @@ if (typeof browser == 'undefined')
       if (js_protection_enabled === true) {
         if (typeof useragent === 'string' && useragent !== '') {
           if (uri_match === false) {
-            consoleMessage('Use fake User-Agent: ' + useragent);
+            //consoleMessage('Use fake User-Agent: ' + useragent);
             var injection_code = '(' + function(new_useragent) {
                   if (typeof window === 'object' && typeof window.navigator === 'object') {
                     navigator = Object.create(window.navigator);
@@ -65,7 +65,7 @@ if (typeof browser == 'undefined')
           }
         }
       } else {
-        consoleMessage('User-Agent JavaScript protection disabled!');
+        //consoleMessage('User-Agent JavaScript protection disabled!');
       }
     }
   });

@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.2.13
+
+### Changed
+
+- Update of user agent versions
+- Console message with faked user-agent is disabled
+
 ## v2.2.12
 
 ### Changed
