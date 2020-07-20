@@ -113,3 +113,15 @@ a:active {
     text-align: center;
     padding-bottom: 0.8em;
   }
+
+@media (prefers-color-scheme: dark) {
+body, #main, div.block.user_agent, h5, h2, li, div.block.footer {
+    background-color: #313131;
+    color: #bfbfbf;
+}
+
+.block.actions ul li:hover i, .block.actions ul li:hover, .block.actions ul li.change-enabled-state:hover{
+    background-color: #4e4e4e;
+    color: #b7b7b7;
+}
+}

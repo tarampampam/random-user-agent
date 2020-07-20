@@ -115,3 +115,10 @@ hr {
       display: inline;
       width: 50%;
     }
+
+@media (prefers-color-scheme: dark) {
+body, #main, h3, label, input[type="number"], textarea, p.hint {
+    background-color: #313131;
+    color: #bfbfbf;
+}
+}
