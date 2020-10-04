@@ -41,26 +41,26 @@ if (typeof browser == 'undefined')
           if (uri_match === false) {
             //consoleMessage('Use fake User-Agent: ' + useragent);
             var injection_code = '(' + function(new_useragent) {
-                  if (typeof window === 'object' && typeof window.navigator === 'object') {
-                    navigator = Object.create(window.navigator);
-                    Object.defineProperties(navigator, {
+                  if (typeof window === 'object' && typeof window.navigator === 'object' && typeof iframe.contentWindow.navigator === 'object') {
+                    navigator = [Object.create(window.navigator),Object.create(iframe.contentWindow.navigator)];
+                    navigator.foreach((n) => Object.defineProperties(n, {
                       userAgent:  {get: function() {return new_useragent;}},
                       appVersion: {get: function() {return new_useragent;}}
-                    });
-                    Object.defineProperty(window, 'navigator', {
+                    }));
+                    [window,iframe.contentWindow].foreach((obj)=>Object.defineProperty(obj, 'navigator', {
                       value: navigator, configurable: false, enumerable: false, writable: false
-                    });
+                    }));
                   }
                 } + ')("' + useragent.replace(/([\"\'])/g, '\\$1') + '");';
             var script = document.createElement('script');
             script.textContent = injection_code;
             document.documentElement.appendChild(script);
             script.remove();
-            if (typeof navigator === 'object') {
-              Object.defineProperties(navigator, {
+            if (typeof navigator[0] === 'object' && typeof navigator[1] === 'object') {
+              navigator.foreach((n) => Object.defineProperties(n, {
                 userAgent:  {get: function() {return useragent;}},
                 appVersion: {get: function() {return useragent;}}
-              });
+              }));
             }
           }
         }
