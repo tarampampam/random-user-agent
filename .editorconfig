@@ -8,8 +8,5 @@ indent_style = space
 indent_size = 2
 trim_trailing_whitespace = true
 
-[*.{md, json}]
-trim_trailing_whitespace = false
-
 [Makefile]
 indent_style = tab
