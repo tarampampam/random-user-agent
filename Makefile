@@ -1,15 +1,11 @@
 #!/usr/bin/make
-# Makefile readme (ru): <http://linux.yaroslavl.ru/docs/prog/gnu_make_3-79_russian_manual.html>
-# Makefile readme (en): <https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents>
-
-docker_bin := $(shell command -v docker 2> /dev/null)
+# Makefile readme: <https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents>
 
 SHELL = /bin/sh
-NODE_IMAGE = tarampampam/node:latest
-RUN_ARGS = --rm -v "$(shell pwd):/src:cached" --workdir "/src" -u "$(shell id -u):$(shell id -g)"
+NODE_IMAGE = node:16-alpine
+RUN_ARGS = --rm -v "$(shell pwd):/src:rw" --workdir "/src" -u "$(shell id -u):$(shell id -g)" -t $(NODE_IMAGE)
 
-.PHONY : help install build update shell clean
-.SILENT : help install build update shell
+.PHONY : help install shell build watch test
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -18,16 +14,16 @@ help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[32m%-13s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 install: ## Install all dependencies
-	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" sh -c "yarn install && ./node_modules/.bin/bower install"
-
-update: install ## Update all dependencies
-	$(docker_bin) run $(RUN_ARGS) -t "$(NODE_IMAGE)" sh -c "yarn upgrade --no-progress --non-interactive && ./node_modules/.bin/bower update"
-
-build: clean install ## Build application bundle
-	$(docker_bin) run $(RUN_ARGS) -e "NODE_ENV=production" -t "$(NODE_IMAGE)" npm run build
+	docker run $(RUN_ARGS) yarn install
 
 shell: ## Start shell into container with node
-	$(docker_bin) run $(RUN_ARGS) -ti "$(NODE_IMAGE)" bash
+	docker run -e "PS1=\[\033[1;34m\]\w\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]" -i $(RUN_ARGS) sh
 
-clean: ## Make some clean
-	-rm -f "$(shell pwd)/builds/*.zip"
+build: ## Build the extension (for the production)
+	docker run -i $(RUN_ARGS) yarn build
+
+watch: ## Watch for source changes
+	docker run -i $(RUN_ARGS) yarn watch
+
+test: ## Run the tests
+	docker run -i $(RUN_ARGS) yarn test

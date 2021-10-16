@@ -1,0 +1,10 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent",
+    "description": "maximum of 45 characters"
+  },
+  "manifest_description": {
+    "message": "Automatically change the user agent after specified period of time to a randomly selected one, thus hiding your real user agent",
+    "description": "no HTML or other formatting; no more than 132 characters"
+  }
+}

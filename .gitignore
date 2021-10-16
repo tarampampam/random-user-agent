@@ -1,8 +1,19 @@
-/nbproject
+## IDEs
+/.vscode
 /.idea
+
+## Build
 /*.zip
 /crx
+/dist*
+
+## Temp files & dirs
 /temp
 /tmp
+/coverage
+
+## Vendor
 /node_modules
-/.build
+
+## Use yarn, not npm
+/package-lock.json

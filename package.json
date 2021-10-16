@@ -1,35 +1,51 @@
 {
   "name": "random-user-agent",
-  "version": "0.0.0a",
-  "description": "Chromium-based browsers extension",
-  "main": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+  "version": "0.0.0",
+  "author": {
+    "name": "paramtamtam",
+    "url": "https://github.com/tarampampam"
   },
+  "license": "WTFPL",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tarampampam/random-user-agent.git"
   },
-  "author": "paramtamtam <https://github.com/tarampampam>",
-  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/tarampampam/random-user-agent/issues"
   },
   "homepage": "https://github.com/tarampampam/random-user-agent#readme",
+  "scripts": {
+    "watch": "webpack --config webpack/webpack.dev.js --watch",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "randexp": "^0.5.3"
+  },
   "devDependencies": {
-    "bower": "^1.8.8",
-    "fancy-log": "^1.3.3",
-    "gulp": "^4.0.2",
-    "gulp-clean": "^0.4.0",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-cssimport": "^7.0.0",
-    "gulp-html-minifier2": "^1.1.11",
-    "gulp-imagemin": "^6.0.0",
-    "gulp-import-css": "^0.1.3",
-    "gulp-uglify-es": "^1.0.4",
-    "gulp-zip": "^5.0.0",
-    "imagemin-pngquant": "^8.0.0",
-    "jsonfile": "^5.0.0"
+    "@types/chrome": "^0.0.159",
+    "@types/jest": "^27.0.2",
+    "copy-webpack-plugin": "^9.0.1",
+    "filemanager-webpack-plugin": "^6.1.7",
+    "jest": "^27.2.5",
+    "json-minimizer-webpack-plugin": "^3.1.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "ts-jest": "^27.0.7",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "jest": {
+    "roots": [
+      "src"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
   }
 }

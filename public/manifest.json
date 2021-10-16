@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_manifest_name__",
+  "version": "0",
+  "author": "https://github.com/tarampampam",
+  "homepage_url": "https://github.com/tarampampam/random-user-agent",
+
+  "action": {
+    "default_icon": {
+      "16": "icons/16x16.png",
+      "48": "icons/48x48.png",
+      "128": "icons/128x128.png"
+    },
+    "default_title": "TODO: Change me",
+    "default_popup": "popup.html"
+  },
+  "default_locale": "en",
+  "description": "__MSG_manifest_description__",
+  "icons": {
+    "16": "icons/16x16.png",
+    "48": "icons/48x48.png",
+    "128": "icons/128x128.png"
+  },
+  "minimum_chrome_version": "49.0",
+
+  "background": {
+    "service_worker": "js/service-worker.js"
+  },
+  "options_ui": {
+    "page": "options.html"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "all_frames": true,
+    "run_at": "document_start",
+    "js": ["js/content-script.js"]
+  }],
+  "permissions": []
+}
