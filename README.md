@@ -9,6 +9,7 @@ _WIP_
 - New icons
 - Set `action.default_title` and `action.default_title` in the [manifest.json](public/manifest.json)
 - Set `minimum_chrome_version` in the [manifest.json](public/manifest.json)
+- eslint
 
 ## Useful links
 

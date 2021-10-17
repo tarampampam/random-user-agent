@@ -3,6 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ManifestVersionSyncPlugin = require('./plugins/manifest-version-sync')
 const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const {VueLoaderPlugin} = require('vue-loader')
 const srcDir = path.join(__dirname, '..', 'src')
 
 module.exports = {
@@ -34,9 +35,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.ts$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            appendTsSuffixTo: [/\.vue$/],
+          },
+        },
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+      },
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
     ],
   },
@@ -44,8 +62,9 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new VueLoaderPlugin(),
     new CopyPlugin({
-      patterns: [{from: '.', to: '../', context: 'public'}],
+      patterns: [{from: '.', to: '../', context: 'public', globOptions: {ignore: ['**/*.md']}}],
     }),
     new ManifestVersionSyncPlugin({
       packagePath: path.join(__dirname, '..', 'package.json'),

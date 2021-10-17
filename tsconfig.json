@@ -1,13 +1,26 @@
 {
   "compilerOptions": {
     "strict": true,
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "target": "esnext",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "sourceMap": false,
+    "jsx": "preserve",
     "rootDir": "src",
     "outDir": "dist/js",
-    "noEmitOnError": true,
-    "typeRoots": [ "node_modules/@types" ]
-  }
+    "noEmitOnError": false,
+    "noEmit": false,
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

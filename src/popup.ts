@@ -1,5 +1,5 @@
-import RandExp from 'randexp'
+import { createApp } from 'vue'
+import popup from './view/popup.vue'
 
-console.log((new RandExp('')).max)
-
-console.warn('Hi from the popup!')
+const app = createApp(popup)
+app.mount('#app')

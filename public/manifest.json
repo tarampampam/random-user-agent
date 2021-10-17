@@ -11,7 +11,7 @@
       "48": "icons/48x48.png",
       "128": "icons/128x128.png"
     },
-    "default_title": "TODO: Change me",
+    "default_title": "__MSG_manifest_action_default_title__",
     "default_popup": "popup.html"
   },
   "default_locale": "en",
