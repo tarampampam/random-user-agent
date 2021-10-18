@@ -5,7 +5,7 @@ SHELL = /bin/sh
 NODE_IMAGE = node:16-alpine
 RUN_ARGS = --rm -v "$(shell pwd):/src:rw" --workdir "/src" -u "$(shell id -u):$(shell id -g)" -t $(NODE_IMAGE)
 
-.PHONY : help install shell build watch test
+.PHONY : help install shell build watch test clean
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -27,3 +27,6 @@ watch: ## Watch for source changes
 
 test: ## Run the tests
 	docker run -i $(RUN_ARGS) yarn test
+
+clean: ## Make some clean
+	rm -R ./dist* ./coverage

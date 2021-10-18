@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 const ManifestVersionSyncPlugin = require('./plugins/manifest-version-sync')
 const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin')
@@ -62,6 +63,10 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new webpack.DefinePlugin({ // https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
     new VueLoaderPlugin(),
     new CopyPlugin({
       patterns: [{from: '.', to: '../', context: 'public', globOptions: {ignore: ['**/*.md']}}],
