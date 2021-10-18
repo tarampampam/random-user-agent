@@ -4,21 +4,32 @@
       <span>
         <label :for="'enabled-on-this-domain'">{{ i18n('enabled_on_this_domain') }}</label>
       </span>
-      <ios-checkbox id="enabled-on-this-domain" :checked="enabledOnThisDomain"/>
+      <ios-checkbox id="enabled-on-this-domain"
+                    :checked="enabledOnThisDomain"
+                    :onChange="onEnabledChange"/>
     </div>
 
-    <div class="action" :class="{ 'blinking-background': paused }">
-      <control-icon :icon="paused ? 'unpause' : 'pause'" :color="iconColor" :hoverColor="iconColor" :clickable="false"/>
+    <div class="action" :class="{ 'blinking-background': paused }" @click="emitPausedClicked">
+      <control-icon :icon="paused ? 'unpause' : 'pause'"
+                    :color="iconColor"
+                    :hoverColor="iconColor"
+                    :clickable="false"/>
       <span>{{ i18n(paused ? 'unpause_switcher' : 'pause_switcher') }}</span>
     </div>
 
     <div class="action">
-      <control-icon icon="refresh" :color="iconColor" :hoverColor="iconColor" :clickable="false"/>
+      <control-icon icon="refresh"
+                    :color="iconColor"
+                    :hoverColor="iconColor"
+                    :clickable="false"/>
       <span>{{ i18n('get_new_agent') }}</span>
     </div>
 
     <div class="action">
-      <control-icon icon="settings" :color="iconColor" :hoverColor="iconColor" :clickable="false"/>
+      <control-icon icon="settings"
+                    :color="iconColor"
+                    :hoverColor="iconColor"
+                    :clickable="false"/>
       <span>{{ i18n('open_settings') }}</span>
     </div>
   </section>
@@ -40,9 +51,21 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    onEnabledChange: {
+      type: Function,
+      default: (enabled: boolean): void => {
+        //
+      },
+    },
     paused: {
       type: Boolean,
       default: true,
+    },
+    onPausedChange: {
+      type: Function,
+      default: (isPaused: boolean): void => {
+        //
+      },
     },
     iconColor: {
       type: String,
@@ -50,6 +73,11 @@ export default defineComponent({
     },
   },
   mixins: [i18n],
+  methods: {
+    emitPausedClicked(): void {
+      this.onPausedChange(this.paused)
+    }
+  }
 })
 </script>
 

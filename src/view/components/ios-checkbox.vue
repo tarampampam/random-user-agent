@@ -1,12 +1,16 @@
 <template>
   <div>
-    <input class="toggle toggle-light" :id="id" type="checkbox" :checked="checked"/>
+    <input class="toggle toggle-light"
+           type="checkbox"
+           :id="id"
+           :checked="checked"
+           @change="emitChanged"/>
     <label class="toggle-btn" :for="id"></label>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 
 export default defineComponent({
   props: {
@@ -18,6 +22,17 @@ export default defineComponent({
       default: false,
       type: Boolean
     },
+    onChange: {
+      type: Function,
+      default: (enabled: boolean): void => {
+        //
+      },
+    }
+  },
+  methods: {
+    emitChanged($event: Event): void {
+      this.onChange(($event.target as HTMLInputElement).checked)
+    }
   }
 })
 </script>

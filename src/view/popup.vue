@@ -1,12 +1,16 @@
 <template>
   <popup-header/>
   <active-user-agent/>
-  <actions/>
+  <actions :enabledOnThisDomain="enabledOnThisDomain"
+           :onEnabledChange="userChangedEnabledOnThisDomain"
+           :onPausedChange="userChangedPausedState"
+           :paused="paused"/>
   <popup-footer/>
+  <button @click="test">test</button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 import i18n from './mixins/i18n'
 import PopupHeader from './components/popup/header.vue'
 import ActiveUserAgent from './components/popup/active-user-agent.vue'
@@ -23,7 +27,24 @@ export default defineComponent({
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
-      msg: 'Hello world!',
+      enabledOnThisDomain: false,
+      paused: true, // working is paused
+    }
+  },
+  methods: {
+    userChangedEnabledOnThisDomain(newState: boolean) {
+      console.log('newState', newState)
+      this.enabledOnThisDomain = newState
+    },
+    userChangedPausedState(isPaused: boolean) {
+      console.log('isPaused', isPaused)
+      this.paused = isPaused
+    },
+    test() {
+      this.enabledOnThisDomain = !this.enabledOnThisDomain
+      this.paused = !this.paused
+      console.log('this.enabledOnThisDomain', this.enabledOnThisDomain)
+      console.log('this.paused', this.paused)
     }
   },
 })
