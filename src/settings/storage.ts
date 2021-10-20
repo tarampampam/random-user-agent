@@ -71,7 +71,7 @@ export default class BrowserStorage implements Storage {
   }
 
   set(key: string, value: { [p: string]: any }): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: () => void, reject) => {
       if (!this.storage) {
         return reject(new Error('Storage was not initialized'))
       }

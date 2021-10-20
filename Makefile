@@ -29,4 +29,4 @@ test: ## Run the tests
 	docker run -i $(RUN_ARGS) yarn test
 
 clean: ## Make some clean
-	rm -R ./dist* ./coverage
+	-rm -R ./dist* ./coverage

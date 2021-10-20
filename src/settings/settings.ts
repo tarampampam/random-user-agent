@@ -1,5 +1,5 @@
 import {Storage} from './storage'
-import {GeneratorType} from '../generator/useragent'
+import {GeneratorType} from '../useragent/generator'
 
 interface Struct {
   [key: string]: any
@@ -136,7 +136,7 @@ export default class Settings {
 
   // Save all settings into the storage
   save(): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: () => void, reject) => {
       this.storage.set(this.storageKey, this.state)
         .then(() => {
           this.emit(SettingEvent.onSave)

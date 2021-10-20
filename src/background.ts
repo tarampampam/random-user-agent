@@ -9,6 +9,7 @@ import GetUseragent from './api/handlers/get-useragent'
 import SetUseragent from './api/handlers/set-useragent'
 import {IconState, setExtensionIcon} from './ui/icon'
 import Timer from './utils/timer'
+import NewUseragent from './api/handlers/new-useragent'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -29,20 +30,28 @@ storage.init()
           console.debug('timer tick') // TODO renew the useragent here
         })
 
+        if (settings.isRenewalOnStartupEnabled()) {
+          // TODO renew the useragent here
+        }
+
         // subscribe for the settings changes
         settings.on(SettingEvent.onChange, (): void => {
           // update extension icon state
           setExtensionIcon(settings.isEnabled() ? IconState.Active : IconState.Inactive)
 
-          // update renewal interval, if needed
-          const intervalMillis = settings.getRenewalIntervalMillis()
-          if (renewalTimer.getIntervalMillis() !== intervalMillis) {
-            renewalTimer.setIntervalMillis(intervalMillis)
-          }
+          if (settings.isEnabled()) {
+            if (settings.isRenewalEnabled()) {
+              // update renewal interval, if needed
+              const currentInterval = settings.getRenewalIntervalMillis()
+              if (renewalTimer.getIntervalMillis() !== currentInterval) {
+                renewalTimer.setIntervalMillis(currentInterval)
+              }
 
-          if (settings.isRenewalEnabled()) {
-            if (!renewalTimer.isStarted()) {
-              renewalTimer.start()
+              if (!renewalTimer.isStarted()) {
+                renewalTimer.start()
+              }
+            } else {
+              renewalTimer.stop()
             }
           } else {
             renewalTimer.stop()
@@ -52,7 +61,7 @@ storage.init()
           settings.save().catch(errorsHandler)
         })
 
-        if (settings.isEnabled()) {
+        if (settings.isEnabled() && settings.isRenewalEnabled()) {
           renewalTimer.start()
         }
 
@@ -65,6 +74,7 @@ storage.init()
             new SetEnabled(settings),
             new GetUseragent(settings),
             new SetUseragent(settings),
+            new NewUseragent(settings),
           ),
         ).listen()
 

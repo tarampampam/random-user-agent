@@ -24,6 +24,8 @@ import {Sender} from '../api/transport/transport'
 import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
 import {setEnabled} from '../api/handlers/set-enabled'
 import {getUseragent, GetUseragentResponse} from '../api/handlers/get-useragent'
+import {newUseragent, NewUseragentResponse} from '../api/handlers/new-useragent'
+import {setUseragent} from '../api/handlers/set-useragent'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -52,7 +54,22 @@ export default defineComponent({
       this.enabled = !this.enabled
     },
     refreshUserAgent(): void {
-      console.log('refreshUserAgent')
+      backend
+        .send(newUseragent())
+        .then(resp => {
+          const newUserAgent = (resp[0] as NewUseragentResponse).payload.useragent
+
+          if (newUserAgent.length === 0) { // simple fuse
+            throw new Error('Empty user-agent cannot be used')
+          }
+
+          backend
+            .send(setUseragent(newUserAgent))
+            .then((): void => {
+              this.useragent = newUserAgent
+            })
+            .catch(errorsHandler)
+        })
     },
     openSettings(): void {
       chrome.runtime.openOptionsPage()
