@@ -4,6 +4,8 @@
 
 # Random User-Agent
 
+## :fire: A new major version will be available soon
+
 [![Mozilla WebStore version][badge_mozilla_version]][link_firefox_store]
 [![Chrome WebStore version][badge_websore_version]][link_google_store]
 [![Issues][badge_issues]][link_issues]
