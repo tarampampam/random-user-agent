@@ -11,6 +11,7 @@ _WIP_
 - Set `minimum_chrome_version` in the [manifest.json](public/manifest.json)
 - eslint
 - provide donation link
+- remove all unimportant console.* calls
 
 ## Useful links
 

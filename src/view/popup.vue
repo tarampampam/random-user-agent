@@ -21,9 +21,12 @@ import PopupFooter from './components/popup/footer.vue'
 import {version, VersionResponse} from '../api/handlers/version'
 import {RuntimeSender} from '../api/transport/runtime'
 import {Sender} from '../api/transport/transport'
-import BrowserStorage from '../settings/storage'
+import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
+import {setEnabled} from '../api/handlers/set-enabled'
+import {getUseragent, GetUseragentResponse} from '../api/handlers/get-useragent'
 
-const backend: Sender = new RuntimeSender
+const errorsHandler: (err: Error) => void = console.error,
+  backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
@@ -53,17 +56,28 @@ export default defineComponent({
     },
     openSettings(): void {
       chrome.runtime.openOptionsPage()
-    }
+    },
   },
   created() {
-    const stor = new BrowserStorage()
+    backend
+      .send( // order is important!
+        version(),
+        getEnabled(),
+        getUseragent(),
+      )
+      .then(resp => {
+        // update the current states
+        this.version = (resp[0] as VersionResponse).payload.version
+        this.paused = !(resp[1] as GetEnabledResponse).payload.enabled
+        this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
 
-    stor.init()
-
-    backend.send(version())
-      .then(resp => this.version = (resp[0] as VersionResponse).payload.version)
-      .catch(console.error)
-  }
+        // save new state on changes
+        this.$watch(() => this.paused, (paused) => {
+          backend.send(setEnabled(!paused)).catch(errorsHandler)
+        })
+      })
+      .catch(errorsHandler)
+  },
 })
 </script>
 
@@ -74,7 +88,7 @@ $popup-width: 280px;
 //*, :after, :before {
 //  box-sizing: border-box;
 //  user-select: none;
-//  -moz-user-select: none; /* Firefox still requires their prefix */
+//  -moz-user-select: none; // Firefox still requires their prefix
 //}
 
 html, body {

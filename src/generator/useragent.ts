@@ -1,4 +1,4 @@
-export enum GeneratorType { // do NOT forget to update LOCALES on keys changes or appending
+export enum GeneratorType { // do NOT forget to update LOCALES on keys changes or appending (enum value == l18n key)
   ie6 = 'ie6',
   ie7 = 'ie7',
   ie8 = 'ie8',

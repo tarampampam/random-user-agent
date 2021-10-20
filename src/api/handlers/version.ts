@@ -2,6 +2,12 @@ import {Handler, HandlerRequest, HandlerResponse} from './handlers'
 
 const name: string = 'version'
 
+export interface VersionResponse extends HandlerResponse {
+  payload: {
+    version: string
+  }
+}
+
 export function version(): HandlerRequest {
   return {
     method: name,
@@ -9,18 +15,12 @@ export function version(): HandlerRequest {
   }
 }
 
-export interface VersionResponse extends HandlerResponse {
-  payload: {
-    version: string
-  }
-}
-
-export class Version implements Handler {
+export default class Version implements Handler {
   name(): string {
     return name
   }
 
-  handle(request: HandlerRequest): VersionResponse {
+  async handle(request: HandlerRequest): Promise<VersionResponse> {
     return {
       payload: {
         version: chrome.runtime.getManifest().version,

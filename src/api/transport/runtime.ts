@@ -11,7 +11,7 @@ interface Envelope {
 
 function validateEnvelope(envelope: any): Error | undefined {
   if (typeof envelope !== 'object') {
-    return new Error(`Wrong envelope type (expected: object, actual: ${typeof envelope})`)
+    return new TypeError(`Wrong envelope type (expected: object, actual: ${typeof envelope})`)
   }
 
   envelope = envelope as Object
@@ -21,10 +21,10 @@ function validateEnvelope(envelope: any): Error | undefined {
   }
 
   if (!envelope.hasOwnProperty('data') || typeof envelope.data !== 'object') {
-    return new Error(`Wrong or missing envelope "data" property type (expected: object, actual: ${typeof envelope.data})`)
+    return new SyntaxError(`Wrong or missing envelope "data" property type (expected: object, actual: ${typeof envelope.data})`)
   }
 
-  return
+  return undefined
 }
 
 export class RuntimeSender implements Sender {
@@ -89,13 +89,17 @@ export class RuntimeReceiver implements Receiver {
   }
 
   listen(): void {
-    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void) => {
+    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): boolean => {
       const lastError = chrome.runtime.lastError, validationError = validateEnvelope(message)
 
       if (lastError) {
-        return this.errorsHandler(new Error(lastError.message))
+        this.errorsHandler(new Error(lastError.message))
+
+        return false
       } else if (validationError !== undefined) {
-        return this.errorsHandler(validationError)
+        this.errorsHandler(validationError)
+
+        return false
       }
 
       const response: Envelope = {
@@ -103,11 +107,27 @@ export class RuntimeReceiver implements Receiver {
         data: {},
       }
 
+      const promises: Promise<HandlerResponse>[] = []
+
       for (const [id, req] of Object.entries((message as Envelope).data)) {
-        response.data[id] = this.router.handle(req as HandlerRequest)
+        promises.push(new Promise<HandlerResponse>((resolve, reject) => {
+          this.router.handle(req as HandlerRequest)
+            .then((handlerResponse): void => {
+              response.data[id] = handlerResponse
+
+              resolve(handlerResponse)
+            })
+            .catch(reject)
+        }))
       }
 
-      reply(response)
+      Promise.all(promises)
+        .then((): void => reply(response))
+        .catch(this.errorsHandler)
+
+      // return true from the event listener to indicate you wish to send a response asynchronously
+      // (this will keep the message channel open to the other end until sendResponse is called)
+      return true
     })
   }
 }
