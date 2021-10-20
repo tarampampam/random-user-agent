@@ -1,32 +1,37 @@
 <template>
   <section>
-    <div class="enabled-on-domain">
+    <div class="enabled">
       <span>
-        <label :for="'enabled-on-this-domain'">{{ i18n('enabled_on_this_domain') }}</label>
+        <label :for="'enabled'">{{ i18n('enabled_on_this_domain') }}</label>
       </span>
-      <ios-checkbox id="enabled-on-this-domain"
-                    :checked="enabledOnThisDomain"
-                    :onChange="onEnabledChange"/>
+      <ios-checkbox id="enabled"
+                    :checked="enabled"
+                    disabledColor="#dfdfdf"
+                    @change="$emit('clickEnabled')"/>
     </div>
 
-    <div class="action" :class="{ 'blinking-background': paused }" @click="emitPausedClicked">
-      <control-icon :icon="paused ? 'unpause' : 'pause'"
+    <div class="action" @click="$emit('clickPaused')" :class="{ 'blinking-background': paused }">
+      <control-icon class="icon"
+                    :style="{'font-size': '.9em'}"
+                    :icon="paused ? 'unpause' : 'pause'"
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
       <span>{{ i18n(paused ? 'unpause_switcher' : 'pause_switcher') }}</span>
     </div>
 
-    <div class="action">
-      <control-icon icon="refresh"
+    <div class="action" @click="$emit('clickRefresh')">
+      <control-icon class="icon"
+                    icon="refresh"
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
       <span>{{ i18n('get_new_agent') }}</span>
     </div>
 
-    <div class="action">
-      <control-icon icon="settings"
+    <div class="action" @click="$emit('clickSettings')">
+      <control-icon class="icon"
+                    icon="settings"
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
@@ -47,37 +52,26 @@ export default defineComponent({
     'control-icon': ControlIcon,
   },
   props: {
-    enabledOnThisDomain: {
+    enabled: {
       type: Boolean,
       default: true,
-    },
-    onEnabledChange: {
-      type: Function,
-      default: (enabled: boolean): void => {
-        //
-      },
     },
     paused: {
       type: Boolean,
       default: true,
-    },
-    onPausedChange: {
-      type: Function,
-      default: (isPaused: boolean): void => {
-        //
-      },
     },
     iconColor: {
       type: String,
       default: '#4b4b4b',
     },
   },
+  emits: [
+    'clickEnabled',
+    'clickPaused',
+    'clickRefresh',
+    'clickSettings',
+  ],
   mixins: [i18n],
-  methods: {
-    emitPausedClicked(): void {
-      this.onPausedChange(this.paused)
-    }
-  }
 })
 </script>
 
@@ -85,7 +79,7 @@ export default defineComponent({
 section {
   font-size: 1.2em;
 
-  .enabled-on-domain {
+  .enabled {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -101,12 +95,13 @@ section {
   .action {
     display: flex;
     align-items: center;
-    padding: 0.75em 1.2em;
+    padding: 0.75em 1em;
     color: #3b3b3b;
     cursor: pointer;
+    transition: background-color 120ms ease-in-out;
 
-    .control-icon {
-      height: 1.6em;
+    .icon {
+      font-size: .8em;
     }
 
     span {

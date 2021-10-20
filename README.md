@@ -10,6 +10,7 @@ _WIP_
 - Set `action.default_title` and `action.default_title` in the [manifest.json](public/manifest.json)
 - Set `minimum_chrome_version` in the [manifest.json](public/manifest.json)
 - eslint
+- provide donation link
 
 ## Useful links
 

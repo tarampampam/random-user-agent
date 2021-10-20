@@ -12,7 +12,7 @@ module.exports = {
     popup: path.join(srcDir, 'popup.ts'),
     options: path.join(srcDir, 'options.ts'),
     'content-script': path.join(srcDir, 'content-script.ts'),
-    'service-worker': path.join(srcDir, 'service-worker.ts'),
+    background: path.join(srcDir, 'background.ts'),
   },
   output: {
     path: path.join(__dirname, '..', 'dist', 'js'),
@@ -23,7 +23,7 @@ module.exports = {
     splitChunks: {
       name: 'vendor',
       chunks(chunk) {
-        return !['content-script', 'service-worker'].includes(chunk.name)
+        return !['content-script', 'background'].includes(chunk.name)
       }
     },
     minimizer: [

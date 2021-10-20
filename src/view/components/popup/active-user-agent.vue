@@ -1,13 +1,17 @@
 <template>
   <div>
-    Loading LoadingLoadingLoading LoadingLoadingLoadingLoading
+    {{ useragent || '(╯°□°)╯︵ ┻━┻' }}
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-export default defineComponent({})
+export default defineComponent({
+  props: {
+    useragent: String,
+  }
+})
 </script>
 
 <style lang="scss" scoped>

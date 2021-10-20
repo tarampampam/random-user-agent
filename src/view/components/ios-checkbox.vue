@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div :style="cssVars">
     <input class="toggle toggle-light"
            type="checkbox"
            :id="id"
            :checked="checked"
-           @change="emitChanged"/>
+           @change="$emit('change', $event.target.checked)"/>
     <label class="toggle-btn" :for="id"></label>
   </div>
 </template>
@@ -15,24 +15,29 @@ import {defineComponent} from 'vue'
 export default defineComponent({
   props: {
     id: {
-      default: 'checkbox-id',
-      type: String
+      type: String,
+      default: 'checkbox-id'
     },
     checked: {
-      default: false,
-      type: Boolean
+      type: Boolean,
+      default: false
     },
-    onChange: {
-      type: Function,
-      default: (enabled: boolean): void => {
-        //
-      },
+    disabledColor: {
+      type: String,
+      default: '#f04742',
     }
   },
-  methods: {
-    emitChanged($event: Event): void {
-      this.onChange(($event.target as HTMLInputElement).checked)
-    }
+  emits: {
+    change(state: boolean | any): boolean {
+      return typeof state === 'boolean'
+    },
+  },
+  computed: {
+    cssVars(): { [key: string]: string } {
+      return {
+        '--disabled-color': this.disabledColor,
+      }
+    },
   }
 })
 </script>
@@ -92,7 +97,7 @@ export default defineComponent({
 
 .toggle-light {
   + .toggle-btn {
-    background: #f04742;
+    background: var(--disabled-color);
     border-radius: 1.5em;
     padding: 2px;
     transition: all .3s ease;

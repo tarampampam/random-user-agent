@@ -1,12 +1,14 @@
 <template>
-  <popup-header/>
-  <active-user-agent/>
-  <actions :enabledOnThisDomain="enabledOnThisDomain"
-           :onEnabledChange="userChangedEnabledOnThisDomain"
-           :onPausedChange="userChangedPausedState"
-           :paused="paused"/>
-  <popup-footer/>
-  <button @click="test">test</button>
+  <popup-header :paused="paused"
+                @clickPaused="changePaused"/>
+  <active-user-agent :useragent="useragent"/>
+  <actions :enabled="enabled"
+           :paused="paused"
+           @clickEnabled="changeEnabled"
+           @clickPaused="changePaused"
+           @clickRefresh="refreshUserAgent"
+           @clickSettings="openSettings"/>
+  <popup-footer :version="version"/>
 </template>
 
 <script lang="ts">
@@ -16,6 +18,12 @@ import PopupHeader from './components/popup/header.vue'
 import ActiveUserAgent from './components/popup/active-user-agent.vue'
 import Actions from './components/popup/actions.vue'
 import PopupFooter from './components/popup/footer.vue'
+import {version, VersionResponse} from '../api/handlers/version'
+import {RuntimeSender} from '../api/transport/runtime'
+import {Sender} from '../api/transport/transport'
+import BrowserStorage from '../settings/storage'
+
+const backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
@@ -27,26 +35,35 @@ export default defineComponent({
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
-      enabledOnThisDomain: false,
+      useragent: '',
+      enabled: false, // enabled on this domain
       paused: true, // working is paused
+      version: '', // current extension version
     }
   },
   methods: {
-    userChangedEnabledOnThisDomain(newState: boolean) {
-      console.log('newState', newState)
-      this.enabledOnThisDomain = newState
-    },
-    userChangedPausedState(isPaused: boolean) {
-      console.log('isPaused', isPaused)
-      this.paused = isPaused
-    },
-    test() {
-      this.enabledOnThisDomain = !this.enabledOnThisDomain
+    changePaused(): void {
       this.paused = !this.paused
-      console.log('this.enabledOnThisDomain', this.enabledOnThisDomain)
-      console.log('this.paused', this.paused)
+    },
+    changeEnabled(): void {
+      this.enabled = !this.enabled
+    },
+    refreshUserAgent(): void {
+      console.log('refreshUserAgent')
+    },
+    openSettings(): void {
+      chrome.runtime.openOptionsPage()
     }
   },
+  created() {
+    const stor = new BrowserStorage()
+
+    stor.init()
+
+    backend.send(version())
+      .then(resp => this.version = (resp[0] as VersionResponse).payload.version)
+      .catch(console.error)
+  }
 })
 </script>
 
@@ -67,10 +84,15 @@ html, body {
   padding: 0;
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
   font-weight: 400;
+  font-size: 11px;
 }
 
-a, a:hover, a:active {
+a {
   color: inherit;
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 </style>

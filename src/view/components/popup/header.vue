@@ -4,7 +4,10 @@
       <span class="caption">{{ i18n('active_user_agent') }}</span>
     </div>
     <div class="buttons">
-      <control-icon icon="pause" :clickable="true" :title="i18n('pause_switcher')" />
+      <control-icon :icon="paused ? 'unpause' : 'pause'"
+                    :clickable="true"
+                    :title="i18n(paused ? 'unpause_switcher' : 'pause_switcher')"
+                    @click="$emit('clickPaused')"/>
     </div>
   </header>
 </template>
@@ -18,6 +21,10 @@ export default defineComponent({
   components: {
     'control-icon': ControlIcon,
   },
+  props: {
+    paused: Boolean,
+  },
+  emits: ['clickPaused'],
   mixins: [i18n],
 })
 </script>
