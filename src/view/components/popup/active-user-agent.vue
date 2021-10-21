@@ -21,6 +21,7 @@ div {
   justify-content: center;
   text-align: center;
   min-height: 100px;
+  padding: 0 1.2em;
   background-image: radial-gradient(circle at 50% 54%, #f2f2ed, #c9c9c5);
 
   font-family: 'Lucida Console','Lucida Sans Typewriter',monaco,'Bitstream Vera Sans Mono',monospace;

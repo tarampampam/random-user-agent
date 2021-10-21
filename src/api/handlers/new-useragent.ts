@@ -59,7 +59,7 @@ export default class NewUseragent implements Handler {
     return {
       payload: {
         source: 'generator',
-        useragent: await this.generator.generate(this.settings.getGeneratorTypes()),
+        useragent: this.generator.generate(this.settings.getGeneratorTypes()),
       },
     }
   }

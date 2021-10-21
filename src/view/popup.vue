@@ -92,6 +92,15 @@ export default defineComponent({
         this.$watch(() => this.paused, (paused) => {
           backend.send(setEnabled(!paused)).catch(errorsHandler)
         })
+
+        // start useragent refresher
+        window.setInterval(() => {
+          backend
+            .send(getUseragent())
+            .then(resp => {
+              this.useragent = (resp[0] as GetUseragentResponse).payload.useragent || ''
+            })
+        }, 500) // twice in a one second
       })
       .catch(errorsHandler)
   },
@@ -109,7 +118,7 @@ $popup-width: 280px;
 //}
 
 html, body {
-  min-width: $popup-width;
+  width: $popup-width;
   height: auto;
   margin: 0;
   padding: 0;

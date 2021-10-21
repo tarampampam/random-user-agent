@@ -1,17 +1,21 @@
-import Generator, {GeneratorType} from './generator'
+import Generator, {GeneratorType, isValidType} from './generator'
+
+test('isValidType', () => {
+  for (const type of Object.keys(GeneratorType)) {
+    expect(isValidType(GeneratorType[type])).toBeTruthy()
+  }
+
+  expect(isValidType('foo')).toBeFalsy()
+})
 
 test('Generator.generate', async () => {
   const gen = new Generator()
 
   for (const type of Object.keys(GeneratorType)) {
     for (let i = 0; i < 20; i++) {
-      const generated = await gen.generate([GeneratorType[type]])
+      const generated = gen.generate([GeneratorType[type]])
 
-      if (generated === '') { // FIXME remove this when all types will be done
-        break
-      }
-
-      expect(generated).toMatch(/^Mozilla\/[45]\.0.+/)
+      expect(generated).toMatch(/^Mozilla\/5\.0.+/)
 
       switch (GeneratorType[type]) {
         case GeneratorType.chromeLinux:
@@ -20,7 +24,7 @@ test('Generator.generate', async () => {
           expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
           expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
           expect(generated).toContain('KHTML, like Gecko')
-          expect(generated).toMatch(/Safari\/\d+\.\d+$/)
+          expect(generated).toContain('Safari/537.36')
           break
 
         case GeneratorType.chromeMac:
@@ -28,7 +32,7 @@ test('Generator.generate', async () => {
           expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
           expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
           expect(generated).toContain('KHTML, like Gecko')
-          expect(generated).toMatch(/Safari\/\d+\.\d+$/)
+          expect(generated).toContain('Safari/537.36')
           break
 
         case GeneratorType.chromeWin:
@@ -37,7 +41,7 @@ test('Generator.generate', async () => {
           expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
           expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
           expect(generated).toContain('KHTML, like Gecko')
-          expect(generated).toMatch(/Safari\/\d+\.\d+/)
+          expect(generated).toContain('Safari/537.36')
           break
 
         case GeneratorType.chromeAndroid:
@@ -46,7 +50,7 @@ test('Generator.generate', async () => {
           expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
           expect(generated).toContain('KHTML, like Gecko')
           expect(generated).toContain('Mobile')
-          expect(generated).toMatch(/Safari\/\d+\.\d+$/)
+          expect(generated).toContain('Safari/537.36')
           break
 
         case GeneratorType.firefoxLinux:
@@ -79,6 +83,53 @@ test('Generator.generate', async () => {
           expect(generated).toMatch(/Gecko\/\d+\.0/)
           expect(generated).not.toContain('AppleWebKit')
           expect(generated).not.toContain('Safari\\')
+          break
+
+        case GeneratorType.operaWin:
+          expect(generated).toMatch(/Windows NT \d+.\d+/)
+          expect(generated).toContain('64')
+          expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
+          expect(generated).toMatch(/OPR\/\d+\.0\.\d+\.\d+/)
+          expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated).toContain('KHTML, like Gecko')
+          expect(generated).toContain('Safari/537.36')
+          break
+
+        case GeneratorType.operaMac:
+          expect(generated).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
+          expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
+          expect(generated).toMatch(/OPR\/\d+\.0\.\d+\.\d+/)
+          expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated).toContain('KHTML, like Gecko')
+          expect(generated).toContain('Safari/537.36')
+          break
+
+        case GeneratorType.safariIphone:
+          expect(generated).toMatch(/iPhone; CPU iPhone OS \d+_\d+ like Mac OS X/)
+          expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated).toContain('KHTML, like Gecko')
+          expect(generated).toMatch(/Version\/\d+\.\d+/)
+          expect(generated).toMatch(/Mobile\/[A-Z0-9]{6}/)
+          expect(generated).toMatch(/Safari\/\d+\.\d+/)
+          break
+
+        case GeneratorType.safariMac:
+          expect(generated).toMatch(/Macintosh; Intel Mac OS X \d+_\d+(_\d+|)/)
+          expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated).toContain('KHTML, like Gecko')
+          expect(generated).toMatch(/Version\/\d+\.\d+/)
+          expect(generated).not.toContain('Mobile')
+          expect(generated).toMatch(/Safari\/\d+\.\d+/)
+          break
+
+        case GeneratorType.edgeWin:
+          expect(generated).toMatch(/Windows NT \d+.\d+/)
+          expect(generated).toContain('64')
+          expect(generated).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
+          expect(generated).toMatch(/Edg\/\d+\.\d+\.\d+/)
+          expect(generated).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated).toContain('KHTML, like Gecko')
+          expect(generated).toContain('Safari/537.36')
           break
       }
     }
