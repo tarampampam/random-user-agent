@@ -1,6 +1,14 @@
 import {Storage} from './storage'
 import {GeneratorType} from '../useragent/generator'
 
+export enum BlacklistMode {
+  // enabled everywhere, but disabled on pages defined in the blacklist
+  BlackList = 'blacklist',
+
+  // disabled everywhere, but enabled on pages defined in the blacklist
+  WhiteList = 'whitelist',
+}
+
 interface Struct {
   [key: string]: any
 
@@ -34,10 +42,16 @@ interface Struct {
     // Generator types
     types: GeneratorType[]
   }
-  // Exceptions
-  exceptions: {
-    // Exceptions list
-    list: string[]
+  // Blacklist settings
+  blacklist: {
+    // Blacklist mode
+    mode: BlacklistMode
+    // Domains list
+    domains: string[]
+    // Custom rules (simple patterns), managed by user
+    custom: {
+      rules: string[]
+    }
   }
 }
 
@@ -63,7 +77,7 @@ export enum SettingEvent {
   onChange = 'on:change',
 }
 
-export default class Settings {
+export default class Settings { // FIXME rewrite with using TS getters and setters
   public readonly storageKey: string = 'settings-struct-v3'
 
   private readonly storage: Storage
@@ -89,8 +103,12 @@ export default class Settings {
         GeneratorType.firefoxWin, GeneratorType.firefoxLinux, GeneratorType.firefoxMac,
       ],
     },
-    exceptions: {
-      list: ['chrome://*'],
+    blacklist: {
+      mode: BlacklistMode.BlackList,
+      domains: [],
+      custom: {
+        rules: ['chrome://*'],
+      },
     },
   }
 
@@ -246,14 +264,36 @@ export default class Settings {
     this.emit(SettingEvent.onChange)
   }
 
-  // Get exceptions list
-  public getExceptionsList(): string[] {
-    return this.state.exceptions.list
+  // Get blacklist mode
+  public getBlacklistMode(): BlacklistMode {
+    return this.state.blacklist.mode
   }
 
-  // Set exceptions list
-  public setExceptionsList(list: string[]): void {
-    this.state.exceptions.list = list
+  // Set blacklist mode
+  public setBlacklistMode(mode: BlacklistMode): void {
+    this.state.blacklist.mode = mode
+    this.emit(SettingEvent.onChange)
+  }
+
+  // Get blacklisted domains list
+  public getBlacklistDomains(): string[] {
+    return this.state.blacklist.domains
+  }
+
+  // Set blacklisted domains list
+  public setBlacklistDomains(domains: string[]): void {
+    this.state.blacklist.domains = domains
+    this.emit(SettingEvent.onChange)
+  }
+
+  // Get blacklisted custom rules
+  public getBlacklistCustomRules(): string[] {
+    return this.state.blacklist.domains
+  }
+
+  // Set blacklisted custom rules
+  public setBlacklistCustomRules(rules: string[]): void {
+    this.state.state.blacklist.domains = rules
     this.emit(SettingEvent.onChange)
   }
 }

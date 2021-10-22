@@ -1,4 +1,4 @@
-import {matchesWildcard, uriToPattern} from './exceptions'
+import {matchesWildcard, uriToPattern} from './patterns'
 
 test('matchesWildcard', (): void => {
   expect(matchesWildcard('aaa', '*a*')).toBeTruthy()

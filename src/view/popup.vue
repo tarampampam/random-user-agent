@@ -4,7 +4,7 @@
   <active-user-agent :useragent="useragent"/>
   <actions :enabledOnThisDomain="enabledOnThisDomain"
            :enabled="enabled"
-           :enabledOnThisDomainTitle="currentPageUriPattern"
+           :enabledOnThisDomainTitle="currentPageDomain"
            @clickEnabledOnThisDomain="changeEnabledOnThisDomain"
            @clickEnabled="changeEnabled"
            @clickRefresh="refreshUserAgent"
@@ -25,11 +25,9 @@ import {Sender} from '../api/transport/transport'
 import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
 import {setEnabled} from '../api/handlers/set-enabled'
 import {getUseragent, GetUseragentResponse} from '../api/handlers/get-useragent'
-import {newUseragent, NewUseragentResponse} from '../api/handlers/new-useragent'
-import {setUseragent} from '../api/handlers/set-useragent'
-import {uriMatchesAnyException, UriMatchesAnyExceptionResponse} from '../api/handlers/uri-matches-any-exception'
-import {manageException, ManageExceptionResponse} from '../api/handlers/manage-exception'
-import {uriToPattern} from '../utils/exceptions'
+import {renewUseragent, RenewUseragentResponse} from '../api/handlers/renew-useragent'
+import {enabledForDomain, EnabledForDomainResponse} from '../api/handlers/enabled-for-domain'
+import {changeForDomain} from '../api/handlers/change-for-domain'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -49,19 +47,20 @@ export default defineComponent({
       useragent: '',
       version: '',
 
-      currentPageUriPattern: '',
+      currentPageDomain: '',
+      currentTabID: undefined as number | undefined,
     }
   },
   methods: {
     changeEnabledOnThisDomain(): void {
       backend
-        .send(manageException(this.currentPageUriPattern, !this.enabledOnThisDomain ? 'remove' : 'add'))
-        .then(resp => {
-          if (!(resp[0] as ManageExceptionResponse).payload.success) {
-            throw new Error(`Appending/removing from the exceptions list failed: ${this.currentPageUriPattern}`)
-          }
-
+        .send(changeForDomain(this.currentPageDomain, !this.enabledOnThisDomain))
+        .then((): void => {
           this.enabledOnThisDomain = !this.enabledOnThisDomain
+
+          if (typeof this.currentTabID === 'number') { // refresh the current tab
+            chrome.tabs.reload(this.currentTabID)
+          }
         })
         .catch(errorsHandler)
     },
@@ -77,21 +76,11 @@ export default defineComponent({
 
     refreshUserAgent(): void {
       backend
-        .send(newUseragent())
+        .send(renewUseragent())
         .then((resp): void => {
-          const newUserAgent = (resp[0] as NewUseragentResponse).payload.useragent
-
-          if (newUserAgent.length === 0) { // simple fuse
-            throw new Error('Empty user-agent cannot be used')
-          }
-
-          backend
-            .send(setUseragent(newUserAgent))
-            .then((): void => {
-              this.useragent = newUserAgent
-            })
-            .catch(errorsHandler)
+          this.useragent = (resp[0] as RenewUseragentResponse).payload.new
         })
+        .catch(errorsHandler)
     },
 
     openSettings(): void {
@@ -112,19 +101,20 @@ export default defineComponent({
       })
       .catch(errorsHandler)
 
-    // update the "enabled" (on this domain) state
+    // query current page URI
     chrome.tabs.query({active: true, currentWindow: true}, (tabs): void => {
       if (tabs.length > 0 && typeof tabs[0].url === 'string') {
-        const currentPageUri = tabs[0].url as string
-
-        this.currentPageUriPattern = uriToPattern(currentPageUri)
+        this.currentPageDomain = new URL(tabs[0].url as string).hostname
+        this.currentTabID = tabs[0].id
 
         backend
-          .send(uriMatchesAnyException(currentPageUri))
+          .send(enabledForDomain(this.currentPageDomain))
           .then(resp => {
-            this.enabledOnThisDomain = !(resp[0] as UriMatchesAnyExceptionResponse).payload.matched
+            this.enabledOnThisDomain = (resp[0] as EnabledForDomainResponse).payload.enabled
           })
           .catch(errorsHandler)
+      } else {
+        throw new Error('Cannot get the URL of the current page')
       }
     })
   },
@@ -132,10 +122,15 @@ export default defineComponent({
     // start state refresher
     window.setInterval((): void => {
       backend
-        .send(getUseragent(), getEnabled())
+        .send( // order is important!
+          getUseragent(),
+          getEnabled(),
+          enabledForDomain(this.currentPageDomain),
+        )
         .then((resp): void => {
           this.useragent = (resp[0] as GetUseragentResponse).payload.useragent || ''
           this.enabled = (resp[1] as GetEnabledResponse).payload.enabled
+          this.enabledOnThisDomain = (resp[2] as EnabledForDomainResponse).payload.enabled
         })
         .catch(errorsHandler)
     }, 500) // twice in a one second

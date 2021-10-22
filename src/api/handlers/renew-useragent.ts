@@ -2,43 +2,46 @@ import {Handler, HandlerRequest, HandlerResponse} from './handlers'
 import Settings from '../../settings/settings'
 import Generator from '../../useragent/generator'
 
-const name: string = 'new-useragent'
+const name: string = 'refresh-useragent'
 
-export interface NewUseragentRequest extends HandlerRequest {
+export interface RenewUseragentRequest extends HandlerRequest {
   readonly payload: {
     // nothing
   }
 }
 
-export interface NewUseragentResponse extends HandlerResponse {
+export interface RenewUseragentResponse extends HandlerResponse {
   payload: {
     source: 'custom_agents_list' | 'generator'
-    useragent: string
+    previous: string | undefined
+    new: string
   }
 }
 
-export function newUseragent(): NewUseragentRequest {
+export function renewUseragent(): RenewUseragentRequest {
   return {
     method: name,
     payload: {},
   }
 }
 
-export default class NewUseragent implements Handler {
+export default class RenewUseragent implements Handler {
   private readonly settings: Settings
 
   private readonly generator: Generator
 
   constructor(settings: Settings) {
     this.settings = settings
-    this.generator = new Generator()
+    this.generator = new Generator() // FIXME pass this using constructor
   }
 
   name(): string {
     return name
   }
 
-  async handle(request: NewUseragentRequest): Promise<NewUseragentResponse> {
+  async handle(request: RenewUseragentRequest): Promise<RenewUseragentResponse> {
+    const previous = this.settings.getUserAgent()
+
     if (this.settings.isCustomUserAgentEnabled()) {
       const list: string[] = this.settings.getCustomUserAgentsList()
 
@@ -46,20 +49,28 @@ export default class NewUseragent implements Handler {
         const random: string = list[Math.floor(Math.random() * list.length)]
 
         if (random.trim().length > 0) {
+          this.settings.setUserAgent(random)
+
           return {
             payload: {
               source: 'custom_agents_list',
-              useragent: random,
+              previous: previous,
+              new: random,
             },
           }
         }
       }
     }
 
+    const generated = this.generator.generate(this.settings.getGeneratorTypes())
+
+    this.settings.setUserAgent(generated)
+
     return {
       payload: {
         source: 'generator',
-        useragent: this.generator.generate(this.settings.getGeneratorTypes()),
+        previous: previous,
+        new: generated,
       },
     }
   }

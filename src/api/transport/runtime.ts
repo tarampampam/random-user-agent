@@ -1,12 +1,22 @@
 import {Receiver, Sender} from './transport'
 import {HandlerRequest, HandlerResponse, Router} from '../handlers/handlers'
-import {v4 as uuid} from 'uuid'
 
 const signature: string = 'rua-proto-v1' // some unique string
 
 interface Envelope {
   readonly sign: string
   readonly data: { [key: string]: HandlerRequest | HandlerResponse } // key is request/response ID
+}
+
+function generateRandomKey(): string {
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+  for (let i = 0; i < 16; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+
+  return result
 }
 
 function validateEnvelope(envelope: any): Error | undefined {
@@ -38,7 +48,7 @@ export class RuntimeSender implements Sender {
       const order: String[] = [] // for the faster responses ordering
 
       requests.forEach(request => {
-        const id = uuid().toString()
+        const id = generateRandomKey().toString()
 
         message.data[id] = request
         order.push(id)

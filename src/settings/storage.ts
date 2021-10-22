@@ -24,7 +24,7 @@ export default class BrowserStorage implements Storage {
     return new Promise<void>((resolve: () => void) => {
       // make an attempt to use the sync storage
       chrome.storage.sync.get(null, (_): void => {
-        // and if something goes wrong - decide to use the local storage
+        // and if something goes wrong - switch to use the local storage
         this.storage = chrome.runtime.lastError
           ? chrome.storage.local
           : chrome.storage.sync

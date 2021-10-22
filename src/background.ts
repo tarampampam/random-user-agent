@@ -9,9 +9,11 @@ import GetUseragent from './api/handlers/get-useragent'
 import SetUseragent from './api/handlers/set-useragent'
 import {IconState, setExtensionIcon} from './utils/icon'
 import Timer from './utils/timer'
-import NewUseragent from './api/handlers/new-useragent'
-import UriMatchesAnyException, {uriMatchesAnyException} from './api/handlers/uri-matches-any-exception'
-import ManageException from './api/handlers/manage-exception'
+import RenewUseragent, {renewUseragent} from './api/handlers/renew-useragent'
+import EnabledForDomain from './api/handlers/enabled-for-domain'
+import ChangeForDomain from './api/handlers/change-for-domain'
+import GetJSProtectionEnabled from './api/handlers/get-js-protection-enabled'
+import ApplicableToURI from './api/handlers/applicable-to-uri'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -27,13 +29,15 @@ storage.init()
     // load extension settings from the storage
     settings.load()
       .then(() => {
+        const renewUseragentHandler = new RenewUseragent(settings)
+
         // start the user-agent auto-renewal interval
         const renewalTimer = new Timer(settings.getRenewalIntervalMillis(), (): void => {
-          console.debug('timer tick') // TODO renew the useragent here
+          renewUseragentHandler.handle(renewUseragent()).catch(errorsHandler) // renew useragent manually
         })
 
         if (settings.isRenewalOnStartupEnabled()) {
-          // TODO renew the useragent here
+          renewUseragentHandler.handle(renewUseragent()).catch(errorsHandler) // renew useragent manually
         }
 
         // subscribe for the settings changes
@@ -76,9 +80,11 @@ storage.init()
             new SetEnabled(settings),
             new GetUseragent(settings),
             new SetUseragent(settings),
-            new NewUseragent(settings),
-            new UriMatchesAnyException(settings),
-            new ManageException(settings),
+            renewUseragentHandler,
+            new EnabledForDomain(settings),
+            new ChangeForDomain(settings),
+            new GetJSProtectionEnabled(settings),
+            new ApplicableToURI(settings),
           ),
         ).listen()
       })

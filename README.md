@@ -13,6 +13,7 @@ _WIP_
 - provide donation link
 - remove all unimportant console.* calls
 - dark theme `@media (prefers-color-scheme: dark) {`
+- sentry or something similar
 
 ## Useful links
 
