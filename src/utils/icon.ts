@@ -11,19 +11,19 @@ export function setExtensionIcon(state: IconState, tabId?: number) {
   switch (state) {
     case IconState.Inactive:
       details.path = {
-        16: 'icons/logo/16-gray.png',
+        // 16: 'icons/logo/16-gray.png',
         48: 'icons/logo/48-gray.png',
         128: 'icons/logo/128-gray.png',
-        512: 'icons/logo/512-gray.png',
+        // 512: 'icons/logo/512-gray.png',
       }
       break
 
     case IconState.Active:
       details.path = {
-        16: 'icons/logo/16.png',
+        // 16: 'icons/logo/16.png',
         48: 'icons/logo/48.png',
         128: 'icons/logo/128.png',
-        512: 'icons/logo/512.png',
+        // 512: 'icons/logo/512.png',
       }
   }
 

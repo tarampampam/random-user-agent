@@ -7,9 +7,11 @@ import GetEnabled from './api/handlers/get-enabled'
 import SetEnabled from './api/handlers/set-enabled'
 import GetUseragent from './api/handlers/get-useragent'
 import SetUseragent from './api/handlers/set-useragent'
-import {IconState, setExtensionIcon} from './ui/icon'
+import {IconState, setExtensionIcon} from './utils/icon'
 import Timer from './utils/timer'
 import NewUseragent from './api/handlers/new-useragent'
+import UriMatchesAnyException, {uriMatchesAnyException} from './api/handlers/uri-matches-any-exception'
+import ManageException from './api/handlers/manage-exception'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -37,7 +39,7 @@ storage.init()
         // subscribe for the settings changes
         settings.on(SettingEvent.onChange, (): void => {
           // update extension icon state
-          setExtensionIcon(settings.isEnabled() ? IconState.Active : IconState.Inactive)
+          setExtensionIcon(settings.isEnabled() ? IconState.Active : IconState.Inactive) // FIXME slow operation, exec only if needed (not every time) + set the icon state on startup
 
           if (settings.isEnabled()) {
             if (settings.isRenewalEnabled()) {
@@ -75,17 +77,10 @@ storage.init()
             new GetUseragent(settings),
             new SetUseragent(settings),
             new NewUseragent(settings),
+            new UriMatchesAnyException(settings),
+            new ManageException(settings),
           ),
         ).listen()
-
-        // change extension icon for ignored URIs
-        chrome.tabs.onUpdated.addListener((tabId: number, changeInfo, tab): void => {
-          if (changeInfo.status === 'loading') {
-            if (false) { // TODO if (API.exceptions.uriMatch({uri: tab.url})) { ... }
-              setExtensionIcon(IconState.Inactive, tab.id)
-            }
-          }
-        })
       })
       .catch(errorsHandler)
   })

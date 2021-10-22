@@ -5,13 +5,14 @@ _WIP_
 ## TODO
 
 - Set the version value during the build process in [package.json](package.json) and [manifest.json](public/manifest.json)
-- i18n
+- i18n + translation platform integration
 - New icons
 - Set `action.default_title` and `action.default_title` in the [manifest.json](public/manifest.json)
 - Set `minimum_chrome_version` in the [manifest.json](public/manifest.json)
 - eslint
 - provide donation link
 - remove all unimportant console.* calls
+- dark theme `@media (prefers-color-scheme: dark) {`
 
 ## Useful links
 

@@ -38,7 +38,7 @@ export default class NewUseragent implements Handler {
     return name
   }
 
-  async handle(request: HandlerRequest): Promise<NewUseragentResponse> {
+  async handle(request: NewUseragentRequest): Promise<NewUseragentResponse> {
     if (this.settings.isCustomUserAgentEnabled()) {
       const list: string[] = this.settings.getCustomUserAgentsList()
 

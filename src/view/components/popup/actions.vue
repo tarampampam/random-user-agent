@@ -1,23 +1,26 @@
 <template>
   <section>
-    <div class="enabled">
+    <div class="enabled-on-this-domain">
       <span>
-        <label :for="'enabled'">{{ i18n('enabled_on_this_domain') }}</label>
+        <label :for="'enabled_on_this_domain'" :title="enabledOnThisDomainTitle">
+          {{ i18n('enabled_on_this_domain') }}
+        </label>
       </span>
-      <ios-checkbox id="enabled"
-                    :checked="enabled"
+      <ios-checkbox id="enabled_on_this_domain"
+                    :checked="enabledOnThisDomain"
+                    :title="enabledOnThisDomainTitle"
                     disabledColor="#dfdfdf"
-                    @change="$emit('clickEnabled')"/>
+                    @change="$emit('clickEnabledOnThisDomain')"/>
     </div>
 
-    <div class="action" @click="$emit('clickPaused')" :class="{ 'blinking-background': paused }">
+    <div class="action" @click="$emit('clickEnabled')" :class="{ 'blinking-background': !enabled }">
       <control-icon class="icon"
                     :style="{'font-size': '.9em'}"
-                    :icon="paused ? 'unpause' : 'pause'"
+                    :icon="enabled ? 'pause' : 'unpause'"
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
-      <span>{{ i18n(paused ? 'unpause_switcher' : 'pause_switcher') }}</span>
+      <span>{{ i18n(enabled ? 'pause_switcher' : 'unpause_switcher') }}</span>
     </div>
 
     <div class="action" @click="$emit('clickRefresh')">
@@ -52,11 +55,15 @@ export default defineComponent({
     'control-icon': ControlIcon,
   },
   props: {
-    enabled: {
+    enabledOnThisDomain: {
       type: Boolean,
       default: true,
     },
-    paused: {
+    enabledOnThisDomainTitle: {
+      type: String,
+      default: '',
+    },
+    enabled: {
       type: Boolean,
       default: true,
     },
@@ -66,8 +73,8 @@ export default defineComponent({
     },
   },
   emits: [
+    'clickEnabledOnThisDomain',
     'clickEnabled',
-    'clickPaused',
     'clickRefresh',
     'clickSettings',
   ],
@@ -79,7 +86,7 @@ export default defineComponent({
 section {
   font-size: 1.2em;
 
-  .enabled {
+  .enabled-on-this-domain {
     display: flex;
     justify-content: space-between;
     align-items: center;

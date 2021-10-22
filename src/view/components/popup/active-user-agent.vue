@@ -23,13 +23,11 @@ div {
   min-height: 100px;
   padding: 0 1.2em;
   background-image: radial-gradient(circle at 50% 54%, #f2f2ed, #c9c9c5);
-
   font-family: 'Lucida Console','Lucida Sans Typewriter',monaco,'Bitstream Vera Sans Mono',monospace;
   font-size: 1.1em;
   color: #333;
-
-  text-overflow: ellipsis;
-  //white-space: nowrap;
   overflow: hidden;
+
+  user-select: text;
 }
 </style>

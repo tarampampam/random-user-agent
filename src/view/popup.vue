@@ -1,11 +1,12 @@
 <template>
-  <popup-header :paused="paused"
-                @clickPaused="changePaused"/>
+  <popup-header :enabled="enabled"
+                @clickEnabled="changeEnabled"/>
   <active-user-agent :useragent="useragent"/>
-  <actions :enabled="enabled"
-           :paused="paused"
+  <actions :enabledOnThisDomain="enabledOnThisDomain"
+           :enabled="enabled"
+           :enabledOnThisDomainTitle="currentPageUriPattern"
+           @clickEnabledOnThisDomain="changeEnabledOnThisDomain"
            @clickEnabled="changeEnabled"
-           @clickPaused="changePaused"
            @clickRefresh="refreshUserAgent"
            @clickSettings="openSettings"/>
   <popup-footer :version="version"/>
@@ -26,6 +27,9 @@ import {setEnabled} from '../api/handlers/set-enabled'
 import {getUseragent, GetUseragentResponse} from '../api/handlers/get-useragent'
 import {newUseragent, NewUseragentResponse} from '../api/handlers/new-useragent'
 import {setUseragent} from '../api/handlers/set-useragent'
+import {uriMatchesAnyException, UriMatchesAnyExceptionResponse} from '../api/handlers/uri-matches-any-exception'
+import {manageException, ManageExceptionResponse} from '../api/handlers/manage-exception'
+import {uriToPattern} from '../utils/exceptions'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -40,23 +44,41 @@ export default defineComponent({
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
+      enabled: true,
+      enabledOnThisDomain: false,
       useragent: '',
-      enabled: false, // enabled on this domain
-      paused: true, // working is paused
-      version: '', // current extension version
+      version: '',
+
+      currentPageUriPattern: '',
     }
   },
   methods: {
-    changePaused(): void {
-      this.paused = !this.paused
+    changeEnabledOnThisDomain(): void {
+      backend
+        .send(manageException(this.currentPageUriPattern, !this.enabledOnThisDomain ? 'remove' : 'add'))
+        .then(resp => {
+          if (!(resp[0] as ManageExceptionResponse).payload.success) {
+            throw new Error(`Appending/removing from the exceptions list failed: ${this.currentPageUriPattern}`)
+          }
+
+          this.enabledOnThisDomain = !this.enabledOnThisDomain
+        })
+        .catch(errorsHandler)
     },
+
     changeEnabled(): void {
-      this.enabled = !this.enabled
+      backend
+        .send(setEnabled(!this.enabled))
+        .then((): void => {
+          this.enabled = !this.enabled
+        })
+        .catch(errorsHandler)
     },
+
     refreshUserAgent(): void {
       backend
         .send(newUseragent())
-        .then(resp => {
+        .then((resp): void => {
           const newUserAgent = (resp[0] as NewUseragentResponse).payload.useragent
 
           if (newUserAgent.length === 0) { // simple fuse
@@ -71,54 +93,68 @@ export default defineComponent({
             .catch(errorsHandler)
         })
     },
+
     openSettings(): void {
       chrome.runtime.openOptionsPage()
     },
   },
-  created() {
+  created(): void {
     backend
       .send( // order is important!
         version(),
         getEnabled(),
         getUseragent(),
       )
-      .then(resp => {
-        // update the current states
+      .then((resp): void => { // update the current states
         this.version = (resp[0] as VersionResponse).payload.version
-        this.paused = !(resp[1] as GetEnabledResponse).payload.enabled
+        this.enabled = (resp[1] as GetEnabledResponse).payload.enabled
         this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
-
-        // save new state on changes
-        this.$watch(() => this.paused, (paused) => {
-          backend.send(setEnabled(!paused)).catch(errorsHandler)
-        })
-
-        // start useragent refresher
-        window.setInterval(() => {
-          backend
-            .send(getUseragent())
-            .then(resp => {
-              this.useragent = (resp[0] as GetUseragentResponse).payload.useragent || ''
-            })
-        }, 500) // twice in a one second
       })
       .catch(errorsHandler)
+
+    // update the "enabled" (on this domain) state
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs): void => {
+      if (tabs.length > 0 && typeof tabs[0].url === 'string') {
+        const currentPageUri = tabs[0].url as string
+
+        this.currentPageUriPattern = uriToPattern(currentPageUri)
+
+        backend
+          .send(uriMatchesAnyException(currentPageUri))
+          .then(resp => {
+            this.enabledOnThisDomain = !(resp[0] as UriMatchesAnyExceptionResponse).payload.matched
+          })
+          .catch(errorsHandler)
+      }
+    })
+  },
+  mounted(): void {
+    // start state refresher
+    window.setInterval((): void => {
+      backend
+        .send(getUseragent(), getEnabled())
+        .then((resp): void => {
+          this.useragent = (resp[0] as GetUseragentResponse).payload.useragent || ''
+          this.enabled = (resp[1] as GetEnabledResponse).payload.enabled
+        })
+        .catch(errorsHandler)
+    }, 500) // twice in a one second
   },
 })
 </script>
 
 <style lang="scss">
-$popup-width: 280px;
+*, :after, :before {
+  user-select: none; // disable user-selection by default
+}
 
-// Disable user-selection by default
-//*, :after, :before {
-//  box-sizing: border-box;
-//  user-select: none;
-//  -moz-user-select: none; // Firefox still requires their prefix
-//}
+::selection {
+  color: #fff;
+  background: #222;
+}
 
 html, body {
-  width: $popup-width;
+  width: 280px;
   height: auto;
   margin: 0;
   padding: 0;

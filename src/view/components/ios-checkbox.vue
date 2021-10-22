@@ -3,9 +3,10 @@
     <input class="toggle toggle-light"
            type="checkbox"
            :id="id"
+           :title="title"
            :checked="checked"
            @change="$emit('change', $event.target.checked)"/>
-    <label class="toggle-btn" :for="id"></label>
+    <label class="toggle-btn" :for="id" :title="title"></label>
   </div>
 </template>
 
@@ -25,6 +26,10 @@ export default defineComponent({
     disabledColor: {
       type: String,
       default: '#f04742',
+    },
+    title: {
+      type: String,
+      default: '',
     }
   },
   emits: {
@@ -105,7 +110,7 @@ export default defineComponent({
     &:after {
       border-radius: 50%;
       background: #fff;
-      transition: all .175s ease;
+      transition: all .045s ease;
     }
   }
 
