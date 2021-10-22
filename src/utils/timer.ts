@@ -1,3 +1,6 @@
+/**
+ * FIXME alternative - https://developer.chrome.com/docs/extensions/reference/alarms/
+ */
 export default class Timer {
   // timer interval (mutable)
   private intervalMillis: number

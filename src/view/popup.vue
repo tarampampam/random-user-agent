@@ -52,15 +52,19 @@ export default defineComponent({
     }
   },
   methods: {
+    refreshCurrentTab(): void {
+      if (typeof this.currentTabID === 'number') { // refresh the current tab
+        chrome.tabs.reload(this.currentTabID)
+      }
+    },
+
     changeEnabledOnThisDomain(): void {
       backend
         .send(changeForDomain(this.currentPageDomain, !this.enabledOnThisDomain))
         .then((): void => {
           this.enabledOnThisDomain = !this.enabledOnThisDomain
 
-          if (typeof this.currentTabID === 'number') { // refresh the current tab
-            chrome.tabs.reload(this.currentTabID)
-          }
+          this.refreshCurrentTab()
         })
         .catch(errorsHandler)
     },
@@ -79,6 +83,8 @@ export default defineComponent({
         .send(renewUseragent())
         .then((resp): void => {
           this.useragent = (resp[0] as RenewUseragentResponse).payload.new
+
+          this.refreshCurrentTab()
         })
         .catch(errorsHandler)
     },

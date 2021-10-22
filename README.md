@@ -14,6 +14,11 @@ _WIP_
 - remove all unimportant console.* calls
 - dark theme `@media (prefers-color-scheme: dark) {`
 - sentry or something similar
+- Content script - mock `navigator.(product|platform|vendor)` properties
+
+## Where can I check the functionality?
+
+- <https://webbrowsertools.com/useragent/>
 
 ## Useful links
 

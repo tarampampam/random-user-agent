@@ -8,15 +8,8 @@ interface Envelope {
   readonly data: { [key: string]: HandlerRequest | HandlerResponse } // key is request/response ID
 }
 
-function generateRandomKey(): string { // FIXME replace with something better
-  let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
-  for (let i = 0; i < 16; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length))
-  }
-
-  return result
+function generateRandomKey(): string {
+  return Math.random().toString(36).substring(3)
 }
 
 function validateEnvelope(envelope: any): Error | undefined {
