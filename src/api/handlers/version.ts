@@ -20,7 +20,7 @@ export default class Version implements Handler {
     return name
   }
 
-  async handle(request: HandlerRequest): Promise<VersionResponse> {
+  handle(request: HandlerRequest): VersionResponse {
     return {
       payload: {
         version: chrome.runtime.getManifest().version,

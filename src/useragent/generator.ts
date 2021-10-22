@@ -7,6 +7,10 @@ import {
   randomSafariVersion,
 } from './versions'
 
+export interface UseragentGenerator {
+  generate(allowedTypes: GeneratorType[]): string
+}
+
 export enum GeneratorType { // do NOT forget to update LOCALES on keys changes or appending (enum value == l18n key)
   edgeWin = 'edge_win',
   chromeWin = 'chrome_win',

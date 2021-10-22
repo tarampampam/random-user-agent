@@ -27,7 +27,7 @@ export default class GetJSProtectionEnabled implements Handler {
     return name
   }
 
-  async handle(request: HandlerRequest): Promise<GetJSProtectionEnabledResponse> {
+  handle(request: HandlerRequest): GetJSProtectionEnabledResponse {
     return {
       payload: {
         enabled: this.settings.isJavascriptProtectionEnabled(),

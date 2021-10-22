@@ -1,5 +1,6 @@
 import {Handler, HandlerRequest, HandlerResponse} from './handlers'
 import Settings, {BlacklistMode} from '../../settings/settings'
+import FilterService from '../../services/filter-service'
 
 const name: string = 'enabled-for-domain'
 
@@ -25,34 +26,20 @@ export function enabledForDomain(domain: string): EnabledForDomainRequest {
 }
 
 export default class EnabledForDomain implements Handler {
-  private readonly settings: Settings
+  private readonly filterService: FilterService
 
-  constructor(settings: Settings) {
-    this.settings = settings
+  constructor(filterService: FilterService) {
+    this.filterService = filterService
   }
 
   name(): string {
     return name
   }
 
-  async handle(request: EnabledForDomainRequest): Promise<EnabledForDomainResponse> {
-    const current = this.settings.getBlacklistDomains(), domain = request.payload.domain
-
-    let enabled: boolean = false
-
-    switch (this.settings.getBlacklistMode()) {
-      case BlacklistMode.BlackList: // enabled by default, but disabled ONLY if the domain in the domains list
-        enabled = !current.includes(domain)
-        break
-
-      case BlacklistMode.WhiteList: // disabled by default, but enabled ONLY if the domain in the domains list
-        enabled = current.includes(domain)
-        break
-    }
-
+  handle(request: EnabledForDomainRequest): EnabledForDomainResponse {
     return {
       payload: {
-        enabled: enabled,
+        enabled: this.filterService.enabledForDomain(request.payload.domain),
       },
     }
   }

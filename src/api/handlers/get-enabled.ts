@@ -27,7 +27,7 @@ export default class GetEnabled implements Handler {
     return name
   }
 
-  async handle(request: HandlerRequest): Promise<GetEnabledResponse> {
+  handle(request: HandlerRequest): GetEnabledResponse {
     return {
       payload: {
         enabled: this.settings.isEnabled(),

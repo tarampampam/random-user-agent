@@ -33,7 +33,7 @@ export default class SetEnabled implements Handler {
     return name
   }
 
-  async handle(request: SetEnabledRequest): Promise<SetEnabledResponse> {
+  handle(request: SetEnabledRequest): SetEnabledResponse {
     this.settings.setEnabled(request.payload.enabled)
 
     return {

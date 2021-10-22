@@ -8,7 +8,7 @@ interface Envelope {
   readonly data: { [key: string]: HandlerRequest | HandlerResponse } // key is request/response ID
 }
 
-function generateRandomKey(): string {
+function generateRandomKey(): string { // FIXME replace with something better
   let result = ''
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -90,26 +90,28 @@ export class RuntimeSender implements Sender {
 type ErrorsHandler = (err: Error) => void
 
 export class RuntimeReceiver implements Receiver {
-  private readonly errorsHandler: ErrorsHandler
   private readonly router: Router
+  private readonly errorsHandler: ErrorsHandler
 
-  constructor(errorsHandler: ErrorsHandler, router: Router) {
+  constructor(router: Router, errorsHandler: ErrorsHandler) {
     this.errorsHandler = errorsHandler
     this.router = router
   }
 
   listen(): void {
-    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): boolean => {
+    // Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object.
+    // If you have more than one onMessage listener in the same document, then only one may send a response. This
+    // function becomes invalid when the event listener returns, UNLESS YOU RETURN TRUE from the event listener to
+    // indicate you wish to send a response asynchronously (this will keep the message channel open to the other end
+    // until sendResponse is called).
+    // docs: https://developer.chrome.com/docs/extensions/reference/runtime/#event-onMessage
+    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): void => {
       const lastError = chrome.runtime.lastError, validationError = validateEnvelope(message)
 
       if (lastError) {
-        this.errorsHandler(new Error(lastError.message))
-
-        return false
+        return this.errorsHandler(new Error(lastError.message))
       } else if (validationError !== undefined) {
-        this.errorsHandler(validationError)
-
-        return false
+        return this.errorsHandler(validationError)
       }
 
       const response: Envelope = {
@@ -117,27 +119,16 @@ export class RuntimeReceiver implements Receiver {
         data: {},
       }
 
-      const promises: Promise<HandlerResponse>[] = []
-
       for (const [id, req] of Object.entries((message as Envelope).data)) {
-        promises.push(new Promise<HandlerResponse>((resolve, reject) => {
-          this.router.handle(req as HandlerRequest)
-            .then((handlerResponse): void => {
-              response.data[id] = handlerResponse
-
-              resolve(handlerResponse)
-            })
-            .catch(reject)
-        }))
+        response.data[id] = this.router.handle(req as HandlerRequest)
       }
 
-      Promise.all(promises)
-        .then((): void => reply(response))
-        .catch(this.errorsHandler)
+      reply(response) // sync call
 
       // return true from the event listener to indicate you wish to send a response asynchronously
       // (this will keep the message channel open to the other end until sendResponse is called)
-      return true
+      //
+      // return true
     })
   }
 }

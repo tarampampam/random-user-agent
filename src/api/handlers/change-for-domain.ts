@@ -1,5 +1,6 @@
 import {Handler, HandlerRequest, HandlerResponse} from './handlers'
 import Settings, {BlacklistMode} from '../../settings/settings'
+import FilterService from '../../services/filter-service'
 
 const name: string = 'change-for-domain'
 
@@ -27,59 +28,21 @@ export function changeForDomain(domain: string, enable: boolean): ChangeForDomai
 }
 
 export default class ChangeForDomain implements Handler {
-  private readonly settings: Settings
+  private readonly filterService: FilterService
 
-  constructor(settings: Settings) {
-    this.settings = settings
+  constructor(filterService: FilterService) {
+    this.filterService = filterService
   }
 
   name(): string {
     return name
   }
 
-  async handle(request: ChangeForDomainRequest): Promise<ChangeForDomainResponse> {
-    if (request.payload.enable) { // enable switcher for the domain
-      switch (this.settings.getBlacklistMode()) {
-        case BlacklistMode.BlackList: // remove from the domains list
-          this.removeFromDomainsList(request.payload.domain)
-          break
-
-        case BlacklistMode.WhiteList: // append into the domains list
-          this.appendIntoDomainsList(request.payload.domain)
-          break
-      }
-    } else { // disable switcher for the domain
-      switch (this.settings.getBlacklistMode()) {
-        case BlacklistMode.BlackList: // append into the domains list
-          this.appendIntoDomainsList(request.payload.domain)
-          break
-
-        case BlacklistMode.WhiteList: // remove from the domains list
-          this.removeFromDomainsList(request.payload.domain)
-          break
-      }
-    }
+  handle(request: ChangeForDomainRequest): ChangeForDomainResponse {
+    this.filterService.changeForDomain(request.payload.domain, request.payload.enable)
 
     return {
       payload: {},
-    }
-  }
-
-  private removeFromDomainsList(domain: string): void {
-    const current = this.settings.getBlacklistDomains()
-
-    if (current.includes(domain)) {
-      this.settings.setBlacklistDomains(current.filter((iteratedDomain): boolean => iteratedDomain !== domain))
-    }
-  }
-
-  private appendIntoDomainsList(domain: string): void {
-    const current = this.settings.getBlacklistDomains()
-
-    if (!current.includes(domain)) {
-      current.push(domain)
-
-      this.settings.setBlacklistDomains(current)
     }
   }
 }

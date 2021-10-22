@@ -11,11 +11,11 @@ export interface HandlerResponse {
 
 export interface Handler {
   name(): string
-  handle(request: HandlerRequest): Promise<HandlerResponse>
+  handle(request: HandlerRequest): HandlerResponse
 }
 
 export interface Router {
-  handle(request: HandlerRequest): Promise<HandlerResponse>
+  handle(request: HandlerRequest): HandlerResponse
 }
 
 export class HandlersRouter implements Router {
@@ -27,15 +27,11 @@ export class HandlersRouter implements Router {
     })
   }
 
-  async handle(request: HandlerRequest): Promise<HandlerResponse> {
-    return new Promise<HandlerResponse>((resolve, reject) => {
-      if (!this.handlers.hasOwnProperty(request.method)) {
-        return reject(new Error(`Unregistered method requested: ${request.method}`))
-      }
+  handle(request: HandlerRequest): HandlerResponse {
+    if (!this.handlers.hasOwnProperty(request.method)) {
+      throw new Error(`Unregistered method requested: ${request.method}`)
+    }
 
-      this.handlers[request.method]
-        .handle(request)
-        .then(resolve)
-    })
+    return this.handlers[request.method].handle(request)
   }
 }

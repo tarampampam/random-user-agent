@@ -27,7 +27,7 @@ export default class GetUseragent implements Handler {
     return name
   }
 
-  async handle(request: HandlerRequest): Promise<GetUseragentResponse> {
+  handle(request: HandlerRequest): GetUseragentResponse {
     return {
       payload: {
         useragent: this.settings.getUserAgent(),
