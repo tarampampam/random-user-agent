@@ -13,6 +13,7 @@
     "128": "icons/logo/128.png"
   },
   "minimum_chrome_version": "49.0",
+  "incognito": "spanning",
 
   "browser_action": {
     "default_icon": "icons/logo/48.png",

@@ -15,6 +15,7 @@ _WIP_
 - dark theme `@media (prefers-color-scheme: dark) {`
 - sentry or something similar
 - Content script - mock `navigator.(product|platform|vendor)` properties
+- Content script - fix the detection
 
 ## Where can I check the functionality?
 

@@ -107,5 +107,3 @@ storage.init()
 chrome.runtime.onInstalled.addListener(() => {
   // TODO: migrate the old settings into a new format
 })
-
-
