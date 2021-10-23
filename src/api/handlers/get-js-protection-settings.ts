@@ -1,7 +1,7 @@
 import {Handler, HandlerRequest, HandlerResponse} from './handlers'
 import Settings from '../../settings/settings'
 
-const name: string = 'get-js-protection-enabled'
+const name: string = 'get-js-protection-settings'
 
 export interface GetJSProtectionEnabledResponse extends HandlerResponse {
   payload: {
@@ -9,14 +9,14 @@ export interface GetJSProtectionEnabledResponse extends HandlerResponse {
   }
 }
 
-export function getJSProtectionEnabled(): HandlerRequest {
+export function getJsProtectionSettings(): HandlerRequest {
   return {
     method: name,
     payload: {},
   }
 }
 
-export default class GetJSProtectionEnabled implements Handler {
+export default class GetJSProtectionSettings implements Handler {
   private readonly settings: Settings
 
   constructor(settings: Settings) {

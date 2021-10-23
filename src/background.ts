@@ -11,12 +11,13 @@ import Timer from './utils/timer'
 import RenewUseragent from './api/handlers/renew-useragent'
 import EnabledForDomain from './api/handlers/enabled-for-domain'
 import ChangeForDomain from './api/handlers/change-for-domain'
-import GetJSProtectionEnabled from './api/handlers/get-js-protection-enabled'
+import GetJSProtectionSettings from './api/handlers/get-js-protection-settings'
 import ApplicableToURI from './api/handlers/applicable-to-uri'
 import UseragentService from './services/useragent-service'
 import Generator from './useragent/generator'
 import FilterService from './services/filter-service'
 import BeforeSendHeaders from './hooks/before-send-headers'
+import GetRenewSettings from './api/handlers/get-renew-settings'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -88,11 +89,12 @@ storage.init()
             new GetEnabled(settings),
             new SetEnabled(settings),
             new GetUseragent(settings),
-            new GetJSProtectionEnabled(settings),
+            new GetJSProtectionSettings(settings),
             new RenewUseragent(useragentService),
             new EnabledForDomain(filterService),
             new ChangeForDomain(filterService),
             new ApplicableToURI(filterService),
+            new GetRenewSettings(settings),
           ),
           errorsHandler,
         ).listen()

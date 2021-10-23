@@ -4,37 +4,30 @@
   <p>Change the behavior of the switcher to best fit your needs:</p>
 
   <ul class="list">
-    <li>
-      <label for="id_1">Enable Agent switcher</label>
-      <p class="control"><input type="checkbox" id="id_1"></p>
-    </li>
-    <li>
-      <label for="id_2">Automatically change the User-Agent after specified period of time</label>
-      <p class="control"><input type="checkbox" id="id_2"></p>
-    </li>
-    <li>
-      <label for="id_3">Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)</label>
-      <p class="control"><input type="number" id="id_3" min="1" max="86400" placeholder="60"></p>
-    </li>
-    <li>
-      <label for="id_4">Hide real User-Agent from detection by javascript</label>
-      <p class="control"><input type="checkbox" id="id_4"></p>
-    </li>
-    <li>
-      <label for="id_5">Change User-Agent on browser startup</label>
-      <p class="control"><input type="checkbox" id="id_5"></p>
-    </li>
-    <li>
-      <label for="id_7">Use one of (in the randomized order) custom User-Agent instead generated</label>
-      <p class="control"><input type="checkbox" id="id_7"></p>
-    </li>
-    <li>
-      <div>
-        <label for="id_6">Custom User-Agents (set a specific User-Agents, one per line):</label>
-        <textarea id="id_6" rows="3"
-                  placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"></textarea>
-      </div>
-    </li>
+    <list-checkbox caption="Enable Agent switcher"
+                   :checked="settings.enabled"
+                   @change="test"/>
+    <list-checkbox caption="Automatically change the User-Agent after specified period of time"
+                   :checked="settings.renew.enabled"
+                   @change="test"/>
+    <list-number caption="Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)"
+                 :minimum="1"
+                 :maximum="86400"
+                 :placeholder="60"
+                 :value="settings.renew.intervalMillis / 1000"
+                 @change="test"/>
+    <list-checkbox caption="Change User-Agent on browser startup"
+                   :checked="settings.renew.onStartup"
+                   @change="test"/>
+    <list-checkbox caption="Hide real User-Agent from detection by javascript"
+                   :checked="settings.jsProtection.enabled"
+                   @change="test"/>
+    <list-checkbox caption="Use one of (in the randomized order) custom User-Agent instead generated"
+                   :checked="true"
+                   @change="test"/>
+    <list-textarea caption="Custom User-Agents (set a specific User-Agents, one per line):"
+                   placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
+                   @change="test"/>
   </ul>
 
   <h2>Generator settings</h2>
@@ -62,55 +55,87 @@
   <h2>Blacklist settings</h2>
 
   <p>
-    Blacklist mode - switching enabled everywhere, except the defined rules. Whitelist - on the contrary, disabled
-    everywhere except the specified rules:
+    Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary,
+    disabled everywhere except the specified domains & rules:
   </p>
 
   <ul class="list">
-    <li>
-      <label for="bl_1">Whitelist mode (disabled - blacklist mode, enabled - whitelist mode)</label>
-      <p class="control"><input type="checkbox" id="bl_1"></p>
-    </li>
-    <li>
-      <div>
-        <label for="bl_2">Domain names list (one per line):</label>
-        <textarea id="bl_2" rows="5" placeholder="docs.google.com"></textarea>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label for="bl_3">Custom rules (one per line):</label>
-        <textarea id="bl_3" rows="5" placeholder="http?://*google.com/*"></textarea>
-        <p class="hint">
-          You can use wildcards such as * and ?. * will match any length of characters
+    <list-checkbox caption="Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)"
+                   :checked="true"
+                   @change="test"/>
+    <list-textarea caption="Domain names list (one per line):"
+                   placeholder="docs.google.com"
+                   @change="test"/>
+    <list-textarea caption="Custom rules (one per line):"
+                   placeholder="http?://*google.com/*"
+                   @change="test"
+                   hint="You can use wildcards such as * and ?. * will match any length of characters
           (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single
           character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com,
-          etc.)
-        </p>
-      </div>
-    </li>
+          etc.)"/>
   </ul>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from './mixins/i18n'
+import ListCheckbox from './components/options/list-checkbox.vue'
+import ListTextarea from './components/options/list-textarea.vue'
+import ListNumber from './components/options/list-number.vue'
+import {Sender} from '../api/transport/transport'
+import {RuntimeSender} from '../api/transport/runtime'
+import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
+import {getRenewSettings, GetRenewSettingsResponse} from '../api/handlers/get-renew-settings'
+import {GetJSProtectionEnabledResponse, getJsProtectionSettings} from '../api/handlers/get-js-protection-settings'
+
+const errorsHandler: (err: Error) => void = console.error,
+  backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
-    //
+    'list-checkbox': ListCheckbox,
+    'list-number': ListNumber,
+    'list-textarea': ListTextarea,
   },
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
-      //
+      settings: {
+        enabled: false,
+        renew: {
+          enabled: false,
+          intervalMillis: 0,
+          onStartup: false,
+        },
+        jsProtection: {
+          enabled: false,
+        },
+      }
     }
   },
   methods: {
-    //
+    test(...args): void {
+      console.warn(...args)
+    },
   },
   created(): void {
-    //
+    backend
+      .send( // order is important!
+        getEnabled(),
+        getRenewSettings(),
+        getJsProtectionSettings(),
+      )
+    .then((resp): void => {
+      this.settings.enabled = (resp[0] as GetEnabledResponse).payload.enabled
+
+      const renew = resp[1] as GetRenewSettingsResponse
+      this.settings.renew.enabled = renew.payload.enabled
+      this.settings.renew.intervalMillis = renew.payload.intervalMillis
+      this.settings.renew.onStartup = renew.payload.onStartup
+
+      this.settings.jsProtection.enabled = (resp[2] as GetJSProtectionEnabledResponse).payload.enabled
+    })
+    .catch(errorsHandler)
   },
   mounted(): void {
     //
@@ -119,22 +144,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$scrollbar-width: 8px;
-
 :root {
   --main-bg-color: #fff;
-  --main-fg-color: #111;
+  --main-text-color: #111;
   --scrollbar-color: #aaa;
   --rows-separator-color: #eee;
   --input-border-color: #ccc;
   --placeholder-color: #bbb;
   --hint-color: #666;
+  --scrollbar-width: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --main-bg-color: #23222b;
-    --main-fg-color: #fbfbfe;
+    --main-text-color: #fbfbfe;
     --scrollbar-color: #666;
     --rows-separator-color: #4e4d54;
     --input-border-color: #5e5c65;
@@ -144,13 +168,13 @@ $scrollbar-width: 8px;
 }
 
 ::-webkit-scrollbar {
-  width: $scrollbar-width;
+  width: var(--scrollbar-width);
 }
 
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
-  border-radius: $scrollbar-width;
+  border-radius: var(--scrollbar-width);
   background-color: var(--scrollbar-color);
 }
 
@@ -162,98 +186,43 @@ html, body {
   font-size: 12px;
   min-width: 500px;
   background-color: var(--main-bg-color);
-  color: var(--main-fg-color);
+  color: var(--main-text-color);
 }
 
 body {
   padding: 0 2em;
 }
 
-input, textarea {
-  outline: none;
-  box-shadow: none;
-  box-sizing: border-box;
-  margin: 0;
-  border-width: 1px;
-  background-color: var(--main-bg-color);
-  color: var(--main-fg-color);
-  border-color: var(--input-border-color);
-  border-radius: 3px;
-}
-
-input[type=number] {
-  width: 5.5em;
-}
-
-label {
-  font-weight: 400;
-}
-
 ul {
   list-style: none;
   padding: 0;
-}
 
-.hint {
-  padding: .3em 0;
-  font-size: .9em;
-  color: var(--hint-color);
-}
+  &.list {
+    li {
+      padding: 1em 0;
 
-ul.list {
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em 0;
-
-    * {
-      margin: 0;
-    }
-
-    div {
-      width: 100%;
-    }
-
-    textarea {
-      display: block;
-      width: 100%;
-      min-height: 4em;
-      resize: vertical;
-      font-size: .8em;
-      padding: .7em .5em;
-      margin-top: .5em;
-
-      &::placeholder {
-        color: var(--placeholder-color);
+      &:not(:last-child) {
+        border: solid var(--rows-separator-color);
+        border-width: 0 0 1px 0;
       }
     }
-
-    .control {
-      padding-left: 2em;
-    }
-
-    &:not(:last-child) {
-      border: solid var(--rows-separator-color);
-      border-width: 0 0 1px 0;
-    }
   }
-}
 
-ul.set {
-  columns: 3;
+  &.set {
+    columns: 3;
 
-  li {
-    break-inside: avoid-column;
+    li {
+      break-inside: avoid-column;
 
-    padding: .5em 0;
+      padding: .5em 0;
 
-    label {
-      display: flex;
-      align-items: center;
+      label {
+        display: flex;
+        align-items: center;
 
-      input {
-        margin-right: .2em;
+        input {
+          margin-right: .2em;
+        }
       }
     }
   }

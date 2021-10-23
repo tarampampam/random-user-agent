@@ -1,12 +1,12 @@
 import {RuntimeSender} from './api/transport/runtime'
 import {applicableToURI, ApplicableToURIResponse} from './api/handlers/applicable-to-uri'
-import {getJSProtectionEnabled, GetJSProtectionEnabledResponse} from './api/handlers/get-js-protection-enabled'
+import {getJsProtectionSettings, GetJSProtectionEnabledResponse} from './api/handlers/get-js-protection-settings'
 import {getUseragent, GetUseragentResponse} from './api/handlers/get-useragent'
 
 new RuntimeSender()
   .send( // order is important!
     applicableToURI(window.location.href),
-    getJSProtectionEnabled(),
+    getJsProtectionSettings(),
     getUseragent(),
   )
   .then((resp): void => {
