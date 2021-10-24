@@ -51,6 +51,7 @@
     "roots": [
       "src"
     ],
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.ts$": "ts-jest"
     }
