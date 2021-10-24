@@ -9,9 +9,9 @@ export default class FilterService {
   }
 
   enabledForDomain(domain: string): boolean {
-    const current = this.settings.getBlacklistDomains()
+    const current = this.settings.get().blacklist.domains
 
-    switch (this.settings.getBlacklistMode()) {
+    switch (this.settings.get().blacklist.mode) {
       case BlacklistMode.BlackList: // enabled by default, but disabled ONLY if the domain in the domains list
         return !current.includes(domain)
 
@@ -24,7 +24,7 @@ export default class FilterService {
 
   changeForDomain(domain: string, enable: boolean): void {
     if (enable) { // enable switcher for the domain
-      switch (this.settings.getBlacklistMode()) {
+      switch (this.settings.get().blacklist.mode) {
         case BlacklistMode.BlackList: // remove from the domains list
           this.removeFromDomainsList(domain)
           break
@@ -34,7 +34,7 @@ export default class FilterService {
           break
       }
     } else { // disable switcher for the domain
-      switch (this.settings.getBlacklistMode()) {
+      switch (this.settings.get().blacklist.mode) {
         case BlacklistMode.BlackList: // append into the domains list
           this.appendIntoDomainsList(domain)
           break
@@ -47,30 +47,38 @@ export default class FilterService {
   }
 
   private removeFromDomainsList(domain: string): void {
-    const current = this.settings.getBlacklistDomains()
+    const current = this.settings.get().blacklist.domains
 
     if (current.includes(domain)) {
-      this.settings.setBlacklistDomains(current.filter((iteratedDomain): boolean => iteratedDomain !== domain))
+      this.settings.update({
+        blacklist: {
+          domains: current.filter((iteratedDomain): boolean => iteratedDomain !== domain),
+        },
+      })
     }
   }
 
   private appendIntoDomainsList(domain: string): void {
-    const current = this.settings.getBlacklistDomains()
+    const current = this.settings.get().blacklist.domains
 
     if (!current.includes(domain)) {
       current.push(domain)
 
-      this.settings.setBlacklistDomains(current)
+      this.settings.update({
+        blacklist: {
+          domains: current,
+        },
+      })
     }
   }
 
   applicableToURI(uri: string): boolean {
-    if (this.settings.isEnabled()) {
+    if (this.settings.get().enabled) {
       const domain = FilterService.extractDomainFromUri(uri),
-        domains = this.settings.getBlacklistDomains(),
-        rules = this.settings.getBlacklistCustomRules()
+        domains = this.settings.get().blacklist.domains,
+        rules = this.settings.get().blacklist.custom.rules
 
-      switch (this.settings.getBlacklistMode()) {
+      switch (this.settings.get().blacklist.mode) {
         case BlacklistMode.BlackList:
           if (domain.length > 0 && domains.includes(domain)) {
             return false

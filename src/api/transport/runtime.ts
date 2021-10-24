@@ -98,7 +98,7 @@ export class RuntimeReceiver implements Receiver {
     // indicate you wish to send a response asynchronously (this will keep the message channel open to the other end
     // until sendResponse is called).
     // docs: https://developer.chrome.com/docs/extensions/reference/runtime/#event-onMessage
-    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): void => {
+    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): void | true => {
       const lastError = chrome.runtime.lastError, validationError = validateEnvelope(message)
 
       if (lastError) {

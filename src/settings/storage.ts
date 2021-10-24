@@ -29,7 +29,7 @@ export default class BrowserStorage implements Storage {
           ? chrome.storage.local
           : chrome.storage.sync
 
-        return resolve()
+        resolve()
       })
     })
   }

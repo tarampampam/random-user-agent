@@ -3,21 +3,18 @@ import {HandlersRouter} from './api/handlers/handlers'
 import Version from './api/handlers/version'
 import BrowserStorage from './settings/storage'
 import Settings, {SettingEvent} from './settings/settings'
-import GetEnabled from './api/handlers/get-enabled'
-import SetEnabled from './api/handlers/set-enabled'
-import GetUseragent from './api/handlers/get-useragent'
 import {IconState, setExtensionIcon} from './utils/icon'
 import Timer from './utils/timer'
 import RenewUseragent from './api/handlers/renew-useragent'
 import EnabledForDomain from './api/handlers/enabled-for-domain'
 import ChangeForDomain from './api/handlers/change-for-domain'
-import GetJSProtectionSettings from './api/handlers/get-js-protection-settings'
 import ApplicableToURI from './api/handlers/applicable-to-uri'
 import UseragentService from './services/useragent-service'
 import Generator from './useragent/generator'
 import FilterService from './services/filter-service'
 import BeforeSendHeaders from './hooks/before-send-headers'
-import GetRenewSettings from './api/handlers/get-renew-settings'
+import UpdateSettings from './api/handlers/update-settings'
+import GetSettings from './api/handlers/get-settings'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -34,36 +31,36 @@ storage.init()
     settings.load()
       .then(() => {
         // update extension icon on startup
-        setExtensionIcon(settings.isEnabled() ? IconState.Active : IconState.Inactive)
+        setExtensionIcon(settings.get().enabled ? IconState.Active : IconState.Inactive)
 
         // create all required services
         const useragentService = new UseragentService(settings, new Generator())
         const filterService = new FilterService(settings)
 
         // start the useragent auto-renewal interval
-        const renewalTimer = new Timer(settings.getRenewalIntervalMillis(), (): void => {
+        const renewalTimer = new Timer(settings.get().renew.intervalMillis, (): void => {
           useragentService.renew()
         })
 
         // renew the useragent on startup, if needed
-        if (settings.isRenewalOnStartupEnabled()) {
+        if (settings.get().renew.onStartup) {
           useragentService.renew()
         }
 
         // start the renewal timer, if extension and this feature are enabled
-        if (settings.isEnabled() && settings.isRenewalEnabled()) {
+        if (settings.get().enabled && settings.get().renew.enabled) {
           renewalTimer.start()
         }
 
         // subscribe for the settings changes
         settings.on(SettingEvent.onChange, (): void => {
           // update extension icon state
-          setExtensionIcon(settings.isEnabled() ? IconState.Active : IconState.Inactive)
+          setExtensionIcon(settings.get().enabled ? IconState.Active : IconState.Inactive)
 
-          if (settings.isEnabled()) {
-            if (settings.isRenewalEnabled()) {
+          if (settings.get().enabled) {
+            if (settings.get().renew.enabled) {
               // update renewal interval, if needed
-              const currentInterval = settings.getRenewalIntervalMillis()
+              const currentInterval = settings.get().renew.intervalMillis
               if (renewalTimer.getIntervalMillis() !== currentInterval) {
                 renewalTimer.setIntervalMillis(currentInterval)
               }
@@ -86,15 +83,12 @@ storage.init()
         new RuntimeReceiver(
           new HandlersRouter( // register all handlers here
             new Version,
-            new GetEnabled(settings),
-            new SetEnabled(settings),
-            new GetUseragent(settings),
-            new GetJSProtectionSettings(settings),
+            new GetSettings(settings),
+            new UpdateSettings(settings),
             new RenewUseragent(useragentService),
             new EnabledForDomain(filterService),
             new ChangeForDomain(filterService),
             new ApplicableToURI(filterService),
-            new GetRenewSettings(settings),
           ),
           errorsHandler,
         ).listen()

@@ -16,16 +16,16 @@ export default class UseragentService {
     previous: string | undefined
     new: string
   } {
-    const previous = this.settings.getUserAgent()
+    const previous = this.settings.get().useragent
 
-    if (this.settings.isCustomUserAgentEnabled()) {
-      const list: string[] = this.settings.getCustomUserAgentsList()
+    if (this.settings.get().customUseragent.enabled) {
+      const list: string[] = this.settings.get().customUseragent.list
 
       if (list.length > 0) {
         const random: string = list[Math.floor(Math.random() * list.length)]
 
         if (random.trim().length > 0) {
-          this.settings.setUserAgent(random)
+          this.settings.update({useragent: random})
 
           return {
             source: 'custom_agents_list',
@@ -36,9 +36,9 @@ export default class UseragentService {
       }
     }
 
-    const generated = this.generator.generate(this.settings.getGeneratorTypes())
+    const generated = this.generator.generate(this.settings.get().generator.types)
 
-    this.settings.setUserAgent(generated)
+    this.settings.update({useragent: generated})
 
     return {
       source: 'generator',

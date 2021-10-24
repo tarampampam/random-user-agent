@@ -1,18 +1,18 @@
 import {RuntimeSender} from './api/transport/runtime'
 import {applicableToURI, ApplicableToURIResponse} from './api/handlers/applicable-to-uri'
-import {getJsProtectionSettings, GetJSProtectionEnabledResponse} from './api/handlers/get-js-protection-settings'
-import {getUseragent, GetUseragentResponse} from './api/handlers/get-useragent'
+import {getSettings, GetSettingsResponse} from './api/handlers/get-settings'
 
 new RuntimeSender()
   .send( // order is important!
     applicableToURI(window.location.href),
-    getJsProtectionSettings(),
-    getUseragent(),
+    getSettings(),
   )
   .then((resp): void => {
     const applicable = (resp[0] as ApplicableToURIResponse).payload.applicable
-    const jsProtectionEnabled = (resp[1] as GetJSProtectionEnabledResponse).payload.enabled
-    const useragent = (resp[2] as GetUseragentResponse).payload.useragent
+
+    const settings = (resp[0] as GetSettingsResponse).payload
+    const jsProtectionEnabled = settings.jsProtection.enabled
+    const useragent = settings.useragent
 
     if (applicable && jsProtectionEnabled) {
       const script = document.createElement('script'),

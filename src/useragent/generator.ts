@@ -130,6 +130,9 @@ export default class Generator {
     return list[Math.floor(Math.random() * list.length)]
   }
 
+  /**
+   * @throws Error When unsupported generator type requested
+   */
   generate(allowedTypes: GeneratorType[]): string {
     if (allowedTypes.length === 0) {
       allowedTypes = [GeneratorType.chromeWin, GeneratorType.chromeLinux, GeneratorType.chromeMac] // fallback
@@ -196,8 +199,9 @@ export default class Generator {
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
           .replaceAll(versionToken, randomChromeVersion.version())
           + ' Edg/' + randomEdgeVersion.version()
-    }
 
-    return ''
+      default:
+        throw new Error('Unsupported type requested')
+    }
   }
 }

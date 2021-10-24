@@ -22,12 +22,11 @@ import PopupFooter from './components/popup/footer.vue'
 import {version, VersionResponse} from '../api/handlers/version'
 import {RuntimeSender} from '../api/transport/runtime'
 import {Sender} from '../api/transport/transport'
-import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
-import {setEnabled} from '../api/handlers/set-enabled'
-import {getUseragent, GetUseragentResponse} from '../api/handlers/get-useragent'
 import {renewUseragent, RenewUseragentResponse} from '../api/handlers/renew-useragent'
 import {enabledForDomain, EnabledForDomainResponse} from '../api/handlers/enabled-for-domain'
 import {changeForDomain} from '../api/handlers/change-for-domain'
+import {updateSettings} from '../api/handlers/update-settings'
+import {getSettings, GetSettingsResponse} from '../api/handlers/get-settings'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -71,7 +70,7 @@ export default defineComponent({
 
     changeEnabled(): void {
       backend
-        .send(setEnabled(!this.enabled))
+        .send(updateSettings({enabled: !this.enabled}))
         .then((): void => {
           this.enabled = !this.enabled
         })
@@ -97,13 +96,14 @@ export default defineComponent({
     backend
       .send( // order is important!
         version(),
-        getEnabled(),
-        getUseragent(),
+        getSettings(),
       )
       .then((resp): void => { // update the current states
         this.version = (resp[0] as VersionResponse).payload.version
-        this.enabled = (resp[1] as GetEnabledResponse).payload.enabled
-        this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
+
+        const settings = (resp[1] as GetSettingsResponse).payload
+        this.enabled = settings.enabled
+        this.useragent = settings.useragent || ''
       })
       .catch(errorsHandler)
 
@@ -129,14 +129,15 @@ export default defineComponent({
     window.setInterval((): void => {
       backend
         .send( // order is important!
-          getUseragent(),
-          getEnabled(),
+          getSettings(),
           enabledForDomain(this.currentPageDomain),
         )
         .then((resp): void => {
-          this.useragent = (resp[0] as GetUseragentResponse).payload.useragent || ''
-          this.enabled = (resp[1] as GetEnabledResponse).payload.enabled
-          this.enabledOnThisDomain = (resp[2] as EnabledForDomainResponse).payload.enabled
+          const settings = (resp[0] as GetSettingsResponse).payload
+          this.useragent = settings.useragent || ''
+          this.enabled = settings.enabled
+
+          this.enabledOnThisDomain = (resp[1] as EnabledForDomainResponse).payload.enabled
         })
         .catch(errorsHandler)
     }, 500) // twice in a one second

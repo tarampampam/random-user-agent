@@ -84,9 +84,7 @@ import ListTextarea from './components/options/list-textarea.vue'
 import ListNumber from './components/options/list-number.vue'
 import {Sender} from '../api/transport/transport'
 import {RuntimeSender} from '../api/transport/runtime'
-import {getEnabled, GetEnabledResponse} from '../api/handlers/get-enabled'
-import {getRenewSettings, GetRenewSettingsResponse} from '../api/handlers/get-renew-settings'
-import {GetJSProtectionEnabledResponse, getJsProtectionSettings} from '../api/handlers/get-js-protection-settings'
+import {getSettings, GetSettingsResponse} from '../api/handlers/get-settings'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -121,19 +119,17 @@ export default defineComponent({
   created(): void {
     backend
       .send( // order is important!
-        getEnabled(),
-        getRenewSettings(),
-        getJsProtectionSettings(),
+        getSettings(),
       )
     .then((resp): void => {
-      this.settings.enabled = (resp[0] as GetEnabledResponse).payload.enabled
+      const settings = (resp[0] as GetSettingsResponse).payload
 
-      const renew = resp[1] as GetRenewSettingsResponse
-      this.settings.renew.enabled = renew.payload.enabled
-      this.settings.renew.intervalMillis = renew.payload.intervalMillis
-      this.settings.renew.onStartup = renew.payload.onStartup
+      this.settings.enabled = settings.enabled
+      this.settings.renew.enabled = settings.renew.enabled
+      this.settings.renew.intervalMillis = settings.renew.intervalMillis
+      this.settings.renew.onStartup = settings.renew.onStartup
 
-      this.settings.jsProtection.enabled = (resp[2] as GetJSProtectionEnabledResponse).payload.enabled
+      this.settings.jsProtection.enabled = settings.jsProtection.enabled
     })
     .catch(errorsHandler)
   },
