@@ -11,30 +11,33 @@
     "message": "Randomize your User-Agent",
     "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
-  "active_user_agent": {
-    "message": "Active User-Agent"
-  },
-  "pause_switcher": {
-    "message": "Pause Switcher"
-  },
-  "unpause_switcher": {
-    "message": "Resume Switcher"
-  },
-  "enabled_on_this_domain": {
-    "message": "Enabled on this domain"
-  },
-  "get_new_agent": {
-    "message": "Get new agent"
-  },
-  "open_settings": {
-    "message": "Open settings"
-  },
-  "make_donation": {
-    "message": "Donate"
-  },
-  "bug_report": {
-    "message": "Bug report"
-  },
+
+  "active_user_agent": {"message": "Active User-Agent"},
+  "pause_switcher": {"message": "Pause Switcher"},
+  "unpause_switcher": {"message": "Resume Switcher"},
+  "enable_switcher": {"message": "Enable Switcher"},
+  "enabled_on_this_domain": {"message": "Enabled on this domain"},
+  "get_new_agent": {"message": "Get new agent"},
+  "open_settings": {"message": "Open settings"},
+  "make_donation": {"message": "Donate"},
+  "bug_report": {"message": "Bug report"},
+
+  "general_settings": {"message": "General settings"},
+  "general_settings_hint": {"message": "Change the behavior of the switcher to best fit your needs"},
+  "auto_renew": {"message": "Automatically change the User-Agent after specified period of time"},
+  "auto_renew_interval": {"message": "Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)"},
+  "auto_renew_on_startup": {"message": "Change User-Agent on browser startup"},
+  "js_protection": {"message": "Protect against detection by JavaScript"},
+  "custom_useragent": {"message": "Use one of (in the randomized order) custom User-Agent instead generated"},
+  "custom_useragent_list": {"message": "Custom User-Agents (set a specific User-Agents, one per line)"},
+  "generator_settings": {"message": "Generator settings"},
+  "generator_settings_hint": {"message": "Here you can change the agent switching behavior"},
+  "blacklist_settings": {"message": "Blacklist settings"},
+  "blacklist_settings_hint": {"message": "Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules"},
+  "white_black_list_mode": {"message": "Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)"},
+  "blacklist_domains": {"message": "Domain names list (one per line)"},
+  "blacklist_custom_rules": {"message": "Custom rules (one per line)"},
+  "blacklist_custom_rules_hint": {"message": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"},
 
   "edge_win": {"message": "Edge on Windows"},
   "chrome_win": {"message": "Chrome on Windows"},

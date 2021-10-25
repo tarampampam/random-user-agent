@@ -17,22 +17,17 @@ new RuntimeSender()
     const jsProtectionEnabled = settings.jsProtection.enabled
 
     if (applicable && jsProtectionEnabled) {
-      const script = document.createElement('script'),
-        parent = document.head || document.documentElement
+      const script = document.createElement('script'), parent = document.head || document.documentElement
 
       script.textContent = '(' + function (useragent: string): void {
         if (typeof window === 'object' && typeof window.navigator === 'object') {
           console.log('setup fake UA')
 
           Object.defineProperty(navigator, 'userAgent', {
-            get: function () {
-              return useragent
-            },
+            get: (): string => useragent,
           })
           Object.defineProperty(navigator, 'appVersion', {
-            get: function () {
-              return useragent
-            },
+            get: (): string => useragent,
           })
         }
       } + `)("${useragent}")`

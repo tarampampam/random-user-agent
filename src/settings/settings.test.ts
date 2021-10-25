@@ -63,6 +63,18 @@ describe('Settings working', (): void => {
     expect(emittedCounts[SettingEvent.onLoad]).toBe(1)
     expect(emittedCounts[SettingEvent.onSave]).toBe(2)
     expect(emittedCounts[SettingEvent.onChange]).toBe(1)
+
+    settings.update({blacklist: {domains: ['foo']}})
+
+    expect(emittedCounts[SettingEvent.onLoad]).toBe(1)
+    expect(emittedCounts[SettingEvent.onSave]).toBe(2)
+    expect(emittedCounts[SettingEvent.onChange]).toBe(2)
+
+    settings.update({blacklist: {domains: ['bar']}})
+
+    expect(emittedCounts[SettingEvent.onLoad]).toBe(1)
+    expect(emittedCounts[SettingEvent.onSave]).toBe(2)
+    expect(emittedCounts[SettingEvent.onChange]).toBe(3)
   })
 
   test('Update root boolean property', (): void => {
@@ -85,7 +97,7 @@ describe('Settings working', (): void => {
     expect(settings.get().enabled).toBeFalsy()
   })
 
-  test('Update nested boolean property', (): void => {
+  test('Update nested property', (): void => {
     const settings = new Settings(new StorageMock)
 
     settings.update({blacklist: {domains: ['foo']}, renew: {intervalMillis: 100}})

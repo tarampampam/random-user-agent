@@ -10,7 +10,7 @@ export enum BlacklistMode {
   WhiteList = 'whitelist',
 }
 
-export interface SettingsState {
+export interface SettingsState { // undefined properties are not allowed here
   // Extension is enabled?
   enabled: boolean
   // User-agent renewal options
@@ -89,7 +89,7 @@ export default class Settings {
     },
     blacklist: {
       mode: BlacklistMode.BlackList,
-      domains: [],
+      domains: ['localhost', '127.0.0.1'],
       custom: {
         rules: ['chrome://*', 'file://*'],
       },
@@ -125,7 +125,7 @@ export default class Settings {
       this.storage.get(this.storageKey)
         .then((fromStorage) => {
           if (Object.keys(fromStorage).length !== 0) {
-            const [merged, _] = this.mergeStates(this.state, fromStorage)
+            const [merged, _] = this.mergeStates(JSON.parse(JSON.stringify(this.state)), fromStorage)
             this.state = merged
           }
 
@@ -157,8 +157,7 @@ export default class Settings {
 
   // Updates current state
   update(whatToUpdate: DeepPartial<SettingsState>): void {
-    const [merged, changesCount] = this.mergeStates(this.state, whatToUpdate)
-
+    const [merged, changesCount] = this.mergeStates(JSON.parse(JSON.stringify(this.state)), whatToUpdate)
     this.state = merged
 
     if (changesCount > 0) {
@@ -170,25 +169,21 @@ export default class Settings {
     let changes = 0
 
     for (const [key, value] of Object.entries(updated)) {
-      if (value === undefined) { // skip any undefined values
-        continue
-      }
-
-      if (current[key] !== undefined) {
-        if (typeof current[key] === 'object' && !Array.isArray(current[key])) {
+      if (value !== undefined && current[key] !== undefined) { // skip any undefined values
+        if (typeof value === 'object' && !Array.isArray(value) && typeof current[key] === 'object' && !Array.isArray(current[key])) {
           const [newState, changedCount] = this.mergeStates(current[key], value) // merge objects
 
           current[key] = newState
           changes += changedCount
-        } else {
-          if (current[key] !== value) {
+        } else if (Array.isArray(value) && Array.isArray(current[key])) {
+          if (JSON.stringify(value) !== JSON.stringify(current[key])) {
             current[key] = value // overwrite
             changes++
           }
+        } else if (current[key] !== value) {
+          current[key] = value // overwrite
+          changes++
         }
-      } else {
-        current[key] = value // append
-        changes++
       }
     }
 

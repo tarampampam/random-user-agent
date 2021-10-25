@@ -1,39 +1,39 @@
 <template>
-  <h1>General settings</h1>
+  <h1>{{ i18n('general_settings') }}</h1>
 
-  <p>Change the behavior of the switcher to best fit your needs:</p>
+  <p>{{ i18n('general_settings_hint') }}:</p>
 
   <ul class="list">
-    <list-checkbox caption="Enable Agent switcher"
+    <list-checkbox :caption="i18n('enable_switcher')"
                    :checked="enabled"
                    @change="saveEnabled"/>
-    <list-checkbox caption="Automatically change the User-Agent after specified period of time"
+    <list-checkbox :caption="i18n('auto_renew')"
                    :checked="renew_enabled"
                    @change="saveRenewEnabled"/>
-    <list-number caption="Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)"
+    <list-number :caption="i18n('auto_renew_interval')"
                  :minimum="1"
                  :maximum="86400"
                  :placeholder="60"
                  :value="Math.round(renew_intervalMillis / 1000)"
                  @change="saveRenewInterval"/>
-    <list-checkbox caption="Change User-Agent on browser startup"
+    <list-checkbox :caption="i18n('auto_renew_on_startup')"
                    :checked="renew_onStartup"
                    @change="saveRenewOnStartup"/>
-    <list-checkbox caption="Hide real User-Agent from detection by javascript"
+    <list-checkbox :caption="i18n('js_protection')"
                    :checked="jsProtection_enabled"
                    @change="saveJsProtectionEnabled"/>
-    <list-checkbox caption="Use one of (in the randomized order) custom User-Agent instead generated"
+    <list-checkbox :caption="i18n('custom_useragent')"
                    :checked="customUseragent_enabled"
                    @change="saveCustomUseragentEnabled"/>
-    <list-textarea caption="Custom User-Agents (set a specific User-Agents, one per line):"
+    <list-textarea :caption="i18n('custom_useragent_list') + ':'"
                    placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
                    :value="customUseragent_list"
                    @change="saveCustomUseragentList"/>
   </ul>
 
-  <h2>Generator settings</h2>
+  <h2>{{ i18n('generator_settings') }}</h2>
 
-  <p>Here you can change the agent switching behavior:</p>
+  <p>{{ i18n('generator_settings_hint') }}:</p>
 
   <ul class="set">
     <li v-for="generatorType in allGeneratorTypes">
@@ -46,27 +46,21 @@
     </li>
   </ul>
 
-  <h2>Blacklist settings</h2>
+  <h2>{{ i18n('blacklist_settings') }}</h2>
 
-  <p>
-    Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary,
-    disabled everywhere except the specified domains & rules:
-  </p>
+  <p>{{ i18n('blacklist_settings_hint') }}:</p>
 
   <ul class="list">
-    <list-checkbox caption="Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)"
+    <list-checkbox :caption="i18n('white_black_list_mode')"
                    :checked="blacklist_mode_whitelist"
                    @change="saveBlacklistMode"/>
-    <list-textarea caption="Domain names list (one per line):"
+    <list-textarea :caption="i18n('blacklist_domains') + ':'"
                    placeholder="docs.google.com"
                    :value="blacklist_domains"
                    @change="saveBlacklistDomainsList"/>
-    <list-textarea caption="Custom rules (one per line):"
+    <list-textarea :caption="i18n('blacklist_custom_rules') + ':'"
                    placeholder="http?://*google.com/*"
-                   hint="You can use wildcards such as * and ?. * will match any length of characters
-          (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single
-          character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com,
-          etc.)"
+                   :hint="i18n('blacklist_custom_rules_hint')"
                    :value="blacklist_custom_rules"
                    @change="saveBlacklistCustomRulesList"/>
   </ul>
@@ -83,7 +77,6 @@ import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settin
 import {GeneratorType, isValidType} from '../useragent/generator'
 import {BlacklistMode} from '../settings/settings'
 import {updateSettings} from '../messaging/handlers/update-settings'
-import {enabledForDomain, EnabledForDomainResponse} from '../messaging/handlers/enabled-for-domain'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender

@@ -51,7 +51,7 @@ export default class FilterService {
   }
 
   private removeFromDomainsList(domain: string): void {
-    const current = this.settings.get().blacklist.domains
+    const current = this.settings.get().blacklist.domains.slice(0)
 
     if (current.includes(domain)) {
       this.settings.update({
@@ -63,7 +63,7 @@ export default class FilterService {
   }
 
   private appendIntoDomainsList(domain: string): void {
-    const current = this.settings.get().blacklist.domains
+    const current = this.settings.get().blacklist.domains.slice(0)
 
     if (!current.includes(domain)) {
       current.push(domain)

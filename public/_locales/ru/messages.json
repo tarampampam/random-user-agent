@@ -1,0 +1,55 @@
+{
+  "manifest_name": {
+    "message": "Случайный User-Agent",
+    "description": "Maximum of 45 characters"
+  },
+  "manifest_description": {
+    "message": "Автоматически заменяет User-Agent через заданный промежуток времени на случайный, тем самым скрывая настоящий",
+    "description": "No HTML or other formatting; no more than 132 characters"
+  },
+  "manifest_action_default_title": {
+    "message": "Рандомизировать ваш User-Agent",
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+  },
+
+  "active_user_agent": {"message": "Текущий User-Agent"},
+  "pause_switcher": {"message": "Приостановить подмену"},
+  "unpause_switcher": {"message": "Возобновить подмену"},
+  "enable_switcher": {"message": "Включить подмену"},
+  "enabled_on_this_domain": {"message": "Включен на этом домене"},
+  "get_new_agent": {"message": "Установить новый"},
+  "open_settings": {"message": "Открыть настройки"},
+  "make_donation": {"message": "Купить автору кофе"},
+  "bug_report": {"message": "Сообщить об ошибке"},
+
+  "general_settings": {"message": "Основные настройки"},
+  "general_settings_hint": {"message": "Измените настройки работы расширения по вашему усмотрению"},
+  "auto_renew": {"message": "Автоматически обновлять User-Agent через заданный промежуток времени"},
+  "auto_renew_interval": {"message": "Период времени (в секундах) для автоматического обновления User-Agent (например, 1 час = 3600)"},
+  "auto_renew_on_startup": {"message": "Автоматически обновлять User-Agent при запуске браузера"},
+  "js_protection": {"message": "Скрывать настоящий User-Agent при определении средствами JavaScript"},
+  "custom_useragent": {"message": "Использовать один из следующих User-Agent (в случайном порядке) вместо автоматически генерируемого"},
+  "custom_useragent_list": {"message": "Список своих User-Agent (по одному на строку)"},
+  "generator_settings": {"message": "Настройки генератора"},
+  "generator_settings_hint": {"message": "Укажите те типы браузеров, User-Agent которых следует генерировать"},
+  "blacklist_settings": {"message": "Настройки черного списка"},
+  "blacklist_settings_hint": {"message": "При включении режима черного списка подмена включена везде, кроме перечисленных ниже доменов и правил; белый же список наоборот - подмена выключена везде, кроме указанных доменов и правил"},
+  "white_black_list_mode": {"message": "Режим белого списка (выключено - черный список, включено - белый список)"},
+  "blacklist_domains": {"message": "Список имен доменов (по одному на строку)"},
+  "blacklist_custom_rules": {"message": "Список правил (по одному на строку)"},
+  "blacklist_custom_rules_hint": {"message": "Вы можете использовать специальные символы, такие как * и ?. * соответствует любым символам любой длины (т.е. *google.com будет соответствовать google.com, www.google.com, mail.google.com и т.д.). ? соответствует одиночному произвольному символу (т.е. www.?oogle.com будет соответствовать www.oogle.com, www.moogle.com, www.woogle.com и т.д.)"},
+
+  "edge_win": {"message": "Edge на Windows"},
+  "chrome_win": {"message": "Chrome на Windows"},
+  "chrome_mac": {"message": "Chrome на Mac"},
+  "chrome_linux": {"message": "Chrome на Linux"},
+  "chrome_android": {"message": "Chrome на Android"},
+  "firefox_win": {"message": "FireFox на Windows"},
+  "firefox_mac": {"message": "FireFox на Mac"},
+  "firefox_linux": {"message": "FireFox на Linux"},
+  "firefox_android": {"message": "Firefox на Android"},
+  "opera_win": {"message": "Opera на Windows"},
+  "opera_mac": {"message": "Opera на Mac"},
+  "safari_iphone": {"message": "Safari на iPhone"},
+  "safari_mac": {"message": "Safari на Mac"}
+}

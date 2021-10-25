@@ -17,8 +17,13 @@ _WIP_
 - Content script - mock `navigator.(product|platform|vendor)` properties
 - Content script - fix the detection
 
+## How to translate (localize) this extension?
+
+_WIP_
+
 ## Where can I check the functionality?
 
+- <https://tarampampam.github.io/random-user-agent/>
 - <https://webbrowsertools.com/useragent/>
 
 ## Useful links
