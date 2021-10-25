@@ -1,4 +1,4 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import UseragentService from '../../services/useragent-service'
 
 const name: string = 'refresh-useragent'

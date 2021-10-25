@@ -1,4 +1,4 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import Settings, {BlacklistMode} from '../../settings/settings'
 import FilterService from '../../services/filter-service'
 

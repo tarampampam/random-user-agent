@@ -5,7 +5,7 @@
       <textarea :id="id"
                 :rows="rowsCount"
                 :placeholder="placeholder"
-                @input="checkValue"></textarea>
+                @input="checkValue">{{ lines }}</textarea>
       <p class="hint" v-if="hint">{{ hint }}</p>
     </div>
   </li>
@@ -17,6 +17,10 @@ import {defineComponent} from 'vue'
 export default defineComponent({
   props: {
     caption: String,
+    value: {
+      type: Array,
+      default: [] as string[],
+    },
     rowsCount: {
       type: Number,
       default: 3,
@@ -46,6 +50,11 @@ export default defineComponent({
               .filter((s: string): boolean => s.length > 0),
       )
     },
+  },
+  computed: {
+    lines(): string {
+      return this.value.join('\n')
+    }
   },
   mounted(): void {
     this.id = Math.random().toString(36).substring(3)

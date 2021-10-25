@@ -11,6 +11,7 @@
              :placeholder="placeholder"
              :min="minimum"
              :max="maximum"
+             @change="checkValue($event)"
              @keyup="checkValue($event)"/>
     </p>
   </li>

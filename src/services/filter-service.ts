@@ -23,6 +23,10 @@ export default class FilterService {
   }
 
   changeForDomain(domain: string, enable: boolean): void {
+    if (domain.trim().length === 0) {
+      return
+    }
+
     if (enable) { // enable switcher for the domain
       switch (this.settings.get().blacklist.mode) {
         case BlacklistMode.BlackList: // remove from the domains list

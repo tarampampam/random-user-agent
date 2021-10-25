@@ -60,6 +60,9 @@ export enum SettingEvent {
   onChange = 'on:change',
 }
 
+declare var InstallTrigger: any
+const isFirefox = typeof InstallTrigger !== 'undefined' // link: https://stackoverflow.com/a/41820692/2252921
+
 export default class Settings {
   public readonly storageKey: string = 'settings-struct-v3'
 
@@ -81,7 +84,9 @@ export default class Settings {
       enabled: true,
     },
     generator: {
-      types: [
+      types: isFirefox ? [
+        GeneratorType.firefoxWin, GeneratorType.firefoxLinux, GeneratorType.firefoxMac,
+      ] : [
         GeneratorType.chromeWin, GeneratorType.chromeLinux, GeneratorType.chromeMac,
       ],
     },
@@ -89,7 +94,7 @@ export default class Settings {
       mode: BlacklistMode.BlackList,
       domains: [],
       custom: {
-        rules: ['chrome://*'],
+        rules: ['chrome://*', 'file://*'],
       },
     },
   }

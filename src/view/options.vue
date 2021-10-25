@@ -5,29 +5,30 @@
 
   <ul class="list">
     <list-checkbox caption="Enable Agent switcher"
-                   :checked="settings.enabled"
-                   @change="test"/>
+                   :checked="enabled"
+                   @change="saveEnabled"/>
     <list-checkbox caption="Automatically change the User-Agent after specified period of time"
-                   :checked="settings.renew.enabled"
-                   @change="test"/>
+                   :checked="renew_enabled"
+                   @change="saveRenewEnabled"/>
     <list-number caption="Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)"
                  :minimum="1"
                  :maximum="86400"
                  :placeholder="60"
-                 :value="settings.renew.intervalMillis / 1000"
-                 @change="test"/>
+                 :value="Math.round(renew_intervalMillis / 1000)"
+                 @change="saveRenewInterval"/>
     <list-checkbox caption="Change User-Agent on browser startup"
-                   :checked="settings.renew.onStartup"
-                   @change="test"/>
+                   :checked="renew_onStartup"
+                   @change="saveRenewOnStartup"/>
     <list-checkbox caption="Hide real User-Agent from detection by javascript"
-                   :checked="settings.jsProtection.enabled"
-                   @change="test"/>
+                   :checked="jsProtection_enabled"
+                   @change="saveJsProtectionEnabled"/>
     <list-checkbox caption="Use one of (in the randomized order) custom User-Agent instead generated"
-                   :checked="true"
-                   @change="test"/>
+                   :checked="customUseragent_enabled"
+                   @change="saveCustomUseragentEnabled"/>
     <list-textarea caption="Custom User-Agents (set a specific User-Agents, one per line):"
                    placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
-                   @change="test"/>
+                   :value="customUseragent_list"
+                   @change="saveCustomUseragentList"/>
   </ul>
 
   <h2>Generator settings</h2>
@@ -35,20 +36,13 @@
   <p>Here you can change the agent switching behavior:</p>
 
   <ul class="set">
-    <li>
-      <label><input type="checkbox">Chrome on windows</label>
-    </li>
-    <li>
-      <label><input type="checkbox">Chrome on linux</label>
-    </li>
-    <li>
-      <label><input type="checkbox">Firefox on windows</label>
-    </li>
-    <li>
-      <label><input type="checkbox">Firefox on linux</label>
-    </li>
-    <li>
-      <label><input type="checkbox">Safari on MacOS</label>
+    <li v-for="generatorType in allGeneratorTypes">
+      <label><input type="checkbox"
+                    :key="generatorType"
+                    :value="generatorType"
+                    :name="generatorType"
+                    v-model="generator_types"
+                    @change="saveGeneratorTypes">{{ i18n(generatorType) }}</label>
     </li>
   </ul>
 
@@ -61,18 +55,20 @@
 
   <ul class="list">
     <list-checkbox caption="Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)"
-                   :checked="true"
-                   @change="test"/>
+                   :checked="blacklist_mode_whitelist"
+                   @change="saveBlacklistMode"/>
     <list-textarea caption="Domain names list (one per line):"
                    placeholder="docs.google.com"
-                   @change="test"/>
+                   :value="blacklist_domains"
+                   @change="saveBlacklistDomainsList"/>
     <list-textarea caption="Custom rules (one per line):"
                    placeholder="http?://*google.com/*"
-                   @change="test"
                    hint="You can use wildcards such as * and ?. * will match any length of characters
           (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single
           character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com,
-          etc.)"/>
+          etc.)"
+                   :value="blacklist_custom_rules"
+                   @change="saveBlacklistCustomRulesList"/>
   </ul>
 </template>
 
@@ -82,9 +78,12 @@ import i18n from './mixins/i18n'
 import ListCheckbox from './components/options/list-checkbox.vue'
 import ListTextarea from './components/options/list-textarea.vue'
 import ListNumber from './components/options/list-number.vue'
-import {Sender} from '../api/transport/transport'
-import {RuntimeSender} from '../api/transport/runtime'
-import {getSettings, GetSettingsResponse} from '../api/handlers/get-settings'
+import {RuntimeSender, Sender} from '../messaging/runtime'
+import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settings'
+import {GeneratorType, isValidType} from '../useragent/generator'
+import {BlacklistMode} from '../settings/settings'
+import {updateSettings} from '../messaging/handlers/update-settings'
+import {enabledForDomain, EnabledForDomainResponse} from '../messaging/handlers/enabled-for-domain'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -98,43 +97,112 @@ export default defineComponent({
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
-      settings: {
-        enabled: false,
-        renew: {
-          enabled: false,
-          intervalMillis: 0,
-          onStartup: false,
-        },
-        jsProtection: {
-          enabled: false,
-        },
-      }
+      enabled: false,
+      renew_enabled: false,
+      renew_intervalMillis: 0,
+      renew_onStartup: false,
+      customUseragent_enabled: false,
+      customUseragent_list: [] as string[],
+      jsProtection_enabled: false,
+      generator_types: [] as GeneratorType[],
+      blacklist_mode_whitelist: false,
+      blacklist_domains: [] as string[],
+      blacklist_custom_rules: [] as string[],
+
+      allGeneratorTypes: Object.values(GeneratorType as {[key: string]: string}) as string[],
     }
   },
   methods: {
-    test(...args): void {
-      console.warn(...args)
+    saveEnabled(newState: boolean): void {
+      backend.send(updateSettings({enabled: newState}))
+        .then(() => this.enabled = newState)
+        .catch(errorsHandler)
+    },
+    saveRenewEnabled(newState: boolean): void {
+      backend.send(updateSettings({renew: {enabled: newState}}))
+        .then(() => this.renew_enabled = newState)
+        .catch(errorsHandler)
+    },
+    saveRenewInterval(newValue: number): void {
+      newValue = Math.round(newValue * 1000)
+      backend.send(updateSettings({renew: {intervalMillis: newValue}}))
+        .then(() => this.renew_intervalMillis = newValue)
+        .catch(errorsHandler)
+    },
+    saveRenewOnStartup(newState: boolean): void {
+      backend.send(updateSettings({renew: {onStartup: newState}}))
+        .then(() => this.renew_onStartup = newState)
+        .catch(errorsHandler)
+    },
+    saveJsProtectionEnabled(newState: boolean): void {
+      backend.send(updateSettings({jsProtection: {enabled: newState}}))
+        .then(() => this.jsProtection_enabled = newState)
+        .catch(errorsHandler)
+    },
+    saveCustomUseragentEnabled(newState: boolean): void {
+      backend.send(updateSettings({customUseragent: {enabled: newState}}))
+        .then(() => this.customUseragent_enabled = newState)
+        .catch(errorsHandler)
+    },
+    saveCustomUseragentList(newState: string[]): void {
+      backend.send(updateSettings({customUseragent: {list: newState}}))
+        .then(() => this.customUseragent_list = newState)
+        .catch(errorsHandler)
+    },
+    saveGeneratorTypes(): void {
+      const types = this.generator_types.filter((t): boolean => isValidType(t))
+
+      backend.send(updateSettings({generator: {types: types}}))
+        .then(() => this.generator_types = types)
+        .catch(errorsHandler)
+    },
+    saveBlacklistMode(newState: boolean): void {
+      backend.send(updateSettings({blacklist: {mode: newState ? BlacklistMode.WhiteList : BlacklistMode.BlackList}}))
+        .then(() => this.blacklist_mode_whitelist = newState)
+        .catch(errorsHandler)
+    },
+    saveBlacklistDomainsList(newState: string[]): void {
+      backend.send(updateSettings({blacklist: {domains: newState}}))
+        .then(() => this.blacklist_domains = newState)
+        .catch(errorsHandler)
+    },
+    saveBlacklistCustomRulesList(newState: string[]): void {
+      backend.send(updateSettings({blacklist: {custom: {rules: newState}}}))
+        .then(() => this.blacklist_custom_rules = newState)
+        .catch(errorsHandler)
     },
   },
   created(): void {
     backend
-      .send( // order is important!
-        getSettings(),
-      )
-    .then((resp): void => {
-      const settings = (resp[0] as GetSettingsResponse).payload
+      .send(getSettings())
+      .then((resp): void => {
+        const settings = (resp[0] as GetSettingsResponse).payload
 
-      this.settings.enabled = settings.enabled
-      this.settings.renew.enabled = settings.renew.enabled
-      this.settings.renew.intervalMillis = settings.renew.intervalMillis
-      this.settings.renew.onStartup = settings.renew.onStartup
-
-      this.settings.jsProtection.enabled = settings.jsProtection.enabled
-    })
-    .catch(errorsHandler)
+        this.enabled = settings.enabled
+        this.renew_enabled = settings.renew.enabled
+        this.renew_intervalMillis = settings.renew.intervalMillis
+        this.renew_onStartup = settings.renew.onStartup
+        this.customUseragent_enabled = settings.customUseragent.enabled
+        this.customUseragent_list = settings.customUseragent.list
+        this.jsProtection_enabled = settings.jsProtection.enabled
+        this.generator_types = settings.generator.types
+        this.blacklist_mode_whitelist = settings.blacklist.mode === BlacklistMode.WhiteList
+        this.blacklist_domains = settings.blacklist.domains
+        this.blacklist_custom_rules = settings.blacklist.custom.rules
+      })
+      .catch(errorsHandler)
   },
   mounted(): void {
-    //
+    // start state refresher
+    window.setInterval((): void => {
+      backend
+        .send(getSettings())
+        .then((resp): void => {
+          const settings = (resp[0] as GetSettingsResponse).payload
+          this.enabled = settings.enabled
+        })
+        .catch(errorsHandler)
+    }, 500) // twice in a one second
   },
 })
 </script>

@@ -1,4 +1,4 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 
 const name: string = 'version'
 

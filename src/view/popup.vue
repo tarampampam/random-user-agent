@@ -19,14 +19,13 @@ import PopupHeader from './components/popup/header.vue'
 import ActiveUserAgent from './components/popup/active-user-agent.vue'
 import Actions from './components/popup/actions.vue'
 import PopupFooter from './components/popup/footer.vue'
-import {version, VersionResponse} from '../api/handlers/version'
-import {RuntimeSender} from '../api/transport/runtime'
-import {Sender} from '../api/transport/transport'
-import {renewUseragent, RenewUseragentResponse} from '../api/handlers/renew-useragent'
-import {enabledForDomain, EnabledForDomainResponse} from '../api/handlers/enabled-for-domain'
-import {changeForDomain} from '../api/handlers/change-for-domain'
-import {updateSettings} from '../api/handlers/update-settings'
-import {getSettings, GetSettingsResponse} from '../api/handlers/get-settings'
+import {version, VersionResponse} from '../messaging/handlers/version'
+import {RuntimeSender, Sender} from '../messaging/runtime'
+import {renewUseragent, RenewUseragentResponse} from '../messaging/handlers/renew-useragent'
+import {enabledForDomain, EnabledForDomainResponse} from '../messaging/handlers/enabled-for-domain'
+import {changeForDomain} from '../messaging/handlers/change-for-domain'
+import {updateSettings} from '../messaging/handlers/update-settings'
+import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settings'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -41,7 +40,7 @@ export default defineComponent({
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
-      enabled: true,
+      enabled: false,
       enabledOnThisDomain: false,
       useragent: '',
       version: '',

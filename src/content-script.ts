@@ -1,6 +1,6 @@
-import {RuntimeSender} from './api/transport/runtime'
-import {applicableToURI, ApplicableToURIResponse} from './api/handlers/applicable-to-uri'
-import {getSettings, GetSettingsResponse} from './api/handlers/get-settings'
+import {RuntimeSender} from './messaging/runtime'
+import {applicableToURI, ApplicableToURIResponse} from './messaging/handlers/applicable-to-uri'
+import {getSettings, GetSettingsResponse} from './messaging/handlers/get-settings'
 
 new RuntimeSender()
   .send( // order is important!
@@ -10,7 +10,7 @@ new RuntimeSender()
   .then((resp): void => {
     const applicable = (resp[0] as ApplicableToURIResponse).payload.applicable
 
-    const settings = (resp[0] as GetSettingsResponse).payload
+    const settings = (resp[1] as GetSettingsResponse).payload
     const jsProtectionEnabled = settings.jsProtection.enabled
     const useragent = settings.useragent
 

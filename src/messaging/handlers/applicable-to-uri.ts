@@ -1,4 +1,4 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import FilterService from '../../services/filter-service'
 
 const name: string = 'applicable-to-uri'

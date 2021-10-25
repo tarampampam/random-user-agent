@@ -1,10 +1,10 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import Settings, {SettingsState} from '../../settings/settings'
 
 const name: string = 'get-settings'
 
 export interface GetSettingsResponse extends HandlerResponse {
-  payload: SettingsState
+  payload: Readonly<SettingsState>
 }
 
 export function getSettings(): HandlerRequest {

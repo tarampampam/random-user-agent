@@ -5,13 +5,13 @@ Handlers are used to communicate between the popup page (content script) and the
 Usage example:
 
 ```typescript
-import {RuntimeSender} from '../transport/runtime'
+import {RuntimeSender} from './runtime'
 import {setEnabled} from './set-enabled'
 
 new RuntimeSender() // create a wrapper around the `chrome.runtime.sendMessage` function
-  .send(setEnabled(true)) // use a tiny request factory function
-  .then((): void => {
-    console.log('changed!')
-  })
-  .catch(console.error)
+    .send(setEnabled(true)) // use a tiny request factory function
+    .then((): void => {
+        console.log('changed!')
+    })
+    .catch(console.error)
 ```

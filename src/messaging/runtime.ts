@@ -1,11 +1,18 @@
-import {Receiver, Sender} from './transport'
-import {HandlerRequest, HandlerResponse, Router} from '../handlers/handlers'
+import {HandlerRequest, HandlerResponse, Router} from './handlers'
 
 const signature: string = 'rua-proto-v1' // some unique string
 
+export interface Sender {
+  send(...requests: HandlerRequest[]): Promise<HandlerResponse[]>
+}
+
+export interface Receiver {
+  listen(): void
+}
+
 interface Envelope {
   readonly sign: string
-  readonly data: { [key: string]: HandlerRequest | HandlerResponse } // key is request/response ID
+  readonly data: { [key: string]: HandlerRequest | HandlerResponse } // key is a request/response ID
 }
 
 function generateRandomKey(): string {

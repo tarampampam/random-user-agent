@@ -1,4 +1,4 @@
-import {Handler, HandlerRequest, HandlerResponse} from './handlers'
+import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import Settings, {SettingsState} from '../../settings/settings'
 import {DeepPartial} from '../../utils/types'
 
