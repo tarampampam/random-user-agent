@@ -62,7 +62,7 @@ export default class BrowserStorage implements Storage {
         }
 
         if (!items.hasOwnProperty(key)) {
-          return resolve({}) // Storage does not contains expected data
+          return resolve({}) // storage does not contains expected data
         }
 
         resolve(items[key])

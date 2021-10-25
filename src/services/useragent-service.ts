@@ -1,12 +1,15 @@
 import Settings from '../settings/settings'
 import {UseragentGenerator} from '../useragent/generator'
+import Useragent from '../useragent/useragent'
 
 export default class UseragentService {
   private readonly settings: Settings
+  private readonly useragent: Useragent
   private readonly generator: UseragentGenerator
 
-  constructor(settings: Settings, generator: UseragentGenerator) {
+  constructor(settings: Settings, useragent: Useragent, generator: UseragentGenerator) {
     this.settings = settings
+    this.useragent = useragent
     this.generator = generator
   }
 
@@ -16,7 +19,7 @@ export default class UseragentService {
     previous: string | undefined
     new: string
   } {
-    const previous = this.settings.get().useragent
+    const previous = this.useragent.get().useragent
 
     if (this.settings.get().customUseragent.enabled) {
       const list: string[] = this.settings.get().customUseragent.list
@@ -25,7 +28,7 @@ export default class UseragentService {
         const random: string = list[Math.floor(Math.random() * list.length)]
 
         if (random.trim().length > 0) {
-          this.settings.update({useragent: random})
+          this.useragent.update({useragent: random})
 
           return {
             source: 'custom_agents_list',
@@ -38,7 +41,7 @@ export default class UseragentService {
 
     const generated = this.generator.generate(this.settings.get().generator.types)
 
-    this.settings.update({useragent: generated})
+    this.useragent.update({useragent: generated})
 
     return {
       source: 'generator',

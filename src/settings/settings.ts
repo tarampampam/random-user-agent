@@ -13,8 +13,6 @@ export enum BlacklistMode {
 export interface SettingsState {
   // Extension is enabled?
   enabled: boolean
-  // Active (actual) User-Agent
-  useragent: string | undefined
   // User-agent renewal options
   renew: {
     // Auto renewal is enabled?
@@ -70,7 +68,6 @@ export default class Settings {
 
   private state: SettingsState = { // initial (default) extension settings
     enabled: true,
-    useragent: undefined,
     renew: {
       enabled: true,
       intervalMillis: 10 * 60 * 1000, // once in a 10 minutes

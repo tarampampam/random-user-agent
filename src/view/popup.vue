@@ -26,6 +26,7 @@ import {enabledForDomain, EnabledForDomainResponse} from '../messaging/handlers/
 import {changeForDomain} from '../messaging/handlers/change-for-domain'
 import {updateSettings} from '../messaging/handlers/update-settings'
 import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settings'
+import {getUseragent, GetUseragentResponse} from '../messaging/handlers/get-useragent'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -96,13 +97,14 @@ export default defineComponent({
       .send( // order is important!
         version(),
         getSettings(),
+        getUseragent(),
       )
       .then((resp): void => { // update the current states
         this.version = (resp[0] as VersionResponse).payload.version
-
         const settings = (resp[1] as GetSettingsResponse).payload
+        this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
+
         this.enabled = settings.enabled
-        this.useragent = settings.useragent || ''
       })
       .catch(errorsHandler)
 
@@ -130,13 +132,14 @@ export default defineComponent({
         .send( // order is important!
           getSettings(),
           enabledForDomain(this.currentPageDomain),
+          getUseragent(),
         )
         .then((resp): void => {
           const settings = (resp[0] as GetSettingsResponse).payload
-          this.useragent = settings.useragent || ''
-          this.enabled = settings.enabled
-
           this.enabledOnThisDomain = (resp[1] as EnabledForDomainResponse).payload.enabled
+          this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
+
+          this.enabled = settings.enabled
         })
         .catch(errorsHandler)
     }, 500) // twice in a one second
