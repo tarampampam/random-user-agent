@@ -16,7 +16,7 @@ help: ## Show this help
 install: ## Install all dependencies
 	docker run $(RUN_ARGS) yarn install
 
-shell: ## Start shell into container with node
+shell: ## Start shell into a container with node
 	docker run -e "PS1=\[\033[1;34m\]\w\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]" -i $(RUN_ARGS) sh
 
 build: ## Build the extension (for the production)
