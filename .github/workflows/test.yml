@@ -78,6 +78,7 @@ jobs:
   addons-linter:
     name: Run addon linter (mozilla)
     runs-on: ubuntu-20.04
+    needs: [build]
     env: {FORCE_COLOR: 'true'}
     steps:
       - uses: actions/checkout@v2
