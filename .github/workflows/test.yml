@@ -4,9 +4,7 @@ on:
   push:
     branches: [master, main]
     tags-ignore: ['**']
-    paths-ignore: ['**.md']
-  pull_request:
-    paths-ignore: ['**.md']
+  pull_request: {}
 
 jobs:
   gitleaks:
