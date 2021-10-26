@@ -49,20 +49,7 @@ User-agent can't be replaced (for now) for pages with aggressive (inline JavaScr
 </html>
 ```
 
-```html
-<!doctype html>
-<html>
-<body>
-  <script>
-    setTimeout(() => {
-      console.log(navigator.userAgent) // Will not
-    }, 1)
-  </script>
-</body>
-</html>
-```
-
-This method is quite rare (usually JavaScript code is wrapped in `Promises` or `setTimeout`), but so far no way around this kind of checking has been invented.
+This method is quite rare (usually JavaScript code is wrapped in `Promises`, `setTimeout` or event listeners), but so far no way around this kind of checking has been invented.
 
 ### Useful links for developers
 
@@ -71,9 +58,7 @@ This method is quite rare (usually JavaScript code is wrapped in `Promises` or `
 
 ## TODO
 
-- [ ] Set the version value during the build process in [package.json](package.json) and [manifest.json](public/manifest.json)
 - [ ] Translation platform integration
-- [ ] v2 config exporting before upgrading
 - [ ] Provide donation link
 - [ ] Dark theme `@media (prefers-color-scheme: dark) {`
 - [ ] Sentry or something similar
