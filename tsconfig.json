@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "strict": true,
-    "module": "ES2015",
-    "target": "ES2015",
+    "module": "ES2020",
+    "target": "ES2020",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "sourceMap": false,

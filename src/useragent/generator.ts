@@ -140,64 +140,64 @@ export default class Generator {
 
     // pick randomized type for a work
     const type = allowedTypes[Math.floor(Math.random() * allowedTypes.length)],
-      versionToken: string = '__VER__',
-      mobileVendorToken: string = '__MOBILE_VENDOR__'
+      versionTokenRegExp: RegExp = new RegExp('__VER__', 'g'),
+      mobileVendorTokenRegExp: RegExp = new RegExp('__MOBILE_VENDOR__', 'g')
 
     switch (type) {
       case GeneratorType.chromeLinux:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.linux)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
 
       case GeneratorType.chromeMac:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
 
       case GeneratorType.chromeWin:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
 
       case GeneratorType.chromeAndroid:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.android)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
-          .replace(new RegExp(mobileVendorToken, 'g'), this.randomMobileVendor())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
+          .replace(mobileVendorTokenRegExp, this.randomMobileVendor())
 
       case GeneratorType.firefoxLinux:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.linux)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomFirefoxVersion.version())
+          .replace(versionTokenRegExp, randomFirefoxVersion.version())
 
       case GeneratorType.firefoxMac:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.mac)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomFirefoxVersion.version())
+          .replace(versionTokenRegExp, randomFirefoxVersion.version())
 
       case GeneratorType.firefoxWin:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.win)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomFirefoxVersion.version())
+          .replace(versionTokenRegExp, randomFirefoxVersion.version())
 
       case GeneratorType.firefoxAndroid:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.android)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomFirefoxVersion.version())
+          .replace(versionTokenRegExp, randomFirefoxVersion.version())
 
       case GeneratorType.operaWin:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
           + ' OPR/' + randomOperaVersion.version()
 
       case GeneratorType.operaMac:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
           + ' OPR/' + randomOperaVersion.version()
 
       case GeneratorType.safariIphone:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.iphone)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomSafariVersion.version())
+          .replace(versionTokenRegExp, randomSafariVersion.version())
 
       case GeneratorType.safariMac:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.mac)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomSafariVersion.version())
+          .replace(versionTokenRegExp, randomSafariVersion.version())
 
       case GeneratorType.edgeWin:
         return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(new RegExp(versionToken, 'g'), randomChromeVersion.version())
+          .replace(versionTokenRegExp, randomChromeVersion.version())
           + ' Edg/' + randomEdgeVersion.version()
 
       default:
