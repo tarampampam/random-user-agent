@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
-## UNRELEASED
+## v3.0.0
 
 ### Changed
 
-- _WIP_
+- **The extension has been completely rewritten on TypeScript**
+- The new settings format is not compatible with the previous version (you should migrate them manually - use the settings page to watch previous settings)
+- Improved User-Agent's generator
+
+### Removed
+
+- Locales `uk` and `zh_CH` :(
 
 ## v2.2.11
 

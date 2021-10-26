@@ -36,7 +36,7 @@ The translation process described [here](./public/_locales).
 
 ## Known issues
 
-User-agent can't be replaced (for now) for pages with aggressive (inline JavaScript) detection. For example:
+User-agent can't be replaced (for now) in Google Chrome for pages with aggressive (inline JavaScript) detection. For example:
 
 ```html
 <!doctype html>

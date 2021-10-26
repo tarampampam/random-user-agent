@@ -106,7 +106,3 @@ useragent.load().then((): void => { // load useragent state
     }).catch(errorsHandler)
   }).catch(errorsHandler)
 }).catch(errorsHandler)
-
-chrome.runtime.onInstalled.addListener(() => {
-  // TODO: migrate the old settings into a new format
-})

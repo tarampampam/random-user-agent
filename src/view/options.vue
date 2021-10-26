@@ -66,9 +66,9 @@
   </ul>
 
   <div v-if="prev_settings">
-    <h3>Previous settings <input type="button" value="Remove" @click="removePrevSettings" /></h3>
+    <h3>{{ i18n('previous_settings') }} <input type="button" :value="i18n('remove')" @click="removePrevSettings" /></h3>
 
-    <p>These settings were used by you on the previous extension version. Keep it somewhere or remove:</p>
+    <p>{{ i18n('previous_settings_hint') }}:</p>
 
     <pre>{{ prev_settings }}</pre>
   </div>
