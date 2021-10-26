@@ -73,6 +73,8 @@ export default defineComponent({
         .send(updateSettings({enabled: !this.enabled}))
         .then((): void => {
           this.enabled = !this.enabled
+
+          this.refreshCurrentTab()
         })
         .catch(errorsHandler)
     },

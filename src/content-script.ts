@@ -10,6 +10,7 @@ new RuntimeSender()
     getUseragent(),
   )
   .then((resp): void => {
+    console.debug('response is here')
     const applicable = (resp[0] as ApplicableToURIResponse).payload.applicable
     const settings = (resp[1] as GetSettingsResponse).payload
     const useragent = (resp[2] as GetUseragentResponse).payload.useragent
@@ -40,3 +41,4 @@ new RuntimeSender()
       }, 1) // and remove them on a next tick
     }
   })
+  .catch(console.warn)

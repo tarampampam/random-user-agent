@@ -152,7 +152,7 @@ export default class Settings {
 
   // Returns current state
   get(): Readonly<SettingsState> {
-    return this.state
+    return JSON.parse(JSON.stringify(this.state))
   }
 
   // Updates current state
