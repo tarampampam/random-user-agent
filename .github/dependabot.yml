@@ -9,7 +9,7 @@ updates:
     reviewers: [tarampampam]
     assignees: [tarampampam]
 
-  - package-ecosystem: docker
+  - package-ecosystem: github-actions
     directory: /
     schedule: {interval: monthly}
     reviewers: [tarampampam]
