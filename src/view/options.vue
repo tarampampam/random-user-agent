@@ -64,6 +64,14 @@
                    :value="blacklist_custom_rules"
                    @change="saveBlacklistCustomRulesList"/>
   </ul>
+
+  <div v-if="prev_settings">
+    <h3>Previous settings <input type="button" value="Remove" @click="removePrevSettings" /></h3>
+
+    <p>These settings were used by you on the previous extension version. Keep it somewhere or remove:</p>
+
+    <pre>{{ prev_settings }}</pre>
+  </div>
 </template>
 
 <script lang="ts">
@@ -80,6 +88,8 @@ import {updateSettings} from '../messaging/handlers/update-settings'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
+
+const v2_config_key: string = 'extension_settings_v2'
 
 export default defineComponent({
   components: {
@@ -103,6 +113,8 @@ export default defineComponent({
       blacklist_custom_rules: [] as string[],
 
       allGeneratorTypes: Object.values(GeneratorType as {[key: string]: string}) as string[],
+
+      prev_settings: undefined as string | undefined, // TODO remove this property after a some time
     }
   },
   methods: {
@@ -164,6 +176,12 @@ export default defineComponent({
         .then(() => this.blacklist_custom_rules = newState)
         .catch(errorsHandler)
     },
+
+    removePrevSettings(): void { // TODO remove this method after a some time
+      chrome.storage.sync.remove(v2_config_key)
+
+      this.prev_settings = undefined
+    },
   },
   created(): void {
     backend
@@ -184,6 +202,21 @@ export default defineComponent({
         this.blacklist_custom_rules = settings.blacklist.custom.rules
       })
       .catch(errorsHandler)
+
+    try { // TODO remove this block after a some time
+      // load the prev extension settings
+      chrome.storage.sync.get(v2_config_key, (data) => {
+        if (chrome.runtime.lastError) {
+          throw new Error(chrome.runtime.lastError.message)
+        }
+
+        if (typeof data === 'object' && data.hasOwnProperty(v2_config_key)) {
+          this.prev_settings = JSON.stringify(data[v2_config_key], null, 2)
+        }
+      })
+    } catch (e) {
+      console.warn(e)
+    }
   },
   mounted(): void {
     // start state refresher

@@ -17,21 +17,21 @@ module.exports = merge(common, {
               source: path.join(__dirname, '..', 'dist'),
               destination: path.join(__dirname, '..', 'dist.zip')
             },
-            {
-              source: path.join(__dirname, '..', 'dist'),
-              destination: path.join(__dirname, '..', 'dist.tar.gz'),
-              format: 'tar',
-              options: {
-                // see https://www.archiverjs.com/docs/archiver
-                gzip: true,
-                gzipOptions: {
-                  level: 7,
-                },
-                globOptions: {
-                  dot: true, // https://github.com/Yqnn/node-readdir-glob#options
-                }
-              },
-            },
+            // {
+            //   source: path.join(__dirname, '..', 'dist'),
+            //   destination: path.join(__dirname, '..', 'dist.tar.gz'),
+            //   format: 'tar',
+            //   options: {
+            //     // see https://www.archiverjs.com/docs/archiver
+            //     gzip: true,
+            //     gzipOptions: {
+            //       level: 7,
+            //     },
+            //     globOptions: {
+            //       dot: true, // https://github.com/Yqnn/node-readdir-glob#options
+            //     }
+            //   },
+            // },
           ],
         },
       },
