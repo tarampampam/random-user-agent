@@ -38,7 +38,12 @@ jobs:
       - if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --no-progress --non-interactive
 
-      - run: yarn test --verbose
+      - run: yarn test --verbose --coverage
+
+      - uses: codecov/codecov-action@v2 # Docs: <https://github.com/codecov/codecov-action>
+        with:
+          file: ./coverage/clover.xml
+          fail_ci_if_error: false
 
   dist-built:
     name: Check building
