@@ -69,7 +69,7 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
     new CopyPlugin({
-      patterns: [{from: '.', to: '../', context: 'public', globOptions: {ignore: ['**/*.md']}}],
+      patterns: [{from: '.', to: '../', context: 'public', globOptions: {ignore: ['**/*.md', '**/*.txt']}}],
     }),
     new ManifestVersionSyncPlugin({
       packagePath: path.join(__dirname, '..', 'package.json'),

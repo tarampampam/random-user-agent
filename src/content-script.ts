@@ -9,36 +9,42 @@ new RuntimeSender()
     getSettings(),
     getUseragent(),
   )
-  .then((resp): void => {
-    console.debug('response is here')
+  .then((resp): void => { // <-- the promise is the main problem for hiding from inline scripts detection
     const applicable = (resp[0] as ApplicableToURIResponse).payload.applicable
     const settings = (resp[1] as GetSettingsResponse).payload
     const useragent = (resp[2] as GetUseragentResponse).payload.useragent
 
-    const jsProtectionEnabled = settings.jsProtection.enabled
-
-    if (applicable && jsProtectionEnabled) {
+    if (applicable && settings.jsProtection.enabled) {
       const script = document.createElement('script'), parent = document.head || document.documentElement
 
       script.textContent = '(' + function (useragent: string): void {
         if (typeof window === 'object' && typeof window.navigator === 'object') {
-          console.log('setup fake UA')
+          try {
+            Object.defineProperty(navigator, 'userAgent', {get: (): string => useragent})
+            Object.defineProperty(navigator, 'appVersion', {get: (): string => useragent})
 
-          Object.defineProperty(navigator, 'userAgent', {
-            get: (): string => useragent,
-          })
-          Object.defineProperty(navigator, 'appVersion', {
-            get: (): string => useragent,
-          })
+            if (useragent.toLowerCase().includes('firefox')) {
+              Object.defineProperty(navigator, 'vendor', {get: (): string => ''}) // firefox always with an empty vendor
+            }
+          } catch (e) {
+            console.warn('Cannot modify user-agent properties on the navigator object: ', e)
+          }
         }
       } + `)("${useragent}")`
-      script.defer = false
-      script.async = false
+
+      // script.defer = false
+      // script.async = false
       parent.appendChild(script) // execute the script
 
       setTimeout(() => {
         parent.removeChild(script)
-      }, 1) // and remove them on a next tick
+      }) // and remove them on a next tick
     }
   })
   .catch(console.warn)
+
+// Duty, but workable hack:
+// const when = Date.now() + 500
+// while (Date.now() < when) {
+//   // do nothing
+// }
