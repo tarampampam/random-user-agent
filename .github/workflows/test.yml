@@ -47,7 +47,7 @@ jobs:
           fail_ci_if_error: false
 
   build:
-    name: Check building
+    name: Try to build
     runs-on: ubuntu-20.04
     env: {FORCE_COLOR: 'true'}
     steps:
