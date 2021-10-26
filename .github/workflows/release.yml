@@ -38,10 +38,3 @@ jobs:
           file: dist.zip
           asset_name: random-user-agent.zip
           tag: ${{ github.ref }}
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: random-user-agent.zip
-          path: dist.zip
-          if-no-files-found: error
-          retention-days: 7

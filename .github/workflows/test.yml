@@ -47,7 +47,7 @@ jobs:
           fail_ci_if_error: false
 
   build:
-    name: Check building
+    name: Try to build
     runs-on: ubuntu-20.04
     env: {FORCE_COLOR: 'true'}
     steps:
@@ -68,3 +68,29 @@ jobs:
 
       - run: yarn build
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: extension-dist
+          path: dist.zip
+          if-no-files-found: error
+          retention-days: 1
+
+  addons-linter:
+    name: Run addon linter (mozilla)
+    runs-on: ubuntu-20.04
+    needs: [build]
+    env: {FORCE_COLOR: 'true'}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: extension-dist
+          path: dist
+
+      - uses: actions/setup-node@v2
+        with: {node-version: '16'}
+
+      - run: yarn global add addons-linter
+
+      - run: addons-linter ./dist/dist.zip

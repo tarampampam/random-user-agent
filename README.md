@@ -62,6 +62,7 @@ This method is quite rare (usually JavaScript code is wrapped in `Promises`, `se
 - [ ] Provide donation link
 - [ ] Dark theme `@media (prefers-color-scheme: dark) {`
 - [ ] Sentry or something similar
+- [ ] Use the <https://github.com/mozilla/webextension-polyfill>
 
 [badge_release_version]:https://img.shields.io/github/release/tarampampam/random-user-agent.svg?style=for-the-badge&maxAge=120&logo=github&logoColor=white
 [badge_websore_version]:https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&maxAge=120&logo=google-chrome&logoColor=white
