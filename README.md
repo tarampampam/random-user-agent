@@ -92,7 +92,7 @@ The translation process described [here](./public/_locales).
 
 I want to say a big thank you to everyone who contributed to this project:
 
-![contrib](https://contrib.rocks/image?repo=tarampampam/random-user-agent)
+[![contributors](https://contrib.rocks/image?repo=tarampampam/random-user-agent)][contributors]
 
 > And a special thanks to [@neroux](https://github.com/neroux) - dude, you're awesome
 
@@ -116,6 +116,7 @@ I want to say a big thank you to everyone who contributed to this project:
 [issues]:https://github.com/tarampampam/random-user-agent/issues
 [discussions]:https://github.com/tarampampam/random-user-agent/discussions
 [releases]:https://github.com/tarampampam/random-user-agent/releases
+[contributors]:https://github.com/tarampampam/random-user-agent/graphs/contributors
 [link-chrome-store]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
 [link-ff-store]:https://addons.mozilla.org/firefox/addon/random_user_agent/
 [link-edge-store]:#
