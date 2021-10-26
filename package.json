@@ -25,7 +25,7 @@
     "vue": "^3.2.20"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.159",
+    "@types/chrome": "^0.0.161",
     "@types/jest": "^27.0.2",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
