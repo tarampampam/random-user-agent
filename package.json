@@ -51,6 +51,14 @@
     "roots": [
       "src"
     ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts}"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "text"
+    ],
     "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.ts$": "ts-jest"
