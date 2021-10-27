@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+### UNRELEASED
+
+### Fixed
+
+- User agent detection inside iframes [#142], [#36]
+
+[#142]:https://github.com/tarampampam/random-user-agent/issues/142
+[#36]:https://github.com/tarampampam/random-user-agent/issues/36
+
 ## v3.1.0
 
 ### Added

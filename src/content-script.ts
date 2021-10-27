@@ -18,18 +18,52 @@ new RuntimeSender()
       const script = document.createElement('script'), parent = document.head || document.documentElement
 
       script.textContent = '(' + function (useragent: string): void {
-        if (typeof window === 'object' && typeof window.navigator === 'object') {
-          try {
-            Object.defineProperty(navigator, 'userAgent', {get: (): string => useragent})
-            Object.defineProperty(navigator, 'appVersion', {get: (): string => useragent})
-
-            if (useragent.toLowerCase().includes('firefox')) {
-              Object.defineProperty(navigator, 'vendor', {get: (): string => ''}) // firefox always with an empty vendor
+        // allows to overload object property with a getter function (without potential exceptions)
+        const overloadPropertyWithGetter = (object: any, property: string, value: any): void => {
+          if (typeof object === 'object') {
+            if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
+              Object.defineProperty(object, property, {get: (): any => value})
             }
-          } catch (e) {
-            console.warn('Cannot modify user-agent properties on the navigator object: ', e)
           }
         }
+
+        // makes required navigator object modifications
+        const patchNavigator = (navigator: Navigator): void => {
+          if (typeof navigator === 'object') {
+            overloadPropertyWithGetter(navigator, 'userAgent', useragent)
+
+            // app version should not contain "Mozilla/" prefix
+            overloadPropertyWithGetter(navigator, 'appVersion', useragent.replace(/^Mozilla\//i, ''))
+
+            // firefox always with an empty vendor
+            if (useragent.toLowerCase().includes('firefox\/')) {
+              overloadPropertyWithGetter(navigator, 'vendor', '')
+            }
+          }
+        }
+
+        // patch current window navigator
+        patchNavigator(window.navigator)
+
+        // handler for patching navigator object for the iframes
+        // issue: <https://github.com/tarampampam/random-user-agent/issues/142>
+        const patchIFramesHandler = (): void => {
+          try {
+            const iframes = document.getElementsByTagName('iframe')
+
+            for (let i = 0; i < iframes.length; i++) {
+              const contentWindow = iframes[i].contentWindow
+
+              if (typeof contentWindow === 'object' && contentWindow !== null) {
+                patchNavigator(contentWindow.navigator)
+              }
+            }
+          } finally {
+            window.removeEventListener('load', patchIFramesHandler)
+          }
+        }
+
+        window.addEventListener('load', patchIFramesHandler)
       } + `)("${useragent}")`
 
       // script.defer = false
