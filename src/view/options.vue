@@ -241,37 +241,37 @@ export default defineComponent({
 
 <style lang="scss">
 :root {
-  --main-bg-color: #fff;
-  --main-text-color: #111;
-  --scrollbar-color: #aaa;
-  --rows-separator-color: #eee;
-  --input-border-color: #ccc;
-  --placeholder-color: #bbb;
-  --hint-color: #666;
-  --scrollbar-width: 8px;
+  --options-main-bg-color: #fff;
+  --options-main-text-color: #111;
+  --options-scrollbar-color: #aaa;
+  --options-rows-separator-color: #eee;
+  --options-input-border-color: #ccc;
+  --options-placeholder-color: #bbb;
+  --options-hint-color: #666;
+  --options-scrollbar-width: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --main-bg-color: #23222b;
-    --main-text-color: #fbfbfe;
-    --scrollbar-color: #666;
-    --rows-separator-color: #4e4d54;
-    --input-border-color: #5e5c65;
-    --placeholder-color: #777;
-    --hint-color: #aaa;
+    --options-main-bg-color: #23222b;
+    --options-main-text-color: #fbfbfe;
+    --options-scrollbar-color: #666;
+    --options-rows-separator-color: #4e4d54;
+    --options-input-border-color: #5e5c65;
+    --options-placeholder-color: #777;
+    --options-hint-color: #aaa;
   }
 }
 
 ::-webkit-scrollbar {
-  width: var(--scrollbar-width);
+  width: var(--options-scrollbar-width);
 }
 
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
-  border-radius: var(--scrollbar-width);
-  background-color: var(--scrollbar-color);
+  border-radius: var(--options-scrollbar-width);
+  background-color: var(--options-scrollbar-color);
 }
 
 html, body {
@@ -281,8 +281,8 @@ html, body {
   font-weight: 400;
   font-size: 12px;
   min-width: 500px;
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
+  background-color: var(--options-main-bg-color);
+  color: var(--options-main-text-color);
 }
 
 body {
@@ -298,7 +298,7 @@ ul {
       padding: 1em 0;
 
       &:not(:last-child) {
-        border: solid var(--rows-separator-color);
+        border: solid var(--options-rows-separator-color);
         border-width: 0 0 1px 0;
       }
     }

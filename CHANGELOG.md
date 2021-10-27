@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - Vietnamese (`vi`) localization, translated by the robots
+- Dark theme for the popup window (Firefox only)
 
 ### Changed
 

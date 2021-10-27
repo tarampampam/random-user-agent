@@ -54,7 +54,7 @@ li {
     display: block;
     padding: .3em 0 0 0;
     font-size: .9em;
-    color: var(--hint-color);
+    color: var(--options-hint-color);
   }
 }
 </style>

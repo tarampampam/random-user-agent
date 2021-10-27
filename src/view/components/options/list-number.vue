@@ -79,13 +79,13 @@ li {
       box-shadow: none;
       margin: 0;
       border-width: 1px;
-      background-color: var(--main-bg-color);
-      color: var(--main-text-color);
-      border-color: var(--input-border-color);
+      background-color: var(--options-main-bg-color);
+      color: var(--options-main-text-color);
+      border-color: var(--options-input-border-color);
       border-radius: 3px;
 
       &::placeholder {
-        color: var(--placeholder-color);
+        color: var(--options-placeholder-color);
       }
     }
   }
@@ -94,7 +94,7 @@ li {
     display: block;
     padding: .3em 0 0 0;
     font-size: .9em;
-    color: var(--hint-color);
+    color: var(--options-hint-color);
   }
 }
 </style>

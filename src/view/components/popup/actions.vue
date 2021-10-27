@@ -9,7 +9,6 @@
       <ios-checkbox id="enabled_on_this_domain"
                     :checked="enabledOnThisDomain"
                     :title="enabledOnThisDomainTitle"
-                    disabledColor="#dfdfdf"
                     @change="$emit('clickEnabledOnThisDomain')"/>
     </div>
 
@@ -17,8 +16,6 @@
       <control-icon class="icon"
                     :style="{'font-size': '.9em'}"
                     :icon="enabled ? 'pause' : 'unpause'"
-                    :color="iconColor"
-                    :hoverColor="iconColor"
                     :clickable="false"/>
       <span>{{
           i18n(
@@ -31,8 +28,6 @@
     <div class="action" @click="$emit('clickRefresh')">
       <control-icon class="icon"
                     icon="refresh"
-                    :color="iconColor"
-                    :hoverColor="iconColor"
                     :clickable="false"/>
       <span>{{ i18n('get_new_agent', 'Get new agent') }}</span>
     </div>
@@ -40,8 +35,6 @@
     <div class="action" @click="$emit('clickSettings')">
       <control-icon class="icon"
                     icon="settings"
-                    :color="iconColor"
-                    :hoverColor="iconColor"
                     :clickable="false"/>
       <span>{{ i18n('open_settings', 'Open settings') }}</span>
     </div>
@@ -72,10 +65,6 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    iconColor: {
-      type: String,
-      default: '#4b4b4b',
-    },
   },
   emits: [
     'clickEnabledOnThisDomain',
@@ -96,7 +85,7 @@ section {
     justify-content: space-between;
     align-items: center;
     border-style: solid;
-    border-color: #e9e9e9;
+    border-color: var(--popup-actions-secondary-color);
     border-width: 0 0 .1em 0;
 
     & > * {
@@ -108,7 +97,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0.75em 1em;
-    color: #3b3b3b;
+    color: var(--popup-action-text-color);
     cursor: pointer;
     transition: background-color 120ms ease-in-out;
 
@@ -126,10 +115,10 @@ section {
           background-color: transparent;
         }
         30% {
-          background-color: rgba(87, 222, 114, 0.2);
+          background-color: var(--popup-blinking-bg-1-color);
         }
         50% {
-          background-color: rgba(87, 222, 114, 0.25);
+          background-color: var(--popup-blinking-bg-2-color);
         }
         100% {
           background-color: transparent;
@@ -137,11 +126,11 @@ section {
       }
 
       animation: blinking-background 2s infinite;
-      text-shadow: 0 0 4px #fff;
+      text-shadow: 0 0 4px var(--popup-main-bg-color);
     }
 
     &:hover, &:hover .blinking-background {
-      background-color: #f2f2ed;
+      background-color: var(--popup-action-hover-bg-color);
       animation: none;
     }
   }

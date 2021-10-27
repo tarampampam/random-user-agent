@@ -6,6 +6,7 @@
     <div class="buttons">
       <control-icon :icon="enabled ? 'pause' : 'unpause'"
                     :clickable="true"
+                    style="opacity: .3"
                     :title="i18n(
                       enabled ? 'pause_switcher' : 'unpause_switcher',
                       enabled ? 'Pause Switcher' : 'Resume Switcher',
@@ -35,7 +36,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 header {
   min-height: 40px;
-  background-color: #fff;
   padding: 0 .8em;
 
   display: flex;
@@ -52,7 +52,7 @@ header {
       font-weight: 600;
       font-size: 1.2em;
       padding-left: .4em;
-      color: #3b3b3b;
+      color: var(--popup-main-text-color);
     }
   }
 

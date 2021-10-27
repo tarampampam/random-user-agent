@@ -22,10 +22,10 @@ div {
   text-align: center;
   min-height: 100px;
   padding: 0 1.2em;
-  background-image: radial-gradient(circle at 50% 54%, #f2f2ed, #c9c9c5);
+  background-image: var(--popup-active-ua-bg-gradient);
   font-family: 'Lucida Console','Lucida Sans Typewriter',monaco,'Bitstream Vera Sans Mono',monospace;
   font-size: 1.1em;
-  color: #333;
+  color: var(--popup-active-ua-text-color);
   overflow: hidden;
 
   user-select: text;

@@ -1,5 +1,5 @@
 <template>
-  <div :style="cssVars">
+  <div>
     <input class="toggle toggle-light"
            type="checkbox"
            :id="id"
@@ -23,10 +23,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    disabledColor: {
-      type: String,
-      default: '#f04742',
-    },
     title: {
       type: String,
       default: '',
@@ -37,13 +33,6 @@ export default defineComponent({
       return typeof state === 'boolean'
     },
   },
-  computed: {
-    cssVars(): { [key: string]: string } {
-      return {
-        '--disabled-color': this.disabledColor,
-      }
-    },
-  }
 })
 </script>
 
@@ -102,7 +91,7 @@ export default defineComponent({
 
 .toggle-light {
   + .toggle-btn {
-    background: var(--disabled-color);
+    background: var(--popup-actions-secondary-color);
     border-radius: 1.5em;
     padding: 2px;
     transition: all .3s ease;
@@ -115,7 +104,7 @@ export default defineComponent({
   }
 
   &:checked + .toggle-btn {
-    background: #57de72;
+    background: var(--popup-enabled-switcher-bg-color);
   }
 }
 </style>

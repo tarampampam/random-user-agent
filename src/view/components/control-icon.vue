@@ -2,8 +2,7 @@
 
 <template>
   <div class="control-icon" :title="title">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" :class="{ clickable: clickable }"
-         :style="cssVars">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" :class="{ clickable: clickable }">
       <g v-if="icon === 'pause'">
         <path d="m64.5,122.6c32.1,0 58.1-26.1 58.1-58.1s-26-58.1-58.1-58.1-58.1,26-58.1,58.1 26,58.1
                  58.1,58.1zm0-108.1c27.5,0 50,22.4 50,50s-22.4,50-50,50-50-22.4-50-50 22.5-50 50-50z"/>
@@ -59,14 +58,6 @@ export default defineComponent({
       type: String,
       validator: (value: string): boolean => ['pause', 'refresh', 'settings', 'unpause'].indexOf(value) !== -1
     },
-    color: {
-      type: String,
-      default: '#dbdbdb',
-    },
-    hoverColor: {
-      type: String,
-      default: '#8e8e8e',
-    },
     clickable: {
       type: Boolean,
       default: true,
@@ -76,14 +67,6 @@ export default defineComponent({
       default: '',
     }
   },
-  computed: {
-    cssVars(): { [key: string]: string } {
-      return {
-        '--color': this.color,
-        '--hover-color': this.clickable ? this.hoverColor : this.color,
-      }
-    },
-  }
 })
 </script>
 
@@ -99,8 +82,8 @@ div.control-icon {
     height: 100%;
 
     path {
-      fill: var(--color);
-      transition: fill .3s ease;
+      fill: var(--popup-main-text-color);
+      opacity: .85;
     }
 
     &.clickable {
@@ -108,7 +91,7 @@ div.control-icon {
     }
 
     &:hover path {
-      fill: var(--hover-color);
+      opacity: 1;
     }
   }
 }
