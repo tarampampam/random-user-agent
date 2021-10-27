@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 const ManifestVersionSyncPlugin = require('./plugins/manifest-version-sync')
 const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const randomstring = require('randomstring')
 const {VueLoaderPlugin} = require('vue-loader')
 const srcDir = path.join(__dirname, '..', 'src')
 
@@ -63,6 +64,9 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      __UNIQUE_RUA_COOKIE_NAME__: JSON.stringify(randomstring.generate({length: 16, charset: 'alphabetic'})),
+    }),
     new webpack.DefinePlugin({ // https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
