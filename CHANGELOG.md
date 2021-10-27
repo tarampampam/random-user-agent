@@ -8,9 +8,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Fixed
 
-- User agent detection inside iframes [#142]
+- User agent detection inside iframes [#142], [#36]
 
 [#142]:https://github.com/tarampampam/random-user-agent/issues/142
+[#36]:https://github.com/tarampampam/random-user-agent/issues/36
 
 ## v3.1.0
 
