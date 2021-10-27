@@ -2,9 +2,9 @@
   <footer>
     <span v-if="version">v{{ version }} | </span>
     <span v-if="donateLink.length">
-      <a href="#" @click="openLink(this.donateLink)">{{ i18n('make_donation') }}</a> |
+      <a href="#" @click="openLink(this.donateLink)">{{ i18n('make_donation', 'Donate') }}</a> |
     </span>
-    <a href="#" @click="openLink(this.bugReportLink)">{{ i18n('bug_report') }}</a>
+    <a href="#" @click="openLink(this.bugReportLink)">{{ i18n('bug_report', 'Bug report') }}</a>
   </footer>
 </template>
 

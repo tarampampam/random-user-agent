@@ -1,0 +1,58 @@
+{
+  "manifest_name": {
+    "message": "Nhân viên người dùng ngẫu nhiên",
+    "description": "Maximum of 45 characters"
+  },
+  "manifest_description": {
+    "message": "Tự động thay đổi tác nhân người dùng sau khoảng thời gian nhất định thành một tác nhân được chọn ngẫu nhiên, do đó ẩn tác nhân người dùng thực của bạn",
+    "description": "No HTML or other formatting; no more than 132 characters"
+  },
+  "manifest_action_default_title": {
+    "message": "Randomize của bạn User-Agent",
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+  },
+
+  "active_user_agent": {"message": "Tác nhân người dùng hoạt động"},
+  "pause_switcher": {"message": "Tạm dừng Switcher"},
+  "unpause_switcher": {"message": "Bộ chuyển đổi sơ yếu lý lịch"},
+  "enable_switcher": {"message": "Bật Bộ chuyển đổi"},
+  "enabled_on_this_domain": {"message": "Bật trên miền này"},
+  "get_new_agent": {"message": "Nhận đại lý mới"},
+  "open_settings": {"message": "Mở cài đặt"},
+  "make_donation": {"message": "Ủng hộ"},
+  "bug_report": {"message": "Báo cáo lỗi"},
+
+  "general_settings": {"message": "Cài đặt chung"},
+  "general_settings_hint": {"message": "Thay đổi hành vi của bộ chuyển đổi để phù hợp nhất với nhu cầu của bạn"},
+  "auto_renew": {"message": "Tự động thay đổi User-Agent sau khoảng thời gian nhất định"},
+  "auto_renew_interval": {"message": "Thời gian (tính bằng giây) để tự động cập nhật User-Agent (ví dụ: 1 giờ = 3600)"},
+  "auto_renew_on_startup": {"message": "Thay đổi User-Agent khi khởi động trình duyệt"},
+  "js_protection": {"message": "Bảo vệ chống phát hiện bằng JavaScript"},
+  "custom_useragent": {"message": "Sử dụng một trong (theo thứ tự ngẫu nhiên) tùy chỉnh User-Agent thay vì tạo"},
+  "custom_useragent_list": {"message": "Tác nhân người dùng tùy chỉnh (đặt một tác nhân người dùng cụ thể, một tác nhân trên mỗi dòng)"},
+  "generator_settings": {"message": "Các thiết đặt máy tạo"},
+  "generator_settings_hint": {"message": "Ở đây bạn có thể thay đổi hành vi chuyển đổi tác nhân"},
+  "blacklist_settings": {"message": "Cài đặt danh sách đen"},
+  "blacklist_settings_hint": {"message": "Chế độ danh sách đen - chuyển đổi được kích hoạt ở khắp mọi nơi, ngoại trừ các tên miền & quy tắc được xác định. Danh sách trắng - ngược lại, vô hiệu hóa ở khắp mọi nơi ngoại trừ các tên miền & quy tắc được chỉ định"},
+  "white_black_list_mode": {"message": "Chế độ danh sách trắng (chế độ danh sách đen - đã tắt, chế độ danh sách trắng - đã bật)"},
+  "blacklist_domains": {"message": "Danh sách tên miền (mỗi dòng một)"},
+  "blacklist_custom_rules": {"message": "Quy tắc tùy chỉnh (mỗi dòng một)"},
+  "blacklist_custom_rules_hint": {"message": "Bạn có thể sử dụng ký tự đại diện như * và?. * sẽ khớp với bất kỳ độ dài ký tự nào (ví dụ: *google.com sẽ khớp với google.com, www.google.com, mail.google.com, v.v.),? sẽ chỉ khớp với một ký tự duy nhất (ví dụ: www.? oogle.com sẽ khớp với www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, v.v.)"},
+  "previous_settings": {"message": "Cài đặt trước"},
+  "remove": {"message": "Xóa"},
+  "previous_settings_hint": {"message": "Các cài đặt này đã được bạn sử dụng trên phiên bản mở rộng trước đó. Giữ nó ở đâu đó hoặc loại bỏ"},
+
+  "edge_win": {"message": "Edge trên Windows"},
+  "chrome_win": {"message": "Chrome trên Windows"},
+  "chrome_mac": {"message": "Chrome trên máy Mac"},
+  "chrome_linux": {"message": "Chrome trên Linux"},
+  "chrome_android": {"message": "Chrome trên Android"},
+  "firefox_win": {"message": "FireFox trên Windows"},
+  "firefox_mac": {"message": "FireFox trên máy Mac"},
+  "firefox_linux": {"message": "FireFox trên Linux"},
+  "firefox_android": {"message": "Firefox trên Android"},
+  "opera_win": {"message": "Opera trên Windows"},
+  "opera_mac": {"message": "Opera trên máy Mac"},
+  "safari_iphone": {"message": "Safari trên iPhone"},
+  "safari_mac": {"message": "Safari trên máy Mac"}
+}

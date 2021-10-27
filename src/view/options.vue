@@ -1,39 +1,39 @@
 <template>
-  <h1>{{ i18n('general_settings') }}</h1>
+  <h1>{{ i18n('general_settings', 'General settings') }}</h1>
 
-  <p>{{ i18n('general_settings_hint') }}:</p>
+  <p>{{ i18n('general_settings_hint', 'Change the behavior of the switcher to best fit your needs') }}:</p>
 
   <ul class="list">
-    <list-checkbox :caption="i18n('enable_switcher')"
-                   :checked="enabled"
+    <list-checkbox :checked="enabled"
+                   :caption="i18n('enable_switcher', 'Enable Switcher')"
                    @change="saveEnabled"/>
-    <list-checkbox :caption="i18n('auto_renew')"
-                   :checked="renew_enabled"
+    <list-checkbox :checked="renew_enabled"
+                   :caption="i18n('auto_renew', 'Automatically change the User-Agent after specified period of time')"
                    @change="saveRenewEnabled"/>
-    <list-number :caption="i18n('auto_renew_interval')"
+    <list-number :value="Math.round(renew_intervalMillis / 1000)"
+                 :caption="i18n('auto_renew_interval', 'Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)')"
                  :minimum="1"
                  :maximum="86400"
                  :placeholder="60"
-                 :value="Math.round(renew_intervalMillis / 1000)"
                  @change="saveRenewInterval"/>
-    <list-checkbox :caption="i18n('auto_renew_on_startup')"
-                   :checked="renew_onStartup"
+    <list-checkbox :checked="renew_onStartup"
+                   :caption="i18n('auto_renew_on_startup', 'Change User-Agent on browser startup')"
                    @change="saveRenewOnStartup"/>
-    <list-checkbox :caption="i18n('js_protection')"
-                   :checked="jsProtection_enabled"
+    <list-checkbox :checked="jsProtection_enabled"
+                   :caption="i18n('js_protection', 'Protect against detection by JavaScript')"
                    @change="saveJsProtectionEnabled"/>
-    <list-checkbox :caption="i18n('custom_useragent')"
-                   :checked="customUseragent_enabled"
+    <list-checkbox :checked="customUseragent_enabled"
+                   :caption="i18n('custom_useragent', 'Use one of (in the randomized order) custom User-Agent instead generated')"
                    @change="saveCustomUseragentEnabled"/>
-    <list-textarea :caption="i18n('custom_useragent_list') + ':'"
+    <list-textarea :value="customUseragent_list"
+                   :caption="i18n('custom_useragent_list', 'Custom User-Agents (set a specific User-Agents, one per line)') + ':'"
                    placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
-                   :value="customUseragent_list"
                    @change="saveCustomUseragentList"/>
   </ul>
 
-  <h2>{{ i18n('generator_settings') }}</h2>
+  <h2>{{ i18n('generator_settings', 'Generator settings') }}</h2>
 
-  <p>{{ i18n('generator_settings_hint') }}:</p>
+  <p>{{ i18n('generator_settings_hint', 'Here you can change the agent switching behavior') }}:</p>
 
   <ul class="set">
     <li v-for="generatorType in allGeneratorTypes">
@@ -46,29 +46,35 @@
     </li>
   </ul>
 
-  <h2>{{ i18n('blacklist_settings') }}</h2>
+  <h2>{{ i18n('blacklist_settings', 'Blacklist settings') }}</h2>
 
-  <p>{{ i18n('blacklist_settings_hint') }}:</p>
+  <p>{{
+      i18n('blacklist_settings_hint', 'Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules')
+    }}:</p>
 
   <ul class="list">
-    <list-checkbox :caption="i18n('white_black_list_mode')"
-                   :checked="blacklist_mode_whitelist"
+    <list-checkbox :checked="blacklist_mode_whitelist"
+                   :caption="i18n('white_black_list_mode', 'Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)')"
                    @change="saveBlacklistMode"/>
-    <list-textarea :caption="i18n('blacklist_domains') + ':'"
+    <list-textarea :value="blacklist_domains"
+                   :caption="i18n('blacklist_domains', 'Domain names list (one per line)') + ':'"
                    placeholder="docs.google.com"
-                   :value="blacklist_domains"
                    @change="saveBlacklistDomainsList"/>
-    <list-textarea :caption="i18n('blacklist_custom_rules') + ':'"
+    <list-textarea :value="blacklist_custom_rules"
+                   :caption="i18n('blacklist_custom_rules', 'Custom rules (one per line)') + ':'"
                    placeholder="http?://*google.com/*"
-                   :hint="i18n('blacklist_custom_rules_hint')"
-                   :value="blacklist_custom_rules"
+                   :hint="i18n('blacklist_custom_rules_hint', 'You can use wildcards such as * and ?')"
                    @change="saveBlacklistCustomRulesList"/>
   </ul>
 
   <div v-if="prev_settings">
-    <h3>{{ i18n('previous_settings') }} <input type="button" :value="i18n('remove')" @click="removePrevSettings" /></h3>
+    <h3>{{ i18n('previous_settings', 'Previous settings') }} <input type="button"
+                                                                    :value="i18n('remove', 'Remove')"
+                                                                    @click="removePrevSettings"/></h3>
 
-    <p>{{ i18n('previous_settings_hint') }}:</p>
+    <p>{{
+        i18n('previous_settings_hint', 'These settings were used by you on the previous extension version. Keep it somewhere or remove')
+      }}:</p>
 
     <pre>{{ prev_settings }}</pre>
   </div>
@@ -112,7 +118,7 @@ export default defineComponent({
       blacklist_domains: [] as string[],
       blacklist_custom_rules: [] as string[],
 
-      allGeneratorTypes: Object.values(GeneratorType as {[key: string]: string}) as string[],
+      allGeneratorTypes: Object.values(GeneratorType as { [key: string]: string }) as string[],
 
       prev_settings: undefined as string | undefined, // TODO remove this property after a some time
     }

@@ -1,19 +1,22 @@
 <template>
   <header>
     <div class="logo">
-      <span class="caption">{{ i18n('active_user_agent') }}</span>
+      <span class="caption">{{ i18n('active_user_agent', 'Active User-Agent') }}</span>
     </div>
     <div class="buttons">
       <control-icon :icon="enabled ? 'pause' : 'unpause'"
                     :clickable="true"
-                    :title="i18n(enabled ? 'pause_switcher' : 'unpause_switcher')"
+                    :title="i18n(
+                      enabled ? 'pause_switcher' : 'unpause_switcher',
+                      enabled ? 'Pause Switcher' : 'Resume Switcher',
+                      )"
                     @click="$emit('clickEnabled')"/>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 import i18n from './../../mixins/i18n'
 import ControlIcon from './../control-icon.vue'
 

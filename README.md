@@ -86,7 +86,7 @@ After `make watch` command you can:
 
 ## 📜 How to translate (localize) this extension?
 
-The translation process described [here](./public/_locales).
+...or fix translation mistakes. The translation process described [here](./public/_locales).
 
 ## 🦾 Contributors
 

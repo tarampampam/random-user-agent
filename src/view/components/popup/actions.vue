@@ -3,7 +3,7 @@
     <div class="enabled-on-this-domain">
       <span>
         <label :for="'enabled_on_this_domain'" :title="enabledOnThisDomainTitle">
-          {{ i18n('enabled_on_this_domain') }}
+          {{ i18n('enabled_on_this_domain', 'Enabled on this domain') }}
         </label>
       </span>
       <ios-checkbox id="enabled_on_this_domain"
@@ -20,7 +20,12 @@
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
-      <span>{{ i18n(enabled ? 'pause_switcher' : 'unpause_switcher') }}</span>
+      <span>{{
+          i18n(
+            enabled ? 'pause_switcher' : 'unpause_switcher',
+            enabled ? 'Pause Switcher' : 'Resume Switcher'
+          )
+        }}</span>
     </div>
 
     <div class="action" @click="$emit('clickRefresh')">
@@ -29,7 +34,7 @@
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
-      <span>{{ i18n('get_new_agent') }}</span>
+      <span>{{ i18n('get_new_agent', 'Get new agent') }}</span>
     </div>
 
     <div class="action" @click="$emit('clickSettings')">
@@ -38,7 +43,7 @@
                     :color="iconColor"
                     :hoverColor="iconColor"
                     :clickable="false"/>
-      <span>{{ i18n('open_settings') }}</span>
+      <span>{{ i18n('open_settings', 'Open settings') }}</span>
     </div>
   </section>
 </template>

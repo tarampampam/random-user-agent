@@ -1,0 +1,10 @@
+User-Agent - một chuỗi được gửi đến bất kỳ trang web nào bạn truy cập. Đây là một loại “vân tay” trình duyệt của bạn để lại phía sau có chứa:
+
+- Tên và phiên bản trình duyệt của bạn;
+- Tên của hệ điều hành (Mac, Windows, Linux, vv) và phiên bản của nó;
+- Thông tin về một số plugin được cài đặt trên trình duyệt;
+- Các thông tin khác xác định và cho thấy bạn.
+
+Phần mở rộng này đã được tạo ra để ngăn chặn rò rỉ dữ liệu. Nó tự động thay thế chuỗi User-Agent sau một khoảng thời gian nhất định với một lựa chọn ngẫu nhiên. Chuỗi người dùng đại lý cũng có thể được đặt theo cách thủ công. Phần mở rộng là cực kỳ nhẹ, sử dụng rất ít tài nguyên. Người dùng ngẫu nhiên Agent có thể được tùy chỉnh bởi người dùng (những trình duyệt và hệ điều hành nào được giả mạo, v.v.). Danh sách ngoại lệ có sẵn với tùy chọn ký tự đại diện. Bảo vệ chống lại các khai thác Javascript để ẩn danh tính của bạn và bảo vệ tính ẩn danh của bạn.
+
+Mã nguồn: https://github.com/tarampampam/random-user-agent
