@@ -59,8 +59,8 @@ far no way around this kind of checking has been invented.
 
 ## 🧩 Install
 
-Follow up by one of the links at the top 👆 of this page, or download directly the latest from
-the [releases page][releases].
+Follow up by one of the links at the top 👆 of this page, or download directly the latest release from the
+[releases page][releases].
 
 ## 🖥️ Run Locally
 
@@ -110,7 +110,7 @@ I want to say a big thank you to everyone who contributed to this project:
 8. Don't forget to update the fkn edge store
 9. Open a beer, I've earned
 
-[chrome-upload-new]:**https://chrome.google.com/webstore/devconsole/ea9e18ff-c849-424a-acba-9b43eaad29c8/einpaelgookohagofgnnkcfjbkkgepnp/edit/package
+[chrome-upload-new]:https://chrome.google.com/webstore/devconsole/ea9e18ff-c849-424a-acba-9b43eaad29c8/einpaelgookohagofgnnkcfjbkkgepnp/edit/package
 [ff-upload-new]:https://addons.mozilla.org/en-US/developers/addon/random_user_agent/versions/submit/
 
 [issues]:https://github.com/tarampampam/random-user-agent/issues
