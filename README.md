@@ -31,13 +31,13 @@ Open one of the links below with and without the extension enabled:
 Resource                                            |   Test
 --------------------------------------------------- | :-------:
 [Out test page][test-rua]                           | ✅ Passed
-[What is my User Agent][test-webbrowsertools]       | ✅ Passed
+[What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 failed
 [Browser Information (BrowserSPY)][test-browserspy] | ✅ Passed
 [whoer][test-whoer]                                 | ✅ Passed
 [browserleaks][test-browserleaks]                   | ✅ Passed
 
 [test-rua]:https://tarampampam.github.io/random-user-agent/
-[test-webbrowsertools]:https://webbrowsertools.com/useragent/?method=normal&verbose=false
+[test-webbrowsertools]:https://webbrowsertools.com/useragent/
 [test-browserspy]:http://browserspy.dk/browser.php
 [test-whoer]:https://whoer.net/
 [test-browserleaks]:https://browserleaks.com/javascript
