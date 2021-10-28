@@ -65,7 +65,10 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __UNIQUE_RUA_COOKIE_NAME__: JSON.stringify(randomstring.generate({length: 16, charset: 'alphabetic'})),
+      __UNIQUE_RUA_COOKIE_NAME__: JSON.stringify(randomstring.generate({
+        length: Math.floor(Math.random() * 12 + 5),
+        charset: 'alphabetic',
+      })),
     }),
     new webpack.DefinePlugin({ // https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags
       __VUE_OPTIONS_API__: true,

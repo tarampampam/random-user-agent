@@ -1,5 +1,8 @@
 # Docs: <https://docs.codecov.io/docs/commit-status>
 
+github_checks: # https://docs.codecov.com/docs/github-checks#disabling-github-checks-patch-annotations-via-yaml
+  annotations: false
+
 coverage:
   # coverage lower than 50 is red, higher than 90 green
   range: 30..80

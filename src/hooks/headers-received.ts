@@ -52,27 +52,29 @@ export default class HeadersReceived {
   listen(): void {
     chrome.webRequest.onHeadersReceived.addListener(
       (details: WebResponseHeadersDetails): BlockingResponse | void => {
-        const settings = this.settings.get()
+        if (details.type === 'main_frame' || details.type === 'sub_frame') {
+          const settings = this.settings.get()
 
-        if (settings.enabled && settings.jsProtection.enabled && this.filterService.applicableToURI(details.url)) {
-          const useragent = this.useragent.get().useragent
+          if (settings.enabled && settings.jsProtection.enabled && this.filterService.applicableToURI(details.url)) {
+            const useragent = this.useragent.get().useragent
 
-          if (details.responseHeaders && typeof useragent === 'string') {
-            const date = new Date()
-            date.setTime(date.getTime() + 60 * 1000) // +60 seconds
+            if (details.responseHeaders && typeof useragent === 'string') {
+              const date = new Date()
+              date.setTime(date.getTime() + 60 * 1000) // +60 seconds
 
-            const payload: Payload = {
-              useragent: useragent,
+              const payload: Payload = {
+                useragent: useragent,
+              }
+
+              details.responseHeaders.push({
+                name: 'Set-Cookie',
+                value: `${CookieName}=${encode(payload)}; expires=${date.toUTCString()}; path=/`,
+              })
+
+              return {responseHeaders: details.responseHeaders}
             }
-
-            details.responseHeaders.push({
-              name: 'Set-Cookie',
-              value: `${CookieName}=${encode(payload)}; expires=${date.toUTCString()}; path=/`,
-            })
           }
         }
-
-        return {responseHeaders: details.responseHeaders}
       },
       {urls: ['<all_urls>']},
       ['blocking', 'responseHeaders', 'extraHeaders'], // extraHeaders - https://stackoverflow.com/a/66558910/2252921
