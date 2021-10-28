@@ -1,7 +1,8 @@
 import StorageArea = chrome.storage.StorageArea
+import UseragentInfo from './useragent-info'
 
 export interface UseragentState { // do not forget to update update() method on new properties appending
-  useragent: string | undefined
+  info: UseragentInfo | undefined
 }
 
 export enum UseragentStateEvent {
@@ -16,7 +17,7 @@ export default class Useragent {
   private readonly storage: StorageArea
 
   protected state: UseragentState = { // default state
-    useragent: undefined,
+    info: undefined,
   }
 
   private events: Record<string, ((...data: any[]) => void)[]> = {}
@@ -43,14 +44,14 @@ export default class Useragent {
   }
 
   get(): Readonly<UseragentState> {
-    return this.state
+    return JSON.parse(JSON.stringify(this.state))
   }
 
   update(state: UseragentState): void {
     let changed = false
 
-    if (state.useragent !== undefined) {
-      this.state.useragent = state.useragent
+    if (state.info !== undefined) {
+      this.state.info = state.info
       changed = true
     }
 
@@ -81,6 +82,10 @@ export default class Useragent {
         }
 
         if (items.hasOwnProperty(this.storageKey)) {
+          if (items[this.storageKey].hasOwnProperty('useragent')) { // remove the outdated property, if exists
+            delete items[this.storageKey]['useragent']
+          }
+
           this.state = items[this.storageKey] as UseragentState
         }
 

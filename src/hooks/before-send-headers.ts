@@ -23,12 +23,12 @@ export default class BeforeSendHeaders {
     chrome.webRequest.onBeforeSendHeaders.addListener(
       (details: WebRequestHeadersDetails): BlockingResponse | void => {
         if (this.settings.get().enabled && this.filterService.applicableToURI(details.url)) {
-          const useragent = this.useragent.get().useragent
+          const useragent = this.useragent.get().info
 
-          if (details.requestHeaders && typeof useragent === 'string') {
+          if (details.requestHeaders && useragent !== undefined) {
             for (let i = 0; i < details.requestHeaders.length; i++) {
               if (details.requestHeaders[i].name === 'User-Agent' && details.requestHeaders[i].value) {
-                details.requestHeaders[i].value = useragent
+                details.requestHeaders[i].value = useragent.useragent
 
                 break
               }

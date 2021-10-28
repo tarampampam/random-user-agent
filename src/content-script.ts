@@ -32,37 +32,69 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
     .then((resp): void => { // <-- the promise is the main problem for hiding from inline scripts detection
       const applicable = (resp[0] as ApplicableToURIResponse).payload.applicable
       const settings = (resp[1] as GetSettingsResponse).payload
-      const useragent = (resp[2] as GetUseragentResponse).payload.useragent
+      const uaInfo = (resp[2] as GetUseragentResponse).payload.info
 
-      if (applicable && settings.jsProtection.enabled && typeof useragent === 'string') {
+      if (applicable && settings.jsProtection.enabled && uaInfo !== undefined) {
         return resolve({
-          useragent: useragent,
+          uaInfo: uaInfo,
         })
       }
     })
     .catch(reject)
 })
   .then((p: Payload): string => '(' + function (p: Payload): void {
-      // allows to overload object property with a getter function (without potential exceptions)
-      const overloadPropertyWithGetter = (object: object, property: string, value: any): void => {
-        if (typeof object === 'object') {
-          if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
-            Object.defineProperty(object, property, {get: (): any => value})
-          }
-        }
-      }
-
       // makes required navigator object modifications
       const patchNavigator = (navigator: Navigator): void => {
+        // allows to overload object property with a getter function (without potential exceptions)
+        const overloadPropertyWithGetter = (object: object, property: string, value: string): void => {
+          if (typeof object === 'object') {
+            if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
+              Object.defineProperty(object, property, {get: (): string => value})
+            }
+          }
+        }
+
         if (typeof navigator === 'object') {
-          overloadPropertyWithGetter(navigator, 'userAgent', p.useragent)
+          overloadPropertyWithGetter(navigator, 'userAgent', p.uaInfo.useragent)
 
           // app version should not contain "Mozilla/" prefix
-          overloadPropertyWithGetter(navigator, 'appVersion', p.useragent.replace(/^Mozilla\//i, ''))
+          overloadPropertyWithGetter(navigator, 'appVersion', p.uaInfo.useragent.replace(/^Mozilla\//i, ''))
 
-          // firefox always with an empty vendor
-          if (p.useragent.toLowerCase().includes('firefox\/')) {
-            overloadPropertyWithGetter(navigator, 'vendor', '')
+          // patch the platform property (based on os type)
+          switch (p.uaInfo.osType) { // fixes <https://github.com/tarampampam/random-user-agent/issues/7>
+            case 'windows':
+              overloadPropertyWithGetter(navigator, 'platform', 'Win32')
+              break
+
+            case 'linux':
+              overloadPropertyWithGetter(navigator, 'platform', 'Linux x86_64')
+              break
+
+            case 'android':
+              overloadPropertyWithGetter(navigator, 'platform', 'Linux armv8l')
+              break
+
+            case 'macOS':
+              overloadPropertyWithGetter(navigator, 'platform', 'MacIntel')
+              break
+
+            case 'iOS':
+              overloadPropertyWithGetter(navigator, 'platform', 'iPhone')
+              break
+          }
+
+          switch (p.uaInfo.engine) {
+            case 'blink':
+              overloadPropertyWithGetter(navigator, 'vendor', 'Google Inc.')
+              break
+
+            case 'gecko': // firefox always with an empty vendor
+              overloadPropertyWithGetter(navigator, 'vendor', '')
+              break
+
+            case 'webkit':
+              overloadPropertyWithGetter(navigator, 'vendor', 'Apple Computer Inc.')
+              break
           }
         }
       }

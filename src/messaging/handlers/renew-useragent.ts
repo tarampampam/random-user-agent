@@ -1,5 +1,6 @@
 import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
 import UseragentService from '../../services/useragent-service'
+import UseragentInfo from '../../useragent/useragent-info'
 
 const name: string = 'refresh-useragent'
 
@@ -11,8 +12,8 @@ export interface RenewUseragentRequest extends HandlerRequest {
 
 export interface RenewUseragentResponse extends HandlerResponse {
   payload: {
-    previous: string | undefined
-    new: string
+    previous: UseragentInfo | undefined
+    new: UseragentInfo
   }
 }
 

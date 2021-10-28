@@ -13,7 +13,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Fixed
 
 - Aggressive User-Agent detection (now even the inline scripts cannot detect the real User-Agent; thanks to [@neroux](https://github.com/neroux) for the idea) [#26], [#36]
+- Navigator `platform` and `vendor` leaking [#7], [#144]
 
+[#144]:https://github.com/tarampampam/random-user-agent/issues/144
+[#7]:https://github.com/tarampampam/random-user-agent/issues/7
 [#26]:https://github.com/tarampampam/random-user-agent/issues/26
 [#36]:https://github.com/tarampampam/random-user-agent/issues/36
 
@@ -358,3 +361,6 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Changed
 
 - First release on Github
+
+[keepachangelog]:https://keepachangelog.com/en/1.0.0/
+[semver]:https://semver.org/spec/v2.0.0.html

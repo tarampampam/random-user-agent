@@ -6,11 +6,11 @@ import {
   randomOperaVersion,
   randomSafariVersion,
 } from './versions'
+import UseragentInfo from './useragent-info'
 
-export interface UseragentGenerator {
-  generate(allowedTypes: GeneratorType[]): string
-}
-
+/**
+ * @link https://en.wikipedia.org/wiki/List_of_web_browsers List of web browsers
+ */
 export enum GeneratorType { // do NOT forget to update LOCALES on keys changes or appending (enum value == l18n key)
   edgeWin = 'edge_win',
   chromeWin = 'chrome_win',
@@ -27,9 +27,13 @@ export enum GeneratorType { // do NOT forget to update LOCALES on keys changes o
   safariMac = 'safari_mac',
 }
 
+export interface UseragentGenerator {
+  generate(allowedTypes: GeneratorType[]): UseragentInfo
+}
+
 // Validate generator type by VALUE
 export function isValidType(type: string): boolean {
-  return Object.values(GeneratorType as {[key: string]: string}).includes(type)
+  return Object.values(GeneratorType as { [key: string]: string }).includes(type)
 }
 
 /**
@@ -37,7 +41,7 @@ export function isValidType(type: string): boolean {
  * - https://user-agents.net/
  * - https://developers.whatismybrowser.com/useragents/explore/
  */
-export default class Generator {
+export default class Generator implements UseragentGenerator {
   private readonly commonPatterns = {
     chrome: {
       linux: [
@@ -104,7 +108,7 @@ export default class Generator {
         // Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/611.3.10.1.5 (KHTML, like Gecko) Version/14.1.2 Safari/611.3.10.1.5
         /Mozilla\/5\.0 \(Macintosh; Intel Mac OS X 1[01]_(1|)[0-7](_[1-7]|)\) AppleWebKit\/(__VER__|__VER__|600\.[1-8]\.[12][0-7]|537\.36) \(KHTML, like Gecko\) Version\/1[0-4]\.[0-7](\.[1-9][0-7]|) Safari\/__VER__/,
       ],
-    }
+    },
   }
 
   private mobileVendors: string[] = [
@@ -133,7 +137,7 @@ export default class Generator {
   /**
    * @throws Error When unsupported generator type requested
    */
-  generate(allowedTypes: GeneratorType[]): string {
+  generate(allowedTypes: GeneratorType[]): UseragentInfo {
     if (allowedTypes.length === 0) {
       allowedTypes = [GeneratorType.chromeWin, GeneratorType.chromeLinux, GeneratorType.chromeMac] // fallback
     }
@@ -145,60 +149,112 @@ export default class Generator {
 
     switch (type) {
       case GeneratorType.chromeLinux:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.linux)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.linux)).gen()
+            .replace(versionTokenRegExp, randomChromeVersion.version()),
+          engine: 'blink',
+          osType: 'linux',
+        }
 
       case GeneratorType.chromeMac:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
+            .replace(versionTokenRegExp, randomChromeVersion.version()),
+          engine: 'blink',
+          osType: 'macOS',
+        }
 
       case GeneratorType.chromeWin:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
+            .replace(versionTokenRegExp, randomChromeVersion.version()),
+          engine: 'blink',
+          osType: 'windows',
+        }
 
       case GeneratorType.chromeAndroid:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.android)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
-          .replace(mobileVendorTokenRegExp, this.randomMobileVendor())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.android)).gen()
+            .replace(versionTokenRegExp, randomChromeVersion.version())
+            .replace(mobileVendorTokenRegExp, this.randomMobileVendor()),
+          engine: 'blink',
+          osType: 'android',
+        }
 
       case GeneratorType.firefoxLinux:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.linux)).gen()
-          .replace(versionTokenRegExp, randomFirefoxVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.linux)).gen()
+            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+          engine: 'gecko',
+          osType: 'linux',
+        }
 
       case GeneratorType.firefoxMac:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.mac)).gen()
-          .replace(versionTokenRegExp, randomFirefoxVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.mac)).gen()
+            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+          engine: 'gecko',
+          osType: 'macOS',
+        }
 
       case GeneratorType.firefoxWin:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.win)).gen()
-          .replace(versionTokenRegExp, randomFirefoxVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.win)).gen()
+            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+          engine: 'gecko',
+          osType: 'windows',
+        }
 
       case GeneratorType.firefoxAndroid:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.android)).gen()
-          .replace(versionTokenRegExp, randomFirefoxVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.android)).gen()
+            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+          engine: 'gecko',
+          osType: 'android',
+        }
 
       case GeneratorType.operaWin:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
-          + ' OPR/' + randomOperaVersion.version()
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
+              .replace(versionTokenRegExp, randomChromeVersion.version())
+            + ' OPR/' + randomOperaVersion.version(),
+          engine: 'blink',
+          osType: 'windows',
+        }
 
       case GeneratorType.operaMac:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
-          + ' OPR/' + randomOperaVersion.version()
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
+              .replace(versionTokenRegExp, randomChromeVersion.version())
+            + ' OPR/' + randomOperaVersion.version(),
+          engine: 'blink',
+          osType: 'macOS',
+        }
 
       case GeneratorType.safariIphone:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.iphone)).gen()
-          .replace(versionTokenRegExp, randomSafariVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.iphone)).gen()
+            .replace(versionTokenRegExp, randomSafariVersion.version()),
+          engine: 'webkit',
+          osType: 'iOS',
+        }
 
       case GeneratorType.safariMac:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.mac)).gen()
-          .replace(versionTokenRegExp, randomSafariVersion.version())
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.mac)).gen()
+            .replace(versionTokenRegExp, randomSafariVersion.version()),
+          engine: 'webkit',
+          osType: 'macOS',
+        }
 
       case GeneratorType.edgeWin:
-        return new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-          .replace(versionTokenRegExp, randomChromeVersion.version())
-          + ' Edg/' + randomEdgeVersion.version()
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
+              .replace(versionTokenRegExp, randomChromeVersion.version())
+            + ' Edg/' + randomEdgeVersion.version(),
+          engine: 'blink',
+          osType: 'windows',
+        }
 
       default:
         throw new Error('Unsupported type requested')

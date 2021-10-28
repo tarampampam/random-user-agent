@@ -83,7 +83,7 @@ export default defineComponent({
       backend
         .send(renewUseragent())
         .then((resp): void => {
-          this.useragent = (resp[0] as RenewUseragentResponse).payload.new
+          this.useragent = (resp[0] as RenewUseragentResponse).payload.new.useragent
 
           this.refreshCurrentTab()
         })
@@ -104,7 +104,7 @@ export default defineComponent({
       .then((resp): void => { // update the current states
         this.version = (resp[0] as VersionResponse).payload.version
         const settings = (resp[1] as GetSettingsResponse).payload
-        this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
+        this.useragent = (resp[2] as GetUseragentResponse).payload.info?.useragent || ''
 
         this.enabled = settings.enabled
       })
@@ -139,7 +139,7 @@ export default defineComponent({
         .then((resp): void => {
           const settings = (resp[0] as GetSettingsResponse).payload
           this.enabledOnThisDomain = (resp[1] as EnabledForDomainResponse).payload.enabled
-          this.useragent = (resp[2] as GetUseragentResponse).payload.useragent || ''
+          this.useragent = (resp[2] as GetUseragentResponse).payload.info?.useragent || ''
 
           this.enabled = settings.enabled
         })
