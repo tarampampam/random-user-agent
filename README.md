@@ -37,26 +37,6 @@ means and then combine that with your randomly changing `User-Agent` to pretty e
 see [this GitHub issue](https://github.com/tarampampam/random-user-agent/issues/47).
 </details>
 
-<details>
-  <summary>User-agent can't be replaced (for now) in Google Chrome for pages with aggressive (inline JavaScript) detection</summary>
-
-Example:
-
-```html
-<!doctype html>
-<html>
-<head>
-  <script>
-    console.log(navigator.userAgent) // Real user-agent will be detected
-  </script>
-</head>
-</html>
-```
-
-This method is quite rare (usually JavaScript code is wrapped in `Promises`, `setTimeout` or event listeners), but so
-far no way around this kind of checking has been invented.
-</details>
-
 ## 🧩 Install
 
 Follow up by one of the links at the top 👆 of this page, or download directly the latest release from the

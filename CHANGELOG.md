@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- Watching for the dynamically created iframes and pathing them
+
+### Fixed
+
+- Aggressive User-Agent detection (now even the inline scripts cannot detect the real User-Agent; thanks to [@neroux](https://github.com/neroux) for the idea) [#26], [#36]
+
+[#26]:https://github.com/tarampampam/random-user-agent/issues/26
+[#36]:https://github.com/tarampampam/random-user-agent/issues/36
+
 ## v3.1.1
 
 ### Fixed

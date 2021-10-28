@@ -18,6 +18,7 @@ import GetSettings from './messaging/handlers/get-settings'
 import Useragent, {UseragentStateEvent} from './useragent/useragent'
 import GetUseragent from './messaging/handlers/get-useragent'
 import UpdateUseragent from './messaging/handlers/update-useragent'
+import HeadersReceived from './hooks/headers-received'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -103,6 +104,9 @@ useragent.load().then((): void => { // load useragent state
 
       // this hook is required for the HTTP headers modification
       new BeforeSendHeaders(settings, useragent, filterService).listen()
+
+      // this hook allows to send important data to the content script without using sendMessage()
+      new HeadersReceived(settings, useragent, filterService).listen()
     }).catch(errorsHandler)
   }).catch(errorsHandler)
 }).catch(errorsHandler)
