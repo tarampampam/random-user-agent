@@ -265,6 +265,7 @@ export default defineComponent({
 
 ::-webkit-scrollbar {
   width: var(--options-scrollbar-width);
+  height: var(--options-scrollbar-width);
 }
 
 ::-webkit-scrollbar-thumb {
