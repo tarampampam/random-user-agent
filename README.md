@@ -21,7 +21,26 @@
 - Replaces `User-Agent` HTTP header
 - Protect against detection by JavaScript
 - User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.)
-- Exceptions list available with option of wildcards
+- Exceptions list (blacklist/whitelist) available with option of wildcards
+- Doesn't need initial setup - just install and forget about the real user-agent leaking
+
+## 🛠 Where do I can test the functionality?
+
+Open one of the links below with and without the extension enabled:
+
+Resource                                            |   Test
+--------------------------------------------------- | :-------:
+[Out test page][test-rua]                           | ✅ Passed
+[What is my User Agent][test-webbrowsertools]       | ✅ Passed
+[Browser Information (BrowserSPY)][test-browserspy] | ✅ Passed
+[whoer][test-whoer]                                 | ✅ Passed
+[browserleaks][test-browserleaks]                   | ✅ Passed
+
+[test-rua]:https://tarampampam.github.io/random-user-agent/
+[test-webbrowsertools]:https://webbrowsertools.com/useragent/?method=normal&verbose=false
+[test-browserspy]:http://browserspy.dk/browser.php
+[test-whoer]:https://whoer.net/
+[test-browserleaks]:https://browserleaks.com/javascript
 
 ## 👀 Questions
 
@@ -39,7 +58,7 @@ see [this GitHub issue](https://github.com/tarampampam/random-user-agent/issues/
 
 ## 🧩 Install
 
-Follow up by one of the links at the top 👆 of this page, or download directly the latest release from the
+Follow up by one of the links at the top 👆 of this page, or download `CRX`/`XPI` file directly the latest release from the
 [releases page][releases].
 
 ## 🖥️ Run Locally
@@ -83,21 +102,33 @@ I want to say a big thank you to everyone who contributed to this project:
 1. Make required changes in this repository, test it locally
 2. Update [changelog file](CHANGELOG.md) and "publish" new release using repo [releases page][releases]
 3. When the CI process is done - download the file `random-user-agent.zip` to my computer
-4. Open "[Chrome Web Store Developer Dashboard][chrome-upload-new]" and click the "Upload new package" button, next, next... Publish
-5. Download the `main.crx` file from the dashboard, rename it to the `random-user-agent.crx` and upload to the [release on GitHub][releases]
-6. Open "[Mozilla add-on developer hub][ff-upload-new]", "Select a file...", next, next, download the extension sources archive, upload it to hub, next, Publish
-7. Download the `random_user_agent_X.X.X-blabla.xpi` file from the dashboard, rename it to the `random-user-agent.xpi` and upload to the [release on GitHub][releases]
+4. Open "[Chrome Web Store Developer Dashboard][chrome-upload-new]" and click the "Upload new package" button, next,
+   next... Publish
+5. Download the `main.crx` file from the dashboard, rename it to the `random-user-agent.crx` and upload to
+   the [release on GitHub][releases]
+6. Open "[Mozilla add-on developer hub][ff-upload-new]", "Select a file...", next, next, download the extension sources
+   archive, upload it to hub, next, Publish
+7. Download the `random_user_agent_X.X.X-blabla.xpi` file from the dashboard, rename it to the `random-user-agent.xpi`
+   and upload to the [release on GitHub][releases]
 8. Don't forget to update the fkn [edge store][edge-upload-new]
 9. Open a bottle of beer, I've earned
 
 [chrome-upload-new]:https://chrome.google.com/webstore/devconsole/ea9e18ff-c849-424a-acba-9b43eaad29c8/einpaelgookohagofgnnkcfjbkkgepnp/edit/package
+
 [ff-upload-new]:https://addons.mozilla.org/en-US/developers/addon/random_user_agent/versions/submit/
+
 [edge-upload-new]:https://partner.microsoft.com/en-us/dashboard/microsoftedge/6e5e9cbf-8846-4830-9fa5-9f77d03aa39f/packages
 
 [issues]:https://github.com/tarampampam/random-user-agent/issues
+
 [discussions]:https://github.com/tarampampam/random-user-agent/discussions
+
 [releases]:https://github.com/tarampampam/random-user-agent/releases
+
 [contributors]:https://github.com/tarampampam/random-user-agent/graphs/contributors
+
 [link-chrome-store]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
+
 [link-ff-store]:https://addons.mozilla.org/firefox/addon/random_user_agent/
+
 [link-edge-store]:https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded
