@@ -130,6 +130,30 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           })
         })
       }).observe(document, {childList: true, subtree: true})
+      const handler_of_getter = {
+        apply: (target, thisArg: object, args: object) => {
+          const result: HTMLElement = target.apply(thisArg, args)
+          if (result?.tagName?.toUpperCase() === 'IFRAME') {
+            const iframe = result as HTMLIFrameElement, contentWindow = iframe.contentWindow
+            if (typeof contentWindow === 'object' && contentWindow !== null) {
+              patchNavigator(contentWindow.navigator)
+            }
+          }
+          return result
+        }
+      }
+      const NodePrototype: Node = Node.prototype, nodeAppendChild = NodePrototype.appendChild
+      const nodePrototypeAppendChild = new Proxy(nodeAppendChild, handler_of_getter);
+      const attributesDefinedProperTy = {
+        get: () => {
+          return nodePrototypeAppendChild;
+        },
+        set: () => {
+          return () => {} // just prevent to throw err while runtime
+        }
+      }
+      Object.defineProperty(NodePrototype, "appendChild", attributesDefinedProperTy)
+      Object.defineProperty(NodePrototype, "insertBefore", attributesDefinedProperTy)
     } + `)(${JSON.stringify(p)})`,
   )
   .then((scriptContent: string): void => {
