@@ -3,12 +3,13 @@ import Useragent from '../useragent/useragent'
 import FilterService from '../services/filter-service'
 import BlockingResponse = chrome.webRequest.BlockingResponse
 import WebResponseHeadersDetails = chrome.webRequest.WebResponseHeadersDetails
+import UseragentInfo from '../useragent/useragent-info'
 
 declare var __UNIQUE_RUA_COOKIE_NAME__: string // see the webpack config, section "plugins" (webpack.DefinePlugin)
 export const CookieName: string = __UNIQUE_RUA_COOKIE_NAME__
 
 export interface Payload {
-  useragent: string
+  uaInfo: UseragentInfo
 }
 
 export function encode(payload: Payload): string {
@@ -56,14 +57,14 @@ export default class HeadersReceived {
           const settings = this.settings.get()
 
           if (settings.enabled && settings.jsProtection.enabled && this.filterService.applicableToURI(details.url)) {
-            const useragent = this.useragent.get().useragent
+            const useragent = this.useragent.get().info
 
-            if (details.responseHeaders && typeof useragent === 'string') {
+            if (details.responseHeaders && useragent !== undefined) {
               const date = new Date()
               date.setTime(date.getTime() + 60 * 1000) // +60 seconds
 
               const payload: Payload = {
-                useragent: useragent,
+                uaInfo: useragent,
               }
 
               details.responseHeaders.push({

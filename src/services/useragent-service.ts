@@ -1,6 +1,7 @@
 import Settings from '../settings/settings'
 import {UseragentGenerator} from '../useragent/generator'
 import Useragent from '../useragent/useragent'
+import UseragentInfo from '../useragent/useragent-info'
 
 export default class UseragentService {
   private readonly settings: Settings
@@ -16,10 +17,10 @@ export default class UseragentService {
   // Renew the useragent (generate a new and set them into the settings)
   renew(): {
     source: 'custom_agents_list' | 'generator'
-    previous: string | undefined
-    new: string
+    previous: UseragentInfo | undefined
+    new: UseragentInfo
   } {
-    const previous = this.useragent.get().useragent
+    const previous = this.useragent.get().info
 
     if (this.settings.get().customUseragent.enabled) {
       const list: string[] = this.settings.get().customUseragent.list
@@ -28,12 +29,18 @@ export default class UseragentService {
         const random: string = list[Math.floor(Math.random() * list.length)]
 
         if (random.trim().length > 0) {
-          this.useragent.update({useragent: random})
+          const custom: UseragentInfo = {
+            useragent: random,
+            engine: 'unknown', // TODO probably detect this properties here?
+            osType: 'unknown',
+          }
+
+          this.useragent.update({info: custom})
 
           return {
             source: 'custom_agents_list',
             previous: previous,
-            new: random,
+            new: custom,
           }
         }
       }
@@ -41,7 +48,7 @@ export default class UseragentService {
 
     const generated = this.generator.generate(this.settings.get().generator.types)
 
-    this.useragent.update({useragent: generated})
+    this.useragent.update({info: generated})
 
     return {
       source: 'generator',
