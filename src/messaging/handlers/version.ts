@@ -1,4 +1,5 @@
 import {Handler, HandlerRequest, HandlerResponse} from '../handlers'
+import browser from 'webextension-polyfill'
 
 const name: string = 'version'
 
@@ -23,7 +24,7 @@ export default class Version implements Handler {
   handle(request: HandlerRequest): VersionResponse {
     return {
       payload: {
-        version: chrome.runtime.getManifest().version,
+        version: browser.runtime.getManifest().version,
       },
     }
   }

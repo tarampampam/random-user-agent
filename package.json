@@ -22,11 +22,13 @@
   "dependencies": {
     "randexp": "^0.5.3",
     "type-fest": "^2.5.1",
-    "vue": "^3.2.20"
+    "vue": "^3.2.20",
+    "webextension-polyfill": "^0.8.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.161",
     "@types/jest": "^27.0.2",
+    "@types/webextension-polyfill": "^0.8.1",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
     "filemanager-webpack-plugin": "^6.1.7",

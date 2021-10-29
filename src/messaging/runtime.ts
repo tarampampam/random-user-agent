@@ -1,4 +1,5 @@
 import {HandlerRequest, HandlerResponse, Router} from './handlers'
+import browser from 'webextension-polyfill'
 
 const signature: string = 'rua-proto-v1' // some unique string
 
@@ -54,35 +55,34 @@ export class RuntimeSender implements Sender {
         order.push(id)
       })
 
-      chrome.runtime.sendMessage(message, (response: any) => {
-        const lastError = chrome.runtime.lastError, validationError = validateEnvelope(response)
-
-        if (lastError) {
-          return reject(new Error(lastError.message))
-        } else if (validationError !== undefined) {
-          return reject(validationError)
-        }
-
-        let responses: HandlerResponse[] = Array(requests.length)
-
-        for (const [id, resp] of Object.entries((response as Envelope).data)) {
-          if (!order.includes(id)) {
-            return reject(new Error(`Unexpected response ID ${id} in the responses stack`))
+      browser.runtime.sendMessage(message)
+        .then((response): void => {
+          const validationError = validateEnvelope(response)
+          if (validationError !== undefined) {
+            return reject(validationError)
           }
 
-          responses[order.indexOf(id)] = resp // replace the request ID with the response with the corresponding ID
-        }
+          let responses: HandlerResponse[] = Array(requests.length)
 
-        responses = responses.filter((response): boolean => {
-          return typeof response === 'object'
+          for (const [id, resp] of Object.entries((response as Envelope).data)) {
+            if (!order.includes(id)) {
+              return reject(new Error(`Unexpected response ID ${id} in the responses stack`))
+            }
+
+            responses[order.indexOf(id)] = resp // replace the request ID with the response with the corresponding ID
+          }
+
+          responses = responses.filter((response): boolean => {
+            return typeof response === 'object'
+          })
+
+          if (responses.length !== requests.length) {
+            return reject(new Error(`Unexpected responses count (expected: ${requests.length}, actual: ${responses.length})`))
+          }
+
+          resolve(responses)
         })
-
-        if (responses.length !== requests.length) {
-          return reject(new Error(`Unexpected responses count (expected: ${requests.length}, actual: ${responses.length})`))
-        }
-
-        resolve(responses)
-      })
+        .catch(reject)
     })
   }
 }
@@ -99,18 +99,9 @@ export class RuntimeReceiver implements Receiver {
   }
 
   listen(): void {
-    // Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object.
-    // If you have more than one onMessage listener in the same document, then only one may send a response. This
-    // function becomes invalid when the event listener returns, UNLESS YOU RETURN TRUE from the event listener to
-    // indicate you wish to send a response asynchronously (this will keep the message channel open to the other end
-    // until sendResponse is called).
-    // docs: https://developer.chrome.com/docs/extensions/reference/runtime/#event-onMessage
-    chrome.runtime.onMessage.addListener((message: any, _, reply: (response: Envelope) => void): void | true => {
-      const lastError = chrome.runtime.lastError, validationError = validateEnvelope(message)
-
-      if (lastError) {
-        return this.errorsHandler(new Error(lastError.message))
-      } else if (validationError !== undefined) {
+    browser.runtime.onMessage.addListener(async (message, sender) => {
+      const validationError = validateEnvelope(message)
+      if (validationError !== undefined) {
         return this.errorsHandler(validationError)
       }
 
@@ -123,12 +114,7 @@ export class RuntimeReceiver implements Receiver {
         response.data[id] = this.router.handle(req as HandlerRequest)
       }
 
-      reply(response) // sync call
-
-      // return true from the event listener to indicate you wish to send a response asynchronously
-      // (this will keep the message channel open to the other end until sendResponse is called)
-      //
-      // return true
+      return response
     })
   }
 }

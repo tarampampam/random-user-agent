@@ -1,8 +1,7 @@
 import Settings from '../settings/settings'
 import Useragent from '../useragent/useragent'
 import FilterService from '../services/filter-service'
-import BlockingResponse = chrome.webRequest.BlockingResponse
-import WebRequestHeadersDetails = chrome.webRequest.WebRequestHeadersDetails
+import browser from 'webextension-polyfill'
 
 export default class BeforeSendHeaders {
   private readonly settings: Settings
@@ -20,8 +19,8 @@ export default class BeforeSendHeaders {
    * @link https://stackoverflow.com/q/17567624/2252921 pass something to a content script
    */
   listen(): void {
-    chrome.webRequest.onBeforeSendHeaders.addListener(
-      (details: WebRequestHeadersDetails): BlockingResponse | void => {
+    browser.webRequest.onBeforeSendHeaders.addListener(
+      (details) => {
         if (this.settings.get().enabled && this.filterService.applicableToURI(details.url)) {
           const useragent = this.useragent.get().info
 

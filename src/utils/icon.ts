@@ -1,10 +1,12 @@
+import browser from 'webextension-polyfill'
+
 export enum IconState {
   Active,
   Inactive,
 }
 
 export function setExtensionIcon(state: IconState, tabId?: number) {
-  const details: chrome.browserAction.TabIconDetails = {
+  const details: browser.Action.SetIconDetailsType = {
     path: {},
   }
 
@@ -29,5 +31,5 @@ export function setExtensionIcon(state: IconState, tabId?: number) {
     details.tabId = tabId
   }
 
-  chrome.browserAction.setIcon(details)
+  browser.browserAction.setIcon(details).catch(console.warn)
 }

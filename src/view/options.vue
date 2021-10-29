@@ -91,6 +91,7 @@ import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settin
 import {GeneratorType, isValidType} from '../useragent/generator'
 import {BlacklistMode} from '../settings/settings'
 import {updateSettings} from '../messaging/handlers/update-settings'
+import browser from 'webextension-polyfill'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -184,7 +185,7 @@ export default defineComponent({
     },
 
     removePrevSettings(): void { // TODO remove this method after a some time
-      chrome.storage.sync.remove(v2_config_key)
+      browser.storage.sync.remove(v2_config_key)
 
       this.prev_settings = undefined
     },
@@ -209,20 +210,14 @@ export default defineComponent({
       })
       .catch(errorsHandler)
 
-    try { // TODO remove this block after a some time
-      // load the prev extension settings
-      chrome.storage.sync.get(v2_config_key, (data) => {
-        if (chrome.runtime.lastError) {
-          throw new Error(chrome.runtime.lastError.message)
-        }
-
-        if (typeof data === 'object' && data.hasOwnProperty(v2_config_key)) {
+    // load the prev extension settings
+    browser.storage.sync.get(v2_config_key)
+      .then(data => { // TODO remove this block after a some time
+        if (data.hasOwnProperty(v2_config_key)) {
           this.prev_settings = JSON.stringify(data[v2_config_key], null, 2)
         }
       })
-    } catch (e) {
-      console.warn(e)
-    }
+      .catch(console.warn)
   },
   mounted(): void {
     // start state refresher

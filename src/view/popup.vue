@@ -27,6 +27,7 @@ import {changeForDomain} from '../messaging/handlers/change-for-domain'
 import {updateSettings} from '../messaging/handlers/update-settings'
 import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settings'
 import {getUseragent, GetUseragentResponse} from '../messaging/handlers/get-useragent'
+import browser from 'webextension-polyfill'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -53,7 +54,7 @@ export default defineComponent({
   methods: {
     refreshCurrentTab(): void {
       if (typeof this.currentTabID === 'number') { // refresh the current tab
-        chrome.tabs.reload(this.currentTabID)
+        browser.tabs.reload(this.currentTabID)
       }
     },
 
@@ -91,7 +92,7 @@ export default defineComponent({
     },
 
     openSettings(): void {
-      chrome.runtime.openOptionsPage()
+      browser.runtime.openOptionsPage()
     },
   },
   created(): void {
@@ -111,9 +112,9 @@ export default defineComponent({
       .catch(errorsHandler)
 
     // query current page URI
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs): void => {
-      if (tabs.length > 0 && typeof tabs[0].url === 'string') {
-        this.currentPageDomain = new URL(tabs[0].url as string).hostname
+    browser.tabs.query({active: true, currentWindow: true}).then((tabs) => {
+      if (tabs.length > 0 && typeof tabs[0]?.url === 'string') {
+        this.currentPageDomain = new URL(tabs[0].url).hostname
         this.currentTabID = tabs[0].id
 
         backend

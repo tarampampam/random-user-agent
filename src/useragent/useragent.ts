@@ -1,5 +1,6 @@
-import StorageArea = chrome.storage.StorageArea
 import UseragentInfo from './useragent-info'
+import browser from 'webextension-polyfill'
+import {Storage} from 'webextension-polyfill/namespaces/storage'
 
 export interface UseragentState { // do not forget to update update() method on new properties appending
   info: UseragentInfo | undefined
@@ -14,7 +15,7 @@ export enum UseragentStateEvent {
 export default class Useragent {
   private readonly storageKey: string = 'useragent-state'
 
-  private readonly storage: StorageArea
+  private readonly storage: Storage.StorageArea
 
   protected state: UseragentState = { // default state
     info: undefined,
@@ -23,7 +24,7 @@ export default class Useragent {
   private events: Record<string, ((...data: any[]) => void)[]> = {}
 
   constructor() {
-    this.storage = chrome.storage.local // NOT sync - local!
+    this.storage = browser.storage.local // NOT sync - local!
   }
 
   // Attach callback for the events
@@ -61,26 +62,17 @@ export default class Useragent {
   }
 
   save(): Promise<void> {
-    return new Promise((resolve: () => void, reject: (err: Error) => void) => {
-      this.storage.set({[this.storageKey]: this.state}, (): void => {
-        if (chrome.runtime.lastError) {
-          return reject(new Error(chrome.runtime.lastError.message))
-        }
-
+    return this.storage
+      .set({[this.storageKey]: this.state})
+      .then((): void => {
         this.emit(UseragentStateEvent.onSave)
-
-        resolve()
       })
-    })
   }
 
   load(): Promise<void> {
-    return new Promise((resolve: () => void, reject: (err: Error) => void) => {
-      this.storage.get(this.storageKey, (items): void => {
-        if (chrome.runtime.lastError) {
-          return reject(new Error(chrome.runtime.lastError.message))
-        }
-
+    return this.storage
+      .get(this.storageKey)
+      .then((items): void => {
         if (items.hasOwnProperty(this.storageKey)) {
           if (items[this.storageKey].hasOwnProperty('useragent')) { // remove the outdated property, if exists
             delete items[this.storageKey]['useragent']
@@ -90,9 +82,6 @@ export default class Useragent {
         }
 
         this.emit(UseragentStateEvent.onLoad)
-
-        resolve()
       })
-    })
   }
 }

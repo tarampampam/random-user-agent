@@ -11,6 +11,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from '../../mixins/i18n'
+import browser from 'webextension-polyfill'
 
 export default defineComponent({
   mixins: [i18n],
@@ -24,8 +25,8 @@ export default defineComponent({
     }
   },
   methods: {
-    async openLink(url: string): Promise<chrome.tabs.Tab> {
-      return await chrome.tabs.create({url: url})
+    async openLink(url: string): Promise<browser.Tabs.Tab> {
+      return browser.tabs.create({url: url})
     },
   },
 })

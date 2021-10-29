@@ -698,6 +698,11 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
+"@types/webextension-polyfill@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.8.1.tgz#9f29dbc894128cb8fdeea3d6b083696a418c867a"
+  integrity sha512-FH1EwaQLzET/Bdy05yIcgMD2nlXchA1vnfC+QvQYMNW0RcTIDrNaVOOqmOY1nGRf0NaHZQmvfMy6cJV4nY7j2w==
+
 "@types/yargs-parser@*":
   version "20.2.1"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-20.2.1.tgz#3b9ce2489919d9e4fea439b76916abc34b2df129"
@@ -4565,6 +4570,11 @@ watchpack@^2.2.0:
   dependencies:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
+
+webextension-polyfill@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.8.0.tgz#f80e9f4b7f81820c420abd6ffbebfa838c60e041"
+  integrity sha512-a19+DzlT6Kp9/UI+mF9XQopeZ+n2ussjhxHJ4/pmIGge9ijCDz7Gn93mNnjpZAk95T4Tae8iHZ6sSf869txqiQ==
 
 webidl-conversions@^5.0.0:
   version "5.0.0"

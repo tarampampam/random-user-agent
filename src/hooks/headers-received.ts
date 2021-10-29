@@ -1,9 +1,8 @@
 import Settings from '../settings/settings'
 import Useragent from '../useragent/useragent'
 import FilterService from '../services/filter-service'
-import BlockingResponse = chrome.webRequest.BlockingResponse
-import WebResponseHeadersDetails = chrome.webRequest.WebResponseHeadersDetails
 import UseragentInfo from '../useragent/useragent-info'
+import browser from 'webextension-polyfill'
 
 declare var __UNIQUE_RUA_COOKIE_NAME__: string // see the webpack config, section "plugins" (webpack.DefinePlugin)
 export const CookieName: string = __UNIQUE_RUA_COOKIE_NAME__
@@ -51,8 +50,8 @@ export default class HeadersReceived {
    * @link https://developer.chrome.com/docs/extensions/reference/webRequest/ chrome.webRequest
    */
   listen(): void {
-    chrome.webRequest.onHeadersReceived.addListener(
-      (details: WebResponseHeadersDetails): BlockingResponse | void => {
+    browser.webRequest.onHeadersReceived.addListener(
+      (details) => {
         if (details.type === 'main_frame' || details.type === 'sub_frame') {
           const settings = this.settings.get()
 
