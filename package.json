@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "randexp": "^0.5.3",
-    "type-fest": "^2.5.1",
+    "type-fest": "^2.5.2",
     "vue": "^3.2.20"
   },
   "devDependencies": {
