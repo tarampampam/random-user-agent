@@ -2,7 +2,7 @@
 <p align="center">Automatically <strong>replaces the User-Agent</strong> with a <strong>randomized one</strong>.</p>
 <br/>
 <p align="center">
-  <a href="https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp/"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&cacheSeconds=120&logo=google-chrome&label=google%20chrome&logoColor=white"></a> &nbsp; <a href="https://addons.mozilla.org/firefox/addon/random_user_agent/"><img alt="Firefox Add-ons" src="https://img.shields.io/amo/v/random_user_agent.svg?style=for-the-badge&cacheSeconds=120&logo=firefox-browser&label=firefox&logoColor=white"></a> &nbsp; <a href="https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a>
+  <a href="https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp/"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&cacheSeconds=120&logo=google-chrome&label=google%20chrome&logoColor=white"></a> &nbsp; <a href="https://addons.mozilla.org/firefox/addon/random_user_agent/"><img alt="Firefox Add-ons" src="https://img.shields.io/amo/v/random_user_agent.svg?style=for-the-badge&cacheSeconds=120&logo=firefox-browser&label=firefox&logoColor=white"></a> &nbsp; <a href="https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a> &nbsp; <a href="https://addons.opera.com/en/extensions/details/random-user-agent/"><img alt="Opera Addons" src="https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white"></a>
 </p>
 <h1 align="center">Random User-Agent</h1>
 <br/>
@@ -15,7 +15,7 @@
 ## 🔥 Features list
 
 - Incredibly lightweight (`~70KiB` archived)
-- Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store])
+- Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store], [opera][link-opera-store])
 - Can automatically change the User-Agent after a specified period of time
 - Change User-Agent on browser startup
 - Replaces `User-Agent` HTTP header
@@ -31,7 +31,7 @@ Open one of the links below with and without the extension enabled:
 Resource                                            |   Test
 --------------------------------------------------- | :-------:
 [Out test page][test-rua]                           | ✅ Passed
-[What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 failed
+[What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 Failed
 [Browser Information (BrowserSPY)][test-browserspy] | ✅ Passed
 [whoer][test-whoer]                                 | ✅ Passed
 [browserleaks][test-browserleaks]                   | ✅ Passed
@@ -110,25 +110,18 @@ I want to say a big thank you to everyone who contributed to this project:
    archive, upload it to hub, next, Publish
 7. Download the `random_user_agent_X.X.X-blabla.xpi` file from the dashboard, rename it to the `random-user-agent.xpi`
    and upload to the [release on GitHub][releases]
-8. Don't forget to update the fkn [edge store][edge-upload-new]
+8. Don't forget to update fkn [edge][edge-upload-new] and [opera][opera-upload-new] stores
 9. Open a bottle of beer, I've earned
 
 [chrome-upload-new]:https://chrome.google.com/webstore/devconsole/ea9e18ff-c849-424a-acba-9b43eaad29c8/einpaelgookohagofgnnkcfjbkkgepnp/edit/package
-
 [ff-upload-new]:https://addons.mozilla.org/en-US/developers/addon/random_user_agent/versions/submit/
-
 [edge-upload-new]:https://partner.microsoft.com/en-us/dashboard/microsoftedge/6e5e9cbf-8846-4830-9fa5-9f77d03aa39f/packages
-
+[opera-upload-new]:https://addons.opera.com/developer/package/266286/?tab=versions
 [issues]:https://github.com/tarampampam/random-user-agent/issues
-
 [discussions]:https://github.com/tarampampam/random-user-agent/discussions
-
 [releases]:https://github.com/tarampampam/random-user-agent/releases
-
 [contributors]:https://github.com/tarampampam/random-user-agent/graphs/contributors
-
 [link-chrome-store]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
-
 [link-ff-store]:https://addons.mozilla.org/firefox/addon/random_user_agent/
-
 [link-edge-store]:https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded
+[link-opera-store]:https://addons.opera.com/en/extensions/details/random-user-agent/
