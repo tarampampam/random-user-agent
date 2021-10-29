@@ -5,6 +5,7 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
+    open-pull-requests-limit: 15
     schedule: {interval: monthly}
     reviewers: [tarampampam]
     assignees: [tarampampam]
