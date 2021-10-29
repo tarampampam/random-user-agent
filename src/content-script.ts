@@ -142,18 +142,22 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           return result
         }
       }
-      const NodePrototype: Node = Node.prototype, nodeAppendChild = NodePrototype.appendChild
-      const nodePrototypeAppendChild = new Proxy(nodeAppendChild, handler_of_getter);
-      const attributesDefinedProperTy = {
-        get: () => {
-          return nodePrototypeAppendChild;
-        },
-        set: () => {
-          return () => {} // just prevent to throw err while runtime
-        }
+      const NodePrototype: Node = Node.prototype
+      const nodeAppendChild = NodePrototype.appendChild,nodeInsertBefore = NodePrototype.insertBefore
+      const nodePrototypeAppendChild = new Proxy(nodeAppendChild, handler_of_getter),
+          nodePrototypeInsertBefore = new Proxy(nodeInsertBefore, handler_of_getter)
+      const factoryAttributesDefineProperty = (proxy: object) => {
+           return {
+            get: () => {
+              return proxy
+            },
+            set: () => {
+              return () => {} // just prevent to throw err while runtime
+            }
+          }
       }
-      Object.defineProperty(NodePrototype, "appendChild", attributesDefinedProperTy)
-      Object.defineProperty(NodePrototype, "insertBefore", attributesDefinedProperTy)
+      Object.defineProperty(NodePrototype, "appendChild", factoryAttributesDefineProperty(nodePrototypeAppendChild))
+      Object.defineProperty(NodePrototype, "insertBefore", factoryAttributesDefineProperty(nodePrototypeInsertBefore))
     } + `)(${JSON.stringify(p)})`,
   )
   .then((scriptContent: string): void => {

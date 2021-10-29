@@ -33,8 +33,7 @@
     "all_frames": true,
     "run_at": "document_start",
     "js": ["js/content-script.js"]
-  }
-  ],
+  }],
   "permissions": [
     "tabs",
     "storage",
