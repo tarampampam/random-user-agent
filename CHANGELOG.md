@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Fixed
 
 - `extraHeaders` options bug for `onHeadersReceived` hook in FireFox
+- Colors in the popup window when chrome uses the "Force Dark" feature [#184]
+
+[#184]:https://github.com/tarampampam/random-user-agent/issues/184
 
 ## v3.2.0
 

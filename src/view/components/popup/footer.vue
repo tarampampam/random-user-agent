@@ -33,7 +33,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 footer {
-  background-color: var(--popup-footer-bg-color);
+  background-color: var(--popup-secondary-bg-color);
   text-align: center;
   padding: 1em 1.2em;
   font-size: .75em;

@@ -152,6 +152,7 @@ export default defineComponent({
 <style lang="scss">
 :root {
   --popup-main-bg-color: #fff;
+  --popup-secondary-bg-color: #f2f2f2;
   --popup-main-text-color: #111;
   --popup-actions-secondary-color: #e9e9e9;
   --popup-action-text-color: #3b3b3b;
@@ -160,26 +161,23 @@ export default defineComponent({
   --popup-blinking-bg-2-color: rgba(87, 222, 114, 0.25);
 
   --popup-active-ua-text-color: #333;
-  --popup-active-ua-bg-gradient: radial-gradient(circle at 50% 54%, #fff, #dedede);
   --popup-enabled-switcher-bg-color: #57de72;
 
-  --popup-footer-bg-color: #f2f2f2;
   --popup-footer-text-color: rgba(0, 0, 0, .25);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --popup-main-bg-color: #2f2f2f;
+    --popup-secondary-bg-color: #2a2a2a;
     --popup-main-text-color: #fbfbfb;
     --popup-actions-secondary-color: #3a3a3a;
     --popup-action-text-color: #eee;
     --popup-action-hover-bg-color: #3a3a3a;
 
     --popup-active-ua-text-color: #ebebeb;
-    --popup-active-ua-bg-gradient: radial-gradient(circle at 50% 54%, #2f2f2f, #2a2a2a);
     --popup-enabled-switcher-bg-color: #2a9f41;
 
-    --popup-footer-bg-color: #2a2a2a;
     --popup-footer-text-color: rgba(255, 255, 255, .35);
   }
 }
