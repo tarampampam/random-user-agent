@@ -9,6 +9,15 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - Chinese `zh_CN` localization (thanks to [@yfdyh000](https://github.com/yfdyh000))
+- "Save changes" button on the options page
+
+### Changed
+
+- Custom user-agent list on the settings page now limited (maximal `4096` symbols are allowed, [the reason is QUOTA_BYTES_PER_ITEM](https://developer.chrome.com/docs/extensions/reference/storage/#property-sync))
+
+### Fixed
+
+- `extraHeaders` options bug for `onHeadersReceived` hook in FireFox
 
 ## v3.2.0
 
