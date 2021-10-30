@@ -41,6 +41,8 @@
   "previous_settings": {"message": "Previous settings"},
   "remove": {"message": "Remove"},
   "previous_settings_hint": {"message": "These settings were used by you on the previous extension version. Keep it somewhere or remove"},
+  "save_changes": {"message": "Save changes"},
+  "error_occurred": {"message": "Error occurred"},
 
   "edge_win": {"message": "Edge on Windows"},
   "chrome_win": {"message": "Chrome on Windows"},

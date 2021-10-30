@@ -5,6 +5,7 @@
       <textarea :id="id"
                 :rows="rowsCount"
                 :placeholder="placeholder"
+                :maxlength="maxlength"
                 @input="checkValue">{{ lines }}</textarea>
       <p class="hint" v-if="hint">{{ hint }}</p>
     </div>
@@ -27,6 +28,7 @@ export default defineComponent({
     },
     placeholder: String,
     hint: String,
+    maxlength: Number,
   },
   emits: {
     change(text: string[] | any): boolean {

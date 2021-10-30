@@ -51,6 +51,12 @@ export default class HeadersReceived {
    * @link https://developer.chrome.com/docs/extensions/reference/webRequest/ chrome.webRequest
    */
   listen(): void {
+    const extraInfoSpec = ['blocking', 'responseHeaders'] // common
+
+    if (this.extraHeadersAreAllowed()) { // FireFox does not support 'extraHeaders' - https://git.io/JP0Cp
+      extraInfoSpec.push('extraHeaders') // extraHeaders - https://stackoverflow.com/a/66558910/2252921
+    }
+
     chrome.webRequest.onHeadersReceived.addListener(
       (details: WebResponseHeadersDetails): BlockingResponse | void => {
         if (details.type === 'main_frame' || details.type === 'sub_frame') {
@@ -78,7 +84,25 @@ export default class HeadersReceived {
         }
       },
       {urls: ['<all_urls>']},
-      ['blocking', 'responseHeaders', 'extraHeaders'], // extraHeaders - https://stackoverflow.com/a/66558910/2252921
+      extraInfoSpec,
     )
+  }
+
+  private extraHeadersAreAllowed(): boolean {
+    const fooHandler = (): void => {}
+
+    let result: boolean = false
+
+    try {
+      chrome.webRequest.onHeadersReceived.addListener(fooHandler, {urls: ['https://example.com/']}, ['extraHeaders'])
+
+      result = true
+    } catch (e) {
+      result = false
+    } finally {
+      chrome.webRequest.onHeadersReceived.removeListener(fooHandler)
+    }
+
+    return result
   }
 }
