@@ -98,13 +98,7 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           }
         }
       }
-
-      // patch current window navigator
-      patchNavigator(window.navigator)
-
-      // handler for patching navigator object for the iframes
-      // issue: <https://github.com/tarampampam/random-user-agent/issues/142>
-      window.addEventListener('load', (): void => {
+      const patchDynamicIframeElementsContentWindow = (): void =>  {
         const iframes = document.getElementsByTagName('iframe')
 
         for (let i = 0; i < iframes.length; i++) {
@@ -114,6 +108,14 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
             patchNavigator(contentWindow.navigator)
           }
         }
+      }
+      // patch current window navigator
+      patchNavigator(window.navigator)
+
+      // handler for patching navigator object for the iframes
+      // issue: <https://github.com/tarampampam/random-user-agent/issues/142>
+      window.addEventListener('load', (): void => {
+        patchDynamicIframeElementsContentWindow()
       }, {once: true, passive: true})
 
       // watch for the new iframes dynamic creation
@@ -142,10 +144,19 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           return result
         }
       }
-      const NodePrototype: Node = Node.prototype
-      const nodeAppendChild = NodePrototype.appendChild,nodeInsertBefore = NodePrototype.insertBefore
+      const handler_of_operator = {
+        apply: (target, thisArg: object, args: object) => {
+          target.apply(thisArg, args)
+          patchDynamicIframeElementsContentWindow()
+        }
+      }
+      const NodePrototype = Node.prototype,elementPrototype = Element.prototype
+      const nodeAppendChild = NodePrototype.appendChild,
+          nodeInsertBefore = NodePrototype.insertBefore,
+          elementAppend = elementPrototype.append
       const nodePrototypeAppendChild = new Proxy(nodeAppendChild, handler_of_getter),
-          nodePrototypeInsertBefore = new Proxy(nodeInsertBefore, handler_of_getter)
+          nodePrototypeInsertBefore = new Proxy(nodeInsertBefore, handler_of_getter),
+          elementPrototypeAppend = new Proxy(elementAppend,handler_of_operator)
       const factoryAttributesDefineProperty = (proxy: object) => {
            return {
             get: () => {
@@ -158,6 +169,7 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
       }
       Object.defineProperty(NodePrototype, "appendChild", factoryAttributesDefineProperty(nodePrototypeAppendChild))
       Object.defineProperty(NodePrototype, "insertBefore", factoryAttributesDefineProperty(nodePrototypeInsertBefore))
+      Object.defineProperty(elementPrototype, "append", factoryAttributesDefineProperty(elementPrototypeAppend))
     } + `)(${JSON.stringify(p)})`,
   )
   .then((scriptContent: string): void => {
