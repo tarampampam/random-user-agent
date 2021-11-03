@@ -43,6 +43,8 @@
   "previous_settings_hint": {"message": "Эти настройки использовались для предыдущей версии расширения. Сохраните их где-нибудь или удалите"},
   "save_changes": {"message": "Сохранить изменения"},
   "error_occurred": {"message": "Произошла ошибка"},
+  "like_this_extension": {"message": "Вам нравится это расширение?"},
+  "give_a_star_on_github": {"message": "Поставьте ему звёздочку на GitHub!"},
 
   "edge_win": {"message": "Edge на Windows"},
   "chrome_win": {"message": "Chrome на Windows"},

@@ -1,141 +1,136 @@
 <template>
-  <overlay-alert :caption="'⛔ ' + i18n('error_occurred', 'Error occurred')"
-                 :message="error.message"
-                 @click="error.visible = false"
-                 v-if="error.visible"/>
+  <main>
+    <header>
+      <div class="container">
+        <!--div class="alert success">
+          <span>Notification</span>
+        </div-->
+      </div>
+    </header>
+    <section class="container">
+      <nav>
+        <ul>
+          <li :class="{active: page === 'general'}"
+              @click="page = 'general'">
+            <span>{{ i18n('general_settings', 'General settings') }}</span>
+          </li>
+          <li :class="{active: page === 'generator'}"
+              @click="page = 'generator'">
+            <span>{{ i18n('generator_settings', 'Generator settings') }}</span>
+          </li>
+          <li :class="{active: page === 'blacklist'}"
+              @click="page = 'blacklist'">
+            <span>{{ i18n('blacklist_settings', 'Blacklist settings') }}</span>
+          </li>
+        </ul>
+        <div class="actions">
+          <input
+            v-if="!saved"
+            type="button"
+            class="btn"
+            @click="save"
+            :value="i18n('save_changes', 'Save changes')"
+          />
+        </div>
+      </nav>
+      <aside>
+        <div v-if="page === 'general'">
+          <h1>{{ i18n('general_settings', 'General settings') }}</h1>
+          <p>{{ i18n('general_settings_hint', 'Change the behavior of the switcher to best fit your needs') }}:</p>
 
-  <article>
-    <h1>
-      {{ i18n('general_settings', 'General settings') }}
-      <input type="button"
-             class="save-btn"
-             v-if="saveButtons.general"
-             :value="i18n('save_changes', 'Save changes')"
-             @click="save"/>
-    </h1>
+          <ul>
+            <li class="control" v-for="id in [randomString()]">
+              <label :for="id">
+                {{ i18n('enable_switcher', 'Enable Switcher') }}
+              </label>
+              <toggle
+                :id="id"
+                :checked="settings.enabled"
+                @change="value => {settings.enabled = value; saved = false}"
+              />
+            </li>
 
-    <p>{{ i18n('general_settings_hint', 'Change the behavior of the switcher to best fit your needs') }}:</p>
-
-    <ul class="list">
-      <list-checkbox :checked="settings.enabled"
-                     :caption="i18n('enable_switcher', 'Enable Switcher')"
-                     @change="value => {settings.enabled = value; saveButtons.general = true}"/>
-      <list-checkbox :checked="settings.renew.enabled"
-                     :caption="i18n('auto_renew', 'Automatically change the User-Agent after specified period of time')"
-                     @change="value => {settings.renew.enabled = value; saveButtons.general = true}"/>
-      <list-number :value="Math.round(settings.renew.intervalMillis / 1000)"
-                   :caption="i18n('auto_renew_interval', 'Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)')"
-                   :minimum="1"
-                   :maximum="86400"
-                   :placeholder="60"
-                   @change="value => {settings.renew.intervalMillis = Math.round(value * 1000); saveButtons.general = true}"/>
-      <list-checkbox :checked="settings.renew.onStartup"
-                     :caption="i18n('auto_renew_on_startup', 'Change User-Agent on browser startup')"
-                     @change="value => {settings.renew.onStartup = value; saveButtons.general = true}"/>
-      <list-checkbox :checked="settings.jsProtection.enabled"
-                     :caption="i18n('js_protection', 'Protect against detection by JavaScript')"
-                     @change="value => {settings.jsProtection.enabled = value; saveButtons.general = true}"/>
-      <list-checkbox :checked="settings.customUseragent.enabled"
-                     :caption="i18n('custom_useragent', 'Use one of (in the randomized order) custom User-Agent instead generated')"
-                     @change="value => {settings.customUseragent.enabled = value; saveButtons.general = true}"/>
-      <!-- Length limitation reason: <https://github.com/tarampampam/random-user-agent/issues/172> -->
-      <list-textarea :value="settings.customUseragent.list"
-                     :caption="i18n('custom_useragent_list', 'Custom User-Agents (set a specific User-Agents, one per line)') + ':'"
-                     :maxlength="4096"
-                     placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
-                     @change="value => {settings.customUseragent.list = value; saveButtons.general = true}"/>
-    </ul>
-
-    <h2>
-      {{ i18n('generator_settings', 'Generator settings') }}
-      <input type="button"
-             class="save-btn"
-             v-if="saveButtons.generator"
-             :value="i18n('save_changes', 'Save changes')"
-             @click="save"/>
-    </h2>
-
-    <p>{{ i18n('generator_settings_hint', 'Here you can change the agent switching behavior') }}:</p>
-
-    <ul class="set">
-      <li v-for="generatorType in allGeneratorTypes">
-        <label><input type="checkbox"
-                      :key="generatorType"
-                      :value="generatorType"
-                      :name="generatorType"
-                      v-model="settings.generator.types"
-                      @change="saveButtons.generator = true">{{ i18n(generatorType) }}</label>
-      </li>
-    </ul>
-
-    <h2>
-      {{ i18n('blacklist_settings', 'Blacklist settings') }}
-      <input type="button"
-             class="save-btn"
-             v-if="saveButtons.blacklist"
-             :value="i18n('save_changes', 'Save changes')"
-             @click="save"/>
-    </h2>
-
-    <p>{{
-        i18n('blacklist_settings_hint', 'Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules')
-      }}:</p>
-
-    <ul class="list">
-      <list-checkbox :checked="settings.blacklist.modeWhitelist"
-                     :caption="i18n('white_black_list_mode', 'Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)')"
-                     @change="value => {settings.blacklist.modeWhitelist = value; saveButtons.blacklist = true}"/>
-      <list-textarea :value="settings.blacklist.domains"
-                     :caption="i18n('blacklist_domains', 'Domain names list (one per line)') + ':'"
-                     placeholder="docs.google.com"
-                     @change="value => {settings.blacklist.domains = value; saveButtons.blacklist = true}"/>
-      <list-textarea :value="settings.blacklist.custom.rules"
-                     :caption="i18n('blacklist_custom_rules', 'Custom rules (one per line)') + ':'"
-                     placeholder="http?://*google.com/*"
-                     :hint="i18n('blacklist_custom_rules_hint', 'You can use wildcards such as * and ?')"
-                     @change="value => {settings.blacklist.custom.rules = value; saveButtons.blacklist = true}"/>
-    </ul>
-
-    <div v-if="prev_settings">
-      <h3>{{ i18n('previous_settings', 'Previous settings') }} <input type="button"
-                                                                      :value="i18n('remove', 'Remove')"
-                                                                      @click="removePrevSettings"/></h3>
-
-      <p>{{
-          i18n('previous_settings_hint', 'These settings were used by you on the previous extension version. Keep it somewhere or remove')
-        }}:</p>
-
-      <pre>{{ prev_settings }}</pre>
-    </div>
-  </article>
+            <li class="control" v-for="id in [randomString()]">
+              <div>
+                <label :for="id">
+                  {{ i18n('auto_renew', 'Automatically change the User-Agent after specified period of time') }}
+                </label>
+                <div class="hint">
+                  {{
+                    i18n(
+                      'auto_renew_interval',
+                      'Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)',
+                    )
+                  }}
+                </div>
+                <div class="option">
+                  <input
+                    type="number"
+                    :disabled="!settings.renew.enabled"
+                    :value="Math.round(settings.renew.intervalMillis / 1000)"
+                    min="1"
+                    max="86400"
+                    placeholder="60"
+                    required
+                  />
+                </div>
+              </div>
+              <toggle
+                :id="id"
+                :checked="settings.renew.enabled"
+                @change="value => {settings.renew.enabled = value; saved = false}"
+              />
+            </li>
+          </ul>
+        </div>
+        <div v-else-if="page === 'generator'">
+          <h1>{{ i18n('generator_settings', 'Generator settings') }}</h1>
+          <p>{{ i18n('generator_settings_hint', 'Here you can change the agent switching behavior') }}:</p>
+        </div>
+        <div v-else-if="page === 'blacklist'">
+          <h1>{{ i18n('blacklist_settings', 'Blacklist settings') }}</h1>
+          <p>{{
+              i18n('blacklist_settings_hint', 'Blacklist mode - switching enabled everywhere, except the defined ' +
+                'domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules')
+            }}:</p>
+        </div>
+        <div v-else>
+          <h1>(╯°□°)╯︵ ┻━┻</h1>
+        </div>
+      </aside>
+    </section>
+    <footer>
+      <div class="container">
+        {{ i18n('like_this_extension', 'Do you like this extension?') }}
+        <a href="https://github.com/tarampampam/random-user-agent" target="_blank">
+          {{ i18n('give_a_star_on_github', 'Give us a star on GitHub!') }}
+        </a>
+      </div>
+    </footer>
+  </main>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from './mixins/i18n'
-import OverlayAlert from './components/popup/overlay-alert.vue'
-import ListCheckbox from './components/options/list-checkbox.vue'
-import ListTextarea from './components/options/list-textarea.vue'
-import ListNumber from './components/options/list-number.vue'
 import {RuntimeSender, Sender} from '../messaging/runtime'
 import {getSettings, GetSettingsResponse} from '../messaging/handlers/get-settings'
-import {GeneratorType} from '../useragent/generator'
+import Toggle from './components/options/toggle.vue'
 import {BlacklistMode} from '../settings/settings'
-import {updateSettings} from '../messaging/handlers/update-settings'
+import {GeneratorType} from '../useragent/generator'
 
-const backend: Sender = new RuntimeSender,
-  v2_config_key: string = 'extension_settings_v2'
+const backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
-    'list-checkbox': ListCheckbox,
-    'list-number': ListNumber,
-    'list-textarea': ListTextarea,
-    'overlay-alert': OverlayAlert,
+    'toggle': Toggle,
   },
   mixins: [i18n],
   data: (): { [key: string]: any } => {
     return {
+      page: 'general' as 'general' | 'generator' | 'blacklist',
+      saved: true,
+
       settings: {
         enabled: false,
         renew: {
@@ -145,7 +140,7 @@ export default defineComponent({
         },
         customUseragent: {
           enabled: false,
-          list: [],
+          list: [] as string[],
         },
         jsProtection: {
           enabled: false,
@@ -161,76 +156,28 @@ export default defineComponent({
           },
         },
       },
-
-      error: {
-        visible: false,
-        message: undefined as string | undefined,
-      },
-
-      saveButtons: { // visibility
-        general: false,
-        generator: false,
-        blacklist: false,
-      },
-
-      prev_settings: undefined as string | undefined, // TODO remove this property after a some time
     }
-  },
-  computed: {
-    allGeneratorTypes(): string[] {
-      return Object.values(GeneratorType as { [key: string]: string })
-    },
   },
   methods: {
     handleError(err: Error): void {
       console.error(err)
-
-      this.error.message = err.toString()
-      this.error.visible = true
     },
 
     save(): void {
-      backend
-        .send(updateSettings({
-          enabled: this.settings.enabled,
-          renew: {
-            enabled: this.settings.renew.enabled,
-            intervalMillis: this.settings.renew.intervalMillis,
-            onStartup: this.settings.renew.onStartup,
-          },
-          customUseragent: {
-            enabled: this.settings.customUseragent.enabled,
-            list: this.settings.customUseragent.list.slice(0), // proxy object to the plain array
-          },
-          jsProtection: {
-            enabled: this.settings.jsProtection.enabled,
-          },
-          generator: {
-            types: this.settings.generator.types.slice(0), // proxy object to the plain array
-          },
-          blacklist: {
-            mode: this.settings.blacklist.modeWhitelist ? BlacklistMode.WhiteList : BlacklistMode.BlackList,
-            domains: this.settings.blacklist.domains.slice(0), // proxy object to the plain array
-            custom: {
-              rules: this.settings.blacklist.custom.rules.slice(0), // proxy object to the plain array
-            },
-          },
-        }))
-        .then((): void => {
-          for (const [key] of Object.entries(this.saveButtons)) {
-            this.saveButtons[key] = false
-          }
-        })
-        .catch(this.handleError)
+      this.saved = true
     },
 
-    removePrevSettings(): void { // TODO remove this method after a some time
-      chrome.storage.sync.remove(v2_config_key)
-
-      this.prev_settings = undefined
+    randomString(): string {
+      return Math.random().toString(36).substring(3)
     },
   },
   created(): void {
+    window.addEventListener('beforeunload', (event): void => {
+      if (!this.saved) {
+        event.returnValue = 'You have unsaved changes!'
+      }
+    })
+
     backend
       .send(getSettings())
       .then((resp): void => {
@@ -249,115 +196,273 @@ export default defineComponent({
         this.settings.blacklist.custom.rules = settings.blacklist.custom.rules
       })
       .catch(this.handleError)
-
-    try { // TODO remove this block after a some time
-      // load the prev extension settings
-      chrome.storage.sync.get(v2_config_key, (data) => {
-        if (chrome.runtime.lastError) {
-          throw new Error(chrome.runtime.lastError.message)
-        }
-
-        if (typeof data === 'object' && data.hasOwnProperty(v2_config_key)) {
-          this.prev_settings = JSON.stringify(data[v2_config_key], null, 2)
-        }
-      })
-    } catch (e) {
-      console.warn(e)
-    }
   },
 })
 </script>
 
 <style lang="scss">
 :root {
-  --options-main-bg-color: #fff;
-  --options-main-text-color: #111;
   --options-scrollbar-color: #aaa;
-  --options-second-bg-color: #eee;
-  --options-input-border-color: #ccc;
-  --options-placeholder-color: #bbb;
-  --options-hint-color: #666;
-  --options-scrollbar-width: 8px;
-  --options-shadow-color: rgba(0, 0, 0, 0.2);
+  --options-bg-primary-color: #fff;
+  --options-text-primary-color: #454545;
+  --options-border-primary-color: #e7e7e7;
+
+  --options-nav-active-color: #66b574;
+
+  --options-btn-bg-color: #68bc86;
+  --options-btn-bg-hover-color: #5ba575;
+  --options-btn-text-color: #fff;
+  --options-btn-border-color: #68bc86;
+
+  --options-toggle-brick-bg-color: #fff;
+  --options-toggle-off-bg-color: #f56f23;
+  --options-toggle-on-bg-color: #62c162;
+
+  --options-success-bg-color: #d1e7dd;
+  --options-success-border-color: #badbcc;
+  --options-success-text-color: #0f5132;
+
+  --options-error-bg-color: #f8d7da;
+  --options-error-border-color: #f5c2c7;
+  --options-error-text-color: #842029;
+
+  --options-footer-bg-color: #787878;
+  --options-footer-text-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --options-main-bg-color: #23222b;
-    --options-main-text-color: #fbfbfe;
-    --options-scrollbar-color: #666;
-    --options-second-bg-color: #4e4d54;
-    --options-input-border-color: #5e5c65;
-    --options-placeholder-color: #777;
-    --options-hint-color: #aaa;
-    --options-shadow-color: rgba(200, 200, 200, 0.3);
+    //
   }
 }
 
+$header-height: 80px;
+$footer-height: 3.5rem;
+$scrollbar-width: 8px;
+
 ::-webkit-scrollbar {
-  width: var(--options-scrollbar-width);
-  height: var(--options-scrollbar-width);
+  width: $scrollbar-width;
+  height: $scrollbar-width;
 }
 
 ::-webkit-scrollbar-thumb {
   border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
-  border-radius: var(--options-scrollbar-width);
+  border-radius: $scrollbar-width;
   background-color: var(--options-scrollbar-color);
 }
 
 html, body {
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  min-width: 500px;
-  background-color: var(--options-main-bg-color);
-  color: var(--options-main-text-color);
+  font-size: 16px;
+  background-color: var(--options-bg-primary-color);
+
+  &, a {
+    color: var(--options-text-primary-color);
+  }
 }
 
-article {
-  padding: 0 2em;
+.alert {
+  border-radius: 5px;
+  padding: 1rem;
+  border-style: solid;
+  border-width: 1px;
+  background-color: var(--options-bg-primary-color);
+  border-color: var(--options-border-primary-color);
+  color: var(--options-text-primary-color);
+
+  &.success {
+    background-color: var(--options-success-bg-color);
+    border-color: var(--options-success-border-color);
+    color: var(--options-success-text-color);
+  }
+
+  &.error {
+    background-color: var(--options-error-bg-color);
+    border-color: var(--options-error-border-color);
+    color: var(--options-error-text-color);
+  }
 }
 
-.save-btn {
-  margin-left: .5em;
-  padding: 0 1em;
-  box-shadow: 0 0 12px -2px var(--options-shadow-color);
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+  border-style: solid;
+  border-width: 1px;
+
+  background-color: var(--options-btn-bg-color);
+  border-color: var(--options-btn-border-color);
+  color: var(--options-btn-text-color);
+
+  &:hover {
+    background-color: var(--options-btn-bg-hover-color);
+  }
+
+  &.passive {
+    background-color: var(--options-text-primary-color);
+    border-color: var(--options-text-primary-color);
+    color: var(--options-bg-primary-color);
+  }
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+input[type='text'], input[type='number'] {
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-style: solid;
+  border-width: 1px;
 
-  &.list {
-    li {
-      padding: 1em 0;
+  &:focus, &:focus-visible {
+    outline: none;
+  }
+}
 
-      &:not(:last-child) {
-        border: solid var(--options-second-bg-color);
-        border-width: 0 0 1px 0;
+main {
+  position: relative;
+  min-height: 100vh;
+
+  .container {
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  header {
+    box-sizing: border-box;
+    padding-top: .9rem;
+    min-height: $header-height;
+  }
+
+  section {
+    display: flex;
+
+    nav {
+      flex: 1;
+      padding-bottom: $footer-height;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 1.2rem 0;
+          cursor: pointer;
+
+          span {
+            position: relative;
+          }
+
+          &.active {
+            span:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: .25em;
+              background-color: var(--options-nav-active-color);
+              bottom: -0.7em;
+            }
+          }
+
+          &.active, &:hover {
+            -webkit-text-stroke: 1px currentColor;
+          }
+        }
+      }
+
+      .actions {
+        margin-top: 2em;
+
+        .btn {
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+      }
+    }
+
+    aside {
+      flex: 2.3;
+      padding-left: 1rem;
+      padding-bottom: $footer-height;
+      margin-top: .5rem;
+
+      h1 {
+        font-weight: bold;
+        font-size: 2em;
+        margin: 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 1.5rem .3rem;
+
+          &.control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            label {
+              cursor: pointer;
+            }
+
+            .hint, .option {
+              display: block;
+              padding: .8em 0 0 0;
+              font-size: .9em;
+              margin: 0;
+              max-width: 80%;
+            }
+
+            .hint {
+              opacity: .7;
+            }
+
+            .option {
+              opacity: .9;
+            }
+          }
+
+          &:not(:last-child) {
+            border: solid var(--options-border-primary-color);
+            border-width: 0 0 1px 0;
+          }
+        }
       }
     }
   }
 
-  &.set {
-    columns: 3;
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footer-height;
 
-    li {
-      break-inside: avoid-column;
+    display: flex;
+    align-items: center;
 
-      padding: .5em 0;
+    background-color: var(--options-footer-bg-color);
+    font-size: .85em;
 
-      label {
-        display: flex;
-        align-items: center;
-
-        input {
-          margin-right: .2em;
-        }
-      }
+    &, a {
+      color: var(--options-footer-text-color);
     }
   }
 }
