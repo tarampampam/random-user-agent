@@ -1,0 +1,60 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent",
+    "description": "Maximum of 45 characters"
+  },
+  "manifest_description": {
+    "message": "Alterar automaticamente seu Agente de usuário, após um período de tempo escolhido, para um outro aleatório e consequentemente oculte o verdadeiro Agente de usuário",
+    "description": "No HTML or other formatting; no more than 132 characters"
+  },
+  "manifest_action_default_title": {
+    "message": "Randomize seu Agente de usuário",
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+  },
+
+  "active_user_agent": {"message": "Agente de usuário ativo"},
+  "pause_switcher": {"message": "Pausar alteração"},
+  "unpause_switcher": {"message": "Retomar alteração"},
+  "enable_switcher": {"message": "Ativar alteração"},
+  "enabled_on_this_domain": {"message": "Activado neste dominio"},
+  "get_new_agent": {"message": "Alterar para outro Agente"},
+  "open_settings": {"message": "Abrir configurações"},
+  "make_donation": {"message": "Doar"},
+  "bug_report": {"message": "Relatar falha"},
+
+  "general_settings": {"message": "Configurações gerais"},
+  "general_settings_hint": {"message": "Mudar o comportamento de alteração para melhor atender às suas necessidades"},
+  "auto_renew": {"message": "Mudar automaticamente seu Agente de usuário após um período de tempo escolhido"},
+  "auto_renew_interval": {"message": "Tempo (em segundos) para alterar automaticamente seu Agente de usuário (ex. 1 hora = 3600)"},
+  "auto_renew_on_startup": {"message": "Alterar seu Agente de usuário na inicialização do navegador"},
+  "js_protection": {"message": "Proteger contra detecção por JavaScript"},
+  "custom_useragent": {"message": "Use um dos Agentes de usuário personalizados em vez de predefinidos (ordem aleatória)"},
+  "custom_useragent_list": {"message": "Agentes de usuário personalizados (definir um Agente de usuário próprio, um por linha)"},
+  "generator_settings": {"message": "Configurações do gerador"},
+  "generator_settings_hint": {"message": "Aqui você pode mudar o comportamento de alteração de Agente"},
+  "blacklist_settings": {"message": "Configurações de lista negra"},
+  "blacklist_settings_hint": {"message": "Modo de lista negra - alteração ativada em todos os lugares, menos em domínios e regras especificadas. Lista branca - ao contrário, desativada em todos os lugares, menos em domínios e regras especificadas"},
+  "white_black_list_mode": {"message": "Modo de permissões (lista negra - desativada, lista branca - ativada)"},
+  "blacklist_domains": {"message": "Lista de nomes de domínio (um por linha)"},
+  "blacklist_custom_rules": {"message": "Regras personalizadas (um por linha)"},
+  "blacklist_custom_rules_hint": {"message": "Você pode usar caracteres especiais, tais como * e ?. * coincidirá com qualquer quantidade de caracteres (ex. *google.com coincidirá com google.com, www.google.com, mail.google.com, etc.), ? coincidirá apenas com um único caractere (ex. www.?oogle.com corresponderá com www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"},
+  "previous_settings": {"message": "Configurações anteriores"},
+  "remove": {"message": "Remove"},
+  "previous_settings_hint": {"message": "Estas configurações foram usadas por você em versão anterior da extensão. Guarde-a em algum lugar ou remova-a"},
+  "save_changes": {"message": "Salvar mudanças"},
+  "error_occurred": {"message": "Ocorreu um erro"},
+
+  "edge_win": {"message": "Edge no Windows"},
+  "chrome_win": {"message": "Chrome no Windows"},
+  "chrome_mac": {"message": "Chrome no Mac"},
+  "chrome_linux": {"message": "Chrome no Linux"},
+  "chrome_android": {"message": "Chrome no Android"},
+  "firefox_win": {"message": "Firefox no Windows"},
+  "firefox_mac": {"message": "Firefox no Mac"},
+  "firefox_linux": {"message": "Firefox no Linux"},
+  "firefox_android": {"message": "Firefox no Android"},
+  "opera_win": {"message": "Opera no Windows"},
+  "opera_mac": {"message": "Opera no Mac"},
+  "safari_iphone": {"message": "Safari no iPhone"},
+  "safari_mac": {"message": "Safari no Mac"}
+}
