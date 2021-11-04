@@ -61,17 +61,17 @@
                       'auto_renew_interval',
                       'Time (in seconds) to automatically update the User-Agent (e.g. 1 hour = 3600)',
                     )
-                  }}
+                  }}:
                 </div>
                 <div class="option">
                   <input
                     type="number"
                     :disabled="!settings.renew.enabled"
-                    :value="Math.round(settings.renew.intervalMillis / 1000)"
+                    v-model.number="settings.renew.intervalSec"
                     min="1"
                     max="86400"
                     placeholder="60"
-                    required
+                    @change="saved = false"
                   />
                 </div>
               </div>
@@ -79,6 +79,57 @@
                 :id="id"
                 :checked="settings.renew.enabled"
                 @change="value => {settings.renew.enabled = value; saved = false}"
+              />
+            </li>
+
+            <li class="control" v-for="id in [randomString()]">
+              <label :for="id">
+                {{ i18n('auto_renew_on_startup', 'Change User-Agent on browser startup') }}
+              </label>
+              <toggle
+                :id="id"
+                :checked="settings.renew.onStartup"
+                @change="value => {settings.renew.onStartup = value; saved = false}"
+              />
+            </li>
+
+            <li class="control" v-for="id in [randomString()]">
+              <label :for="id">
+                {{ i18n('js_protection', 'Protect against detection by JavaScript') }}
+              </label>
+              <toggle
+                :id="id"
+                :checked="settings.jsProtection.enabled"
+                @change="value => {settings.jsProtection.enabled = value; saved = false}"
+              />
+            </li>
+
+            <li class="control" v-for="id in [randomString()]">
+              <div>
+                <label :for="id">
+                  {{
+                    i18n('custom_useragent', 'Use one of (in the randomized order) custom User-Agent instead generated')
+                  }}
+                </label>
+                <div class="hint">
+                  {{ i18n('custom_useragent_list', 'Custom User-Agents (set a specific User-Agents, one per line)') }}:
+                </div>
+                <div class="option">
+                  <!-- Length limitation reason: <https://github.com/tarampampam/random-user-agent/issues/172> -->
+                  <textarea
+                    placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
+                    maxlength="4096"
+                    rows="7"
+                    :disabled="!settings.customUseragent.enabled"
+                    v-model="settings.customUseragent.list"
+                    @change="saved = false"
+                  ></textarea>
+                </div>
+              </div>
+              <toggle
+                :id="id"
+                :checked="settings.customUseragent.enabled"
+                @change="value => {settings.customUseragent.enabled = value; saved = false}"
               />
             </li>
           </ul>
@@ -119,7 +170,10 @@ import Toggle from './components/options/toggle.vue'
 import {BlacklistMode} from '../settings/settings'
 import {GeneratorType} from '../useragent/generator'
 
-const backend: Sender = new RuntimeSender
+const backend: Sender = new RuntimeSender,
+  randomString = (): string => {
+    return Math.random().toString(36).substring(3)
+  }
 
 export default defineComponent({
   components: {
@@ -135,7 +189,7 @@ export default defineComponent({
         enabled: false,
         renew: {
           enabled: false,
-          intervalMillis: 0,
+          intervalSec: 0,
           onStartup: false,
         },
         customUseragent: {
@@ -168,7 +222,7 @@ export default defineComponent({
     },
 
     randomString(): string {
-      return Math.random().toString(36).substring(3)
+      return randomString()
     },
   },
   created(): void {
@@ -185,7 +239,7 @@ export default defineComponent({
 
         this.settings.enabled = settings.enabled
         this.settings.renew.enabled = settings.renew.enabled
-        this.settings.renew.intervalMillis = settings.renew.intervalMillis
+        this.settings.renew.intervalSec = Math.round(settings.renew.intervalMillis / 1000)
         this.settings.renew.onStartup = settings.renew.onStartup
         this.settings.customUseragent.enabled = settings.customUseragent.enabled
         this.settings.customUseragent.list = settings.customUseragent.list
@@ -330,6 +384,26 @@ input[type='text'], input[type='number'] {
   }
 }
 
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 4em;
+  resize: vertical;
+  padding: .7em .5em;
+
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+
+  &::placeholder {
+    //color: var(--options-placeholder-color);
+  }
+
+  &:focus, &:focus-visible {
+    outline: none;
+  }
+}
+
 main {
   position: relative;
   min-height: 100vh;
@@ -428,7 +502,7 @@ main {
               padding: .8em 0 0 0;
               font-size: .9em;
               margin: 0;
-              max-width: 80%;
+              max-width: 90%;
             }
 
             .hint {
