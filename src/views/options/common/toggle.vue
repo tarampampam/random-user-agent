@@ -52,7 +52,7 @@ div {
     height: 1.6em;
     cursor: pointer;
     appearance: none;
-    background: var(--options-toggle-off-bg-color);
+    background: var(--color-ui-off);
     border-radius: 3px;
     position: relative;
     outline: 0;
@@ -65,7 +65,7 @@ div {
       left: .3em;
       height: 1em;
       width: 1em;
-      background: var(--options-toggle-brick-bg-color);
+      background: var(--color-ui-spacer);
       z-index: 2;
       border-radius: 2px;
       transition: all .035s;
@@ -73,7 +73,7 @@ div {
 
     // checked state
     &:checked {
-      background: var(--options-toggle-on-bg-color);
+      background: var(--color-ui-on);
     }
 
     &:checked:after {
@@ -93,7 +93,7 @@ div {
     position: absolute;
     top: 40%;
     transform-origin: 50% 50%;
-    fill: #fff;
+    fill: var(--color-ui-spacer);
     transition: all .025s;
     z-index: 1;
   }

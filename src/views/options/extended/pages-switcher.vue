@@ -57,7 +57,7 @@ ul {
         left: 0;
         right: 0;
         height: .25em;
-        background-color: var(--options-nav-active-color);
+        background-color: var(--color-ui-on);
         bottom: -0.7em;
       }
     }

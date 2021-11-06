@@ -32,18 +32,12 @@ input[type='button'] {
   border-style: solid;
   border-width: 1px;
 
-  background-color: var(--options-btn-bg-color);
-  border-color: var(--options-btn-border-color);
-  color: var(--options-btn-text-color);
+  background-color: var(--color-ui-bg-active);
+  border-color: var(--color-ui-border-active);
+  color: var(--color-text-inverted);
 
   &:hover {
-    background-color: var(--options-btn-bg-hover-color);
-  }
-
-  &.passive {
-    background-color: var(--options-text-primary-color);
-    border-color: var(--options-text-primary-color);
-    color: var(--options-bg-primary-color);
+    background-color: var(--color-ui-bg-active-dark);
   }
 }
 </style>

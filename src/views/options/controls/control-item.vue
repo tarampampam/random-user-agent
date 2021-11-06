@@ -40,7 +40,7 @@ li {
   }
 
   &:not(:last-child) {
-    border: solid var(--options-border-primary-color);
+    border: solid var(--color-ui-border-light);
     border-width: 0 0 1px 0;
   }
 }

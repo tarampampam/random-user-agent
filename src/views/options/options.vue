@@ -2,11 +2,20 @@
   <main>
     <header>
       <div class="container">
-        <alert
-          v-if="false"
+        <!--alert
+          v-if="true"
           text="foo"
           type="success"
         />
+        <alert
+          v-if="true"
+          text="foo"
+          type="error"
+        />
+        <alert
+          v-if="true"
+          text="foo"
+        /-->
       </div>
     </header>
     <section class="container">
@@ -235,7 +244,7 @@ main {
     display: flex;
     align-items: center;
 
-    background-color: var(--options-footer-bg-color);
+    background-color: var(--color-bg-light);
   }
 }
 </style>

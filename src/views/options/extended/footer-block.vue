@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ i18n('like_this_extension', 'Do you like this extension?') }}
+    {{ i18n('like_this_extension', 'Do you like this extension?') }} ⭐
     <a href="https://github.com/tarampampam/random-user-agent" target="_blank">
       {{ i18n('give_a_star_on_github', 'Give us a star on GitHub!') }}
     </a>
@@ -19,9 +19,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 div {
   font-size: .85em;
+  color: var(--color-text-light);
+  background-color: var(--color-bg-light);
 
-  &, a {
-    color: var(--options-footer-text-color);
+  a {
+    color: var(--color-link-light);
   }
 }
 </style>

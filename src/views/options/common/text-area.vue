@@ -40,15 +40,21 @@ textarea {
   padding: .7em .5em;
 
   box-sizing: border-box;
-  border-style: solid;
-  border-width: 1px;
+  background-color: var(--color-ui-bg-primary);
+  border: 1px solid var(--color-ui-border-primary);
+  color: var(--color-text-primary);
 
   &::placeholder {
-    //color: var(--options-placeholder-color);
+    color: var(--color-text-light);
   }
 
   &:focus, &:focus-visible {
     outline: none;
+  }
+
+  &:disabled {
+    background-color: var(--color-ui-bg-disabled);
+    cursor: not-allowed;
   }
 }
 </style>
