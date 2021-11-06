@@ -23,6 +23,7 @@ li {
 
   .left {
     padding-right: 1.2em;
+    width: 88%;
   }
 
   .hint, .option {

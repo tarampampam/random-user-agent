@@ -2,20 +2,13 @@
   <main>
     <header>
       <div class="container">
-        <!--alert
-          v-if="true"
-          text="foo"
-          type="success"
-        />
-        <alert
-          v-if="true"
-          text="foo"
-          type="error"
-        />
-        <alert
-          v-if="true"
-          text="foo"
-        /-->
+        <transition name="fade">
+          <alert
+            v-if="error"
+            :text="error"
+            type="error"
+          />
+        </transition>
       </div>
     </header>
     <section class="container">
@@ -25,6 +18,7 @@
           <primary-button
             v-if="!$store.state.saved"
             :text="i18n('save_changes', 'Save changes')"
+            :pulse="true"
             @click="save"
           />
         </div>
@@ -71,8 +65,7 @@ import {defineComponent} from 'vue'
 import i18n from '../mixins/i18n'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
 import {getSettings, GetSettingsResponse} from '../../messaging/handlers/get-settings'
-import {GeneratorType} from '../../useragent/generator'
-import {Mutation} from './store'
+import {Mutation, Page} from './store'
 
 import Toggle from './common/toggle.vue'
 import Alert from './common/alert.vue'
@@ -102,42 +95,30 @@ export default defineComponent({
     'footer-block': FooterBlock,
   },
   mixins: [i18n],
-  data: (): { [key: string]: any } => {
+  data(): {
+    error?: string
+  } {
     return {
-      settings: {
-        enabled: false,
-        renew: {
-          enabled: false,
-          intervalSec: 0,
-          onStartup: false,
-        },
-        customUseragent: {
-          enabled: false,
-          list: [] as string[],
-        },
-        jsProtection: {
-          enabled: false,
-        },
-        generator: {
-          types: [] as GeneratorType[],
-        },
-        blacklist: {
-          modeWhitelist: false,
-          domains: [] as string[],
-          custom: {
-            rules: [] as string[],
-          },
-        },
-      },
+      error: undefined as string | undefined,
     }
   },
   methods: {
     handleError(err: Error): void {
+      this.error = err.toString()
+
       console.error(err)
     },
 
     save(): void {
-      this.$store.commit(Mutation.Save)
+      new Promise<void>((resolve: () => void, reject: (err: Error) => void) => {
+        // TODO implement saving
+
+        resolve()
+      })
+        .then((): void => {
+          this.$store.commit(Mutation.Save)
+        })
+        .catch(this.handleError)
     },
   },
   created(): void {
@@ -148,29 +129,33 @@ export default defineComponent({
     //   }
     // })
 
-    backend
-      .send(getSettings())
-      .then((resp): void => {
-        const settings = (resp[0] as GetSettingsResponse).payload
+    if (typeof chrome === 'object' && typeof chrome.runtime === 'object') {
+      backend
+        .send(getSettings())
+        .then((resp): void => {
+          const settings = (resp[0] as GetSettingsResponse).payload
 
-        this.$store.commit(Mutation.UpdateEnabled, settings.enabled)
-        this.$store.commit(Mutation.UpdateRenew, {
-          enabled: settings.renew.enabled,
-          intervalSec: Math.round(settings.renew.intervalMillis / 1000),
-          onStartup: settings.renew.onStartup,
+          this.$store.commit(Mutation.UpdateEnabled, settings.enabled)
+          this.$store.commit(Mutation.UpdateRenew, {
+            enabled: settings.renew.enabled,
+            intervalSec: Math.round(settings.renew.intervalMillis / 1000),
+            onStartup: settings.renew.onStartup,
+          })
+          this.$store.commit(Mutation.UpdateJSProtection, {
+            enabled: settings.jsProtection.enabled,
+          })
+          this.$store.commit(Mutation.UpdateCustomUserAgent, {
+            enabled: settings.customUseragent.enabled,
+            list: settings.customUseragent.list,
+          })
         })
-        this.$store.commit(Mutation.UpdateJSProtection, {
-          enabled: settings.jsProtection.enabled,
+        .then((): void => {
+          this.$store.commit(Mutation.Save) // just a little "logic" hack :)
         })
-        this.$store.commit(Mutation.UpdateCustomUserAgent, {
-          enabled: settings.customUseragent.enabled,
-          list: settings.customUseragent.list,
-        })
-      })
-      .then((): void => {
-        this.$store.commit(Mutation.Save) // just a little "logic" hack :)
-      })
-      .catch(this.handleError)
+        .catch(this.handleError)
+    } else {
+      // runtime API is not available (page loaded outside of the extension sandbox?)
+    }
   },
 })
 </script>
@@ -216,7 +201,7 @@ main {
     }
 
     aside {
-      flex: 2.3;
+      flex: 3.2;
       padding-left: 1rem;
       padding-bottom: $footer-height;
       margin-top: .5rem;

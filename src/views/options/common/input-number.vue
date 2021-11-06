@@ -33,7 +33,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 input[type='number'] {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   margin: 0;
   background-color: var(--color-ui-bg-primary);
   border: 1px solid var(--color-ui-border-primary);

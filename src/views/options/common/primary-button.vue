@@ -1,7 +1,7 @@
 <template>
   <input
     type="button"
-    class="btn"
+    :class="{pulse: pulse}"
     :value="text"
   />
 </template>
@@ -12,6 +12,7 @@ import {defineComponent} from 'vue'
 export default defineComponent({
   props: {
     text: String,
+    pulse: Boolean,
   },
 })
 </script>
@@ -38,6 +39,22 @@ input[type='button'] {
 
   &:hover {
     background-color: var(--color-ui-bg-active-dark);
+  }
+
+  &.pulse {
+    animation: pulse 2s infinite;
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(125, 125, 125, 0.25);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(125, 125, 125, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(125, 125, 125, 0);
+      }
+    }
   }
 }
 </style>

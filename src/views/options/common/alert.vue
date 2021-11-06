@@ -1,6 +1,6 @@
 <template>
   <div class="alert" :class="type">
-    {{ text }} <a href="#">asd</a>
+    {{ text }}
   </div>
 </template>
 
