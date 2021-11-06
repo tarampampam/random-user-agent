@@ -29,46 +29,8 @@
             <enable-switcher/>
             <renew-interval/>
             <renew-on-startup/>
-
-            <li class="control" v-for="id in [randomString()]">
-              <label :for="id">
-                {{ i18n('js_protection', 'Protect against detection by JavaScript') }}
-              </label>
-              <toggle
-                :id="id"
-                :checked="settings.jsProtection.enabled"
-                @change="value => {settings.jsProtection.enabled = value; saved = false}"
-              />
-            </li>
-
-            <li class="control" v-for="id in [randomString()]">
-              <div>
-                <label :for="id">
-                  {{
-                    i18n('custom_useragent', 'Use one of (in the randomized order) custom User-Agent instead generated')
-                  }}
-                </label>
-                <div class="hint">
-                  {{ i18n('custom_useragent_list', 'Custom User-Agents (set a specific User-Agents, one per line)') }}:
-                </div>
-                <div class="option">
-                  <!-- Length limitation reason: <https://github.com/tarampampam/random-user-agent/issues/172> -->
-                  <textarea
-                    placeholder="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7; rv:92.0) Gecko/20010101 Firefox/92.0"
-                    maxlength="4096"
-                    rows="7"
-                    :disabled="!settings.customUseragent.enabled"
-                    v-model="settings.customUseragent.list"
-                    @change="saved = false"
-                  ></textarea>
-                </div>
-              </div>
-              <toggle
-                :id="id"
-                :checked="settings.customUseragent.enabled"
-                @change="value => {settings.customUseragent.enabled = value; saved = false}"
-              />
-            </li>
+            <js-protection/>
+            <custom-ua-list/>
           </ul>
         </div>
         <div v-else-if="$store.state.page === 'generator'">
@@ -89,10 +51,7 @@
     </section>
     <footer>
       <div class="container">
-        {{ i18n('like_this_extension', 'Do you like this extension?') }}
-        <a href="https://github.com/tarampampam/random-user-agent" target="_blank">
-          {{ i18n('give_a_star_on_github', 'Give us a star on GitHub!') }}
-        </a>
+        <footer-block/>
       </div>
     </footer>
   </main>
@@ -103,7 +62,6 @@ import {defineComponent} from 'vue'
 import i18n from '../mixins/i18n'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
 import {getSettings, GetSettingsResponse} from '../../messaging/handlers/get-settings'
-import {BlacklistMode} from '../../settings/settings'
 import {GeneratorType} from '../../useragent/generator'
 import {Mutation} from './store'
 
@@ -111,15 +69,15 @@ import Toggle from './common/toggle.vue'
 import Alert from './common/alert.vue'
 import PrimaryButton from './common/primary-button.vue'
 import PagesSwitcher from './extended/pages-switcher.vue'
+import FooterBlock from './extended/footer-block.vue'
 
 import EnableSwitcher from './controls/enable-switcher.vue'
 import RenewInterval from './controls/renew-interval.vue'
 import RenewOnStartup from './controls/renew-on-startup.vue'
+import JSProtection from './controls/js-protection.vue'
+import CustomUAList from './controls/custom-ua-list.vue'
 
-const backend: Sender = new RuntimeSender,
-  randomString = (): string => {
-    return Math.random().toString(36).substring(3)
-  }
+const backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
@@ -130,6 +88,9 @@ export default defineComponent({
     'enable-switcher': EnableSwitcher,
     'renew-interval': RenewInterval,
     'renew-on-startup': RenewOnStartup,
+    'js-protection': JSProtection,
+    'custom-ua-list': CustomUAList,
+    'footer-block': FooterBlock,
   },
   mixins: [i18n],
   data: (): { [key: string]: any } => {
@@ -169,10 +130,6 @@ export default defineComponent({
     save(): void {
       this.$store.commit(Mutation.Save)
     },
-
-    randomString(): string {
-      return randomString()
-    },
   },
   created(): void {
     // TODO uncomment this:
@@ -187,17 +144,22 @@ export default defineComponent({
       .then((resp): void => {
         const settings = (resp[0] as GetSettingsResponse).payload
 
-        this.settings.enabled = settings.enabled
-        this.settings.renew.enabled = settings.renew.enabled
-        this.settings.renew.intervalSec = Math.round(settings.renew.intervalMillis / 1000)
-        this.settings.renew.onStartup = settings.renew.onStartup
-        this.settings.customUseragent.enabled = settings.customUseragent.enabled
-        this.settings.customUseragent.list = settings.customUseragent.list
-        this.settings.jsProtection.enabled = settings.jsProtection.enabled
-        this.settings.generator.types = settings.generator.types
-        this.settings.blacklist.modeWhitelist = settings.blacklist.mode === BlacklistMode.WhiteList
-        this.settings.blacklist.domains = settings.blacklist.domains
-        this.settings.blacklist.custom.rules = settings.blacklist.custom.rules
+        this.$store.commit(Mutation.UpdateEnabled, settings.enabled)
+        this.$store.commit(Mutation.UpdateRenew, {
+          enabled: settings.renew.enabled,
+          intervalSec: Math.round(settings.renew.intervalMillis / 1000),
+          onStartup: settings.renew.onStartup,
+        })
+        this.$store.commit(Mutation.UpdateJSProtection, {
+          enabled: settings.jsProtection.enabled,
+        })
+        this.$store.commit(Mutation.UpdateCustomUserAgent, {
+          enabled: settings.customUseragent.enabled,
+          list: settings.customUseragent.list,
+        })
+      })
+      .then((): void => {
+        this.$store.commit(Mutation.Save) // just a little "logic" hack :)
       })
       .catch(this.handleError)
   },
@@ -210,26 +172,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 $header-height: 80px;
 $footer-height: 3.5rem;
-
-textarea {
-  display: block;
-  width: 100%;
-  min-height: 4em;
-  resize: vertical;
-  padding: .7em .5em;
-
-  box-sizing: border-box;
-  border-style: solid;
-  border-width: 1px;
-
-  &::placeholder {
-    //color: var(--options-placeholder-color);
-  }
-
-  &:focus, &:focus-visible {
-    outline: none;
-  }
-}
 
 main {
   position: relative;
@@ -280,38 +222,6 @@ main {
         list-style: none;
         padding: 0;
         margin: 0;
-
-        li {
-          padding: 1.5rem .3rem;
-        }
-
-        li {
-          //  display: flex;
-          //  justify-content: space-between;
-          //  align-items: center;
-          //  padding: 1.5rem .3rem;
-          //
-          //  .hint, .option {
-          //    display: block;
-          //    padding: .8em 0 0 0;
-          //    font-size: .9em;
-          //    margin: 0;
-          //    max-width: 90%;
-          //  }
-          //
-          //  .hint {
-          //    opacity: .7;
-          //  }
-          //
-          //  .option {
-          //    opacity: .9;
-          //  }
-
-          &:not(:last-child) {
-            border: solid var(--options-border-primary-color);
-            border-width: 0 0 1px 0;
-          }
-        }
       }
     }
   }
@@ -326,11 +236,6 @@ main {
     align-items: center;
 
     background-color: var(--options-footer-bg-color);
-    font-size: .85em;
-
-    &, a {
-      color: var(--options-footer-text-color);
-    }
   }
 }
 </style>

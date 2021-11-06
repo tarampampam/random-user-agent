@@ -55,7 +55,7 @@ export default defineComponent({
   mixins: [i18n, randomId],
   methods: {
     changeEnabled(newState: boolean): void {
-      this.$store.commit(Mutation.UpdateRenew, {isEnabled: newState})
+      this.$store.commit(Mutation.UpdateRenew, {enabled: newState})
     },
     changeInterval(value: number): void {
       this.$store.commit(Mutation.UpdateRenew, {intervalSec: value})
