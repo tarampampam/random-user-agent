@@ -1,0 +1,34 @@
+:root {
+  --options-scrollbar-color: #aaa;
+  --options-bg-primary-color: #fff;
+  --options-text-primary-color: #454545;
+  --options-border-primary-color: #e7e7e7;
+
+  --options-nav-active-color: #66b574;
+
+  --options-btn-bg-color: #68bc86;
+  --options-btn-bg-hover-color: #5ba575;
+  --options-btn-text-color: #fff;
+  --options-btn-border-color: #68bc86;
+
+  --options-toggle-brick-bg-color: #fff;
+  --options-toggle-off-bg-color: #f56f23;
+  --options-toggle-on-bg-color: #62c162;
+
+  --options-success-bg-color: #d1e7dd;
+  --options-success-border-color: #badbcc;
+  --options-success-text-color: #0f5132;
+
+  --options-error-bg-color: #f8d7da;
+  --options-error-border-color: #f5c2c7;
+  --options-error-text-color: #842029;
+
+  --options-footer-bg-color: #787878;
+  --options-footer-text-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    //
+  }
+}

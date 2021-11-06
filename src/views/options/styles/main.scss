@@ -1,0 +1,32 @@
+$scrollbar-width: 8px;
+
+::-webkit-scrollbar {
+  width: $scrollbar-width;
+  height: $scrollbar-width;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: $scrollbar-width;
+  background-color: var(--options-scrollbar-color);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
+  font-size: 16px;
+  background-color: var(--options-bg-primary-color);
+
+  &, a {
+    color: var(--options-text-primary-color);
+  }
+}
+
+label {
+  cursor: pointer;
+}

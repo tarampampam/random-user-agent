@@ -1,5 +1,7 @@
-import { createApp } from 'vue'
-import options from './view/options.vue'
+import {createApp} from 'vue'
+import root from './views/options/options.vue'
+import {store} from './views/options/store'
 
-const app = createApp(options)
-app.mount('#app')
+createApp(root)
+  .use(store)
+  .mount('#app')
