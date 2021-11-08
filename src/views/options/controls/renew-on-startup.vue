@@ -22,7 +22,7 @@ import ControlItem from './control-item.vue'
 import Toggle from '../common/toggle.vue'
 import i18n from '../../mixins/i18n'
 import randomId from '../../mixins/random-id'
-import {Mutation} from '../store'
+import {Mutation} from '../../store/mutations'
 
 export default defineComponent({
   components: {

@@ -2,29 +2,40 @@
   <main>
     <header>
       <div class="container">
-        <transition name="fade">
-          <alert
-            v-if="error"
-            :text="error"
-            type="error"
-          />
-        </transition>
+        <div v-for="err in errors" :key="err">
+          <transition name="fade">
+            <alert
+              :text="err"
+              type="error"
+            />
+          </transition>
+        </div>
       </div>
     </header>
     <section class="container">
       <nav>
-        <pages-switcher/>
+        <ul>
+          <li :class="{active: activePage === 'general'}" @click="activePage = 'general'">
+            <span>{{ i18n('general_settings', 'General settings') }}</span>
+          </li>
+          <li :class="{active: activePage === 'generator'}" @click="activePage = 'generator'">
+            <span>{{ i18n('generator_settings', 'Generator settings') }}</span>
+          </li>
+          <li :class="{active: activePage === 'blacklist'}" @click="activePage = 'blacklist'">
+            <span>{{ i18n('blacklist_settings', 'Blacklist settings') }}</span>
+          </li>
+        </ul>
         <div class="actions">
           <primary-button
-            v-if="!$store.state.saved"
+            v-if="!$store.state.settingsSaved"
             :text="i18n('save_changes', 'Save changes')"
             :pulse="true"
-            @click="save"
+            @click="saveChanges"
           />
         </div>
       </nav>
       <aside>
-        <div v-if="$store.state.page === 'general'">
+        <div v-if="activePage === 'general'">
           <h1>{{ i18n('general_settings', 'General settings') }}</h1>
           <p>{{ i18n('general_settings_hint', 'Change the behavior of the switcher to best fit your needs') }}:</p>
 
@@ -36,11 +47,11 @@
             <custom-ua-list/>
           </ul>
         </div>
-        <div v-else-if="$store.state.page === 'generator'">
+        <div v-else-if="activePage === 'generator'">
           <h1>{{ i18n('generator_settings', 'Generator settings') }}</h1>
           <p>{{ i18n('generator_settings_hint', 'Here you can change the agent switching behavior') }}:</p>
         </div>
-        <div v-else-if="$store.state.page === 'blacklist'">
+        <div v-else-if="activePage === 'blacklist'">
           <h1>{{ i18n('blacklist_settings', 'Blacklist settings') }}</h1>
           <p>{{
               i18n('blacklist_settings_hint', 'Blacklist mode - switching enabled everywhere, except the defined ' +
@@ -63,14 +74,10 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from '../mixins/i18n'
-import {RuntimeSender, Sender} from '../../messaging/runtime'
-import {getSettings, GetSettingsResponse} from '../../messaging/handlers/get-settings'
-import {Mutation, Page} from './store'
 
 import Toggle from './common/toggle.vue'
 import Alert from './common/alert.vue'
 import PrimaryButton from './common/primary-button.vue'
-import PagesSwitcher from './extended/pages-switcher.vue'
 import FooterBlock from './extended/footer-block.vue'
 
 import EnableSwitcher from './controls/enable-switcher.vue'
@@ -78,15 +85,13 @@ import RenewInterval from './controls/renew-interval.vue'
 import RenewOnStartup from './controls/renew-on-startup.vue'
 import JSProtection from './controls/js-protection.vue'
 import CustomUAList from './controls/custom-ua-list.vue'
-
-const backend: Sender = new RuntimeSender
+import {Actions} from '../store/actions'
 
 export default defineComponent({
   components: {
     'toggle': Toggle,
     'alert': Alert,
     'primary-button': PrimaryButton,
-    'pages-switcher': PagesSwitcher,
     'enable-switcher': EnableSwitcher,
     'renew-interval': RenewInterval,
     'renew-on-startup': RenewOnStartup,
@@ -96,29 +101,35 @@ export default defineComponent({
   },
   mixins: [i18n],
   data(): {
-    error?: string
+    activePage: 'general' | 'generator' | 'blacklist',
+    errors: string[]
   } {
     return {
-      error: undefined as string | undefined,
+      activePage: 'general',
+      errors: [],
     }
   },
   methods: {
+    addError(err: Error): void {
+      const asString = err.toString()
+
+      if (!this.errors.includes(asString)) {
+        this.errors.push(asString)
+
+        setTimeout((): void => {
+          this.errors = this.errors.filter(s => s !== err.toString())
+        }, 5000)
+      }
+    },
+
     handleError(err: Error): void {
-      this.error = err.toString()
+      this.addError(err)
 
       console.error(err)
     },
 
-    save(): void {
-      new Promise<void>((resolve: () => void, reject: (err: Error) => void) => {
-        // TODO implement saving
-
-        resolve()
-      })
-        .then((): void => {
-          this.$store.commit(Mutation.Save)
-        })
-        .catch(this.handleError)
+    saveChanges(): void {
+      this.$store.dispatch(Actions.SaveSettings).catch(this.handleError)
     },
   },
   created(): void {
@@ -129,33 +140,7 @@ export default defineComponent({
     //   }
     // })
 
-    if (typeof chrome === 'object' && typeof chrome.runtime === 'object') {
-      backend
-        .send(getSettings())
-        .then((resp): void => {
-          const settings = (resp[0] as GetSettingsResponse).payload
-
-          this.$store.commit(Mutation.UpdateEnabled, settings.enabled)
-          this.$store.commit(Mutation.UpdateRenew, {
-            enabled: settings.renew.enabled,
-            intervalSec: Math.round(settings.renew.intervalMillis / 1000),
-            onStartup: settings.renew.onStartup,
-          })
-          this.$store.commit(Mutation.UpdateJSProtection, {
-            enabled: settings.jsProtection.enabled,
-          })
-          this.$store.commit(Mutation.UpdateCustomUserAgent, {
-            enabled: settings.customUseragent.enabled,
-            list: settings.customUseragent.list,
-          })
-        })
-        .then((): void => {
-          this.$store.commit(Mutation.Save) // just a little "logic" hack :)
-        })
-        .catch(this.handleError)
-    } else {
-      // runtime API is not available (page loaded outside of the extension sandbox?)
-    }
+    this.$store.dispatch(Actions.LoadSettings).catch(this.handleError)
   },
 })
 </script>
@@ -189,6 +174,37 @@ main {
     nav {
       flex: 1;
       padding-bottom: $footer-height;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 1.2em 0;
+          cursor: pointer;
+
+          span {
+            position: relative;
+          }
+
+          &.active {
+            span:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: .25em;
+              background-color: var(--color-ui-on);
+              bottom: -0.7em;
+            }
+          }
+
+          &.active, &:hover {
+            -webkit-text-stroke: 0.7px currentColor;
+          }
+        }
+      }
 
       .actions {
         margin-top: 2em;

@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import popup from './views/popup.vue'
+import {store} from './views/store/store'
 
-const app = createApp(popup)
-app.mount('#app')
+createApp(popup)
+  .use(store)
+  .mount('#app')

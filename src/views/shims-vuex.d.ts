@@ -1,7 +1,7 @@
 import {Store} from 'vuex'
-import {State} from './store'
+import {State} from './store/state'
 
-declare module '@vue/runtime-core' { // FIXME how to make it scoped only for the options page?
+declare module '@vue/runtime-core' {
   // provide typings for `this.$store`
   interface ComponentCustomProperties {
     $store: Store<State>
