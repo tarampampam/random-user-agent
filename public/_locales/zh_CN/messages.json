@@ -43,6 +43,8 @@
   "previous_settings_hint": {"message": "这是您在本扩展的早期版本中使用的设置。自行备份或移除它们"},
   "save_changes": {"message": "保存更改"},
   "error_occurred": {"message": "发生错误"},
+  "like_this_extension": {"message": "Do you like this extension?"},
+  "give_a_star_on_github": {"message": "Give us a star on GitHub!"},
 
   "edge_win": {"message": "Edge 于 Windows"},
   "chrome_win": {"message": "Chrome 于 Windows"},

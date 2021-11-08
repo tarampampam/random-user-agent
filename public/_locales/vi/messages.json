@@ -43,6 +43,8 @@
   "previous_settings_hint": {"message": "Các cài đặt này đã được bạn sử dụng trên phiên bản mở rộng trước đó. Giữ nó ở đâu đó hoặc loại bỏ"},
   "save_changes": {"message": "Lưu thay đổi"},
   "error_occurred": {"message": "Xảy ra lỗi"},
+  "like_this_extension": {"message": "Do you like this extension?"},
+  "give_a_star_on_github": {"message": "Give us a star on GitHub!"},
 
   "edge_win": {"message": "Edge trên Windows"},
   "chrome_win": {"message": "Chrome trên Windows"},

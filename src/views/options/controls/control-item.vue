@@ -10,7 +10,9 @@
       </div>
     </div>
 
-    <slot name="toggle"/>
+    <div class="right" v-if="$slots['toggle']">
+      <slot name="toggle"/>
+    </div>
   </li>
 </template>
 
@@ -22,8 +24,7 @@ li {
   padding: 1.5rem .3rem;
 
   .left {
-    padding-right: 1.2em;
-    width: 88%;
+    width: 100%;
   }
 
   .hint, .option {
@@ -38,6 +39,10 @@ li {
 
   .option {
     opacity: .9;
+  }
+
+  .right {
+    padding-left: 1.2em;
   }
 
   &:not(:last-child) {

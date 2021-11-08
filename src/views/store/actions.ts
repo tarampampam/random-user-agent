@@ -4,6 +4,7 @@ import {updateSettings} from '../../messaging/handlers/update-settings'
 import {Mutation} from './mutations'
 import {ActionTree, Commit} from 'vuex'
 import {State} from './state'
+import {BlacklistMode} from '../../settings/settings'
 
 export enum Actions {
   LoadSettings = 'LoadSettings',
@@ -36,6 +37,11 @@ export const actions: ActionTree<State, State> = {
           commit(Mutation.UpdateGeneratorOptions, {
             types: settings.generator.types,
           })
+          commit(Mutation.UpdateBlacklist, {
+            whitelistMode: settings.blacklist.mode === BlacklistMode.WhiteList,
+            domains: settings.blacklist.domains,
+            customRules: settings.blacklist.custom.rules,
+          })
 
           commit(Mutation.SaveSettings) // just a little "logic" hack :)
 
@@ -65,13 +71,13 @@ export const actions: ActionTree<State, State> = {
           generator: {
             types: state.settings.generator.types.slice(0), // proxy object to the plain array
           },
-          // blacklist: {
-          //   mode: state.settings.blacklist.modeWhitelist ? BlacklistMode.WhiteList : BlacklistMode.BlackList,
-          //   domains: state.settings.blacklist.domains.slice(0), // proxy object to the plain array
-          //   custom: {
-          //     rules: state.settings.blacklist.custom.rules.slice(0), // proxy object to the plain array
-          //   },
-          // },
+          blacklist: {
+            mode: state.settings.blacklist.modeWhitelist ? BlacklistMode.WhiteList : BlacklistMode.BlackList,
+            domains: state.settings.blacklist.domains.slice(0), // proxy object to the plain array
+            custom: {
+              rules: state.settings.blacklist.custom.rules.slice(0), // proxy object to the plain array
+            },
+          },
         }))
         .then((): void => {
           commit(Mutation.SaveSettings)

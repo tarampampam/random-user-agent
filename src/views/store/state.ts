@@ -16,10 +16,17 @@ export interface State {
     customUseragent: {
       enabled: boolean
       list: string[]
-    },
+    }
     generator: {
-      types: GeneratorType[],
-    },
+      types: GeneratorType[]
+    }
+    blacklist: {
+      modeWhitelist: boolean
+      domains: string[]
+      custom: {
+        rules: string[]
+      }
+    }
   }
 }
 
@@ -42,6 +49,13 @@ export const state: State = { // default state
     },
     generator: {
       types: [],
+    },
+    blacklist: {
+      modeWhitelist: false,
+      domains: [],
+      custom: {
+        rules: [],
+      },
     },
   },
 }

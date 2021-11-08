@@ -59,6 +59,12 @@
               i18n('blacklist_settings_hint', 'Blacklist mode - switching enabled everywhere, except the defined ' +
                 'domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules')
             }}:</p>
+
+          <ul>
+            <whitelist-mode/>
+            <blacklist-domains-list/>
+            <blacklist-custom-rules-list/>
+          </ul>
         </div>
         <div v-else>
           <h1>(╯°□°)╯︵ ┻━┻</h1>
@@ -89,6 +95,9 @@ import RenewOnStartup from './controls/renew-on-startup.vue'
 import JSProtection from './controls/js-protection.vue'
 import CustomUAList from './controls/custom-ua-list.vue'
 import GeneratorTypes from './controls/generator-types.vue'
+import WhitelistMode from './controls/whitelist-mode.vue'
+import BlacklistDomainsList from './controls/blacklist-domains-list.vue'
+import BlacklistCustomRulesList from './controls/blacklist-custom-rules-list.vue'
 
 export default defineComponent({
   components: {
@@ -102,6 +111,9 @@ export default defineComponent({
     'custom-ua-list': CustomUAList,
     'footer-block': FooterBlock,
     'generator-types': GeneratorTypes,
+    'whitelist-mode': WhitelistMode,
+    'blacklist-domains-list': BlacklistDomainsList,
+    'blacklist-custom-rules-list': BlacklistCustomRulesList,
   },
   mixins: [i18n],
   data(): {
@@ -109,7 +121,7 @@ export default defineComponent({
     errors: string[]
   } {
     return {
-      activePage: 'generator', //'general', // TODO set 'general'
+      activePage: 'general',
       errors: [],
     }
   },
@@ -137,12 +149,11 @@ export default defineComponent({
     },
   },
   created(): void {
-    // TODO uncomment this:
-    // window.addEventListener('beforeunload', (event): void => {
-    //   if (!this.$store.state.saved) {
-    //     event.returnValue = 'You have unsaved changes!'
-    //   }
-    // })
+    window.addEventListener('beforeunload', (event): void => {
+      if (!this.$store.state.settingsSaved) {
+        event.returnValue = 'You have unsaved changes!'
+      }
+    })
 
     this.$store.dispatch(Actions.LoadSettings).catch(this.handleError)
   },
