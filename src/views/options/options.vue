@@ -2,14 +2,14 @@
   <main>
     <header>
       <div class="container">
-        <div v-for="err in errors" :key="err">
-          <transition name="fade">
+        <transition-group name="fade">
+          <div class="alert-box" v-for="err in errors" :key="err">
             <alert
               :text="err"
               type="error"
             />
-          </transition>
-        </div>
+          </div>
+        </transition-group>
       </div>
     </header>
     <section class="container">
@@ -50,6 +50,8 @@
         <div v-else-if="activePage === 'generator'">
           <h1>{{ i18n('generator_settings', 'Generator settings') }}</h1>
           <p>{{ i18n('generator_settings_hint', 'Here you can change the agent switching behavior') }}:</p>
+
+          <generator-types/>
         </div>
         <div v-else-if="activePage === 'blacklist'">
           <h1>{{ i18n('blacklist_settings', 'Blacklist settings') }}</h1>
@@ -74,6 +76,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from '../mixins/i18n'
+import {Actions} from '../store/actions'
 
 import Toggle from './common/toggle.vue'
 import Alert from './common/alert.vue'
@@ -85,7 +88,7 @@ import RenewInterval from './controls/renew-interval.vue'
 import RenewOnStartup from './controls/renew-on-startup.vue'
 import JSProtection from './controls/js-protection.vue'
 import CustomUAList from './controls/custom-ua-list.vue'
-import {Actions} from '../store/actions'
+import GeneratorTypes from './controls/generator-types.vue'
 
 export default defineComponent({
   components: {
@@ -98,6 +101,7 @@ export default defineComponent({
     'js-protection': JSProtection,
     'custom-ua-list': CustomUAList,
     'footer-block': FooterBlock,
+    'generator-types': GeneratorTypes,
   },
   mixins: [i18n],
   data(): {
@@ -105,7 +109,7 @@ export default defineComponent({
     errors: string[]
   } {
     return {
-      activePage: 'general',
+      activePage: 'generator', //'general', // TODO set 'general'
       errors: [],
     }
   },
@@ -166,6 +170,10 @@ main {
     box-sizing: border-box;
     padding-top: .9rem;
     min-height: $header-height;
+
+    .alert-box:not(:last-child) {
+      margin-bottom: .2em;
+    }
   }
 
   section {

@@ -1,5 +1,6 @@
 import {MutationTree} from 'vuex'
 import {State} from './state'
+import {GeneratorType, isValidType} from '../../useragent/generator'
 
 export enum Mutation {
   SaveSettings = 'SaveSettings',
@@ -7,6 +8,7 @@ export enum Mutation {
   UpdateRenew = 'UpdateRenew',
   UpdateJSProtection = 'UpdateJSProtection',
   UpdateCustomUserAgent = 'UpdateCustomUserAgent',
+  UpdateGeneratorOptions = 'UpdateGeneratorOptions',
 }
 
 export const mutations: MutationTree<State> = {
@@ -51,10 +53,21 @@ export const mutations: MutationTree<State> = {
       state.settingsSaved = false
     }
 
-    if (typeof payload.list === 'object' && Array.isArray(payload.list)) {
+    if (Array.isArray(payload.list)) {
       state.settings.customUseragent.list = payload.list
         .map((s: string): string => s.trim())
         .filter((s: string): boolean => s.length > 0)
+
+      state.settingsSaved = false
+    }
+  },
+
+  [Mutation.UpdateGeneratorOptions](state: State, payload: { types?: GeneratorType[] } ): void {
+    if (Array.isArray(payload.types)) {
+      state.settings.generator.types = payload.types
+        .filter((t): boolean => isValidType(t))
+        .filter((value, index, self): boolean => self.indexOf(value) === index)
+        .sort()
 
       state.settingsSaved = false
     }

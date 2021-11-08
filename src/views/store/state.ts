@@ -1,3 +1,5 @@
+import {GeneratorType} from '../../useragent/generator'
+
 export interface State {
   settingsSaved: boolean
 
@@ -14,6 +16,9 @@ export interface State {
     customUseragent: {
       enabled: boolean
       list: string[]
+    },
+    generator: {
+      types: GeneratorType[],
     },
   }
 }
@@ -34,6 +39,9 @@ export const state: State = { // default state
     customUseragent: {
       enabled: false,
       list: [],
+    },
+    generator: {
+      types: [],
     },
   },
 }

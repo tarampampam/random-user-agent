@@ -33,6 +33,9 @@ export const actions: ActionTree<State, State> = {
             enabled: settings.customUseragent.enabled,
             list: settings.customUseragent.list,
           })
+          commit(Mutation.UpdateGeneratorOptions, {
+            types: settings.generator.types,
+          })
 
           commit(Mutation.SaveSettings) // just a little "logic" hack :)
 
@@ -59,9 +62,9 @@ export const actions: ActionTree<State, State> = {
           jsProtection: {
             enabled: state.settings.jsProtection.enabled,
           },
-          // generator: {
-          //   types: state.settings.generator.types.slice(0), // proxy object to the plain array
-          // },
+          generator: {
+            types: state.settings.generator.types.slice(0), // proxy object to the plain array
+          },
           // blacklist: {
           //   mode: state.settings.blacklist.modeWhitelist ? BlacklistMode.WhiteList : BlacklistMode.BlackList,
           //   domains: state.settings.blacklist.domains.slice(0), // proxy object to the plain array
