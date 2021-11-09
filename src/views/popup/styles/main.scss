@@ -2,9 +2,9 @@
   user-select: none; // disable user-selection by default
 }
 
-::selection { // inverse colors
-  color: var(--popup-main-bg-color);
-  background: var(--popup-main-text-color);
+::selection {
+  color: var(--color-text-inverted);
+  background: var(--color-bg-inverted);
 }
 
 html, body {
@@ -15,8 +15,8 @@ html, body {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
   font-weight: 400;
   font-size: 11px;
-  background-color: var(--popup-main-bg-color);
-  color: var(--popup-main-text-color);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 a {

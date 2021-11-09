@@ -52,7 +52,7 @@ header {
       font-weight: 600;
       font-size: 1.2em;
       padding-left: .4em;
-      color: var(--popup-main-text-color);
+      color: var(--color-text-primary);
     }
   }
 

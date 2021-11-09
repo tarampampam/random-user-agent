@@ -22,10 +22,10 @@ div {
   text-align: center;
   min-height: 100px;
   padding: 0 1.2em;
-  background-color: var(--popup-secondary-bg-color); // we should not use gradient here - https://github.com/tarampampam/random-user-agent/issues/184
+  background-color: var(--color-bg-light); // we should not use gradient here - https://github.com/tarampampam/random-user-agent/issues/184
   font-family: 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
   font-size: 1.1em;
-  color: var(--popup-active-ua-text-color);
+  color: var(--color-text-primary);
   overflow: hidden;
 
   user-select: text;

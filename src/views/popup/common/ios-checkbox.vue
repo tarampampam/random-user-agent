@@ -91,20 +91,20 @@ export default defineComponent({
 
 .toggle-light {
   + .toggle-btn {
-    background: var(--popup-actions-secondary-color);
+    background: var(--color-bg-light);
     border-radius: 1.5em;
     padding: 2px;
     transition: all .3s ease;
 
     &:after {
       border-radius: 50%;
-      background: #fff;
+      background: var(--color-ui-spacer);
       transition: all .045s ease;
     }
   }
 
   &:checked + .toggle-btn {
-    background: var(--popup-enabled-switcher-bg-color);
+    background: var(--color-ui-on);
   }
 }
 </style>
