@@ -24,7 +24,7 @@ module.exports = {
     splitChunks: {
       name: 'vendor',
       chunks(chunk) {
-        return !['content-script', 'background'].includes(chunk.name)
+        return chunk.name !== 'content-script'
       }
     },
     minimizer: [

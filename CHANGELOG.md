@@ -14,6 +14,9 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Changed
 
 - Custom user-agent list on the settings page now limited (maximal `4096` symbols are allowed, [the reason is QUOTA_BYTES_PER_ITEM](https://developer.chrome.com/docs/extensions/reference/storage/#property-sync))
+- New options page [#189]
+
+[#189]:https://github.com/tarampampam/random-user-agent/pull/189
 
 ### Fixed
 
