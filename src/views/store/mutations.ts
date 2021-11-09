@@ -35,7 +35,7 @@ export const mutations: MutationTree<State> = {
     }
 
     if (typeof payload.intervalSec === 'number' && state.settings.renew.intervalSec !== payload.intervalSec) {
-      state.settings.renew.intervalSec = payload.intervalSec
+      state.settings.renew.intervalSec = Math.min(Math.max(1, payload.intervalSec), 86400)
       state.settingsSaved = false
     }
 
