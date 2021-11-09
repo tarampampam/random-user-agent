@@ -91,7 +91,7 @@ export default defineComponent({
 
 .toggle-light {
   + .toggle-btn {
-    background: var(--color-bg-light);
+    background: var(--color-ui-off);
     border-radius: 1.5em;
     padding: 2px;
     transition: all .3s ease;
