@@ -19,7 +19,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from './../../mixins/i18n'
-import ControlIcon from './../control-icon.vue'
+import ControlIcon from './../common/control-icon.vue'
 
 export default defineComponent({
   components: {

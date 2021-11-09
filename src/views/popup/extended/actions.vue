@@ -43,9 +43,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import ControlIcon from '../control-icon.vue'
+import ControlIcon from '../common/control-icon.vue'
 import i18n from '../../mixins/i18n'
-import IOSCheckbox from '../ios-checkbox.vue'
+import IOSCheckbox from '../common/ios-checkbox.vue'
 
 export default defineComponent({
   components: {
