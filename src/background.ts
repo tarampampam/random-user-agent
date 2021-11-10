@@ -19,6 +19,7 @@ import Useragent, {UseragentStateEvent} from './useragent/useragent'
 import GetUseragent from './messaging/handlers/get-useragent'
 import UpdateUseragent from './messaging/handlers/update-useragent'
 import HeadersReceived from './hooks/headers-received'
+import RemoteListService, {LocalStorageStringsCache} from './services/remotelist-service'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -37,76 +38,114 @@ useragent.load().then((): void => { // load useragent state
     const settings = new Settings(storage)
 
     settings.load().then((): void => { // load extension settings from the storage
+      const initialSettings = settings.get()
+
       // update extension icon on startup
-      setExtensionIcon(settings.get().enabled ? IconState.Active : IconState.Inactive)
+      setExtensionIcon(initialSettings.enabled ? IconState.Active : IconState.Inactive)
 
       // create all required services
-      const useragentService = new UseragentService(settings, useragent, new Generator())
+      const remoteListService = new RemoteListService(new LocalStorageStringsCache())
+      const useragentService = new UseragentService(settings, useragent, new Generator(), remoteListService)
       const filterService = new FilterService(settings)
 
-      // start the useragent auto-renewal interval
-      const renewalTimer = new Timer(settings.get().renew.intervalMillis, (): void => {
-        useragentService.renew()
-      })
-
-      // renew the useragent on startup, if needed
-      if (settings.get().renew.onStartup) {
-        useragentService.renew()
+      // set the remote list uri
+      if (initialSettings.remoteUseragentList.uri.length > 0) {
+        remoteListService.setUri(initialSettings.remoteUseragentList.uri)
       }
 
-      // start the renewal timer, if extension and this feature are enabled
-      if (settings.get().enabled && settings.get().renew.enabled) {
-        renewalTimer.start()
-      }
+      remoteListService.init().then((): void => { // initialize remote user-agent list
+        // create the useragent auto-renewal timer
+        const renewalTimer = new Timer(initialSettings.renew.intervalMillis, (): void => {
+          useragentService.renew()
+        })
 
-      // subscribe for the settings changes
-      settings.on(SettingEvent.onChange, (): void => {
-        // update extension icon state
-        setExtensionIcon(settings.get().enabled ? IconState.Active : IconState.Inactive)
+        // create the remote user-agents list auto-updating timer
+        const remoteListUpdateTimer = new Timer(initialSettings.remoteUseragentList.updateIntervalMillis, (): void => {
+          remoteListService.update().catch(errorsHandler)
+        })
 
-        if (settings.get().enabled) {
-          if (settings.get().renew.enabled) {
-            // update renewal interval, if needed
-            const currentInterval = settings.get().renew.intervalMillis
-            if (renewalTimer.getIntervalMillis() !== currentInterval) {
-              renewalTimer.setIntervalMillis(currentInterval)
+        // renew the useragent on startup, if needed
+        if (initialSettings.renew.onStartup) {
+          useragentService.renew()
+        }
+
+        // start the renewal timer, if extension and this feature are enabled
+        if (initialSettings.enabled && initialSettings.renew.enabled) {
+          renewalTimer.start()
+        }
+
+        // start the remote user-agent list timer, if extension and this feature are enabled
+        if (initialSettings.enabled && initialSettings.remoteUseragentList.enabled) {
+          remoteListService.update().catch(errorsHandler) // update on startup
+          remoteListUpdateTimer.start()
+        }
+
+        // subscribe for the settings changes
+        settings.on(SettingEvent.onChange, (): void => {
+          const changedSettings = settings.get()
+
+          // update extension icon state
+          setExtensionIcon(changedSettings.enabled ? IconState.Active : IconState.Inactive)
+
+          if (changedSettings.enabled) {
+            if (changedSettings.renew.enabled) {
+              // update renewal interval, if needed
+              const currentInterval = changedSettings.renew.intervalMillis
+              if (renewalTimer.getIntervalMillis() !== currentInterval) {
+                renewalTimer.setIntervalMillis(currentInterval)
+              }
+
+              if (!renewalTimer.isStarted()) {
+                renewalTimer.start()
+              }
+            } else {
+              renewalTimer.stop()
             }
 
-            if (!renewalTimer.isStarted()) {
-              renewalTimer.start()
+            if (changedSettings.remoteUseragentList.enabled) {
+              // update remote agents updating interval, if needed
+              const currentInterval = changedSettings.remoteUseragentList.updateIntervalMillis
+              if (remoteListUpdateTimer.getIntervalMillis() !== currentInterval) {
+                remoteListUpdateTimer.setIntervalMillis(currentInterval)
+              }
+
+              if (!remoteListUpdateTimer.isStarted()) {
+                remoteListUpdateTimer.start()
+              }
+            } else {
+              remoteListUpdateTimer.stop()
             }
           } else {
             renewalTimer.stop()
+            remoteListUpdateTimer.stop()
           }
-        } else {
-          renewalTimer.stop()
-        }
 
-        // and save
-        settings.save().catch(errorsHandler)
-      })
+          // and save
+          settings.save().catch(errorsHandler)
+        })
 
-      // register runtime messages listener when all dependencies are ready
-      new RuntimeReceiver(
-        new HandlersRouter( // register all handlers here
-          new Version,
-          new GetSettings(settings),
-          new UpdateSettings(settings),
-          new RenewUseragent(useragentService),
-          new EnabledForDomain(filterService),
-          new ChangeForDomain(filterService),
-          new ApplicableToURI(filterService),
-          new GetUseragent(useragent),
-          new UpdateUseragent(useragent),
-        ),
-        errorsHandler,
-      ).listen()
+        // register runtime messages listener when all dependencies are ready
+        new RuntimeReceiver(
+          new HandlersRouter( // register all handlers here
+            new Version,
+            new GetSettings(settings),
+            new UpdateSettings(settings),
+            new RenewUseragent(useragentService),
+            new EnabledForDomain(filterService),
+            new ChangeForDomain(filterService),
+            new ApplicableToURI(filterService),
+            new GetUseragent(useragent),
+            new UpdateUseragent(useragent),
+          ),
+          errorsHandler,
+        ).listen()
 
-      // this hook is required for the HTTP headers modification
-      new BeforeSendHeaders(settings, useragent, filterService).listen()
+        // this hook is required for the HTTP headers modification
+        new BeforeSendHeaders(settings, useragent, filterService).listen()
 
-      // this hook allows to send important data to the content script without using sendMessage()
-      new HeadersReceived(settings, useragent, filterService).listen()
+        // this hook allows to send important data to the content script without using sendMessage()
+        new HeadersReceived(settings, useragent, filterService).listen()
+      }).catch(errorsHandler)
     }).catch(errorsHandler)
   }).catch(errorsHandler)
 }).catch(errorsHandler)
