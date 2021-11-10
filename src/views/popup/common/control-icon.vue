@@ -82,7 +82,7 @@ div.control-icon {
     height: 100%;
 
     path {
-      fill: var(--popup-main-text-color);
+      fill: var(--color-text-primary);
       opacity: .85;
     }
 

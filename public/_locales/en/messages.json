@@ -43,6 +43,8 @@
   "previous_settings_hint": {"message": "These settings were used by you on the previous extension version. Keep it somewhere or remove"},
   "save_changes": {"message": "Save changes"},
   "error_occurred": {"message": "Error occurred"},
+  "like_this_extension": {"message": "Do you like this extension?"},
+  "give_a_star_on_github": {"message": "Give us a star on GitHub!"},
 
   "edge_win": {"message": "Edge on Windows"},
   "chrome_win": {"message": "Chrome on Windows"},
