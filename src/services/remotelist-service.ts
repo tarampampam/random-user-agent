@@ -100,8 +100,15 @@ export default class RemoteListService {
               if (s.length > 0) {
                 return resolve(
                   s.split('\n')
-                    .filter((s): boolean => !s.startsWith('#') && !s.startsWith('//')) // skip comments
-                    .filter((s): boolean => s.trim().length > 0) // skip empty lines
+                    .filter((s): boolean => {
+                      const trimmed = s.trim()
+
+                      if (trimmed.startsWith('#') || trimmed.startsWith('//')) { // skip comments
+                        return false
+                      }
+
+                      return trimmed.length !== 0 // skip empty lines
+                    })
                 )
               }
 

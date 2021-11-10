@@ -4,6 +4,8 @@ import Useragent from '../useragent/useragent'
 import UseragentInfo from '../useragent/useragent-info'
 import RemoteListService from './remotelist-service'
 
+type UserAgentSource = 'custom_agents_list' | 'remote_list' | 'generator'
+
 export default class UseragentService {
   private readonly settings: Settings
   private readonly useragent: Useragent
@@ -19,7 +21,7 @@ export default class UseragentService {
 
   // Renew the useragent (generate a new and set them into the settings)
   renew(): {
-    source: 'custom_agents_list' | 'remote_list' | 'generator'
+    source: UserAgentSource
     previous: UseragentInfo | undefined
     new: UseragentInfo
   } {
@@ -28,55 +30,43 @@ export default class UseragentService {
     const useCustom = currentSettings.customUseragent.enabled
     const useRemote = currentSettings.remoteUseragentList.enabled
 
-    throw new Error('Fix this logic') // FIXME
+    let selected: UseragentInfo | undefined = undefined, source: UserAgentSource | undefined = undefined
 
-    if (useCustom || useRemote) {
-      let use: 'custom' | 'remote'
+    switch (true) {
+      case useCustom && useRemote: {
+        if (Math.random() < 0.5) { // 50% / 50%
+          selected = this.custom()
+          source = 'custom_agents_list'
+        } else {
+          selected = this.remote()
+          source = 'remote_list'
+        }
 
-      if (useCustom && useRemote) {
-        use = Math.random() < 0.5 ? 'custom' : 'remote' // random, 50% probability we can get each option
-      } else if (useCustom) {
-        use = 'custom'
-      } else {
-        use = 'remote'
+        break
       }
 
-      if (use === 'custom') {
-        const list: string[] = currentSettings.customUseragent.list
+      case useCustom: {
+        selected = this.custom()
+        source = 'custom_agents_list'
 
-        if (list.length > 0) {
-          const random: string = list[Math.floor(Math.random() * list.length)]
+        break
+      }
 
-          if (random.trim().length > 0) {
-            const custom: UseragentInfo = {
-              useragent: random,
-              engine: 'unknown', // TODO probably detect this properties here?
-              osType: 'unknown',
-            }
+      case useRemote: {
+        selected = this.remote()
+        source = 'remote_list'
 
-            this.useragent.update({info: custom})
+        break
+      }
+    }
 
-            return {
-              source: 'custom_agents_list',
-              previous: previous,
-              new: custom,
-            }
-          }
-        }
-      } else { // remote
-        const remote: UseragentInfo = {
-          useragent: this.remoteList.getRandom(),
-          engine: 'unknown', // TODO probably detect this properties here?
-          osType: 'unknown',
-        }
+    if (selected !== undefined && source !== undefined) {
+      this.useragent.update({info: selected})
 
-        this.useragent.update({info: remote})
-
-        return {
-          source: 'custom_agents_list',
-          previous: previous,
-          new: remote,
-        }
+      return {
+        source: source,
+        previous: previous,
+        new: selected,
       }
     }
 
@@ -89,5 +79,37 @@ export default class UseragentService {
       previous: previous,
       new: generated,
     }
+  }
+
+  private custom(): UseragentInfo | undefined {
+    const list: string[] = this.settings.get().customUseragent.list
+
+    if (list.length > 0) {
+      const random: string = list[Math.floor(Math.random() * list.length)]
+
+      if (random.trim().length > 0) {
+        return {
+          useragent: random,
+          engine: 'unknown', // TODO probably detect this properties here?
+          osType: 'unknown',
+        }
+      }
+    }
+
+    return undefined
+  }
+
+  private remote(): UseragentInfo | undefined {
+    const random: string = this.remoteList.getRandom()
+
+    if (random.trim().length > 0) {
+      return {
+        useragent: random,
+        engine: 'unknown', // TODO probably detect this properties here?
+        osType: 'unknown',
+      }
+    }
+
+    return undefined
   }
 }

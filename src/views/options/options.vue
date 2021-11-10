@@ -48,6 +48,7 @@
             <renew-on-startup/>
             <js-protection/>
             <custom-ua-list/>
+            <remote-ua-list/>
           </ul>
         </div>
         <div v-else-if="activePage === 'generator'">
@@ -113,6 +114,7 @@ import RenewInterval from './controls/renew-interval.vue'
 import RenewOnStartup from './controls/renew-on-startup.vue'
 import JSProtection from './controls/js-protection.vue'
 import CustomUAList from './controls/custom-ua-list.vue'
+import RemoteUAList from './controls/remote-ua-list.vue'
 import GeneratorTypes from './controls/generator-types.vue'
 import WhitelistMode from './controls/whitelist-mode.vue'
 import BlacklistDomainsList from './controls/blacklist-domains-list.vue'
@@ -130,6 +132,7 @@ export default defineComponent({
     'renew-on-startup': RenewOnStartup,
     'js-protection': JSProtection,
     'custom-ua-list': CustomUAList,
+    'remote-ua-list': RemoteUAList,
     'footer-block': FooterBlock,
     'generator-types': GeneratorTypes,
     'whitelist-mode': WhitelistMode,

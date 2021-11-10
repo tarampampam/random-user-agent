@@ -8,6 +8,7 @@ export enum Mutation {
   UpdateRenew = 'UpdateRenew',
   UpdateJSProtection = 'UpdateJSProtection',
   UpdateCustomUserAgent = 'UpdateCustomUserAgent',
+  UpdateRemoteUserAgent = 'UpdateRemoteUserAgent',
   UpdateGeneratorOptions = 'UpdateGeneratorOptions',
   UpdateBlacklist = 'UpdateBlacklist',
 }
@@ -72,6 +73,33 @@ export const mutations: MutationTree<State> = {
         .map((s: string): string => s.trim())
         .filter((s: string): boolean => s.length > 0)
 
+      state.settingsSaved = false
+    }
+  },
+
+  [Mutation.UpdateRemoteUserAgent](state: State, payload: { enabled?: boolean, uri?: string, intervalSec?: number }): void {
+    if (typeof payload !== 'object') {
+      return
+    }
+
+    if (typeof payload.enabled === 'boolean' && state.settings.remoteUseragentList.enabled !== payload.enabled) {
+      state.settings.remoteUseragentList.enabled = payload.enabled
+      state.settingsSaved = false
+    }
+
+    if (typeof payload.uri === 'string' && state.settings.remoteUseragentList.uri !== payload.uri) {
+      try {
+        const url = new URL(payload.uri) // validate
+
+        state.settings.remoteUseragentList.uri = url.toString()
+      } catch (_) { // invalid uri
+        state.settings.remoteUseragentList.uri = ''
+      }
+      state.settingsSaved = false
+    }
+
+    if (typeof payload.intervalSec === 'number' && state.settings.remoteUseragentList.updateIntervalSec !== payload.intervalSec) {
+      state.settings.remoteUseragentList.updateIntervalSec = Math.min(Math.max(0, payload.intervalSec), 604800)
       state.settingsSaved = false
     }
   },

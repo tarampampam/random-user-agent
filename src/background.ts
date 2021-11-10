@@ -48,7 +48,7 @@ useragent.load().then((): void => { // load useragent state
       const useragentService = new UseragentService(settings, useragent, new Generator(), remoteListService)
       const filterService = new FilterService(settings)
 
-      // set the remote list uri
+      // set the remote list URI
       if (initialSettings.remoteUseragentList.uri.length > 0) {
         remoteListService.setUri(initialSettings.remoteUseragentList.uri)
       }
@@ -63,6 +63,11 @@ useragent.load().then((): void => { // load useragent state
         const remoteListUpdateTimer = new Timer(initialSettings.remoteUseragentList.updateIntervalMillis, (): void => {
           remoteListService.update().catch(errorsHandler)
         })
+
+        // update the remote user-agents list if empty
+        if (initialSettings.remoteUseragentList.uri.length > 0 && remoteListService.get().length === 0) {
+          remoteListService.update().catch(errorsHandler)
+        }
 
         // renew the useragent on startup, if needed
         if (initialSettings.renew.onStartup) {
@@ -79,6 +84,8 @@ useragent.load().then((): void => { // load useragent state
           remoteListService.update().catch(errorsHandler) // update on startup
           remoteListUpdateTimer.start()
         }
+
+        let lastRemoteAgentListURI = initialSettings.remoteUseragentList.uri
 
         // subscribe for the settings changes
         settings.on(SettingEvent.onChange, (): void => {
@@ -107,6 +114,17 @@ useragent.load().then((): void => { // load useragent state
               const currentInterval = changedSettings.remoteUseragentList.updateIntervalMillis
               if (remoteListUpdateTimer.getIntervalMillis() !== currentInterval) {
                 remoteListUpdateTimer.setIntervalMillis(currentInterval)
+              }
+
+              // update the list URI
+              if (changedSettings.remoteUseragentList.uri.length > 0) {
+                remoteListService.setUri(changedSettings.remoteUseragentList.uri)
+              }
+
+              if (lastRemoteAgentListURI !== changedSettings.remoteUseragentList.uri) {
+                lastRemoteAgentListURI = changedSettings.remoteUseragentList.uri
+
+                remoteListUpdateTimer.restart()
               }
 
               if (!remoteListUpdateTimer.isStarted()) {
