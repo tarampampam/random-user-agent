@@ -19,7 +19,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import i18n from './../../mixins/i18n'
-import ControlIcon from './../control-icon.vue'
+import ControlIcon from './../common/control-icon.vue'
 
 export default defineComponent({
   components: {
@@ -52,7 +52,7 @@ header {
       font-weight: 600;
       font-size: 1.2em;
       padding-left: .4em;
-      color: var(--popup-main-text-color);
+      color: var(--color-text-primary);
     }
   }
 

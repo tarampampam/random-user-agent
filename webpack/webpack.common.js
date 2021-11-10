@@ -24,11 +24,13 @@ module.exports = {
     splitChunks: {
       name: 'vendor',
       chunks(chunk) {
-        return !['content-script', 'background'].includes(chunk.name)
+        return chunk.name !== 'content-script'
       }
     },
     minimizer: [
-      new TerserPlugin(),
+      new TerserPlugin({
+        extractComments: false,
+      }),
       new JsonMinimizerPlugin({
         test: /\.json$/i,
       }),

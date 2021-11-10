@@ -43,9 +43,9 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import ControlIcon from '../control-icon.vue'
+import ControlIcon from '../common/control-icon.vue'
 import i18n from '../../mixins/i18n'
-import IOSCheckbox from '../ios-checkbox.vue'
+import IOSCheckbox from '../common/ios-checkbox.vue'
 
 export default defineComponent({
   components: {
@@ -85,7 +85,7 @@ section {
     justify-content: space-between;
     align-items: center;
     border-style: solid;
-    border-color: var(--popup-actions-secondary-color);
+    border-color: var(--color-ui-border-light);
     border-width: 0 0 .1em 0;
 
     & > * {
@@ -97,7 +97,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0.75em 1em;
-    color: var(--popup-action-text-color);
+    color: var(--color-text-primary);
     cursor: pointer;
     transition: background-color 120ms ease-in-out;
 
@@ -115,10 +115,10 @@ section {
           background-color: transparent;
         }
         30% {
-          background-color: var(--popup-blinking-bg-1-color);
+          background-color: rgba(87, 222, 114, 0.2);
         }
         50% {
-          background-color: var(--popup-blinking-bg-2-color);
+          background-color: rgba(87, 222, 114, 0.25);
         }
         100% {
           background-color: transparent;
@@ -126,11 +126,11 @@ section {
       }
 
       animation: blinking-background 2s infinite;
-      text-shadow: 0 0 4px var(--popup-main-bg-color);
+      text-shadow: 0 0 4px var(--color-bg-primary);
     }
 
     &:hover, &:hover .blinking-background {
-      background-color: var(--popup-action-hover-bg-color);
+      background-color: var(--color-bg-light);
       animation: none;
     }
   }
