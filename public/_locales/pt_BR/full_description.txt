@@ -1,0 +1,10 @@
+User-Agent (Agente de usuário) - é um conjunto de informações que é enviado para qualquer site que você visita. É um tipo de "impressão digital" do seu navegador, que contém:
+
+- O nome e a versão do seu navegador;
+- O nome de sistema operacional (Mac, Windows, Linux, etc.) e a sua versão;
+- Informações sobre alguns plugins instalados no seu navegador;
+- Outras informações que lhe identifica e expõe.
+
+Esta extensão foi criada para impedir o vazamento de dados. Ela substitui automaticamente identificação de Agente de usuário, após um período de tempo escolhido, por uma outra aleatória. As informações de Agente de usuário também podem ser especificadas manualmente. A extensão é incrivelmente leve e usa muito pouco recursos. A randomização de Agente de usuário pode ser personalizada pelo usuário (vários tipos de navegadores e SO são disponíveis, etc.). A lista de exceções pode ser criada com a opção de usar os caracteres especiais. Tem proteção contra explorações de Javascript para ocultar sua identidade e proteger seu anonimato.
+
+Código-fonte: https://github.com/tarampampam/random-user-agent
