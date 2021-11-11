@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Chinese `zh_CN` localization (thanks to [@yfdyh000](https://github.com/yfdyh000))
 - "Save changes" button on the options page
-- Possibility to use the remote User-Agents list [#190]
+- Possibility to use the remote User-Agents list [#190], [#175]
 
 ### Changed
 
@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - `extraHeaders` options bug for `onHeadersReceived` hook in FireFox
 - Colors in the popup window when chrome uses the "Force Dark" feature [#184]
 
+[#175]:https://github.com/tarampampam/random-user-agent/issues/175
 [#190]:https://github.com/tarampampam/random-user-agent/pull/190
 [#189]:https://github.com/tarampampam/random-user-agent/pull/189
 [#184]:https://github.com/tarampampam/random-user-agent/issues/184

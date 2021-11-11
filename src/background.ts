@@ -113,7 +113,11 @@ useragent.load().then((): void => { // load useragent state
             if (changedSettings.remoteUseragentList.enabled) {
               // update remote agents updating interval, if needed
               if (remoteListUpdateTimer.getIntervalMillis() !== changedSettings.remoteUseragentList.updateIntervalMillis) {
-                remoteListUpdateTimer.setIntervalMillis(changedSettings.remoteUseragentList.updateIntervalMillis)
+                if (changedSettings.remoteUseragentList.updateIntervalMillis > 0) {
+                  remoteListUpdateTimer.setIntervalMillis(changedSettings.remoteUseragentList.updateIntervalMillis)
+                } else {
+                  remoteListUpdateTimer.stop()
+                }
               }
 
               // update the list URI
