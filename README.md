@@ -14,7 +14,7 @@
 
 ## 🔥 Features list
 
-- Incredibly lightweight (`~70KiB` archived)
+- Incredibly lightweight (`~80KiB` archived)
 - Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store], [opera][link-opera-store])
 - Can automatically change the User-Agent after a specified period of time
 - Change User-Agent on browser startup
