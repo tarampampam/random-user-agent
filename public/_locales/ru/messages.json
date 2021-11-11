@@ -45,6 +45,10 @@
   "error_occurred": {"message": "Произошла ошибка"},
   "like_this_extension": {"message": "Вам нравится это расширение?"},
   "give_a_star_on_github": {"message": "Поставьте ему звёздочку на GitHub!"},
+  "remote_useragent_list": {"message": "Использовать один из User-Agent (в случайном порядке) из списка по URL"},
+  "remote_useragent_list_hint": {"message": "Это расширение будет периодически скачивать его для того, чтоб поддерживать список в актуальном состоянии"},
+  "remote_useragent_updating_interval": {"message": "Интервал обновления (в секундах; пример - каждые 3 часа = 60×60×3 = 10800)"},
+  "update_now": {"message": "Обновить сейчас"},
 
   "edge_win": {"message": "Edge на Windows"},
   "chrome_win": {"message": "Chrome на Windows"},

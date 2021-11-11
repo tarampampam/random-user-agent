@@ -34,6 +34,11 @@ export const actions: ActionTree<State, State> = {
             enabled: settings.customUseragent.enabled,
             list: settings.customUseragent.list,
           })
+          commit(Mutation.UpdateRemoteUserAgent, {
+            enabled: settings.remoteUseragentList.enabled,
+            uri: settings.remoteUseragentList.uri,
+            intervalSec: Math.round(settings.remoteUseragentList.updateIntervalMillis / 1000),
+          })
           commit(Mutation.UpdateGeneratorOptions, {
             types: settings.generator.types,
           })
@@ -64,6 +69,11 @@ export const actions: ActionTree<State, State> = {
           customUseragent: {
             enabled: state.settings.customUseragent.enabled,
             list: state.settings.customUseragent.list.slice(0), // proxy object to the plain array
+          },
+          remoteUseragentList: {
+            enabled: state.settings.remoteUseragentList.enabled,
+            uri: state.settings.remoteUseragentList.uri,
+            updateIntervalMillis: Math.round(state.settings.remoteUseragentList.updateIntervalSec * 1000),
           },
           jsProtection: {
             enabled: state.settings.jsProtection.enabled,

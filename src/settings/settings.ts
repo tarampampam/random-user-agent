@@ -29,6 +29,15 @@ export interface SettingsState { // undefined properties are not allowed here
     // Custom User-Agents list
     list: string[]
   }
+  // Remote User-Agents list
+  remoteUseragentList: {
+    // Is enabled?
+    enabled: boolean
+    // Remote list URI
+    uri: string
+    // Update interval (in milliseconds)
+    updateIntervalMillis: number
+  }
   // Replace User-Agent using javascript?
   jsProtection: {
     // JS protection is enabled?
@@ -76,6 +85,11 @@ export default class Settings {
     customUseragent: {
       enabled: false,
       list: [],
+    },
+    remoteUseragentList: {
+      enabled: false,
+      uri: '',
+      updateIntervalMillis: 60 * 60 * 1000, // hourly
     },
     jsProtection: {
       enabled: true,

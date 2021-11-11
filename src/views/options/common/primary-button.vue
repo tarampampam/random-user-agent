@@ -1,6 +1,7 @@
 <template>
   <input
     type="button"
+    :disabled="disabled"
     :class="{pulse: pulse}"
     :value="text"
   />
@@ -11,6 +12,7 @@ import {defineComponent} from 'vue'
 
 export default defineComponent({
   props: {
+    disabled: Boolean,
     text: String,
     pulse: Boolean,
   },
@@ -55,6 +57,13 @@ input[type='button'] {
         box-shadow: 0 0 0 0 rgba(125, 125, 125, 0);
       }
     }
+  }
+
+  &:disabled {
+    background-color: var(--color-ui-bg-disabled);
+    border-color: var(--color-ui-border-disabled);
+    color: var(--color-text-light);
+    cursor: not-allowed;
   }
 }
 </style>

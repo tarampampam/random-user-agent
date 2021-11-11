@@ -17,6 +17,11 @@ export interface State {
       enabled: boolean
       list: string[]
     }
+    remoteUseragentList: {
+      enabled: boolean
+      uri: string
+      updateIntervalSec: number
+    }
     generator: {
       types: GeneratorType[]
     }
@@ -46,6 +51,11 @@ export const state: State = { // default state
     customUseragent: {
       enabled: false,
       list: [],
+    },
+    remoteUseragentList: {
+      enabled: false,
+      uri: '',
+      updateIntervalSec: 0,
     },
     generator: {
       types: [],

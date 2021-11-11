@@ -1,13 +1,11 @@
 <template>
   <input
-    type="number"
+    type="text"
     :disabled="disabled"
     :value="value"
-    :min="min"
-    :max="max"
-    :step="step"
+    :maxlength="maxlength"
     :placeholder="placeholder"
-    @input="$emit('change', $event.target.valueAsNumber)"
+    @input="$emit('change', $event.target.value)"
   />
 </template>
 
@@ -17,22 +15,20 @@ import {defineComponent} from 'vue'
 export default defineComponent({
   props: {
     disabled: Boolean,
-    value: Number,
-    min: Number,
-    max: Number,
-    step: Number,
+    value: String,
+    maxlength: Number,
     placeholder: String,
   },
   emits: {
-    change(value: number | any): boolean {
-      return typeof value === 'number'
+    change(value: string | any): boolean {
+      return typeof value === 'string'
     },
   },
 })
 </script>
 
 <style lang="scss" scoped>
-input[type='number'] {
+input[type='text'] {
   padding: 0.5rem;
   margin: 0;
   background-color: var(--color-ui-bg-primary);
@@ -46,10 +42,6 @@ input[type='number'] {
 
   &:focus, &:focus-visible {
     outline: none;
-  }
-
-  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-    opacity: 1;
   }
 
   &:disabled {
