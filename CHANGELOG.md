@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.3.1
+
+### Fixed
+
+- Navigator `oscpu` leaking [#191]
+
+[#191]:https://github.com/tarampampam/random-user-agent/issues/191
+
 ## v3.3.0
 
 ### Added

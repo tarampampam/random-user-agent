@@ -46,10 +46,10 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
       // makes required navigator object modifications
       const patchNavigator = (navigator: Navigator): void => {
         // allows to overload object property with a getter function (without potential exceptions)
-        const overloadPropertyWithGetter = (object: object, property: string, value: string): void => {
+        const overloadPropertyWithGetter = (object: object, property: string, value: any): void => {
           if (typeof object === 'object') {
             if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
-              Object.defineProperty(object, property, {get: (): string => value})
+              Object.defineProperty(object, property, {get: (): any => value})
             }
           }
         }
@@ -64,22 +64,31 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           switch (p.uaInfo.osType) { // fixes <https://github.com/tarampampam/random-user-agent/issues/7>
             case 'windows':
               overloadPropertyWithGetter(navigator, 'platform', 'Win32')
+              overloadPropertyWithGetter(navigator, 'oscpu', 'Windows NT; Win64; x64')
               break
 
             case 'linux':
               overloadPropertyWithGetter(navigator, 'platform', 'Linux x86_64')
+              overloadPropertyWithGetter(navigator, 'oscpu', 'Linux x86_64')
               break
 
             case 'android':
               overloadPropertyWithGetter(navigator, 'platform', 'Linux armv8l')
+              overloadPropertyWithGetter(navigator, 'oscpu', 'Linux armv8l')
               break
 
             case 'macOS':
               overloadPropertyWithGetter(navigator, 'platform', 'MacIntel')
+              overloadPropertyWithGetter(navigator, 'oscpu', 'Mac OS X')
               break
 
             case 'iOS':
               overloadPropertyWithGetter(navigator, 'platform', 'iPhone')
+              overloadPropertyWithGetter(navigator, 'oscpu', 'Mac OS X')
+              break
+
+            default:
+              overloadPropertyWithGetter(navigator, 'oscpu', undefined)
               break
           }
 
