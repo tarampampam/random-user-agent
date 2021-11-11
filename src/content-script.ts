@@ -60,49 +60,51 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
           // app version should not contain "Mozilla/" prefix
           overloadPropertyWithGetter(navigator, 'appVersion', p.uaInfo.useragent.replace(/^Mozilla\//i, ''))
 
+          const platformProp = 'platform', cpuProp = 'oscpu', vendorProp = 'vendor'
+
           // patch the platform property (based on os type)
           switch (p.uaInfo.osType) { // fixes <https://github.com/tarampampam/random-user-agent/issues/7>
             case 'windows':
-              overloadPropertyWithGetter(navigator, 'platform', 'Win32')
-              overloadPropertyWithGetter(navigator, 'oscpu', 'Windows NT; Win64; x64')
+              overloadPropertyWithGetter(navigator, platformProp, 'Win32')
+              overloadPropertyWithGetter(navigator, cpuProp, 'Windows NT; Win64; x64')
               break
 
             case 'linux':
-              overloadPropertyWithGetter(navigator, 'platform', 'Linux x86_64')
-              overloadPropertyWithGetter(navigator, 'oscpu', 'Linux x86_64')
+              overloadPropertyWithGetter(navigator, platformProp, 'Linux x86_64')
+              overloadPropertyWithGetter(navigator, cpuProp, 'Linux x86_64')
               break
 
             case 'android':
-              overloadPropertyWithGetter(navigator, 'platform', 'Linux armv8l')
-              overloadPropertyWithGetter(navigator, 'oscpu', 'Linux armv8l')
+              overloadPropertyWithGetter(navigator, platformProp, 'Linux armv8l')
+              overloadPropertyWithGetter(navigator, cpuProp, 'Linux armv8l')
               break
 
             case 'macOS':
-              overloadPropertyWithGetter(navigator, 'platform', 'MacIntel')
-              overloadPropertyWithGetter(navigator, 'oscpu', 'Mac OS X')
+              overloadPropertyWithGetter(navigator, platformProp, 'MacIntel')
+              overloadPropertyWithGetter(navigator, cpuProp, 'Mac OS X')
               break
 
             case 'iOS':
-              overloadPropertyWithGetter(navigator, 'platform', 'iPhone')
-              overloadPropertyWithGetter(navigator, 'oscpu', 'Mac OS X')
+              overloadPropertyWithGetter(navigator, platformProp, 'iPhone')
+              overloadPropertyWithGetter(navigator, cpuProp, 'Mac OS X')
               break
 
             default:
-              overloadPropertyWithGetter(navigator, 'oscpu', undefined)
+              overloadPropertyWithGetter(navigator, cpuProp, undefined)
               break
           }
 
           switch (p.uaInfo.engine) {
             case 'blink':
-              overloadPropertyWithGetter(navigator, 'vendor', 'Google Inc.')
+              overloadPropertyWithGetter(navigator, vendorProp, 'Google Inc.')
               break
 
             case 'gecko': // firefox always with an empty vendor
-              overloadPropertyWithGetter(navigator, 'vendor', '')
+              overloadPropertyWithGetter(navigator, vendorProp, '')
               break
 
             case 'webkit':
-              overloadPropertyWithGetter(navigator, 'vendor', 'Apple Computer Inc.')
+              overloadPropertyWithGetter(navigator, vendorProp, 'Apple Computer Inc.')
               break
           }
         }
