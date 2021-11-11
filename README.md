@@ -35,13 +35,15 @@ Resource                                            |   Test
 [What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 Failed
 [Browser Information (BrowserSPY)][test-browserspy] | ✅ Passed
 [whoer][test-whoer]                                 | ✅ Passed
-[browserleaks][test-browserleaks]                   | ✅ Passed
+[Browser Leaks][test-browserleaks]                  | ✅ Passed
+[Device Info][test-deviceinfo]                      | ✅ Passed
 
 [test-rua]:https://tarampampam.github.io/random-user-agent/
 [test-webbrowsertools]:https://webbrowsertools.com/useragent/
 [test-browserspy]:http://browserspy.dk/browser.php
 [test-whoer]:https://whoer.net/
 [test-browserleaks]:https://browserleaks.com/javascript
+[test-deviceinfo]:https://www.deviceinfo.me/
 
 ## 👀 Questions
 
