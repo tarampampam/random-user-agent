@@ -32,6 +32,13 @@
           placeholder="3600"
           @change="changeInterval"
         />
+
+        <primary-button
+          :disabled="!$store.state.settings.remoteUseragentList.enabled"
+          :text="i18n('update_now', 'Update now')"
+          style="margin-left: 1em"
+          @click="updateNow"
+        />
       </div>
     </template>
 
@@ -54,6 +61,11 @@ import ControlItem from './control-item.vue'
 import i18n from '../../mixins/i18n'
 import randomId from '../../mixins/random-id'
 import {Mutation} from '../../store/mutations'
+import {RuntimeSender, Sender} from '../../../messaging/runtime'
+import PrimaryButton from '../common/primary-button.vue'
+import {updateRemoteUAList} from '../../../messaging/handlers/update-remote-ua-list'
+
+const backend: Sender = new RuntimeSender
 
 export default defineComponent({
   components: {
@@ -61,6 +73,7 @@ export default defineComponent({
     'toggle': Toggle,
     'input-text': InputText,
     'input-number': InputNumber,
+    'primary-button': PrimaryButton,
   },
   mixins: [i18n, randomId],
   methods: {
@@ -72,6 +85,11 @@ export default defineComponent({
     },
     changeInterval(value: number): void {
       this.$store.commit(Mutation.UpdateRemoteUserAgent, {intervalSec: value})
+    },
+    updateNow(): void {
+      backend.send(updateRemoteUAList()).catch(err => {
+        console.error(err)
+      })
     },
   },
 })

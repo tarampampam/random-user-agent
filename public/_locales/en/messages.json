@@ -45,6 +45,10 @@
   "error_occurred": {"message": "Error occurred"},
   "like_this_extension": {"message": "Do you like this extension?"},
   "give_a_star_on_github": {"message": "Give us a star on GitHub!"},
+  "remote_useragent_list": {"message": "Use one of (in the randomized order) the User-Agents from the list by the following URL"},
+  "remote_useragent_list_hint": {"message": "The extension will periodically download it to keep it up to date"},
+  "remote_useragent_updating_interval": {"message": "Updating interval (in seconds; e.g. every 3 hours = 60×60×3 = 10800)"},
+  "update_now": {"message": "Update now"},
 
   "edge_win": {"message": "Edge on Windows"},
   "chrome_win": {"message": "Chrome on Windows"},

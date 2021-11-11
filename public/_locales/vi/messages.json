@@ -45,6 +45,10 @@
   "error_occurred": {"message": "Xảy ra lỗi"},
   "like_this_extension": {"message": "Bạn có thích phần mở rộng này không?"},
   "give_a_star_on_github": {"message": "Hãy cho chúng tôi một ngôi sao trên GitHub!"},
+  "remote_useragent_list": {"message": "Sử dụng một trong số (theo thứ tự ngẫu nhiên) Tác nhân người dùng từ danh sách theo URL sau"},
+  "remote_useragent_list_hint": {"message": "Tiện ích mở rộng sẽ tải xuống định kỳ để luôn cập nhật"},
+  "remote_useragent_updating_interval": {"message": "Khoảng thời gian cập nhật (tính bằng giây; ví dụ: 3 giờ một lần = 60 × 60 × 3 = 10800)"},
+  "update_now": {"message": "Cập nhật bây giờ"},
 
   "edge_win": {"message": "Edge trên Windows"},
   "chrome_win": {"message": "Chrome trên Windows"},

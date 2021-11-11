@@ -87,6 +87,24 @@ After `make watch` command you can:
 
 ...or fix translation mistakes. The translation process described [here](./public/_locales).
 
+## 📡 Remote User-Agents list
+
+Because the extension settings storage has size limitations - you don't have the option of keeping a large custom User-Agents list. Instead, you can place your list somewhere and link to it in the extension settings.
+
+For example, you can create your own public repository/account on [GitHub](https://github.com/) / [GitLab](https://gitlab.com/) / [PasteBin](https://pastebin.com/) / etc. and host your list on it.
+
+The extension will send a `GET` request to the provided location URL. Supported list format is:
+
+```text
+// will be ignored
+ # will be ignored too
+
+Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4593.122 Safari/537.36
+
+// ...
+```
+
 ## 🦾 Contributors
 
 I want to say a big thank you to everyone who contributed to this project:

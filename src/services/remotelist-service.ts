@@ -40,10 +40,6 @@ export default class RemoteListService {
     this.cache = cache
   }
 
-  setUri(uri: string): void {
-    this.uri = uri
-  }
-
   init(): Promise<void> {
     return new Promise<void>((resolve, reject: (err: Error) => void) => {
       this.cache.get()
@@ -51,6 +47,14 @@ export default class RemoteListService {
         .then((): void => resolve())
         .catch(reject)
     })
+  }
+
+  setUri(uri: string): void {
+    this.uri = uri
+  }
+
+  getUri(): string {
+    return this.uri
   }
 
   update(): Promise<void> {
