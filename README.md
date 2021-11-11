@@ -22,6 +22,7 @@
 - Protect against detection by JavaScript
 - User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.)
 - Exceptions list (blacklist/whitelist) available with option of wildcards
+- Allows using the remote User-Agents list
 - Doesn't need initial setup - just install and forget about the real user-agent leaking
 
 ## 🛠 Where do I can test the functionality?
