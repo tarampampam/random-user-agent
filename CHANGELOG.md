@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - Chinese `zh_CN` localization (thanks to [@yfdyh000](https://github.com/yfdyh000))
+- Portuguese `pt_BR` localization (thanks to [@inkhorn-ptbr](https://github.com/inkhorn-ptbr))
 - "Save changes" button on the options page
 - Possibility to use the remote User-Agents list [#190], [#175]
 
