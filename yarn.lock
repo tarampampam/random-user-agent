@@ -4513,10 +4513,10 @@ v8-to-istanbul@^8.1.0:
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
 
-vue-loader@^16.8.2:
-  version "16.8.2"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.8.2.tgz#78552d6558207a93f09e4fb68b068d44964eb740"
-  integrity sha512-Nkq+z9mAsMEK+qkXgK+9Ia7D8w9uu9j4ut0IMT5coMfux3rCgIp1QBB1CYwY0M34A1nRMSONEaWXxAAw6xSl/Q==
+vue-loader@^16.8.3:
+  version "16.8.3"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.8.3.tgz#d43e675def5ba9345d6c7f05914c13d861997087"
+  integrity sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
