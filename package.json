@@ -35,7 +35,7 @@
     "randomstring": "^1.2.1",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
-    "terser-webpack-plugin": "^5.2.4",
+    "terser-webpack-plugin": "^5.2.5",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
     "type-fest": "^2.5.3",
