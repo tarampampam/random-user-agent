@@ -59,6 +59,12 @@ means and then combine that with your randomly changing `User-Agent` to pretty e
 see [this GitHub issue](https://github.com/tarampampam/random-user-agent/issues/47).
 </details>
 
+<details>
+  <summary>Hotkeys on some sites no longer work, why?</summary>
+
+This may occur because your User-Agent simulates MacOS - in this case, some websites make an attempt to handle `⌘ cmd` key instead of the `ctrl`. For fixing this issue just disable MacOS User-Agent in the extension generator settings.
+</details>
+
 ## 🧩 Install
 
 Follow up by one of the links at the top 👆 of this page, or download `CRX`/`XPI` file directly the latest release from the
