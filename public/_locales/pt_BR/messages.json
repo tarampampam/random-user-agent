@@ -4,7 +4,7 @@
     "description": "Maximum of 45 characters"
   },
   "manifest_description": {
-    "message": "Alterar automaticamente seu Agente de usuário, após um período de tempo escolhido, para um outro aleatório e consequentemente oculte o verdadeiro Agente de usuário",
+    "message": "Altera automaticamente seu Agente de usuário após um tempo escolhido, para um outro e portanto oculta a sua verdadeira identidade",
     "description": "No HTML or other formatting; no more than 132 characters"
   },
   "manifest_action_default_title": {
@@ -43,12 +43,12 @@
   "previous_settings_hint": {"message": "Estas configurações foram usadas por você em versão anterior da extensão. Guarde-a em algum lugar ou remova-a"},
   "save_changes": {"message": "Salvar mudanças"},
   "error_occurred": {"message": "Ocorreu um erro"},
-  "like_this_extension": {"message": "Você gosta desta extensão?"},
+  "like_this_extension": {"message": "Você gosta da extensão?"},
   "give_a_star_on_github": {"message": "Dê-nos uma estrela no GitHub!"},
-  "remote_useragent_list": {"message": "Use um dos (na ordem aleatória) Agentes Usuários da lista através da seguinte URL"},
-  "remote_useragent_list_hint": {"message": "A extensão irá baixá-la periodicamente para mantê-la atualizada"},
+  "remote_useragent_list": {"message": "Use um dos Agentes de usuário da lista fornecida via seguinte URL (ordem aleatória)"},
+  "remote_useragent_list_hint": {"message": "A extensão periodicamente baixará Agentes para mantê-los atualizados"},
   "remote_useragent_updating_interval": {"message": "Intervalo de atualização (em segundos; por exemplo, a cada 3 horas = 60×60×3 = 10800)"},
-  "update_now": {"message": "Atualização agora"},
+  "update_now": {"message": "Atualizar agora"},
 
   "edge_win": {"message": "Edge no Windows"},
   "chrome_win": {"message": "Chrome no Windows"},
