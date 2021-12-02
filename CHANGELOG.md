@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.4.0
+
+### Added
+
+- German `de` localization (thanks to [@Xenorio](https://github.com/Xenorio))
+
+### Changed
+
+- Versions of the generated user-agents
+
+### Fixed
+
+- Portuguese translation
+
 ## v3.3.1
 
 ### Fixed
