@@ -1,0 +1,11 @@
+User-Agent - eine Zeichenfolge die an jede Webseite die du besuchst gesendet wird. Er ist eine Art Fingerabdruck deines Browsers und beinhaltet:
+
+- Den Namen und die Version deines Browsers;
+- Den Namen deines Betriebssystems (Mac, Windows, Linux, usw.) und dessen Version;
+- Informationen über manche installierte Plugins;
+- Andere Informationen, welche dich indentifizieren.
+
+Diese erweiterung wurde erstellt um Datenlecks zu stoppen. Sie verändert den User-Agent nach einer bestimmten Zeitspanne automatisch zu einem zufällig ausgesuchten. User-Agents können auch manuell gesetzt werden. Die Erweiterung ist unglaublich leichtgewichtig, sie benutzt nur sehr wenige Ressourcen. Die User-Agent zufallsgenerierung kann vom Benutzer angepasst werden (welche Browser und Betriebssysteme ausgewählt werden, usw.). Eine Ausnahmeliste mit optionalen Wildcards ist verfügbar. Schützt vor JavaScript Schwachstellen um deine Identität zu verstecken und deine Anonymität zu schützen.
+
+Quellcode: https://github.com/tarampampam/random-user-agent
+
