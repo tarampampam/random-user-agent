@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/chrome": "^0.0.174",
     "@types/jest": "^27.0.3",
-    "copy-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",
     "filemanager-webpack-plugin": "^6.1.7",
     "jest": "^27.4.2",
