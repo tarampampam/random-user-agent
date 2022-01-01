@@ -3178,10 +3178,10 @@ jsesc@^2.5.1:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
-json-minimizer-webpack-plugin@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/json-minimizer-webpack-plugin/-/json-minimizer-webpack-plugin-3.1.1.tgz#0edf1fe0df19caaf88301dd638650e55fcc1ffff"
-  integrity sha512-d96TV/3qB7xk9d1PTrCFEFVrpEbPwZ26/nma0IUhO5FJaB+Xma7fB+2eiiAGYUZvRiLAlme4JphS+dcJT5K3gw==
+json-minimizer-webpack-plugin@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/json-minimizer-webpack-plugin/-/json-minimizer-webpack-plugin-3.3.0.tgz#d0289bbe7d27bd83a524bdcfca4b67b430564afb"
+  integrity sha512-6h3M/6C+2Cf1sZBiYkxnqjNplgKw8nNxL1/ywzENrjIGK/IBELtns6OfloywF10ufaMPJVFKAtRvdTAfT4skJQ==
   dependencies:
     schema-utils "^4.0.0"
 
