@@ -596,10 +596,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chrome@^0.0.165":
-  version "0.0.165"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.165.tgz#c9bf0a4ac8c865e61bd49bdce8324f044210afe7"
-  integrity sha512-wRrWYHeGWtFIMMP1w9CsuVQfZ0fO7pRapqzVFLq5Gc3edXC+5eWlgd8rC6YGJsbeZ0kfGShM2jypF4LsQUelag==
+"@types/chrome@^0.0.174":
+  version "0.0.174"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.174.tgz#ee1679f3a4fc57bb2c3b76957845a68afb7d478c"
+  integrity sha512-x5kjvNdwDtOnT+vbnksj69pDl0u9P/WH9LbQWJawLqGgkBRO3AN/xzTxTPgLpp3IqCbuwfp7bRCHqkkaZguzWw==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
