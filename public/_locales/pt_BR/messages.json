@@ -51,6 +51,7 @@
   "update_now": {"message": "Atualizar agora"},
 
   "edge_win": {"message": "Edge no Windows"},
+  "edge_mac": { "message": "Edge no Mac" },
   "chrome_win": {"message": "Chrome no Windows"},
   "chrome_mac": {"message": "Chrome no Mac"},
   "chrome_linux": {"message": "Chrome no Linux"},

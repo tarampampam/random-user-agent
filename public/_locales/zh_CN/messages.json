@@ -51,6 +51,7 @@
   "update_now": {"message": "现在更新"},
 
   "edge_win": {"message": "Edge 于 Windows"},
+  "edge_mac": { "message": "Edge 于 Mac" },
   "chrome_win": {"message": "Chrome 于 Windows"},
   "chrome_mac": {"message": "Chrome 于 Mac"},
   "chrome_linux": {"message": "Chrome 于 Linux"},

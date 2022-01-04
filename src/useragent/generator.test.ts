@@ -170,6 +170,18 @@ test('Generator.generate', async () => {
           expect(generated.useragent).toContain('KHTML, like Gecko')
           expect(generated.useragent).toContain('Safari/537.36')
           break
+
+        case GeneratorType.edgeMac:
+          expect(generated.engine).toBe('blink')
+          expect(generated.osType).toBe('macOS')
+
+          expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
+          expect(generated.useragent).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
+          expect(generated.useragent).toMatch(/Edg\/\d+\.\d+\.\d+/)
+          expect(generated.useragent).toMatch(/AppleWebKit\/\d+\.\d+/)
+          expect(generated.useragent).toContain('KHTML, like Gecko')
+          expect(generated.useragent).toContain('Safari/537.36')
+          break
       }
     }
   }
