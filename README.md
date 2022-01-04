@@ -136,7 +136,7 @@ I want to say a big thank you to everyone who contributed to this project:
 6. Open "[Mozilla add-on developer hub][ff-upload-new]", "Select a file...", next, next, download the extension sources
    archive, upload it to hub, next, Publish
 7. Download the `random_user_agent_X.X.X-blabla.xpi` file from the dashboard (**after** getting `Approved` status for
-the version), rename it to the `random-user-agent.xpi` and upload to the [release on GitHub][releases]
+   the version), rename it to the `random-user-agent.xpi` and upload to the [release on GitHub][releases]
 8. Don't forget to update fkn [edge][edge-upload-new] and [opera][opera-upload-new] stores
 9. Open a bottle of beer, I've earned
 
