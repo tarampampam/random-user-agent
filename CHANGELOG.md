@@ -8,7 +8,9 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Generator for "Edge on Mac"
+- Generator for "Edge on Mac" [#222]
+
+[#222]:https://github.com/tarampampam/random-user-agent/issues/222
 
 ## v3.4.0
 
