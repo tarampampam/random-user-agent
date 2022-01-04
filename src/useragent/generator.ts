@@ -13,6 +13,7 @@ import UseragentInfo from './useragent-info'
  */
 export enum GeneratorType { // do NOT forget to update LOCALES on keys changes or appending (enum value == l18n key)
   edgeWin = 'edge_win',
+  edgeMac = 'edge_mac',
   chromeWin = 'chrome_win',
   chromeMac = 'chrome_mac',
   chromeLinux = 'chrome_linux',
@@ -254,6 +255,15 @@ export default class Generator implements UseragentGenerator {
             + ' Edg/' + randomEdgeVersion.version(),
           engine: 'blink',
           osType: 'windows',
+        }
+
+      case GeneratorType.edgeMac:
+        return {
+          useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
+              .replace(versionTokenRegExp, randomChromeVersion.version())
+            + ' Edg/' + randomEdgeVersion.version(),
+          engine: 'blink',
+          osType: 'macOS',
         }
 
       default:

@@ -51,6 +51,7 @@
   "update_now": {"message": "Обновить сейчас"},
 
   "edge_win": {"message": "Edge на Windows"},
+  "edge_mac": { "message": "Edge на Mac" },
   "chrome_win": {"message": "Chrome на Windows"},
   "chrome_mac": {"message": "Chrome на Mac"},
   "chrome_linux": {"message": "Chrome на Linux"},

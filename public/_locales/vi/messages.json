@@ -51,6 +51,7 @@
   "update_now": {"message": "Cập nhật bây giờ"},
 
   "edge_win": {"message": "Edge trên Windows"},
+  "edge_mac": { "message": "Edge trên Mac" },
   "chrome_win": {"message": "Chrome trên Windows"},
   "chrome_mac": {"message": "Chrome trên máy Mac"},
   "chrome_linux": {"message": "Chrome trên Linux"},
