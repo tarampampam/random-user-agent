@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "randexp": "^0.5.3",
-    "vue": "^3.2.29",
+    "vue": "^3.2.31",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
