@@ -18,10 +18,10 @@ abstract class Version {
 export const randomChromeVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Google_Chrome_version_history
   private variants = {
-    major: {min: 96, max: 98}, // periodically we should update those values
+    major: {min: 99, max: 101}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 4664, max: 4758},
-    build: {min: 36, max: 212},
+    patch: {min: 4844, max: 4896},
+    build: {min: 80, max: 212},
   }
 
   version(): string {
@@ -37,7 +37,7 @@ export const randomChromeVersion = new class extends Version {
 export const randomFirefoxVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Firefox_version_history
   private variants = {
-    major: {min: 96, max: 101}, // periodically we should update those values
+    major: {min: 98, max: 105}, // periodically we should update those values
     minor: {static: 0},
     patch: {variants: ['esr']},
   }
@@ -52,7 +52,7 @@ export const randomFirefoxVersion = new class extends Version {
 export const randomOperaVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Opera_version_history
   private variants = {
-    major: {min: 76, max: 83}, // periodically we should update those values
+    major: {min: 78, max: 83}, // periodically we should update those values
     minor: {static: 0},
     patch: {min: 1889, max: 4170},
     build: {min: 24, max: 198},
@@ -88,10 +88,10 @@ export const randomSafariVersion = new class extends Version {
 export const randomEdgeVersion = new class extends Version {
   // all versions: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   private variants = {
-    major: {min: 94, max: 97}, // periodically we should update those values
+    major: {min: 96, max: 99}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 992, max: 1072},
-    build: {min: 0, max: 68},
+    patch: {min: 1054, max: 1150},
+    build: {min: 0, max: 75},
   }
 
   version(): string {
