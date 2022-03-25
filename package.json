@@ -25,7 +25,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.179",
+    "@types/chrome": "^0.0.180",
     "@types/jest": "^27.4.1",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
