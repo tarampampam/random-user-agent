@@ -68,7 +68,7 @@ jobs:
 
       - run: yarn build
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: extension-dist
           path: dist.zip
