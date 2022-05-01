@@ -40,7 +40,7 @@ jobs:
 
       - run: yarn test --verbose --coverage
 
-      - uses: codecov/codecov-action@v2 # Docs: <https://github.com/codecov/codecov-action>
+      - uses: codecov/codecov-action@v3 # Docs: <https://github.com/codecov/codecov-action>
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/clover.xml
