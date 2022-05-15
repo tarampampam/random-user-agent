@@ -37,6 +37,8 @@ Resource                                            |   Test
 [whoer][test-whoer]                                 | ✅ Passed
 [Browser Leaks][test-browserleaks]                  | ✅ Passed
 [Device Info][test-deviceinfo]                      | ✅ Passed
+[CreepJS][test-creepjs]                             | ❌ Failed
+
 
 [test-rua]:https://tarampampam.github.io/random-user-agent/
 [test-webbrowsertools]:https://webbrowsertools.com/useragent/
@@ -44,6 +46,7 @@ Resource                                            |   Test
 [test-whoer]:https://whoer.net/
 [test-browserleaks]:https://browserleaks.com/javascript
 [test-deviceinfo]:https://www.deviceinfo.me/
+[test-creepjs]:https://abrahamjuliot.github.io/creepjs/
 
 ## 👀 Questions
 
