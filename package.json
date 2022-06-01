@@ -31,7 +31,7 @@
     "css-loader": "^6.7.1",
     "filemanager-webpack-plugin": "^6.1.7",
     "jest": "^27.5.1",
-    "json-minimizer-webpack-plugin": "^3.3.0",
+    "json-minimizer-webpack-plugin": "^4.0.0",
     "randomstring": "^1.2.2",
     "sass": "^1.51.0",
     "sass-loader": "^13.0.0",
