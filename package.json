@@ -29,7 +29,7 @@
     "@types/jest": "^27.4.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
-    "filemanager-webpack-plugin": "^6.1.7",
+    "filemanager-webpack-plugin": "^7.0.0",
     "jest": "^27.5.1",
     "json-minimizer-webpack-plugin": "^4.0.0",
     "randomstring": "^1.2.2",
