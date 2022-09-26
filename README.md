@@ -29,16 +29,15 @@
 
 Open one of the links below with and without the extension enabled:
 
-Resource                                            |   Test
---------------------------------------------------- | :-------:
-[Out test page][test-rua]                           | ✅ Passed
-[What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 Failed
-[Browser Information (BrowserSPY)][test-browserspy] | ✅ Passed
-[whoer][test-whoer]                                 | ✅ Passed
-[Browser Leaks][test-browserleaks]                  | ✅ Passed
-[Device Info][test-deviceinfo]                      | ✅ Passed
-[CreepJS][test-creepjs]                             | ❌ Failed
-
+| Resource                                            |          Test           |
+|-----------------------------------------------------|:-----------------------:|
+| [Out test page][test-rua]                           |        ✅ Passed         |
+| [What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 Failed |
+| [Browser Information (BrowserSPY)][test-browserspy] |        ✅ Passed         |
+| [whoer][test-whoer]                                 |        ✅ Passed         |
+| [Browser Leaks][test-browserleaks]                  |        ✅ Passed         |
+| [Device Info][test-deviceinfo]                      |        ✅ Passed         |
+| [CreepJS][test-creepjs]                             |        ❌ Failed         |
 
 [test-rua]:https://tarampampam.github.io/random-user-agent/
 [test-webbrowsertools]:https://webbrowsertools.com/useragent/
@@ -65,7 +64,8 @@ see [this GitHub issue](https://github.com/tarampampam/random-user-agent/issues/
 <details>
   <summary>Hotkeys on some sites no longer work, why?</summary>
 
-This may occur because your User-Agent simulates MacOS - in this case, some websites make an attempt to handle `⌘ cmd` key instead of the `ctrl`. For fixing this issue just disable MacOS User-Agent in the extension generator settings.
+This may occur because your User-Agent simulates MacOS - in this case, some websites make an attempt to handle `⌘ cmd`
+key instead of the `ctrl`. For fixing this issue just disable MacOS User-Agent in the extension generator settings.
 </details>
 
 ## 🧩 Install
@@ -97,13 +97,15 @@ After `make watch` command you can:
 
 ## 📜 How to translate (localize) this extension?
 
-...or fix translation mistakes. The translation process described [here](./public/_locales).
+...or fix translation mistakes. The translation process described [here](public/_locales).
 
 ## 📡 Remote User-Agents list
 
-Because the extension settings storage has size limitations - you don't have the option of keeping a large custom User-Agents list. Instead, you can place your list somewhere and link to it in the extension settings.
+Because the extension settings storage has size limitations - you don't have the option of keeping a large custom
+User-Agents list. Instead, you can place your list somewhere and link to it in the extension settings.
 
-For example, you can create your own public repository/account on [GitHub](https://github.com/) / [GitLab](https://gitlab.com/) / [PasteBin](https://pastebin.com/) / etc. and host your list on it.
+For example, you can create your own public repository/account on [GitHub](https://github.com/) /
+[GitLab](https://gitlab.com/) / [PasteBin](https://pastebin.com/) / etc. and host your list on it.
 
 The extension will send a `GET` request to the provided location URL. Supported list format is:
 
