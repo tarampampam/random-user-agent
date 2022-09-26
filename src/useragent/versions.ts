@@ -18,10 +18,10 @@ abstract class Version {
 export const randomChromeVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Google_Chrome_version_history
   private variants = {
-    major: {min: 101, max: 104}, // periodically we should update those values
+    major: {min: 104, max: 108}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 4951, max: 5162},
-    build: {min: 80, max: 212},
+    patch: {min: 5112, max: 5249},
+    build: {min: 132, max: 218},
   }
 
   version(): string {
@@ -37,7 +37,7 @@ export const randomChromeVersion = new class extends Version {
 export const randomFirefoxVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Firefox_version_history
   private variants = {
-    major: {min: 99, max: 109}, // periodically we should update those values
+    major: {min: 107, max: 123}, // periodically we should update those values
     minor: {static: 0},
     patch: {variants: ['esr']},
   }
@@ -52,9 +52,9 @@ export const randomFirefoxVersion = new class extends Version {
 export const randomOperaVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Opera_version_history
   private variants = {
-    major: {min: 78, max: 83}, // periodically we should update those values
+    major: {min: 78, max: 90}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 1889, max: 4170},
+    patch: {min: 2889, max: 4480},
     build: {min: 24, max: 198},
   }
 
@@ -88,10 +88,10 @@ export const randomSafariVersion = new class extends Version {
 export const randomEdgeVersion = new class extends Version {
   // all versions: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   private variants = {
-    major: {min: 99, max: 102}, // periodically we should update those values
+    major: {min: 102, max: 105}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 1185, max: 1210},
-    build: {min: 0, max: 75},
+    patch: {min: 1245, max: 1343},
+    build: {min: 33, max: 91},
   }
 
   version(): string {
