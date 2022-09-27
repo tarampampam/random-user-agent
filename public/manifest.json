@@ -1,10 +1,9 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_manifest_name__",
   "version": "0",
   "author": "https://github.com/tarampampam",
   "homepage_url": "https://github.com/tarampampam/random-user-agent",
-
   "default_locale": "en",
   "description": "__MSG_manifest_description__",
   "icons": {
@@ -14,12 +13,6 @@
   },
   "minimum_chrome_version": "49.0",
   "incognito": "spanning",
-
-  "browser_action": {
-    "default_icon": "icons/logo/48.png",
-    "default_popup": "popup.html",
-    "default_title": "__MSG_manifest_action_default_title__"
-  },
   "background": {
     "page": "background.html",
     "persistent": true
@@ -28,17 +21,29 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "all_frames": true,
-    "run_at": "document_start",
-    "js": ["js/content-script.js"]
-  }],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "run_at": "document_start",
+      "js": [
+        "js/content-script.js"
+      ]
+    }
+  ],
   "permissions": [
     "tabs",
     "storage",
     "webRequest",
     "webRequestBlocking",
     "<all_urls>"
-  ]
+  ],
+  "action": {
+    "default_icon": "icons/logo/48.png",
+    "default_popup": "popup.html",
+    "default_title": "__MSG_manifest_action_default_title__"
+  },
+  "content_security_policy": {}
 }
