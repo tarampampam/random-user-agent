@@ -149,122 +149,200 @@ export default class Generator implements UseragentGenerator {
       mobileVendorTokenRegExp: RegExp = new RegExp('__MOBILE_VENDOR__', 'g')
 
     switch (type) {
-      case GeneratorType.chromeLinux:
+      case GeneratorType.chromeLinux: {
+        const version = randomChromeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.linux)).gen()
-            .replace(versionTokenRegExp, randomChromeVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'blink',
           osType: 'linux',
+          browser: 'chrome',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.chromeMac:
+      case GeneratorType.chromeMac: {
+        const version = randomChromeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-            .replace(versionTokenRegExp, randomChromeVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'blink',
           osType: 'macOS',
+          browser: 'chrome',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.chromeWin:
+      case GeneratorType.chromeWin: {
+        const version = randomChromeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-            .replace(versionTokenRegExp, randomChromeVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'blink',
           osType: 'windows',
+          browser: 'chrome',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.chromeAndroid:
+      case GeneratorType.chromeAndroid: {
+        const version = randomChromeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.android)).gen()
-            .replace(versionTokenRegExp, randomChromeVersion.version())
+            .replace(versionTokenRegExp, version.full)
             .replace(mobileVendorTokenRegExp, this.randomMobileVendor()),
           engine: 'blink',
           osType: 'android',
+          browser: 'chrome',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.firefoxLinux:
+      case GeneratorType.firefoxLinux: {
+        const version = randomFirefoxVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.linux)).gen()
-            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'gecko',
           osType: 'linux',
+          browser: 'firefox',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.firefoxMac:
+      case GeneratorType.firefoxMac: {
+        const version = randomFirefoxVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.mac)).gen()
-            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'gecko',
           osType: 'macOS',
+          browser: 'firefox',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.firefoxWin:
+      case GeneratorType.firefoxWin: {
+        const version = randomFirefoxVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.win)).gen()
-            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'gecko',
           osType: 'windows',
+          browser: 'firefox',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.firefoxAndroid:
+      case GeneratorType.firefoxAndroid: {
+        const version = randomFirefoxVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.firefox.android)).gen()
-            .replace(versionTokenRegExp, randomFirefoxVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'gecko',
           osType: 'android',
+          browser: 'firefox',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.operaWin:
+      case GeneratorType.operaWin: {
+        const version = randomChromeVersion.version()
+        const operaVersion = randomOperaVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-              .replace(versionTokenRegExp, randomChromeVersion.version())
-            + ' OPR/' + randomOperaVersion.version(),
+              .replace(versionTokenRegExp, version.full)
+            + ' OPR/' + operaVersion.full,
           engine: 'blink',
           osType: 'windows',
+          browser: 'opera',
+          browserVersion: version,
+          brandBrowserVersion: operaVersion,
         }
+      }
 
-      case GeneratorType.operaMac:
+      case GeneratorType.operaMac: {
+        const version = randomChromeVersion.version()
+        const operaVersion = randomOperaVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-              .replace(versionTokenRegExp, randomChromeVersion.version())
-            + ' OPR/' + randomOperaVersion.version(),
+              .replace(versionTokenRegExp, version.full)
+            + ' OPR/' + operaVersion.full,
           engine: 'blink',
           osType: 'macOS',
+          browser: 'opera',
+          browserVersion: version,
+          brandBrowserVersion: operaVersion,
         }
+      }
 
-      case GeneratorType.safariIphone:
+      case GeneratorType.safariIphone: {
+        const version = randomSafariVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.iphone)).gen()
-            .replace(versionTokenRegExp, randomSafariVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'webkit',
           osType: 'iOS',
+          browser: 'safari',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.safariMac:
+      case GeneratorType.safariMac: {
+        const version = randomSafariVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.safari.mac)).gen()
-            .replace(versionTokenRegExp, randomSafariVersion.version()),
+            .replace(versionTokenRegExp, version.full),
           engine: 'webkit',
           osType: 'macOS',
+          browser: 'safari',
+          browserVersion: version,
         }
+      }
 
-      case GeneratorType.edgeWin:
+      case GeneratorType.edgeWin: {
+        const version = randomChromeVersion.version()
+        const edgeVersion = randomEdgeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.win)).gen()
-              .replace(versionTokenRegExp, randomChromeVersion.version())
-            + ' Edg/' + randomEdgeVersion.version(),
+              .replace(versionTokenRegExp, version.full)
+            + ' Edg/' + edgeVersion.full,
           engine: 'blink',
           osType: 'windows',
+          browser: 'edge',
+          browserVersion: version,
+          brandBrowserVersion: edgeVersion,
         }
+      }
 
-      case GeneratorType.edgeMac:
+      case GeneratorType.edgeMac: {
+        const version = randomChromeVersion.version()
+        const edgeVersion = randomEdgeVersion.version()
+
         return {
           useragent: new RandExp(this.pickRandomRegExp(this.commonPatterns.chrome.mac)).gen()
-              .replace(versionTokenRegExp, randomChromeVersion.version())
-            + ' Edg/' + randomEdgeVersion.version(),
+              .replace(versionTokenRegExp, version.full)
+            + ' Edg/' + edgeVersion.full,
           engine: 'blink',
           osType: 'macOS',
+          browser: 'edge',
+          browserVersion: version,
+          brandBrowserVersion: edgeVersion,
         }
+      }
 
       default:
         throw new Error('Unsupported type requested')
