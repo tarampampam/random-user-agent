@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- Additional HTTP headers (`Sec-CH-UA`, `Sec-CH-UA-Full-Version-List`, `Sec-CH-UA-Platform`, `Sec-CH-UA-Mobile`) faking [#348]
+
+[#348]:https://github.com/tarampampam/random-user-agent/issues/348
+
 ## v3.9.0
 
 ### Changed

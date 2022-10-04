@@ -1,3 +1,5 @@
+import {BrowserVersion} from './useragent-info'
+
 abstract class Version {
   // Returns a random integer between min (inclusive) and max (inclusive)
   protected fromRange(min: number, max: number): number {
@@ -12,7 +14,7 @@ abstract class Version {
   }
 
   // Returns randomized version as a string
-  abstract version(): string
+  abstract version(): BrowserVersion
 }
 
 export const randomChromeVersion = new class extends Version {
@@ -24,13 +26,18 @@ export const randomChromeVersion = new class extends Version {
     build: {min: 132, max: 218},
   }
 
-  version(): string {
-    return [
-      this.fromRange(this.variants.major.min, this.variants.major.max),
-      this.variants.minor.static,
-      this.fromRange(this.variants.patch.min, this.variants.patch.max),
-      this.fromRange(this.variants.build.min, this.variants.build.max),
-    ].join('.')
+  version(): BrowserVersion {
+    const major: number = this.fromRange(this.variants.major.min, this.variants.major.max)
+
+    return {
+      major: major,
+      full: [
+        major,
+        this.variants.minor.static,
+        this.fromRange(this.variants.patch.min, this.variants.patch.max),
+        this.fromRange(this.variants.build.min, this.variants.build.max),
+      ].join('.')
+    }
   }
 }
 
@@ -42,10 +49,15 @@ export const randomFirefoxVersion = new class extends Version {
     patch: {variants: ['esr']},
   }
 
-  version(): string {
-    return this.fromRange(this.variants.major.min, this.variants.major.max) + '.'
-      + this.variants.minor.static.toString()
-      + (this.fromRange(0, 9) < 3 ? this.pickRandom(this.variants.patch.variants) : '')
+  version(): BrowserVersion {
+    const major: number = this.fromRange(this.variants.major.min, this.variants.major.max)
+
+    return {
+      major: major,
+      full: major + '.'
+        + this.variants.minor.static.toString()
+        + (this.fromRange(0, 9) < 3 ? this.pickRandom(this.variants.patch.variants) : '')
+    }
   }
 }
 
@@ -58,13 +70,18 @@ export const randomOperaVersion = new class extends Version {
     build: {min: 24, max: 198},
   }
 
-  version(): string {
-    return [
-      this.fromRange(this.variants.major.min, this.variants.major.max),
-      this.variants.minor.static,
-      this.fromRange(this.variants.patch.min, this.variants.patch.max),
-      this.fromRange(this.variants.build.min, this.variants.build.max),
-    ].join('.')
+  version(): BrowserVersion {
+    const major: number = this.fromRange(this.variants.major.min, this.variants.major.max)
+
+    return {
+      major: major,
+      full: [
+        major,
+        this.variants.minor.static,
+        this.fromRange(this.variants.patch.min, this.variants.patch.max),
+        this.fromRange(this.variants.build.min, this.variants.build.max),
+      ].join('.')
+    }
   }
 }
 
@@ -76,12 +93,17 @@ export const randomSafariVersion = new class extends Version {
     patch: {min: 1, max: 15},
   }
 
-  version(): string {
-    return [
-      this.fromRange(this.variants.major.min, this.variants.major.max),
-      this.fromRange(this.variants.minor.min, this.variants.minor.max),
-      (this.fromRange(0, 9) < 3 ? this.fromRange(this.variants.patch.min, this.variants.patch.max) : '')
-    ].filter(s => s.toString().length > 0).join('.')
+  version(): BrowserVersion {
+    const major: number = this.fromRange(this.variants.major.min, this.variants.major.max)
+
+    return {
+      major: major,
+      full: [
+        major,
+        this.fromRange(this.variants.minor.min, this.variants.minor.max),
+        (this.fromRange(0, 9) < 3 ? this.fromRange(this.variants.patch.min, this.variants.patch.max) : '')
+      ].filter(s => s.toString().length > 0).join('.')
+    }
   }
 }
 
@@ -94,12 +116,17 @@ export const randomEdgeVersion = new class extends Version {
     build: {min: 33, max: 91},
   }
 
-  version(): string {
-    return [
-      this.fromRange(this.variants.major.min, this.variants.major.max),
-      this.variants.minor.static,
-      this.fromRange(this.variants.patch.min, this.variants.patch.max),
-      this.fromRange(this.variants.build.min, this.variants.build.max),
-    ].join('.')
+  version(): BrowserVersion {
+    const major: number = this.fromRange(this.variants.major.min, this.variants.major.max)
+
+    return {
+      major: major,
+      full: [
+        major,
+        this.variants.minor.static,
+        this.fromRange(this.variants.patch.min, this.variants.patch.max),
+        this.fromRange(this.variants.build.min, this.variants.build.max),
+      ].join('.')
+    }
   }
 }

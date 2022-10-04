@@ -21,6 +21,7 @@ test('Generator.generate', async () => {
         case GeneratorType.chromeLinux:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('linux')
+          expect(generated.browser).toBe('chrome')
 
           expect(generated.useragent).toContain('X11')
           expect(generated.useragent).toContain('Linux')
@@ -33,6 +34,7 @@ test('Generator.generate', async () => {
         case GeneratorType.chromeMac:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('macOS')
+          expect(generated.browser).toBe('chrome')
 
           expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
           expect(generated.useragent).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
@@ -44,6 +46,7 @@ test('Generator.generate', async () => {
         case GeneratorType.chromeWin:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('windows')
+          expect(generated.browser).toBe('chrome')
 
           expect(generated.useragent).toMatch(/Windows NT \d+.\d+/)
           expect(generated.useragent).toContain('64')
@@ -56,6 +59,7 @@ test('Generator.generate', async () => {
         case GeneratorType.chromeAndroid:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('android')
+          expect(generated.browser).toBe('chrome')
 
           expect(generated.useragent).toMatch(/Linux; Android \d+/)
           expect(generated.useragent).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
@@ -68,6 +72,7 @@ test('Generator.generate', async () => {
         case GeneratorType.firefoxLinux:
           expect(generated.engine).toBe('gecko')
           expect(generated.osType).toBe('linux')
+          expect(generated.browser).toBe('firefox')
 
           expect(generated.useragent).toContain('X11')
           expect(generated.useragent).toContain('Linux')
@@ -80,6 +85,7 @@ test('Generator.generate', async () => {
         case GeneratorType.firefoxMac:
           expect(generated.engine).toBe('gecko')
           expect(generated.osType).toBe('macOS')
+          expect(generated.browser).toBe('firefox')
 
           expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
           expect(generated.useragent).toMatch(/Gecko\/\d+/)
@@ -91,6 +97,7 @@ test('Generator.generate', async () => {
         case GeneratorType.firefoxWin:
           expect(generated.engine).toBe('gecko')
           expect(generated.osType).toBe('windows')
+          expect(generated.browser).toBe('firefox')
 
           expect(generated.useragent).toMatch(/Windows NT \d+.\d+/)
           expect(generated.useragent).toContain('64')
@@ -101,6 +108,7 @@ test('Generator.generate', async () => {
         case GeneratorType.firefoxAndroid:
           expect(generated.engine).toBe('gecko')
           expect(generated.osType).toBe('android')
+          expect(generated.browser).toBe('firefox')
 
           expect(generated.useragent).toContain('Android')
           expect(generated.useragent).toMatch(/Firefox\/\d+\.0/)
@@ -112,6 +120,7 @@ test('Generator.generate', async () => {
         case GeneratorType.operaWin:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('windows')
+          expect(generated.browser).toBe('opera')
 
           expect(generated.useragent).toMatch(/Windows NT \d+.\d+/)
           expect(generated.useragent).toContain('64')
@@ -125,6 +134,7 @@ test('Generator.generate', async () => {
         case GeneratorType.operaMac:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('macOS')
+          expect(generated.browser).toBe('opera')
 
           expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
           expect(generated.useragent).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)
@@ -137,6 +147,7 @@ test('Generator.generate', async () => {
         case GeneratorType.safariIphone:
           expect(generated.engine).toBe('webkit')
           expect(generated.osType).toBe('iOS')
+          expect(generated.browser).toBe('safari')
 
           expect(generated.useragent).toMatch(/iPhone; CPU iPhone OS \d+_\d+ like Mac OS X/)
           expect(generated.useragent).toMatch(/AppleWebKit\/\d+\.\d+/)
@@ -149,6 +160,7 @@ test('Generator.generate', async () => {
         case GeneratorType.safariMac:
           expect(generated.engine).toBe('webkit')
           expect(generated.osType).toBe('macOS')
+          expect(generated.browser).toBe('safari')
 
           expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+(_\d+|)/)
           expect(generated.useragent).toMatch(/AppleWebKit\/\d+\.\d+/)
@@ -161,6 +173,7 @@ test('Generator.generate', async () => {
         case GeneratorType.edgeWin:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('windows')
+          expect(generated.browser).toBe('edge')
 
           expect(generated.useragent).toMatch(/Windows NT \d+.\d+/)
           expect(generated.useragent).toContain('64')
@@ -174,6 +187,7 @@ test('Generator.generate', async () => {
         case GeneratorType.edgeMac:
           expect(generated.engine).toBe('blink')
           expect(generated.osType).toBe('macOS')
+          expect(generated.browser).toBe('edge')
 
           expect(generated.useragent).toMatch(/Macintosh; Intel Mac OS X \d+_\d+/)
           expect(generated.useragent).toMatch(/Chrome\/\d+\.0\.\d+\.\d+/)

@@ -92,6 +92,11 @@ export default class UseragentService {
           useragent: random,
           engine: 'unknown', // TODO probably detect this properties here?
           osType: 'unknown',
+          browser: 'unknown',
+          browserVersion: {
+            major: 0,
+            full: '',
+          }
         }
       }
     }
@@ -107,6 +112,11 @@ export default class UseragentService {
         useragent: random,
         engine: 'unknown', // TODO probably detect this properties here?
         osType: 'unknown',
+        browser: 'unknown',
+        browserVersion: {
+          major: 0,
+          full: '',
+        }
       }
     }
 
