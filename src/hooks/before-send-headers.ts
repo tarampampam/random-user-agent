@@ -35,9 +35,6 @@ export default class BeforeSendHeaders {
           const useragent = this.useragent.get().info
 
           if (details.requestHeaders && useragent !== undefined) {
-
-            console.log(details.requestHeaders)
-
             for (let i = 0; i < details.requestHeaders.length; i++) {
               if (details.requestHeaders[i].value) {
                 switch (details.requestHeaders[i].name.toLowerCase()) {
