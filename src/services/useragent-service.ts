@@ -90,7 +90,7 @@ export default class UseragentService {
       if (random.trim().length > 0) {
         return {
           useragent: random,
-          engine: 'unknown', // TODO probably detect this properties here?
+          engine: 'unknown', // TODO probably detect this properties here? eg.: https://github.com/faisalman/ua-parser-js
           osType: 'unknown',
           browser: 'unknown',
           browserVersion: {
@@ -110,7 +110,7 @@ export default class UseragentService {
     if (random.trim().length > 0) {
       return {
         useragent: random,
-        engine: 'unknown', // TODO probably detect this properties here?
+        engine: 'unknown', // TODO probably detect this properties here? eg.: https://github.com/faisalman/ua-parser-js
         osType: 'unknown',
         browser: 'unknown',
         browserVersion: {

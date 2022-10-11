@@ -9,7 +9,7 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
   const cookies = document.cookie.split(';')
 
   for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trimLeft()
+    const cookie = cookies[i].trimStart()
 
     if (cookie.startsWith(CookieName + '=')) {
       const parts = cookie.split('=')
@@ -106,6 +106,31 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
             case 'webkit':
               overloadPropertyWithGetter(navigator, vendorProp, 'Apple Computer Inc.')
               break
+          }
+
+          const uaDataProp = 'userAgentData', uaData = navigator[uaDataProp]
+
+          // https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_ua_data.cc
+          // https://web.dev/migrate-to-ua-ch/
+          // https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData
+          if (typeof uaData === 'object') { // TODO: WIP
+            overloadPropertyWithGetter(navigator, uaDataProp, new Proxy(uaData, {
+              get(target, key, value) {
+                if (key === 'brands') {
+                  return [{brand: 'foo', version: 'bar'}]
+                }
+
+                if (key in target) {
+                  if (typeof target[key] === 'function') {
+                    return target[key].bind(target)
+                  } else {
+                    return target[key]
+                  }
+                }
+
+                return undefined
+              },
+            }))
           }
         }
       }
