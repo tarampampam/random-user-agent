@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "randexp": "^0.5.3",
+    "user-agent-data-types": "^0.3.0",
     "vue": "^3.2.40",
     "vuex": "^4.0.2"
   },

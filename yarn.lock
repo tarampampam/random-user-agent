@@ -3961,6 +3961,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+user-agent-data-types@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/user-agent-data-types/-/user-agent-data-types-0.3.0.tgz#6a3ad1eabce306af62ab82ffbcd1ab747857f1b3"
+  integrity sha512-AI3vPwmafXd4r/mSbubOu6S1ngO4vdvJFAJdP0MUc9Y4SwXm/Pqpno0R/O4Zt26vZYzWorV+4BgVcntxhJlMPw==
+
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"

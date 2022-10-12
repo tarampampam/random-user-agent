@@ -3,7 +3,7 @@ import Useragent from '../useragent/useragent'
 import FilterService from '../services/filter-service'
 import BlockingResponse = chrome.webRequest.BlockingResponse
 import WebRequestHeadersDetails = chrome.webRequest.WebRequestHeadersDetails
-import ClientHint from '../useragent/client-hint'
+import ClientHint, {IBrand} from '../useragent/client-hint'
 
 export default class BeforeSendHeaders {
   private readonly settings: Settings
@@ -28,6 +28,7 @@ export default class BeforeSendHeaders {
       secUaFullVersionList = 'sec-ch-ua-full-version-list', // https://mzl.la/3C3x5TT
       secUaPlatform = 'sec-ch-ua-platform', // https://mzl.la/3EbrbTj
       secUaMobile = 'sec-ch-ua-mobile', // https://mzl.la/3SYTA3f
+      secUaPlatformVersion = 'sec-ch-ua-platform-version', // https://mzl.la/3yyNXAY
     }
 
     chrome.webRequest.onBeforeSendHeaders.addListener(
@@ -44,7 +45,7 @@ export default class BeforeSendHeaders {
                     break
 
                   case HeaderNames.secUa:
-                    details.requestHeaders[i].value = ClientHint.brands(useragent, false).string
+                    details.requestHeaders[i].value = this.brandsListToString(ClientHint.brands(useragent, false))
                     break
 
                   case HeaderNames.secUaFullVersion:
@@ -52,7 +53,7 @@ export default class BeforeSendHeaders {
                     break
 
                   case HeaderNames.secUaFullVersionList:
-                    details.requestHeaders[i].value = ClientHint.brands(useragent, true).string
+                    details.requestHeaders[i].value = this.brandsListToString(ClientHint.brands(useragent, true))
                     break
 
                   case HeaderNames.secUaPlatform:
@@ -60,7 +61,11 @@ export default class BeforeSendHeaders {
                     break
 
                   case HeaderNames.secUaMobile:
-                    details.requestHeaders[i].value = ClientHint.isMobile(useragent).string
+                    details.requestHeaders[i].value = ClientHint.isMobile(useragent) ? '?1' : '?0'
+                    break
+
+                  case HeaderNames.secUaPlatformVersion:
+                    details.requestHeaders[i].value = '""' // drop this header value
                     break
                 }
               }
@@ -73,5 +78,12 @@ export default class BeforeSendHeaders {
       {urls: ['<all_urls>']},
       ['blocking', 'requestHeaders'],
     )
+  }
+
+  /**
+   * @private
+   */
+  private brandsListToString(list: IBrand[]): string {
+    return list.map(b => `"${b.brand}";v="${b.version}"`).join(', ')
   }
 }

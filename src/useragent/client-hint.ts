@@ -1,7 +1,21 @@
 import UseragentInfo from './useragent-info'
 
-interface IBrand {
+export interface IBrand {
   brand, version: string
+}
+
+/**
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/sec-ch-ua-platform#directives
+ */
+export enum UaPlatform {
+  Android = 'Android',
+  ChromeOS = 'Chrome OS',
+  ChromiumOS = 'Chromium OS',
+  iOS = 'iOS',
+  Linux = 'Linux',
+  macOS = 'macOS',
+  Windows = 'Windows',
+  Unknown = 'Unknown',
 }
 
 export default class ClientHint {
@@ -18,8 +32,8 @@ export default class ClientHint {
    * examples of Sec-CH-UA-Full-Version-List headers:
    *  " Not A;Brand";v="99.0.0.0", "Chromium";v="98.0.4750.0", "Google Chrome";v="98.0.4750.0"
    */
-  static brands(info: UseragentInfo, fullVersion: boolean): {list: IBrand[], string: string} {
-    const parts: IBrand[] = [ // for every case
+  static brands(info: UseragentInfo, fullVersion: boolean): IBrand[] {
+    const brands: IBrand[] = [ // for every case
       // (in theory, for ff and safari we shouldn't give anything away, but...)
       {brand: '(Not(A:Brand', version: fullVersion ? '99.0.0.0' : '99'}
     ]
@@ -31,10 +45,10 @@ export default class ClientHint {
         ? info.browserVersion.full
         : info.browserVersion.major.toString()
 
-      parts.push({brand: 'Chromium', version: browserVersion})
+      brands.push({brand: 'Chromium', version: browserVersion})
 
       if (info.browser === 'chrome') { // for Google Chrome
-        parts.push({brand: 'Google Chrome', version: browserVersion})
+        brands.push({brand: 'Google Chrome', version: browserVersion})
       }
 
       if (info.brandBrowserVersion) {
@@ -44,37 +58,23 @@ export default class ClientHint {
 
         switch (info.browser) {
           case 'edge':
-            parts.push({brand: 'Microsoft Edge', version: brandVersion})
+            brands.push({brand: 'Microsoft Edge', version: brandVersion})
             break
 
           case 'opera':
-            parts.push({brand: 'Opera', version: brandVersion})
+            brands.push({brand: 'Opera', version: brandVersion})
             break
         }
       }
     }
 
-    return {
-      list: parts,
-      string: parts.map(value => `"${value.brand}";v="${value.version}"`).join(', ')
-    }
+    return brands
   }
 
   /**
    * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/sec-ch-ua-platform#directives
    */
-  static platform(info: UseragentInfo): string {
-    enum UaPlatform {
-      Android = 'Android',
-      ChromeOS = 'Chrome OS',
-      ChromiumOS = 'Chromium OS',
-      iOS = 'iOS',
-      Linux = 'Linux',
-      macOS = 'macOS',
-      Windows = 'Windows',
-      Unknown = 'Unknown',
-    }
-
+  static platform(info: UseragentInfo): UaPlatform {
     switch (info.osType) {
       case 'windows':
         return UaPlatform.Windows
@@ -99,14 +99,14 @@ export default class ClientHint {
   /**
    * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-CH-UA-Mobile
    */
-  static isMobile(info: UseragentInfo): {bool: boolean, string: string} {
+  static isMobile(info: UseragentInfo): boolean {
     switch (info.osType) {
       case 'android':
       case 'iOS':
-        return {bool: true, string: '?1'}
+        return true
 
       default:
-        return {bool: false, string: '?0'}
+        return false
     }
   }
 }

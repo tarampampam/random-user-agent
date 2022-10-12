@@ -3,6 +3,15 @@ import {applicableToURI, ApplicableToURIResponse} from './messaging/handlers/app
 import {getSettings, GetSettingsResponse} from './messaging/handlers/get-settings'
 import {getUseragent, GetUseragentResponse} from './messaging/handlers/get-useragent'
 import {CookieName, decode, Payload} from './hooks/headers-received'
+import ClientHint, {IBrand, UaPlatform} from './useragent/client-hint'
+
+interface IClientHints {
+  brands: {
+    full, short: IBrand[]
+  }
+  platform: UaPlatform
+  isMobile: boolean
+}
 
 new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
   // make an attempt to fetch the payload from the cookies
@@ -42,131 +51,187 @@ new Promise((resolve: (p: Payload) => void, reject: (e: Error) => void) => {
     })
     .catch(reject)
 })
-  .then((p: Payload): string => '(' + function (p: Payload): void {
-      // makes required navigator object modifications
-      const patchNavigator = (navigator: Navigator): void => {
-        // allows to overload object property with a getter function (without potential exceptions)
-        const overloadPropertyWithGetter = (object: object, property: string, value: any): void => {
-          if (typeof object === 'object') {
-            if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
-              Object.defineProperty(object, property, {get: (): any => value})
-            }
-          }
-        }
+  .then((p: Payload): string => {
+      const callingArgs: [Payload, IClientHints] = [p, {
+        brands: {
+          full: ClientHint.brands(p.uaInfo, true),
+          short: ClientHint.brands(p.uaInfo, false),
+        },
+        platform: ClientHint.platform(p.uaInfo),
+        isMobile: ClientHint.isMobile(p.uaInfo),
+      }]
 
-        if (typeof navigator === 'object') {
-          overloadPropertyWithGetter(navigator, 'userAgent', p.uaInfo.useragent)
-
-          // app version should not contain "Mozilla/" prefix
-          overloadPropertyWithGetter(navigator, 'appVersion', p.uaInfo.useragent.replace(/^Mozilla\//i, ''))
-
-          const platformProp = 'platform', cpuProp = 'oscpu', vendorProp = 'vendor'
-
-          // patch the platform property (based on os type)
-          switch (p.uaInfo.osType) { // fixes <https://github.com/tarampampam/random-user-agent/issues/7>
-            case 'windows':
-              overloadPropertyWithGetter(navigator, platformProp, 'Win32')
-              overloadPropertyWithGetter(navigator, cpuProp, 'Windows NT; Win64; x64')
-              break
-
-            case 'linux':
-              overloadPropertyWithGetter(navigator, platformProp, 'Linux x86_64')
-              overloadPropertyWithGetter(navigator, cpuProp, 'Linux x86_64')
-              break
-
-            case 'android':
-              overloadPropertyWithGetter(navigator, platformProp, 'Linux armv8l')
-              overloadPropertyWithGetter(navigator, cpuProp, 'Linux armv8l')
-              break
-
-            case 'macOS':
-              overloadPropertyWithGetter(navigator, platformProp, 'MacIntel')
-              overloadPropertyWithGetter(navigator, cpuProp, 'Mac OS X')
-              break
-
-            case 'iOS':
-              overloadPropertyWithGetter(navigator, platformProp, 'iPhone')
-              overloadPropertyWithGetter(navigator, cpuProp, 'Mac OS X')
-              break
-
-            default:
-              overloadPropertyWithGetter(navigator, cpuProp, undefined)
-              break
-          }
-
-          switch (p.uaInfo.engine) {
-            case 'blink':
-              overloadPropertyWithGetter(navigator, vendorProp, 'Google Inc.')
-              break
-
-            case 'gecko': // firefox always with an empty vendor
-              overloadPropertyWithGetter(navigator, vendorProp, '')
-              break
-
-            case 'webkit':
-              overloadPropertyWithGetter(navigator, vendorProp, 'Apple Computer Inc.')
-              break
-          }
-
-          const uaDataProp = 'userAgentData', uaData = navigator[uaDataProp]
-
-          // https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_ua_data.cc
-          // https://web.dev/migrate-to-ua-ch/
-          // https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData
-          if (typeof uaData === 'object') { // TODO: WIP
-            overloadPropertyWithGetter(navigator, uaDataProp, new Proxy(uaData, {
-              get(target, key, value) {
-                if (key === 'brands') {
-                  return [{brand: 'foo', version: 'bar'}]
-                }
-
-                if (key in target) {
-                  if (typeof target[key] === 'function') {
-                    return target[key].bind(target)
-                  } else {
-                    return target[key]
-                  }
-                }
-
-                return undefined
-              },
-            }))
-          }
-        }
-      }
-
-      // patch current window navigator
-      patchNavigator(window.navigator)
-
-      // handler for patching navigator object for the iframes
-      // issue: <https://github.com/tarampampam/random-user-agent/issues/142>
-      window.addEventListener('load', (): void => {
-        const iframes = document.getElementsByTagName('iframe')
-
-        for (let i = 0; i < iframes.length; i++) {
-          const contentWindow = iframes[i].contentWindow
-
-          if (typeof contentWindow === 'object' && contentWindow !== null) {
-            patchNavigator(contentWindow.navigator)
-          }
-        }
-      }, {once: true, passive: true})
-
-      // watch for the new iframes dynamic creation
-      new MutationObserver((mutations): void => {
-        mutations.forEach((mutation): void => {
-          mutation.addedNodes.forEach((addedNode): void => {
-            if (addedNode.nodeName === 'IFRAME') {
-              const iframe = addedNode as HTMLIFrameElement, contentWindow = iframe.contentWindow
-
-              if (typeof contentWindow === 'object' && contentWindow !== null) {
-                patchNavigator(contentWindow.navigator)
+      return '(' + function (p: Payload, ch: IClientHints): void {
+        // makes required navigator object modifications
+        const patchNavigator = (navigator: Navigator): void => {
+          // allows to overload object property with a getter function (without potential exceptions)
+          const overloadPropertyWithGetter = (object: object, property: string, value: any): void => {
+            if (typeof object === 'object') {
+              if (Object.getOwnPropertyDescriptor(object, property) === undefined) {
+                Object.defineProperty(object, property, {get: (): any => value})
               }
             }
+          }
+
+          if (typeof navigator === 'object') {
+            overloadPropertyWithGetter(navigator, 'userAgent', p.uaInfo.useragent)
+
+            // app version should not contain "Mozilla/" prefix
+            overloadPropertyWithGetter(navigator, 'appVersion', p.uaInfo.useragent.replace(/^Mozilla\//i, ''))
+
+            enum NavigatorPropNames {
+              platform = 'platform',
+              oscpu = 'oscpu',
+              vendor = 'vendor',
+            }
+
+            // patch the platform property (based on os type)
+            switch (p.uaInfo.osType) { // fixes <https://github.com/tarampampam/random-user-agent/issues/7>
+              case 'windows':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.platform, 'Win32')
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, 'Windows NT; Win64; x64')
+                break
+
+              case 'linux':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.platform, 'Linux x86_64')
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, 'Linux x86_64')
+                break
+
+              case 'android':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.platform, 'Linux armv8l')
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, 'Linux armv8l')
+                break
+
+              case 'macOS':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.platform, 'MacIntel')
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, 'Mac OS X')
+                break
+
+              case 'iOS':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.platform, 'iPhone')
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, 'Mac OS X')
+                break
+
+              default:
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.oscpu, undefined)
+                break
+            }
+
+            switch (p.uaInfo.engine) {
+              case 'blink':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.vendor, 'Google Inc.')
+                break
+
+              case 'gecko': // firefox always with an empty vendor
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.vendor, '')
+                break
+
+              case 'webkit':
+                overloadPropertyWithGetter(navigator, NavigatorPropNames.vendor, 'Apple Computer Inc.')
+                break
+            }
+
+            // https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/frame/navigator_ua_data.cc
+            // https://web.dev/migrate-to-ua-ch/
+            // https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData
+            if (typeof navigator['userAgentData'] === 'object') {
+              // returns formatted list for usage in {NavigatorUAData} object
+              const formatBrandsList = (list: IBrand[]): NavigatorUABrandVersion[] => {
+                return list.map(b => {
+                  return {brand: b.brand, version: b.version}
+                })
+              }
+
+              overloadPropertyWithGetter(navigator, 'userAgentData', new Proxy(navigator.userAgentData, {
+                get(target: NavigatorUAData, key: string | symbol, receiver): any {
+                  if (key in target) {
+                    if (typeof target[key] === 'function') { // functions
+                      switch (key) {
+                        case 'toJSON':
+                          return (): UALowEntropyJSON => {
+                            return {
+                              ...target[key].bind(target).call(receiver),
+                              mobile: ch.isMobile,
+                              brands: formatBrandsList(ch.brands.short),
+                              platform: ch.platform,
+                            }
+                          }
+
+                        case 'getHighEntropyValues':
+                          return (hints: string[]): Promise<UADataValues> => {
+                            return new Promise((resolve: (v: UADataValues) => void, reject: () => void): void => {
+                              target[key].bind(target).call(receiver, hints)
+                                .then((original: UADataValues) => {
+                                  resolve({
+                                    ...original,
+                                    brands: formatBrandsList(ch.brands.short),
+                                    mobile: ch.isMobile,
+                                    platform: ch.platform,
+                                    uaFullVersion: p.uaInfo.browserVersion.full,
+                                    fullVersionList: formatBrandsList(ch.brands.full),
+                                    platformVersion: undefined, // unset the original property
+                                  })
+                                })
+                                .catch(reject)
+                            })
+                          }
+                      }
+
+                      return target[key].bind(target) // proxy pass
+                    } else { // properties
+                      switch (key) {
+                        case 'brands':
+                          return formatBrandsList(ch.brands.short)
+
+                        case 'mobile':
+                          return ch.isMobile
+
+                        case 'platform':
+                          return ch.platform
+                      }
+
+                      return target[key] // proxy pass
+                    }
+                  }
+                },
+              }))
+            }
+          }
+        }
+
+        // patch current window navigator
+        patchNavigator(window.navigator)
+
+        // handler for patching navigator object for the iframes
+        // issue: <https://github.com/tarampampam/random-user-agent/issues/142>
+        window.addEventListener('load', (): void => {
+          const iframes = document.getElementsByTagName('iframe')
+
+          for (let i = 0; i < iframes.length; i++) {
+            const contentWindow = iframes[i].contentWindow
+
+            if (typeof contentWindow === 'object' && contentWindow !== null) {
+              patchNavigator(contentWindow.navigator)
+            }
+          }
+        }, {once: true, passive: true})
+
+        // watch for the new iframes dynamic creation
+        new MutationObserver((mutations): void => {
+          mutations.forEach((mutation): void => {
+            mutation.addedNodes.forEach((addedNode): void => {
+              if (addedNode.nodeName === 'IFRAME') {
+                const iframe = addedNode as HTMLIFrameElement, contentWindow = iframe.contentWindow
+
+                if (typeof contentWindow === 'object' && contentWindow !== null) {
+                  patchNavigator(contentWindow.navigator)
+                }
+              }
+            })
           })
-        })
-      }).observe(document, {childList: true, subtree: true})
-    } + `)(${JSON.stringify(p)})`,
+        }).observe(document, {childList: true, subtree: true})
+      } + `)(${callingArgs.map(v => JSON.stringify(v)).join(',')})`
+    },
   )
   .then((scriptContent: string): void => {
     const script = document.createElement('script'), parent = document.head || document.documentElement
