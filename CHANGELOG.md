@@ -8,9 +8,13 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Additional HTTP header (`Sec-CH-UA-Full-Version`, [deprecated](https://mzl.la/3g1NzEI)) faking [#351]
-- HTTP header `Sec-CH-UA-Platform-Version` removing [#351]
+- Additional HTTP header (`Sec-CH-UA-Full-Version`, header is [deprecated](https://mzl.la/3g1NzEI)) faking [#351]
+- HTTP header `Sec-CH-UA-Platform-Version` replacing with empty value [#351]
 - [`navigator.userAgentData`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgentData) object faking [#350], [#351]
+
+### Changed
+
+- Better **custom** user agents _(including remote)_ OS/engine/browser determination (is needed for more accurate masking of the browser) [#351]
 
 [#350]:https://github.com/tarampampam/random-user-agent/issues/350
 [#351]:https://github.com/tarampampam/random-user-agent/pull/351
