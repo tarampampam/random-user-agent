@@ -120,18 +120,20 @@ export default class UseragentService {
       },
     }
 
-    switch (parsed.engine.name) {
-      case 'WebKit':
-        result.engine = 'webkit'
-        break
+    if (parsed.engine.name) {
+      switch (parsed.engine.name.toLowerCase()) {
+        case 'webkit':
+          result.engine = 'webkit'
+          break
 
-      case 'Blink':
-        result.engine = 'blink'
-        break
+        case 'blink':
+          result.engine = 'blink'
+          break
 
-      case 'Gecko':
-        result.engine = 'gecko'
-        break
+        case 'gecko':
+          result.engine = 'gecko'
+          break
+      }
     }
 
     if (parsed.os.name) {
