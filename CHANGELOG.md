@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.13.0
+
+### Changed
+
+- Extension icon reverted
+
+### Added
+
+- A war hint for Russian users
+
+### Removed
+
+- "Previous settings" tab from the options page
+
 ## v3.12.0
 
 ### Added

@@ -24,9 +24,6 @@
           <li :class="{active: activePage === 'blacklist'}" @click="activePage = 'blacklist'">
             <span>{{ i18n('blacklist_settings', 'Blacklist settings') }}</span>
           </li>
-          <li v-if="prevSettings" :class="{active: activePage === 'prev_settings'}" @click="activePage = 'prev_settings'">
-            <span>{{ i18n('previous_settings', 'Previous settings') }}</span>
-          </li>
         </ul>
         <div class="actions">
           <primary-button
@@ -69,22 +66,6 @@
             <blacklist-domains-list/>
             <blacklist-custom-rules-list/>
           </ul>
-        </div>
-        <div v-else-if="prevSettings && activePage === 'prev_settings'">
-          <h1>{{ i18n('previous_settings', 'Previous settings') }}</h1>
-          <p>{{
-              i18n(
-                'previous_settings_hint',
-                'These settings were used by you on the previous extension version. Keep it somewhere or remove',
-              )
-            }}:</p>
-
-          <pre>{{ prevSettings }}</pre>
-
-          <primary-button
-            :text="i18n('remove', 'Remove')"
-            @click="removePrevSettings"
-          />
         </div>
         <div v-else>
           <h1>(╯°□°)╯︵ ┻━┻</h1>
@@ -141,14 +122,12 @@ export default defineComponent({
   },
   mixins: [i18n],
   data(): {
-    activePage: 'general' | 'generator' | 'blacklist' | 'prev_settings'
+    activePage: 'general' | 'generator' | 'blacklist'
     errors: string[]
-    prevSettings: string | undefined
   } {
     return {
       activePage: 'general',
       errors: [],
-      prevSettings: undefined as string | undefined, // TODO remove this property after a some time
     }
   },
   methods: {
@@ -173,13 +152,6 @@ export default defineComponent({
     saveChanges(): void {
       this.$store.dispatch(Actions.SaveSettings).catch(this.handleError)
     },
-
-    removePrevSettings(): void { // TODO remove this method after a some time
-      chrome.storage.sync.remove(v2_config_key)
-
-      this.prevSettings = undefined
-      this.activePage = 'general'
-    },
   },
   created(): void {
     window.addEventListener('beforeunload', (event): void => {
@@ -189,20 +161,6 @@ export default defineComponent({
     })
 
     this.$store.dispatch(Actions.LoadSettings).catch(this.handleError)
-
-    try { // TODO remove this block after a some time
-      // load the prev extension settings
-      chrome.storage.sync.get(v2_config_key, (data) => {
-        if (chrome.runtime.lastError) {
-          throw new Error(chrome.runtime.lastError.message)
-        }
-        if (typeof data === 'object' && data.hasOwnProperty(v2_config_key)) {
-          this.prevSettings = JSON.stringify(data[v2_config_key], null, 2)
-        }
-      })
-    } catch (e) {
-      this.handleError(e as Error)
-    }
   },
 })
 </script>

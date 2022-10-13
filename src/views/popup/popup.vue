@@ -9,6 +9,7 @@
            @clickEnabled="changeEnabled"
            @clickRefresh="refreshUserAgent"
            @clickSettings="openSettings"/>
+  <war-hint v-if="showWarHint"/>
   <popup-footer :version="version"/>
 </template>
 
@@ -18,6 +19,7 @@ import i18n from './../mixins/i18n'
 import PopupHeader from './extended/header.vue'
 import ActiveUserAgent from './extended/active-user-agent.vue'
 import Actions from './extended/actions.vue'
+import WarHint from './extended/war-hint.vue'
 import PopupFooter from './extended/footer.vue'
 import {version, VersionResponse} from '../../messaging/handlers/version'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
@@ -36,6 +38,7 @@ export default defineComponent({
     'popup-header': PopupHeader,
     'active-user-agent': ActiveUserAgent,
     'actions': Actions,
+    'war-hint': WarHint,
     'popup-footer': PopupFooter,
   },
   mixins: [i18n],
@@ -45,6 +48,7 @@ export default defineComponent({
       enabledOnThisDomain: false,
       useragent: '',
       version: '',
+      showWarHint: false,
 
       currentPageDomain: '',
       currentTabID: undefined as number | undefined,
@@ -93,6 +97,10 @@ export default defineComponent({
     },
   },
   created(): void {
+    if (chrome.i18n.getUILanguage().toLowerCase().startsWith('en')) {
+      this.showWarHint = true
+    }
+
     backend
       .send( // order is important!
         version(),
