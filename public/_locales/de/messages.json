@@ -11,6 +11,7 @@
         "message": "Randomisiere deinen User-Agent",
         "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
     },
+    "manifest_command_renew_useragent": {"message": "Neuen Agent anfordern"},
 
     "active_user_agent": { "message": "Aktiver User-Agent" },
     "pause_switcher": { "message": "Switcher pausieren" },

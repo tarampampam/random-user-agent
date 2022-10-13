@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- Keyboard shortcut to user-agent renewal (`Ctrl+Shift+U` by default) [#289], [#352]
+
+[#289]:https://github.com/tarampampam/random-user-agent/issues/289
+[#352]:https://github.com/tarampampam/random-user-agent/pull/352
+
 ## v3.11.0
 
 ### Added

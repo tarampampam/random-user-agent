@@ -11,6 +11,7 @@
     "message": "Randomize của bạn User-Agent",
     "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
+  "manifest_command_renew_useragent": {"message": "Nhận đại lý mới"},
 
   "active_user_agent": {"message": "Tác nhân người dùng hoạt động"},
   "pause_switcher": {"message": "Tạm dừng Switcher"},
