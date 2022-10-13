@@ -40,5 +40,14 @@
     "webRequest",
     "webRequestBlocking",
     "<all_urls>"
-  ]
+  ],
+
+  "commands": {
+    "renew-useragent": {
+      "description": "__MSG_manifest_command_renew_useragent__",
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      }
+    }
+  }
 }
