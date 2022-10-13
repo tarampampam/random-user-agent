@@ -11,6 +11,7 @@
     "message": "Рандомизировать ваш User-Agent",
     "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
+  "manifest_command_renew_useragent": {"message": "Установить новый"},
 
   "active_user_agent": {"message": "Текущий User-Agent"},
   "pause_switcher": {"message": "Приостановить подмену"},

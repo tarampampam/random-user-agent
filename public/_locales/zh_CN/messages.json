@@ -11,6 +11,7 @@
     "message": "随机化您的 User-Agent",
     "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
+  "manifest_command_renew_useragent": {"message": "换个新的"},
 
   "active_user_agent": {"message": "活动 User-Agent"},
   "pause_switcher": {"message": "暂停切换器"},

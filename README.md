@@ -14,7 +14,7 @@
 
 ## 🔥 Features list
 
-- Incredibly lightweight (`~80KiB` archived)
+- Incredibly lightweight (`~95KiB` archived)
 - Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store], [opera][link-opera-store])
 - Can automatically change the User-Agent after a specified period of time
 - Change User-Agent on browser startup
@@ -66,6 +66,13 @@ see [this GitHub issue](https://github.com/tarampampam/random-user-agent/issues/
 
 This may occur because your User-Agent simulates MacOS - in this case, some websites make an attempt to handle `⌘ cmd`
 key instead of the `ctrl`. For fixing this issue just disable MacOS User-Agent in the extension generator settings.
+</details>
+
+<details>
+  <summary>Are keyboard shortcuts supported?</summary>
+
+Yes, but at this moment only one shortcut is supported - user-agent renewal (`Ctrl+Shift+U` by default). You can
+change it in your browser settings: <chrome://extensions/shortcuts> in Google Chrome.
 </details>
 
 ## 🧩 Install

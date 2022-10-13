@@ -11,6 +11,7 @@
     "message": "Randomize seu Agente de usuário",
     "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
+  "manifest_command_renew_useragent": {"message": "Alterar para outro Agente"},
 
   "active_user_agent": {"message": "Agente de usuário ativo"},
   "pause_switcher": {"message": "Pausar alteração"},

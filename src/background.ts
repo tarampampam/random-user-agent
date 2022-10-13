@@ -21,6 +21,7 @@ import UpdateUseragent from './messaging/handlers/update-useragent'
 import HeadersReceived from './hooks/headers-received'
 import RemoteListService, {LocalStorageStringsCache} from './services/remotelist-service'
 import UpdateRemoteUAList from './messaging/handlers/update-remote-ua-list'
+import OnCommand from './hooks/commands'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -167,6 +168,9 @@ useragent.load().then((): void => { // load useragent state
 
         // this hook allows to send important data to the content script without using sendMessage()
         new HeadersReceived(settings, useragent, filterService).listen()
+
+        // this hook allows handle keyboard shortcuts
+        new OnCommand(useragentService).listen()
       }).catch(errorsHandler)
     }).catch(errorsHandler)
   }).catch(errorsHandler)
