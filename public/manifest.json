@@ -40,7 +40,6 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-
   "commands": {
     "renew-useragent": {
       "description": "__MSG_manifest_command_renew_useragent__",
@@ -48,5 +47,11 @@
         "default": "Ctrl+Shift+U"
       }
     }
-  }
+  },
+  "action": {
+    "default_icon": "icons/logo/48.png",
+    "default_popup": "popup.html",
+    "default_title": "__MSG_manifest_action_default_title__"
+  },
+  "content_security_policy": {}
 }
