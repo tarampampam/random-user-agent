@@ -68,6 +68,13 @@ This may occur because your User-Agent simulates MacOS - in this case, some webs
 key instead of the `ctrl`. For fixing this issue just disable MacOS User-Agent in the extension generator settings.
 </details>
 
+<details>
+  <summary>Are keyboard shortcuts supported?</summary>
+
+Yes, but at this moment only one shortcut is supported - user-agent renewal (`Ctrl+Shift+U` by default). You can
+change it in your browser settings: <chrome://extensions/shortcuts> in Google Chrome.
+</details>
+
 ## 🧩 Install
 
 Follow up by one of the links at the top 👆 of this page, or download `CRX`/`XPI` file directly the latest release from the

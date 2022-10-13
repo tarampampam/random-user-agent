@@ -8,7 +8,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Keyboard shortcut to user-agent renewal (`Ctrl+Shift+U` by default)
+- Keyboard shortcut to user-agent renewal (`Ctrl+Shift+U` by default) [#289], [#352]
+
+[#289]:https://github.com/tarampampam/random-user-agent/issues/289
+[#352]:https://github.com/tarampampam/random-user-agent/pull/352
 
 ## v3.11.0
 
