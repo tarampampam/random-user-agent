@@ -25,6 +25,17 @@
 - Allows using the remote User-Agents list
 - Doesn't need initial setup - just install and forget about the real user-agent leaking
 
+## 📷 Screenshots
+
+| Popup               | General settings        | Generator settings          | Blacklist settings          |
+|:-------------------:|:-----------------------:|:---------------------------:|:---------------------------:|
+| ![popup][scr-popup] | ![general][scr-general] | ![generator][scr-generator] | ![blacklist][scr-blacklist] |
+
+[scr-popup]:https://user-images.githubusercontent.com/7326800/195804276-7ad7826b-9976-442f-ba46-d861a083798a.png
+[scr-general]:https://user-images.githubusercontent.com/7326800/195804264-198c9b59-698e-4e8e-9b7e-c51cb8c7d751.png
+[scr-generator]:https://user-images.githubusercontent.com/7326800/195804258-0e0be0d9-462a-4666-85e2-242197486e84.png
+[scr-blacklist]:https://user-images.githubusercontent.com/7326800/195804243-09be8d34-c239-44dc-a7f1-033b1767da11.png
+
 ## 🛠 Where do I can test the functionality?
 
 Open one of the links below with and without the extension enabled:
