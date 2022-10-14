@@ -97,7 +97,7 @@ export default defineComponent({
     },
   },
   created(): void {
-    if (chrome.i18n.getUILanguage().toLowerCase().startsWith('en')) {
+    if (chrome.i18n.getUILanguage().toLowerCase().startsWith('ru')) {
       this.showWarHint = true
     }
 
