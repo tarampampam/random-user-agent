@@ -5,7 +5,7 @@
     "name": "paramtamtam",
     "url": "https://github.com/tarampampam"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tarampampam/random-user-agent.git"
