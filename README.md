@@ -104,7 +104,7 @@ After `make watch` command you can:
 
 ## 📜 How to translate (localize) this extension?
 
-...or fix translation mistakes. The translation process described [here](public/_locales).
+...or fix translation mistakes. The translation process described [here](public/_locales) ([related issue](https://github.com/tarampampam/random-user-agent/issues/353)).
 
 ## 📡 Remote User-Agents list
 
