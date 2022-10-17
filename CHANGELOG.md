@@ -9,18 +9,19 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Added
 
 - Quick generator switcher in the popup window [#354]
-- "Rate this addon" button (displayed until it is clicked once)
+- "Rate this addon" button (displayed until it is clicked once) [#356]
 
 ### Changed
 
 - Extension name `Random User-Agent` &rarr; `Random User-Agent (Switcher)` [#354]
-- Default generator type settings (for new users)
+- Default generator type settings (for new users) [#356]
 
 ### Fixed
 
-- Browser detection method (for internal usage only; [reason](https://bugzilla.mozilla.org/show_bug.cgi?id=1754441))
+- Browser detection method (for internal usage only; [reason](https://bugzilla.mozilla.org/show_bug.cgi?id=1754441)) [#356]
 
 [#354]:https://github.com/tarampampam/random-user-agent/pull/354
+[#356]:https://github.com/tarampampam/random-user-agent/pull/356
 
 ## v3.13.1
 
