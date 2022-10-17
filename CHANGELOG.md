@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Quick generator switcher in the popup window [#354]
 - "Rate this addon" button (displayed until it is clicked once) [#356]
+- 🇫🇷 French localization by [@maxgfr](https://github.com/maxgfr) [#355]
 
 ### Changed
 
@@ -22,6 +23,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 [#354]:https://github.com/tarampampam/random-user-agent/pull/354
 [#356]:https://github.com/tarampampam/random-user-agent/pull/356
+[#355]:https://github.com/tarampampam/random-user-agent/pull/355
 
 ## v3.13.1
 

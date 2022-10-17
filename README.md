@@ -31,7 +31,7 @@
 |:-------------------:|:-----------------------:|:---------------------------:|:---------------------------:|
 | ![popup][scr-popup] | ![general][scr-general] | ![generator][scr-generator] | ![blacklist][scr-blacklist] |
 
-[scr-popup]:https://user-images.githubusercontent.com/7326800/195804276-7ad7826b-9976-442f-ba46-d861a083798a.png
+[scr-popup]:https://user-images.githubusercontent.com/7326800/196161287-141d8cf6-ed65-46f9-b00a-0e75cd564826.png
 [scr-general]:https://user-images.githubusercontent.com/7326800/195804264-198c9b59-698e-4e8e-9b7e-c51cb8c7d751.png
 [scr-generator]:https://user-images.githubusercontent.com/7326800/195804258-0e0be0d9-462a-4666-85e2-242197486e84.png
 [scr-blacklist]:https://user-images.githubusercontent.com/7326800/195804243-09be8d34-c239-44dc-a7f1-033b1767da11.png
@@ -42,7 +42,7 @@ Open one of the links below with and without the extension enabled:
 
 | Resource                                            |          Test           |
 |-----------------------------------------------------|:-----------------------:|
-| [Out test page][test-rua]                           |        ✅ Passed         |
+| [Our test page][test-rua]                           |        ✅ Passed         |
 | [What is my User Agent][test-webbrowsertools]       | ✅ 3 Passed / ❌ 3 Failed |
 | [Browser Information (BrowserSPY)][test-browserspy] |        ✅ Passed         |
 | [whoer][test-whoer]                                 |        ✅ Passed         |
