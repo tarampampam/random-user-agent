@@ -12,6 +12,9 @@
                     @change="$emit('clickEnabledOnThisDomain')"/>
     </div>
 
+    <quick-select :generatorTypes="generatorTypes"
+                  @changeGeneratorTypes="(...props) => $emit('changeGeneratorTypes', ...props)"/>
+
     <div class="action" @click="$emit('clickEnabled')" :class="{ 'blinking-background': !enabled }">
       <control-icon class="icon"
                     :style="{'font-size': '.9em'}"
@@ -44,13 +47,16 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import ControlIcon from '../common/control-icon.vue'
+import QuickSelect from './quick-select.vue'
 import i18n from '../../mixins/i18n'
 import IOSCheckbox from '../common/ios-checkbox.vue'
+import {GeneratorType} from '../../../useragent/generator'
 
 export default defineComponent({
   components: {
     'ios-checkbox': IOSCheckbox,
     'control-icon': ControlIcon,
+    'quick-select': QuickSelect,
   },
   props: {
     enabledOnThisDomain: {
@@ -65,12 +71,17 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    generatorTypes: {
+      type: Array,
+      default: [],
+    },
   },
   emits: [
     'clickEnabledOnThisDomain',
     'clickEnabled',
     'clickRefresh',
     'clickSettings',
+    'changeGeneratorTypes',
   ],
   mixins: [i18n],
 })
