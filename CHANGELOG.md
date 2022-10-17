@@ -8,7 +8,13 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Quick generator switcher in the popup window
+- Quick generator switcher in the popup window [#354]
+
+### Changed
+
+- Extension name `Random User-Agent` &rarr; `Random User-Agent (Switcher)`
+
+[#354]:https://github.com/tarampampam/random-user-agent/pull/354
 
 ## v3.13.1
 
