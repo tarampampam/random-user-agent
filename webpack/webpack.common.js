@@ -9,6 +9,9 @@ const {VueLoaderPlugin} = require('vue-loader')
 const srcDir = path.join(__dirname, '..', 'src')
 
 module.exports = {
+  node: {
+    global: false,
+  },
   entry: {
     popup: path.join(srcDir, 'popup.ts'),
     options: path.join(srcDir, 'options.ts'),
