@@ -3,31 +3,23 @@
     <div class="device-based">
       <div
         :class="['device', {active: inList(mobileTypes.all)}]"
-        @click="inList(mobileTypes.all) ? change(mobileTypes.all, 'disable') : change(mobileTypes.all, 'enable')"
+        @click="toggle(mobileTypes.all)"
       >
         <device-icon icon="mobile"/>
       </div>
       <ul class="types-list">
         <li
-          title="Chrome"
-          :class="['item', {active: inList(mobileTypes.chrome)}]"
-          @click="change(mobileTypes.chrome, 'toggle')"
+          v-for="btn in [
+            {title: 'Chrome', icon: 'chrome', list: mobileTypes.chrome},
+            {title: 'FireFox', icon: 'firefox', list: mobileTypes.firefox},
+            {title: 'Safari', icon: 'safari', list: mobileTypes.safari},
+          ]"
+          :key="btn.title"
+          :title="btn.title"
+          :class="['item', {active: inList(btn.list)}]"
+          @click="toggle(btn.list)"
         >
-          <browser-icon icon="chrome"/>
-        </li>
-        <li
-          title="FireFox"
-          :class="['item', {active: inList(mobileTypes.firefox)}]"
-          @click="change(mobileTypes.firefox, 'toggle')"
-        >
-          <browser-icon icon="firefox"/>
-        </li>
-        <li
-          title="Safari"
-          :class="['item', {active: inList(mobileTypes.safari)}]"
-          @click="change(mobileTypes.safari, 'toggle')"
-        >
-          <browser-icon icon="safari"/>
+          <browser-icon :icon="btn.icon"/>
         </li>
       </ul>
     </div>
@@ -35,45 +27,25 @@
     <div class="device-based">
       <div
         :class="['device', {active: inList(desktopTypes.all)}]"
-        @click="inList(desktopTypes.all) ? change(desktopTypes.all, 'disable') : change(desktopTypes.all, 'enable')"
+        @click="toggle(desktopTypes.all)"
       >
         <device-icon icon="desktop"/>
       </div>
       <ul class="types-list">
         <li
-          title="Chrome"
-          :class="['item', {active: inList(desktopTypes.chrome)}]"
-          @click="change(desktopTypes.chrome, 'toggle')"
+          v-for="btn in [
+            {title: 'Chrome', icon: 'chrome', list: desktopTypes.chrome},
+            {title: 'FireFox', icon: 'firefox', list: desktopTypes.firefox},
+            {title: 'Safari', icon: 'safari', list: desktopTypes.safari},
+            {title: 'Edge', icon: 'edge', list: desktopTypes.edge},
+            {title: 'Opera', icon: 'opera', list: desktopTypes.opera},
+          ]"
+          :key="btn.title"
+          :title="btn.title"
+          :class="['item', {active: inList(btn.list)}]"
+          @click="toggle(btn.list)"
         >
-          <browser-icon icon="chrome"/>
-        </li>
-        <li
-          title="FireFox"
-          :class="['item', {active: inList(desktopTypes.firefox)}]"
-          @click="change(desktopTypes.firefox, 'toggle')"
-        >
-          <browser-icon icon="firefox"/>
-        </li>
-        <li
-          title="Safari"
-          :class="['item', {active: inList(desktopTypes.safari)}]"
-          @click="change(desktopTypes.safari, 'toggle')"
-        >
-          <browser-icon icon="safari"/>
-        </li>
-        <li
-          title="Edge"
-          :class="['item', {active: inList(desktopTypes.edge)}]"
-          @click="change(desktopTypes.edge, 'toggle')"
-        >
-          <browser-icon icon="edge"/>
-        </li>
-        <li
-          title="Opera"
-          :class="['item', {active: inList(desktopTypes.opera)}]"
-          @click="change(desktopTypes.opera, 'toggle')"
-        >
-          <browser-icon icon="opera"/>
+          <browser-icon :icon="btn.icon"/>
         </li>
       </ul>
     </div>
@@ -181,7 +153,7 @@ export default defineComponent({
     }
   },
   methods: {
-    inList(types: string[]): boolean { // at least one in the list
+    inList(types: GeneratorType[]): boolean { // at least one in the list
       if (this.generatorTypes) {
         for (let i = 0; i < types.length; i++) {
           if (this.generatorTypes.includes(types[i])) {
@@ -192,37 +164,18 @@ export default defineComponent({
 
       return false
     },
-    change(types: GeneratorType[], mode: 'toggle' | 'enable' | 'disable'): void {
+    toggle(types: GeneratorType[]): void {
       if (this.generatorTypes && Array.isArray(types)) {
         const clone = [...this.generatorTypes]
+        const isInList = this.inList(types)
 
         for (let i = 0; i < types.length; i++) {
           const idx = clone.indexOf(types[i])
 
-          switch (mode) {
-            case 'toggle': {
-              if (idx === -1) { // not found
-                clone.push(types[i]) // append
-              } else { // found
-                clone.splice(idx, 1) // remove
-              }
-
-              break
-            }
-
-            case 'enable': { // append
-              if (!clone.includes(types[i])) {
-                clone.push(types[i])
-              }
-
-              break
-            }
-
-            case 'disable': { // remove
-              if (idx !== -1) {
-                clone.splice(idx, 1)
-              }
-            }
+          if (isInList && idx !== -1) { // disable (remove)
+            clone.splice(idx, 1)
+          } else if (!isInList && !clone.includes(types[i])) { // enable (append)
+            clone.push(types[i])
           }
         }
 

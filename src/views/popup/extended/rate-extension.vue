@@ -39,6 +39,8 @@ export default defineComponent({
     async openLink(url: string): Promise<chrome.tabs.Tab> {
       window.localStorage.setItem(clickedStorageKey, clickedStorageValue)
 
+      this.$forceUpdate()
+
       return await chrome.tabs.create({url: url})
     },
     wasClicked(): boolean {

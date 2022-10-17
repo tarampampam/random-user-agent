@@ -14,7 +14,7 @@
 
 ## 🔥 Features list
 
-- Incredibly lightweight (`~95KiB` archived)
+- Incredibly lightweight (`~100KiB` archived)
 - Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store], [opera][link-opera-store])
 - Can automatically change the User-Agent after a specified period of time
 - Change User-Agent on browser startup
@@ -27,14 +27,14 @@
 
 ## 📷 Screenshots
 
-| Popup               | General settings        | Generator settings          | Blacklist settings          |
+|        Popup        |    General settings     |     Generator settings      |     Blacklist settings      |
 |:-------------------:|:-----------------------:|:---------------------------:|:---------------------------:|
 | ![popup][scr-popup] | ![general][scr-general] | ![generator][scr-generator] | ![blacklist][scr-blacklist] |
 
-[scr-popup]:https://user-images.githubusercontent.com/7326800/196161287-141d8cf6-ed65-46f9-b00a-0e75cd564826.png
-[scr-general]:https://user-images.githubusercontent.com/7326800/195804264-198c9b59-698e-4e8e-9b7e-c51cb8c7d751.png
-[scr-generator]:https://user-images.githubusercontent.com/7326800/195804258-0e0be0d9-462a-4666-85e2-242197486e84.png
-[scr-blacklist]:https://user-images.githubusercontent.com/7326800/195804243-09be8d34-c239-44dc-a7f1-033b1767da11.png
+[scr-popup]:https://user-images.githubusercontent.com/7326800/196230135-470112aa-2c54-46bf-97cd-ca884acc8810.png
+[scr-general]:https://user-images.githubusercontent.com/7326800/196230139-52ded148-62b4-4a8a-8116-ad7615e4ea19.png
+[scr-generator]:https://user-images.githubusercontent.com/7326800/196230144-f6e1b6d1-368c-4854-a33f-e1fbf3e99a57.png
+[scr-blacklist]:https://user-images.githubusercontent.com/7326800/196230148-f52e3ac1-c345-4672-9912-a916e2962fbe.png
 
 ## 🛠 Where do I can test the functionality?
 
