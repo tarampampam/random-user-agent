@@ -12,6 +12,7 @@
            @clickSettings="openSettings"
            @changeGeneratorTypes="updateGeneratorTypes"/>
   <war-hint v-if="showWarHint"/>
+  <rate-extension v-else/>
   <popup-footer :version="version"/>
 </template>
 
@@ -22,6 +23,7 @@ import PopupHeader from './extended/header.vue'
 import ActiveUserAgent from './extended/active-user-agent.vue'
 import Actions from './extended/actions.vue'
 import WarHint from './extended/war-hint.vue'
+import RateExtension from './extended/rate-extension.vue'
 import PopupFooter from './extended/footer.vue'
 import {version, VersionResponse} from '../../messaging/handlers/version'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
@@ -42,6 +44,7 @@ export default defineComponent({
     'active-user-agent': ActiveUserAgent,
     'actions': Actions,
     'war-hint': WarHint,
+    'rate-extension': RateExtension,
     'popup-footer': PopupFooter,
   },
   mixins: [i18n],

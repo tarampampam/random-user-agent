@@ -48,6 +48,7 @@
     "remote_useragent_list_hint": { "message": "Die Erweiterung wird sie periodisch herunterladen um sie aktuell zu halten" },
     "remote_useragent_updating_interval": { "message": "Aktualisierungs Intervall (in Sekunden; z.B. alle 3 Stunden = 60×60×3 = 10800)" },
     "update_now": { "message": "Jetzt aktualisieren" },
+    "please_rate_extension": { "message": "Bitte bewerten Sie dieses Addon!" },
 
     "edge_win": { "message": "Edge auf Windows" },
     "edge_mac": { "message": "Edge auf Mac" },
