@@ -48,6 +48,7 @@
   "remote_useragent_list_hint": {"message": "Tiện ích mở rộng sẽ tải xuống định kỳ để luôn cập nhật"},
   "remote_useragent_updating_interval": {"message": "Khoảng thời gian cập nhật (tính bằng giây; ví dụ: 3 giờ một lần = 60 × 60 × 3 = 10800)"},
   "update_now": {"message": "Cập nhật bây giờ"},
+  "please_rate_extension": {"message": "Xin vui lòng, đánh giá addon này!"},
 
   "edge_win": {"message": "Edge trên Windows"},
   "edge_mac": { "message": "Edge trên Mac" },

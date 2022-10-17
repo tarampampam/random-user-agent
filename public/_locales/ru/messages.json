@@ -48,6 +48,7 @@
   "remote_useragent_list_hint": {"message": "Это расширение будет периодически скачивать его для того, чтоб поддерживать список в актуальном состоянии"},
   "remote_useragent_updating_interval": {"message": "Интервал обновления (в секундах; пример - каждые 3 часа = 60×60×3 = 10800)"},
   "update_now": {"message": "Обновить сейчас"},
+  "please_rate_extension": {"message": "Пожалуйста, оцените это дополнение!"},
 
   "edge_win": {"message": "Edge на Windows"},
   "edge_mac": { "message": "Edge на Mac" },

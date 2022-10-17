@@ -48,6 +48,7 @@
   "remote_useragent_list_hint": {"message": "A extensão periodicamente baixará Agentes para mantê-los atualizados"},
   "remote_useragent_updating_interval": {"message": "Intervalo de atualização (em segundos; por exemplo, a cada 3 horas = 60×60×3 = 10800)"},
   "update_now": {"message": "Atualizar agora"},
+  "please_rate_extension": {"message": "Por favor, classifique este suplemento!"},
 
   "edge_win": {"message": "Edge no Windows"},
   "edge_mac": { "message": "Edge no Mac" },
