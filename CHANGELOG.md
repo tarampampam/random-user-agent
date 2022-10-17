@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- Quick generator switcher in the popup window [#354]
+
+### Changed
+
+- Extension name `Random User-Agent` &rarr; `Random User-Agent (Switcher)`
+
+[#354]:https://github.com/tarampampam/random-user-agent/pull/354
+
 ## v3.13.1
 
 ### Fixed

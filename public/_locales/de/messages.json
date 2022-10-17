@@ -1,6 +1,6 @@
 {
     "manifest_name": {
-        "message": "Zufälliger User-Agent",
+        "message": "Zufälliger User-Agent (Umschalter)",
         "description": "Maximum of 45 characters"
     },
     "manifest_description": {

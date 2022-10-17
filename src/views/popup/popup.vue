@@ -5,10 +5,12 @@
   <actions :enabledOnThisDomain="enabledOnThisDomain"
            :enabled="enabled"
            :enabledOnThisDomainTitle="currentPageDomain"
+           :generatorTypes="generatorTypes"
            @clickEnabledOnThisDomain="changeEnabledOnThisDomain"
            @clickEnabled="changeEnabled"
            @clickRefresh="refreshUserAgent"
-           @clickSettings="openSettings"/>
+           @clickSettings="openSettings"
+           @changeGeneratorTypes="updateGeneratorTypes"/>
   <war-hint v-if="showWarHint"/>
   <popup-footer :version="version"/>
 </template>
@@ -29,6 +31,7 @@ import {changeForDomain} from '../../messaging/handlers/change-for-domain'
 import {updateSettings} from '../../messaging/handlers/update-settings'
 import {getSettings, GetSettingsResponse} from '../../messaging/handlers/get-settings'
 import {getUseragent, GetUseragentResponse} from '../../messaging/handlers/get-useragent'
+import {GeneratorType} from '../../useragent/generator'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -42,16 +45,24 @@ export default defineComponent({
     'popup-footer': PopupFooter,
   },
   mixins: [i18n],
-  data: (): { [key: string]: any } => {
+  data: (): {
+    [key: string]: any
+    enabled, enabledOnThisDomain: boolean
+    generatorTypes: GeneratorType[]
+    useragent, version: string
+    currentPageDomain: string
+    currentTabID: number | undefined
+    showWarHint: boolean
+  } => {
     return {
       enabled: false,
       enabledOnThisDomain: false,
+      generatorTypes: [],
       useragent: '',
       version: '',
-      showWarHint: false,
-
       currentPageDomain: '',
       currentTabID: undefined as number | undefined,
+      showWarHint: false,
     }
   },
   methods: {
@@ -92,6 +103,16 @@ export default defineComponent({
         .catch(errorsHandler)
     },
 
+    updateGeneratorTypes(types: GeneratorType[]): void {
+      backend
+        .send(updateSettings({generator: {types: types}}))
+        .then((): void => {
+          this.generatorTypes = types
+        })
+        .then(this.refreshUserAgent)
+        .catch(errorsHandler)
+    },
+
     openSettings(): void {
       chrome.runtime.openOptionsPage()
     },
@@ -113,6 +134,7 @@ export default defineComponent({
         this.useragent = (resp[2] as GetUseragentResponse).payload.info?.useragent || ''
 
         this.enabled = settings.enabled
+        this.generatorTypes = settings.generator.types
       })
       .catch(errorsHandler)
 
