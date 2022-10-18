@@ -5,7 +5,7 @@ User-Agent - a string that is sent along to any website you visit. This is a sor
 ⭐️ Information about some plugins installed on the browser
 ⭐️ Other information that identifies and exposes you
 
-🚀 This extension has been created to stop data leakage.
+🚀 This extension has been created to stop data leakage and emulate different devices in the simplest way!
 
 It automatically replaces User-Agent strings after a specified period of time with a randomized one. User-Agent strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available with option of wildcards. Protects against Javascript exploits to hide your identity and protect your anonymity.
 
