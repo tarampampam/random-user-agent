@@ -189,7 +189,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $border-radius: 5px;
 $selector-height: 40px;
 

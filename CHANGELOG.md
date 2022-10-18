@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Fixed
+
+- War hint offsets (popup window scrolling)
+- Icons size of quick generator switcher
+
 ## v3.14.1
 
 ### Fixed
