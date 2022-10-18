@@ -1,10 +1,14 @@
-User-Agent - est une en-tête envoyée à chaque site Web visité. Il s'agit d'une sorte d'"empreinte digitale" laissée par votre navigateur qui contient :
+User-Agent - est une en-tête envoyée à chaque site Web visité. Il s'agit d'une sorte d'"empreinte digitale" laissée par votre navigateur qui contient:
 
-- Le nom et la version de votre navigateur
-- Le nom du système d'exploitation (Mac, Windows, Linux, etc.) et sa version
-- Des informations sur certains plugins installés sur le navigateur
-- D'autres informations qui vous identifient et vous exposent.
+⭐️ Le nom et la version de votre navigateur
+⭐️ Le nom du système d'exploitation (Mac, Windows, Linux, etc.) et sa version
+⭐️ Des informations sur certains plugins installés sur le navigateur
+⭐️ D'autres informations qui vous identifient et vous exposent
 
-Cette extension a été créée pour arrêter la fuite de données. Il remplace automatiquement les en-têtes User-Agent après une certaine période aléatoire. Les en-têtes User-Agent peuvent également être définies manuellement. L'extension est à la fois légère et peu énergivore en ressources. Les paramètres aléatoires de l'extension User-Agent peuvent être personnalisée par l'utilisateur (quels navigateurs et OS sont usurpés, etc.). Il est possible d'utiliser des caractères génériques pour mettre une liste d'exception en place. L'extension protège également contre les failles Javascript en cachant votre identité et protégeant votre anonymat.
+🚀 Cette extension a été créée pour arrêter la fuite de données.
 
-Code source : https://github.com/tarampampam/random-user-agent
+Il remplace automatiquement les en-têtes User-Agent après une certaine période aléatoire. Les en-têtes User-Agent peuvent également être définies manuellement. L'extension est à la fois légère et peu énergivore en ressources. Les paramètres aléatoires de l'extension User-Agent peuvent être personnalisée par l'utilisateur (quels navigateurs et OS sont usurpés, etc.). Il est possible d'utiliser des caractères génériques pour mettre une liste d'exception en place. L'extension protège également contre les failles Javascript en cachant votre identité et protégeant votre anonymat.
+
+Entièrement gratuit et sans publicité.
+
+Fabriqué avec ❤️ Code source: https://github.com/tarampampam/random-user-agent
