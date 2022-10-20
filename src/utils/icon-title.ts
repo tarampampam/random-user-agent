@@ -1,4 +1,4 @@
-export async function setExtensionTitle(title:string, tabId?: number) {
+export async function setExtensionTitle(title: string, tabId?: number) {
   const details: chrome.browserAction.TitleDetails = {
     title: title,
   }
