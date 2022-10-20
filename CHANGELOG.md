@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- Displaying current user-agent on extension icon hover [#364]
+
+[#364]:https://github.com/tarampampam/random-user-agent/issues/364
+
 ## v3.14.2
 
 ### Fixed
