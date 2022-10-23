@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- The whitelist/blacklist modes toggle redesigned [#369]
+- The whitelist/blacklist modes toggle was redesigned [#369]
 
 ### Fixed
 
