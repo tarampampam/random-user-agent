@@ -62,7 +62,7 @@
             }}:</p>
 
           <ul>
-            <whitelist-mode/>
+            <blacklist-mode/>
             <blacklist-domains-list/>
             <blacklist-custom-rules-list/>
           </ul>
@@ -97,11 +97,9 @@ import JSProtection from './controls/js-protection.vue'
 import CustomUAList from './controls/custom-ua-list.vue'
 import RemoteUAList from './controls/remote-ua-list.vue'
 import GeneratorTypes from './controls/generator-types.vue'
-import WhitelistMode from './controls/whitelist-mode.vue'
+import BlacklistMode from './controls/blacklist-mode.vue'
 import BlacklistDomainsList from './controls/blacklist-domains-list.vue'
 import BlacklistCustomRulesList from './controls/blacklist-custom-rules-list.vue'
-
-const v2_config_key: string = 'extension_settings_v2'
 
 export default defineComponent({
   components: {
@@ -116,7 +114,7 @@ export default defineComponent({
     'remote-ua-list': RemoteUAList,
     'footer-block': FooterBlock,
     'generator-types': GeneratorTypes,
-    'whitelist-mode': WhitelistMode,
+    'blacklist-mode': BlacklistMode,
     'blacklist-domains-list': BlacklistDomainsList,
     'blacklist-custom-rules-list': BlacklistCustomRulesList,
   },

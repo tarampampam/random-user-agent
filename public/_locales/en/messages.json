@@ -35,7 +35,8 @@
   "generator_settings_hint": {"message": "Here you can change the agent switching behavior"},
   "blacklist_settings": {"message": "Blacklist settings"},
   "blacklist_settings_hint": {"message": "Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules"},
-  "white_black_list_mode": {"message": "Whitelist mode (blacklist mode - disabled, whitelist mode - enabled)"},
+  "blacklist_mode": {"message": "Blacklist mode"},
+  "whitelist_mode": {"message": "Whitelist mode"},
   "blacklist_domains": {"message": "Domain names list (one per line)"},
   "blacklist_custom_rules": {"message": "Custom rules (one per line)"},
   "blacklist_custom_rules_hint": {"message": "You can use wildcards such as * and ?. * will match any length of characters (e.g. *google.com will match google.com, www.google.com, mail.google.com, etc.), ? will match only a single character (e.g. www.?oogle.com will match www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"},
@@ -51,7 +52,7 @@
   "please_rate_extension": {"message": "Please, rate this addon!"},
 
   "edge_win": {"message": "Edge on Windows"},
-  "edge_mac": { "message": "Edge on Mac" },
+  "edge_mac": {"message": "Edge on Mac" },
   "chrome_win": {"message": "Chrome on Windows"},
   "chrome_mac": {"message": "Chrome on Mac"},
   "chrome_linux": {"message": "Chrome on Linux"},
