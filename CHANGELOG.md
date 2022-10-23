@@ -10,7 +10,12 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Displaying current user-agent on extension icon hover [#364]
 
+### Fixed
+
+- Settings toggle for Black\White-List logic [#367]
+
 [#364]:https://github.com/tarampampam/random-user-agent/issues/364
+[#367]:https://github.com/tarampampam/random-user-agent/issues/367
 
 ## v3.14.2
 

@@ -9,7 +9,7 @@
     <template v-slot:toggle>
       <toggle
         :id="randomId"
-        :checked="$store.state.settings.enabled"
+        :checked="$store.state.settings.blacklist.modeWhitelist"
         @change="change"
       />
     </template>
@@ -32,7 +32,7 @@ export default defineComponent({
   mixins: [i18n, randomId],
   methods: {
     change(newState: boolean): void {
-      this.$store.commit(Mutation.UpdateEnabled, newState)
+      this.$store.commit(Mutation.UpdateBlacklist, newState)
     },
   },
 })
