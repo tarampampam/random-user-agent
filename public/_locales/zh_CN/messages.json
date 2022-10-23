@@ -35,7 +35,6 @@
   "generator_settings_hint": {"message": ""},
   "blacklist_settings": {"message": "黑名单设置"},
   "blacklist_settings_hint": {"message": "黑名单模式 - 默认启用，全面启用用户代理切换，除非符合已定义的域名和规则。白名单模式相反，仅针对符合已定义的域名和规则的访问启用用户代理切换。"},
-  "white_black_list_mode": {"message": "启用白名单模式"},
   "blacklist_mode": {"message": "黑名单模式"},
   "whitelist_mode": {"message": "白名单模式"},
   "blacklist_domains": {"message": "域名列表（每行一条）"},

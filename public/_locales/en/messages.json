@@ -52,7 +52,7 @@
   "please_rate_extension": {"message": "Please, rate this addon!"},
 
   "edge_win": {"message": "Edge on Windows"},
-  "edge_mac": { "message": "Edge on Mac" },
+  "edge_mac": {"message": "Edge on Mac" },
   "chrome_win": {"message": "Chrome on Windows"},
   "chrome_mac": {"message": "Chrome on Mac"},
   "chrome_linux": {"message": "Chrome on Linux"},
