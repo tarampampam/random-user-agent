@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- The whitelist/Blacklist modes toggle redesigned
+- The whitelist/blacklist modes toggle redesigned [#369]
 
 ### Fixed
 
@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 [#364]:https://github.com/tarampampam/random-user-agent/issues/364
 [#367]:https://github.com/tarampampam/random-user-agent/issues/367
+[#369]:https://github.com/tarampampam/random-user-agent/pull/369
 
 ## v3.14.2
 
