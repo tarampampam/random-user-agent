@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Displaying current user-agent on extension icon hover [#364]
 
+### Changed
+
+- The whitelist/Blacklist modes toggle redesigned
+
 ### Fixed
 
 - Settings toggle for Black\White-List logic [#367]
