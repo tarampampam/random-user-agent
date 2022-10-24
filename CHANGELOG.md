@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Fixed
+
+- Hover icon title text [#370]
+
+[#370]:https://github.com/tarampampam/random-user-agent/issues/370
+
 ## v3.15.0
 
 ### Added

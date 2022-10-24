@@ -3,13 +3,13 @@
     <template v-slot:label>
       <ul class="mode-selector">
         <li
-          :class="['item', {active: $store.state.settings.blacklist.modeWhitelist}]"
-          @click="change(true)"
-        >{{ i18n('whitelist_mode', 'Whitelist mode)') }}</li>
-        <li
           :class="['item', {active: !$store.state.settings.blacklist.modeWhitelist}]"
           @click="change(false)"
         >{{ i18n('blacklist_mode', 'Blacklist mode)') }}</li>
+        <li
+          :class="['item', {active: $store.state.settings.blacklist.modeWhitelist}]"
+          @click="change(true)"
+        >{{ i18n('whitelist_mode', 'Whitelist mode)') }}</li>
       </ul>
     </template>
   </control-item>
