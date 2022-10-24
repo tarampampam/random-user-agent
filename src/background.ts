@@ -23,6 +23,7 @@ import RemoteListService, {LocalStorageStringsCache} from './services/remotelist
 import UpdateRemoteUAList from './messaging/handlers/update-remote-ua-list'
 import OnCommand from './hooks/commands'
 import {setExtensionTitle} from './utils/icon-title'
+import {humanizeUserAgent} from './utils/humanize'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -39,7 +40,7 @@ useragent.load().then((): void => { // load useragent state
         const info = useragent.get().info
 
         if (info) {
-          setExtensionTitle(info.useragent).catch(errorsHandler)
+          setExtensionTitle(humanizeUserAgent(info)).catch(errorsHandler)
         }
       })
       .catch(errorsHandler) // save useragent state on update
