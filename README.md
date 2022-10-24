@@ -10,7 +10,7 @@
 <br/>
 <br/>
 
-![Screenshot](https://hsto.org/webt/cl/cz/iv/clczivrmvn47ryadjvtyb13qqom.jpeg)
+![promo-tile](https://user-images.githubusercontent.com/7326800/197565861-a0c25dac-b495-4005-893f-43852e6ac121.png)
 
 ## 🔥 Features list
 
