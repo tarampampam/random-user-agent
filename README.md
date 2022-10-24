@@ -32,9 +32,9 @@
 | ![popup][scr-popup] | ![general][scr-general] | ![generator][scr-generator] | ![blacklist][scr-blacklist] |
 
 [scr-popup]:https://user-images.githubusercontent.com/7326800/196230135-470112aa-2c54-46bf-97cd-ca884acc8810.png
-[scr-general]:https://user-images.githubusercontent.com/7326800/196501140-3e3bfb49-e4dc-4976-b370-e6a286721c1c.png
-[scr-generator]:https://user-images.githubusercontent.com/7326800/196501145-8fa9516b-9be9-4118-a164-665276be7aeb.png
-[scr-blacklist]:https://user-images.githubusercontent.com/7326800/196501147-38960ec8-25a6-4545-a830-073100e79ff2.png
+[scr-general]:https://user-images.githubusercontent.com/7326800/197563815-a0ef73b9-592c-43f4-bf7e-74cf7bb083bb.png
+[scr-generator]:https://user-images.githubusercontent.com/7326800/197563826-130bfab9-47bc-4025-a8da-3244d6dd2688.png
+[scr-blacklist]:https://user-images.githubusercontent.com/7326800/197563829-18edc1f8-5125-47c3-b54a-3b8fdfb503b7.png
 
 ## 🛠 Where do I can test the functionality?
 
