@@ -4,10 +4,7 @@
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp/"><img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&cacheSeconds=120&logo=google-chrome&label=google%20chrome&logoColor=white"></a> &nbsp; <a href="https://addons.mozilla.org/firefox/addon/random_user_agent/"><img alt="Firefox Add-ons" src="https://img.shields.io/amo/v/random_user_agent.svg?style=for-the-badge&cacheSeconds=120&logo=firefox-browser&label=firefox&logoColor=white"></a> &nbsp; <a href="https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded"><img alt="Edge Addons" src="https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white"></a> &nbsp; <a href="https://addons.opera.com/en/extensions/details/random-user-agent/"><img alt="Opera Addons" src="https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white"></a>
 </p>
-<h1 align="center">Random User-Agent</h1>
-<br/>
 <p align="center">Random User-Agent is an <strong>open-source</strong> MIT-licensed <strong>browser extension</strong> that is designed to replaces original browser User-Agent identifier (is a sort of "fingerprint") with a randomized. The extension is incredibly lightweight, using very few resources.</p>
-<br/>
 <br/>
 
 ![promo-tile](https://user-images.githubusercontent.com/7326800/197565861-a0c25dac-b495-4005-893f-43852e6ac121.png)
