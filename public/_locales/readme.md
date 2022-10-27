@@ -16,6 +16,13 @@
 3. Make your changes
 4. Make a [pull-request](https://github.com/tarampampam/random-user-agent/compare) with your changes
 
+## 👍 Translators
+
+- 🇫🇷 French by [@maxgfr](https://github.com/maxgfr)
+- 🇩🇪 German by [@Xenorio](https://github.com/Xenorio)
+- 🇵🇹 Portuguese by [@ghost](https://github.com/ghost)
+- 🇨🇳 Chinese by [@yfdyh000](https://github.com/yfdyh000)
+
 ### Useful links
 
 - [API Reference](https://developer.chrome.com/docs/extensions/reference/i18n/)

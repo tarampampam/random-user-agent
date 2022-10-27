@@ -4,6 +4,86 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.15.1
+
+### Fixed
+
+- Hover icon title text [#370]
+
+[#370]:https://github.com/tarampampam/random-user-agent/issues/370
+
+## v3.15.0
+
+### Added
+
+- Displaying current user-agent on extension icon hover [#364]
+
+### Changed
+
+- The whitelist/blacklist modes toggle was redesigned [#369]
+
+### Fixed
+
+- Settings toggle for Black\White-List logic [#367]
+
+[#364]:https://github.com/tarampampam/random-user-agent/issues/364
+[#367]:https://github.com/tarampampam/random-user-agent/issues/367
+[#369]:https://github.com/tarampampam/random-user-agent/pull/369
+
+## v3.14.2
+
+### Fixed
+
+- War hint offsets (popup window scrolling)
+- Icons size of quick generator switcher
+
+## v3.14.1
+
+### Fixed
+
+- Quick generator switcher behavior
+
+## v3.14.0
+
+### Added
+
+- Quick generator switcher in the popup window [#354]
+- "Rate this addon" button (displayed until it is clicked once) [#356]
+- 🇫🇷 French localization by [@maxgfr](https://github.com/maxgfr) [#355]
+
+### Changed
+
+- Extension name `Random User-Agent` &rarr; `Random User-Agent (Switcher)` [#354]
+- Default generator type settings (for new users) [#356]
+
+### Fixed
+
+- Browser detection method (for internal usage only; [reason](https://bugzilla.mozilla.org/show_bug.cgi?id=1754441)) [#356]
+
+[#354]:https://github.com/tarampampam/random-user-agent/pull/354
+[#356]:https://github.com/tarampampam/random-user-agent/pull/356
+[#355]:https://github.com/tarampampam/random-user-agent/pull/355
+
+## v3.13.1
+
+### Fixed
+
+- Required locale for displaying the war hint
+
+## v3.13.0
+
+### Changed
+
+- Extension icon reverted
+
+### Added
+
+- A war hint for Russian users
+
+### Removed
+
+- "Previous settings" tab from the options page
+
 ## v3.12.0
 
 ### Added

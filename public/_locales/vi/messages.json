@@ -1,6 +1,6 @@
 {
   "manifest_name": {
-    "message": "Random User-Agent",
+    "message": "Random User-Agent (Switcher)",
     "description": "Maximum of 45 characters"
   },
   "manifest_description": {
@@ -35,13 +35,12 @@
   "generator_settings_hint": {"message": "Ở đây bạn có thể thay đổi hành vi chuyển đổi tác nhân"},
   "blacklist_settings": {"message": "Cài đặt danh sách đen"},
   "blacklist_settings_hint": {"message": "Chế độ danh sách đen - chuyển đổi được kích hoạt ở khắp mọi nơi, ngoại trừ các tên miền & quy tắc được xác định. Danh sách trắng - ngược lại, vô hiệu hóa ở khắp mọi nơi ngoại trừ các tên miền & quy tắc được chỉ định"},
-  "white_black_list_mode": {"message": "Chế độ danh sách trắng (chế độ danh sách đen - đã tắt, chế độ danh sách trắng - đã bật)"},
+  "blacklist_mode": {"message": "Chế độ danh sách đen"},
+  "whitelist_mode": {"message": "Chế độ danh sách trắng"},
   "blacklist_domains": {"message": "Danh sách tên miền (mỗi dòng một)"},
   "blacklist_custom_rules": {"message": "Quy tắc tùy chỉnh (mỗi dòng một)"},
   "blacklist_custom_rules_hint": {"message": "Bạn có thể sử dụng ký tự đại diện như * và?. * sẽ khớp với bất kỳ độ dài ký tự nào (ví dụ: *google.com sẽ khớp với google.com, www.google.com, mail.google.com, v.v.),? sẽ chỉ khớp với một ký tự duy nhất (ví dụ: www.? oogle.com sẽ khớp với www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, v.v.)"},
-  "previous_settings": {"message": "Cài đặt trước"},
   "remove": {"message": "Xóa"},
-  "previous_settings_hint": {"message": "Các cài đặt này đã được bạn sử dụng trên phiên bản mở rộng trước đó. Giữ nó ở đâu đó hoặc loại bỏ"},
   "save_changes": {"message": "Lưu thay đổi"},
   "error_occurred": {"message": "Xảy ra lỗi"},
   "like_this_extension": {"message": "Bạn có thích phần mở rộng này không?"},
@@ -50,6 +49,7 @@
   "remote_useragent_list_hint": {"message": "Tiện ích mở rộng sẽ tải xuống định kỳ để luôn cập nhật"},
   "remote_useragent_updating_interval": {"message": "Khoảng thời gian cập nhật (tính bằng giây; ví dụ: 3 giờ một lần = 60 × 60 × 3 = 10800)"},
   "update_now": {"message": "Cập nhật bây giờ"},
+  "please_rate_extension": {"message": "Xin vui lòng, đánh giá addon này!"},
 
   "edge_win": {"message": "Edge trên Windows"},
   "edge_mac": { "message": "Edge trên Mac" },

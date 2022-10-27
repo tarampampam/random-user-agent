@@ -1,0 +1,68 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent (Switcher)",
+    "description": "Maximum of 45 characters"
+  },
+  "manifest_description": {
+    "message": "Mets à jour de manière automatique et aléatoire le User-Agent de ton navigateur afin de masquer au mieux ton identité",
+    "description": "No HTML or other formatting; no more than 132 characters"
+  },
+  "manifest_action_default_title": {
+    "message": "User-Agent aléatoire",
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+  },
+  "manifest_command_renew_useragent": {"message": "Générer un nouveau User-Agent"},
+
+  "active_user_agent": {"message": "User-Agent actif"},
+  "pause_switcher": {"message": "Mettre en pause le Switcher"},
+  "unpause_switcher": {"message": "Réactiver le Switcher"},
+  "enable_switcher": {"message": "Activer le Switcher"},
+  "enabled_on_this_domain": {"message": "Autoriser ce domaine"},
+  "get_new_agent": {"message": "Générer un nouveau User-Agent"},
+  "open_settings": {"message": "Ouvrir les paramètres"},
+  "make_donation": {"message": "Faire une donation"},
+  "bug_report": {"message": "Reporter un bug"},
+
+  "general_settings": {"message": "Paramètres principaux"},
+  "general_settings_hint": {"message": "Changer le comportement du Switcher afin de matcher au mieux avec tes attentes"},
+  "auto_renew": {"message": "Changement automatique du User-Agent après une période de temps donnée"},
+  "auto_renew_interval": {"message": "Temps (en secondes) qui permettra de mettre à jour automatiquement ton User-Agent (e.g. 1 heure = 3600)"},
+  "auto_renew_on_startup": {"message": "Change ton User-Agent à chaque redémarrage du navigateur"},
+  "js_protection": {"message": "Protection contre les détections basées sur du JavaScript"},
+  "custom_useragent": {"message": "Utilise un custom User-Agent (sans te soucier de l'ordre dans la liste) au lieu de celui généré par l'extension"},
+  "custom_useragent_list": {"message": "User-Agents custom (sélectionne un User-Agents spécifique, un par ligne)"},
+  "generator_settings": {"message": "Paramètres de génération du User-Agent"},
+  "generator_settings_hint": {"message": "Ici vous pouvez sélectionner les navigateurs générant le User-Agent"},
+  "blacklist_settings": {"message": "Paramètres du blacklist"},
+  "blacklist_settings_hint": {"message": "Blacklist mode - activée partout, sauf pour les domaines et les règles définies. Whitelist mode - désactivé partout sauf pour les domaines et les règles spécifiées"},
+  "blacklist_mode": {"message": "Blacklist mode"},
+  "whitelist_mode": {"message": "Whitelist mode"},
+  "blacklist_domains": {"message": "Liste des noms de domaines names (un par ligne)"},
+  "blacklist_custom_rules": {"message": "Règles custom (une par ligne)"},
+  "blacklist_custom_rules_hint": {"message": "Tu peux utiliser un 'wildcards' comme * ou ?. * afin de matcher avec n'importe quelle longueur de caractères (par exemple, *google.com correspondra à google.com, www.google.com, mail.google.com , etc.), ? qui matchera avec un seul caractère (par exemple, www.?oogle.com correspondra à www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)"},
+  "remove": {"message": "Supprimer"},
+  "save_changes": {"message": "Sauvegarder les changements"},
+  "error_occurred": {"message": "Une erreur s'est produite"},
+  "like_this_extension": {"message": "Est-ce que t'aimes cet extension ?"},
+  "give_a_star_on_github": {"message": "Envoie un peu de force sur GitHub!"},
+  "remote_useragent_list": {"message": "Utilise (sans te soucier de l'ordre dans la liste) un User-Agent à partir de la liste d'URL suivante :"},
+  "remote_useragent_list_hint": {"message": "L'extension le téléchargera périodiquement pour être à jour"},
+  "remote_useragent_updating_interval": {"message": "Interval de mise à jour (en secondes; e.g. chaque 3 heures = 60×60×3 = 10800)"},
+  "update_now": {"message": "Mettre à jour maintenant"},
+  "please_rate_extension": {"message": "Veuillez évaluer cet addon!"},
+
+  "edge_win": {"message": "Edge sur Windows"},
+  "edge_mac": { "message": "Edge sur Mac" },
+  "chrome_win": {"message": "Chrome sur Windows"},
+  "chrome_mac": {"message": "Chrome sur Mac"},
+  "chrome_linux": {"message": "Chrome sur Linux"},
+  "chrome_android": {"message": "Chrome sur Android"},
+  "firefox_win": {"message": "FireFox sur Windows"},
+  "firefox_mac": {"message": "FireFox sur Mac"},
+  "firefox_linux": {"message": "FireFox sur Linux"},
+  "firefox_android": {"message": "Firefox sur Android"},
+  "opera_win": {"message": "Opera sur Windows"},
+  "opera_mac": {"message": "Opera sur Mac"},
+  "safari_iphone": {"message": "Safari sur iPhone"},
+  "safari_mac": {"message": "Safari sur Mac"}
+}

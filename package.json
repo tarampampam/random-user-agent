@@ -5,7 +5,7 @@
     "name": "paramtamtam",
     "url": "https://github.com/tarampampam"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tarampampam/random-user-agent.git"
@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "randexp": "^0.5.3",
-    "ua-parser-js": "^1.0.2",
-    "vue": "^3.2.40",
-    "vuex": "^4.0.2"
+    "ua-parser-js": "^1.0.32",
+    "vue": "^3.2.41",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.197",
+    "@types/chrome": "^0.0.198",
     "@types/jest": "^27.4.1",
     "@types/ua-parser-js": "^0.7.36",
     "copy-webpack-plugin": "^11.0.0",
@@ -36,11 +36,11 @@
     "json-minimizer-webpack-plugin": "^4.0.0",
     "randomstring": "^1.2.2",
     "sass": "^1.55.0",
-    "sass-loader": "^13.0.2",
+    "sass-loader": "^13.1.0",
     "terser-webpack-plugin": "^5.3.6",
     "ts-jest": "^27.1.4",
     "ts-loader": "^9.4.1",
-    "type-fest": "^3.0.0",
+    "type-fest": "^3.1.0",
     "typescript": "^4.8.4",
     "user-agent-data-types": "^0.3.0",
     "vue-loader": "^17.0.0",

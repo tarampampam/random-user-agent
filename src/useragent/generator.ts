@@ -41,6 +41,8 @@ export function isValidType(type: string): boolean {
  * Data sources:
  * - https://user-agents.net/
  * - https://developers.whatismybrowser.com/useragents/explore/
+ *
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox
  */
 export default class Generator implements UseragentGenerator {
   private readonly commonPatterns = {

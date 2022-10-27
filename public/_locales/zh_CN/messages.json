@@ -1,6 +1,6 @@
 {
   "manifest_name": {
-    "message": "Random User-Agent",
+    "message": "Random User-Agent (Switcher)",
     "description": "Maximum of 45 characters"
   },
   "manifest_description": {
@@ -35,13 +35,12 @@
   "generator_settings_hint": {"message": ""},
   "blacklist_settings": {"message": "黑名单设置"},
   "blacklist_settings_hint": {"message": "黑名单模式 - 默认启用，全面启用用户代理切换，除非符合已定义的域名和规则。白名单模式相反，仅针对符合已定义的域名和规则的访问启用用户代理切换。"},
-  "white_black_list_mode": {"message": "启用白名单模式"},
+  "blacklist_mode": {"message": "黑名单模式"},
+  "whitelist_mode": {"message": "白名单模式"},
   "blacklist_domains": {"message": "域名列表（每行一条）"},
   "blacklist_custom_rules": {"message": "自定义规则（每行一条）"},
   "blacklist_custom_rules_hint": {"message": "您可以使用 * 和 ? 通配符。* 匹配任何长度的字符串（例如 *google.com 可匹配 google.com, www.google.com, mail.google.com 等），? 可匹配一个字符（例如 www.?oogle.com 可匹配 www.oogle.com, www.moogle.com, www.google.com, www.woogle.com 等）"},
-  "previous_settings": {"message": "以前的设置"},
   "remove": {"message": "移除"},
-  "previous_settings_hint": {"message": "这是您在本扩展的早期版本中使用的设置。自行备份或移除它们"},
   "save_changes": {"message": "保存更改"},
   "error_occurred": {"message": "发生错误"},
   "like_this_extension": {"message": "你喜欢这个扩展吗？"},
@@ -50,6 +49,7 @@
   "remote_useragent_list_hint": {"message": "该扩展将定期下载，以保持其最新状态"},
   "remote_useragent_updating_interval": {"message": "更新间隔（以秒为单位；例如，每3小时=60×60×3=10800）。"},
   "update_now": {"message": "现在更新"},
+  "please_rate_extension": {"message": "请给这个插件评分!"},
 
   "edge_win": {"message": "Edge 于 Windows"},
   "edge_mac": { "message": "Edge 于 Mac" },

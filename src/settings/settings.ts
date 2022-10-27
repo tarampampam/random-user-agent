@@ -1,6 +1,7 @@
 import {Storage} from './storage'
 import {GeneratorType} from '../useragent/generator'
 import {DeepPartial} from '../utils/types'
+import detectBrowserName from '../utils/browser-detector'
 
 export enum BlacklistMode {
   // enabled everywhere, but disabled on pages defined in the blacklist
@@ -67,9 +68,6 @@ export enum SettingEvent {
   onChange = 'on:change',
 }
 
-declare var InstallTrigger: any
-const isFirefox = typeof InstallTrigger !== 'undefined' // link: https://stackoverflow.com/a/41820692/2252921
-
 export default class Settings {
   public readonly storageKey: string = 'settings-struct-v3'
 
@@ -95,9 +93,7 @@ export default class Settings {
       enabled: true,
     },
     generator: {
-      types: isFirefox ? [
-        GeneratorType.firefoxWin, GeneratorType.firefoxLinux, GeneratorType.firefoxMac,
-      ] : [
+      types: [
         GeneratorType.chromeWin, GeneratorType.chromeLinux, GeneratorType.chromeMac,
       ],
     },
@@ -114,6 +110,20 @@ export default class Settings {
 
   constructor(storage: Storage) {
     this.storage = storage
+
+    switch (detectBrowserName()) {
+      case 'firefox':
+        this.state.generator.types = [GeneratorType.firefoxWin, GeneratorType.firefoxLinux, GeneratorType.firefoxMac]
+        break
+
+      case 'opera':
+        this.state.generator.types = [GeneratorType.operaMac, GeneratorType.operaWin]
+        break
+
+      case 'edge':
+        this.state.generator.types = [GeneratorType.edgeMac, GeneratorType.edgeWin]
+        break
+    }
   }
 
   // Attach callback for the events of the setting

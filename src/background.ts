@@ -22,6 +22,8 @@ import HeadersReceived from './hooks/headers-received'
 import RemoteListService, {LocalStorageStringsCache} from './services/remotelist-service'
 import UpdateRemoteUAList from './messaging/handlers/update-remote-ua-list'
 import OnCommand from './hooks/commands'
+import {setExtensionTitle} from './utils/icon-title'
+import {humanizeUserAgent} from './utils/humanize'
 
 // define default errors handler for the background page
 const errorsHandler: (err: Error) => void = console.error
@@ -33,7 +35,15 @@ const useragent = new Useragent()
 
 useragent.load().then((): void => { // load useragent state
   useragent.on(UseragentStateEvent.onChange, (): void => {
-    useragent.save().catch(errorsHandler) // save useragent state on update
+    useragent.save()
+      .then((): void => {
+        const info = useragent.get().info
+
+        if (info) {
+          setExtensionTitle(humanizeUserAgent(info)).catch(errorsHandler)
+        }
+      })
+      .catch(errorsHandler) // save useragent state on update
   })
 
   storage.init().then((): void => { // storage must be initialized before usage

@@ -5,10 +5,14 @@
   <actions :enabledOnThisDomain="enabledOnThisDomain"
            :enabled="enabled"
            :enabledOnThisDomainTitle="currentPageDomain"
+           :generatorTypes="generatorTypes"
            @clickEnabledOnThisDomain="changeEnabledOnThisDomain"
            @clickEnabled="changeEnabled"
            @clickRefresh="refreshUserAgent"
-           @clickSettings="openSettings"/>
+           @clickSettings="openSettings"
+           @changeGeneratorTypes="updateGeneratorTypes"/>
+  <war-hint v-if="showWarHint"/>
+  <rate-extension v-else/>
   <popup-footer :version="version"/>
 </template>
 
@@ -18,6 +22,8 @@ import i18n from './../mixins/i18n'
 import PopupHeader from './extended/header.vue'
 import ActiveUserAgent from './extended/active-user-agent.vue'
 import Actions from './extended/actions.vue'
+import WarHint from './extended/war-hint.vue'
+import RateExtension from './extended/rate-extension.vue'
 import PopupFooter from './extended/footer.vue'
 import {version, VersionResponse} from '../../messaging/handlers/version'
 import {RuntimeSender, Sender} from '../../messaging/runtime'
@@ -27,6 +33,7 @@ import {changeForDomain} from '../../messaging/handlers/change-for-domain'
 import {updateSettings} from '../../messaging/handlers/update-settings'
 import {getSettings, GetSettingsResponse} from '../../messaging/handlers/get-settings'
 import {getUseragent, GetUseragentResponse} from '../../messaging/handlers/get-useragent'
+import {GeneratorType} from '../../useragent/generator'
 
 const errorsHandler: (err: Error) => void = console.error,
   backend: Sender = new RuntimeSender
@@ -36,18 +43,29 @@ export default defineComponent({
     'popup-header': PopupHeader,
     'active-user-agent': ActiveUserAgent,
     'actions': Actions,
+    'war-hint': WarHint,
+    'rate-extension': RateExtension,
     'popup-footer': PopupFooter,
   },
   mixins: [i18n],
-  data: (): { [key: string]: any } => {
+  data: (): {
+    [key: string]: any
+    enabled, enabledOnThisDomain: boolean
+    generatorTypes: GeneratorType[]
+    useragent, version: string
+    currentPageDomain: string
+    currentTabID: number | undefined
+    showWarHint: boolean
+  } => {
     return {
       enabled: false,
       enabledOnThisDomain: false,
+      generatorTypes: [],
       useragent: '',
       version: '',
-
       currentPageDomain: '',
       currentTabID: undefined as number | undefined,
+      showWarHint: false,
     }
   },
   methods: {
@@ -88,11 +106,25 @@ export default defineComponent({
         .catch(errorsHandler)
     },
 
+    updateGeneratorTypes(types: GeneratorType[]): void {
+      backend
+        .send(updateSettings({generator: {types: types}}))
+        .then((): void => {
+          this.generatorTypes = types
+        })
+        .then(this.refreshUserAgent)
+        .catch(errorsHandler)
+    },
+
     openSettings(): void {
       chrome.runtime.openOptionsPage()
     },
   },
   created(): void {
+    if (chrome.i18n.getUILanguage().toLowerCase().startsWith('ru')) {
+      this.showWarHint = true
+    }
+
     backend
       .send( // order is important!
         version(),
@@ -105,6 +137,7 @@ export default defineComponent({
         this.useragent = (resp[2] as GetUseragentResponse).payload.info?.useragent || ''
 
         this.enabled = settings.enabled
+        this.generatorTypes = settings.generator.types
       })
       .catch(errorsHandler)
 
