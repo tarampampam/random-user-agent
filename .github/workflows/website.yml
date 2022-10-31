@@ -29,7 +29,7 @@ jobs:
           echo "plugins: [jekyll-remote-theme]" >> $config
           echo "title: Random User-Agent and Switcher" >> $config
           echo "baseurl: ''" >> $config
-          echo "google_site_verification: p5mRRzPLLHvQhw-y7g0v4CPxM9iMAEPe8WD_45_Y2Uw" >> $config
+          echo "google_site_verification: RcsUxl5kqZdDhG-BU5VHhZXqwyuC6vU7PEDmMFSnbao" >> $config
 
       - uses: actions/configure-pages@v2
 
