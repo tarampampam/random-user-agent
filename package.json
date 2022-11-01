@@ -34,7 +34,7 @@
     "filemanager-webpack-plugin": "^7.0.0",
     "jest": "^27.5.1",
     "json-minimizer-webpack-plugin": "^4.0.0",
-    "randomstring": "^1.2.2",
+    "randomstring": "^1.2.3",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
     "terser-webpack-plugin": "^5.3.6",
