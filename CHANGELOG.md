@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.16.0
+
+### Added
+
+- 🇮🇩 Indonesian localization by [@tustoz](https://github.com/tustoz) [#377]
+
+[#377]:https://github.com/tarampampam/random-user-agent/pull/377
+
 ## v3.15.1
 
 ### Fixed

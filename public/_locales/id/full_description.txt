@@ -1,0 +1,14 @@
+User-Agent - string yang dikirim ke situs web apa pun yang Anda kunjungi. Ini adalah semacam "sidik jari" yang ditinggalkan browser Anda yang berisi:
+
+⭐️ Nama dan versi browser Anda
+⭐️ Nama sistem operasi (Mac, Windows, Linux, dll.) dan versinya
+⭐️ Informasi tentang beberapa plugin yang terpasang pada browser
+⭐️ Informasi lain yang mengidentifikasi dan mengekspos Anda
+
+🚀 Ekstensi ini telah dibuat untuk menghentikan kebocoran data dan meniru perangkat yang berbeda dengan cara yang paling sederhana!
+
+Secara otomatis mengganti string User-Agent setelah jangka waktu tertentu dengan yang diacak. String User-Agent juga dapat diatur secara manual. Ekstensi ini sangat ringan, menggunakan sumber daya yang sangat sedikit. Pengacakan User-Agent dapat dikustomisasi oleh pengguna (browser dan OS apa yang di-spoof, dll.). Daftar pengecualian tersedia dengan opsi wildcard. Melindungi dari eksploitasi Javascript untuk menyembunyikan identitas Anda dan melindungi anonimitas Anda.
+
+Sepenuhnya gratis dan tanpa iklan.
+
+Dibuat dengan ❤️ Kode sumber: https://github.com/tarampampam/random-user-agent
