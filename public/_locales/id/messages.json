@@ -1,15 +1,15 @@
 {
   "manifest_name": {
     "message": "Agen Pengguna Acak (Pengalih)",
-    "description": "Maksimum 45 karakter"
+    "description": "Maximum of 45 characters"
   },
   "manifest_description": {
     "message": "Secara otomatis mengubah agen pengguna setelah periode waktu tertentu ke agen pengguna yang dipilih secara acak, sehingga menyembunyikan agen pengguna Anda yang sebenarnya",
-    "description": "Tidak ada HTML atau pemformatan lainnya; tidak lebih dari 132 karakter"
+    "description": "No HTML or other formatting; no more than 132 characters"
   },
   "manifest_action_default_title": {
     "message": "Acak Agen-Pengguna Anda",
-    "description": "Tooltip, atau judul, muncul ketika pengguna mengarahkan mouse pada ikon ekstensi di toolbar"
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
   "manifest_command_renew_useragent": {"message": "Dapatkan agen baru"},
 
