@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Fixed
+
+- Indonesian localization [#379]
+
+[379]:https://github.com/tarampampam/random-user-agent/pull/379
+
 ## v3.16.0
 
 ### Added
