@@ -1,15 +1,15 @@
 {
   "manifest_name": {
     "message": "User-Agent acak (Pengalih)",
-    "description": "Maksimal 45 karakter"
+    "description": "Maximum of 45 characters"
   },
   "manifest_description": {
     "message": "Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, sehingga menyembunyikan User-Agent kamu yang sebenarnya",
-    "description": "Tidak diperbolehkan menggunakan format HTML atau format lainnya; tidak lebih dari 132 karakter"
+    "description": "No HTML or other formatting; no more than 132 characters"
   },
   "manifest_action_default_title": {
     "message": "Acak User-Agent kamu",
-    "description": "Tooltip, atau judul, muncul saat pengguna mengarahkan mouse ke ikon ekstensi di toolbar"
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
   "manifest_command_renew_useragent": {"message": "Dapatkan User-Agent baru"},
 
@@ -51,18 +51,18 @@
   "update_now": {"message": "Perbaharui sekarang"},
   "please_rate_extension": {"message": "Silahkan, beri peringkat addon ini!"},
 
-  "edge_win": {"message": "Peramban Edge pada Windows"},
-  "edge_mac": {"message": "Peramban Edge pada Mac" },
-  "chrome_win": {"message": "Peramban Chrome pada Windows"},
-  "chrome_mac": {"message": "Peramban Chrome pada Mac"},
-  "chrome_linux": {"message": "Peramban Chrome pada Linux"},
-  "chrome_android": {"message": "Peramban Chrome pada Android"},
-  "firefox_win": {"message": "Peramban FireFox pada Windows"},
-  "firefox_mac": {"message": "Peramban FireFox pada Mac"},
-  "firefox_linux": {"message": "Peramban FireFox pada Linux"},
-  "firefox_android": {"message": "Peramban Firefox pada Android"},
-  "opera_win": {"message": "Peramban Opera pada Windows"},
-  "opera_mac": {"message": "Peramban Opera pada Mac"},
-  "safari_iphone": {"message": "Peramban Safari pada iPhone"},
-  "safari_mac": {"message": "Peramban Safari pada Mac"}
+  "edge_win": {"message": "Edge pada Windows"},
+  "edge_mac": {"message": "Edge pada Mac" },
+  "chrome_win": {"message": "Chrome pada Windows"},
+  "chrome_mac": {"message": "Chrome pada Mac"},
+  "chrome_linux": {"message": "Chrome pada Linux"},
+  "chrome_android": {"message": "Chrome pada Android"},
+  "firefox_win": {"message": "FireFox pada Windows"},
+  "firefox_mac": {"message": "FireFox pada Mac"},
+  "firefox_linux": {"message": "FireFox pada Linux"},
+  "firefox_android": {"message": "Firefox pada Android"},
+  "opera_win": {"message": "Opera pada Windows"},
+  "opera_mac": {"message": "Opera pada Mac"},
+  "safari_iphone": {"message": "Safari pada iPhone"},
+  "safari_mac": {"message": "Safari pada Mac"}
 }
