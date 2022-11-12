@@ -18,7 +18,7 @@
 
 ## 👍 Translators
 
-- 🇮🇩 Indonesian by [@tustoz](https://github.com/tustoz)
+- 🇮🇩 Indonesian by [@tustoz](https://github.com/tustoz) and [@FerdinaKusumah](https://github.com/FerdinaKusumah)
 - 🇫🇷 French by [@maxgfr](https://github.com/maxgfr)
 - 🇩🇪 German by [@Xenorio](https://github.com/Xenorio)
 - 🇵🇹 Portuguese by [@ghost](https://github.com/ghost)
