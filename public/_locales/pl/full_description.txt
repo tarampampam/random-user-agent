@@ -1,0 +1,14 @@
+User-Agent - ciąg znaków, który jest wysyłany do każdej odwiedzanej strony internetowej. Jest to rodzaj "odcisku palca", który pozostawia za sobą przeglądarka i który zawiera:
+
+⭐️ Nazwę i wersję Twojej przeglądarki.
+⭐️ Nazwę systemu operacyjnego (Mac, Windows, Linux itp.) i jego wersję
+⭐️ Informacje o niektórych wtyczkach zainstalowanych w przeglądarce
+⭐️ Inne informacje, które Cię identyfikują i eksponują
+
+🚀 To rozszerzenie zostało stworzone, aby zatrzymać wyciek danych i emulować różne urządzenia w najprostszy sposób!
+
+Automatycznie zastępuje ciągi User-Agent po określonym czasie losowym. Ciągi User-Agent mogą być również ustawione ręcznie. Rozszerzenie jest niezwykle lekkie, używa bardzo mało zasobów. Randomizacja User-Agent może być dostosowana przez użytkownika (jakie przeglądarki i systemy operacyjne są spoofed, itp.). Lista wyjątków dostępna z opcją symboli wieloznacznych. Chroni przed exploitami Javascript, aby ukryć swoją tożsamość i chronić anonimowość.
+
+Całkowicie darmowy i bez reklam.
+
+Made with ❤️ Kod źródłowy: https://github.com/tarampampam/random-user-agent
