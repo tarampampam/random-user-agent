@@ -1,15 +1,15 @@
 {
   "manifest_name": {
     "message": "Random User-Agent (Switcher)",
-    "description": "Максимум 45 символів"
+    "description": "Maximum of 45 characters"
   },
   "manifest_description": {
     "message": "Автоматична зміна агента користувача через заданий проміжок часу на випадково обраного, таким чином приховуючи вашого реального агента користувача",
-    "description": "Без HTML або іншого форматування; не більше 132 символів"
+    "description": "No HTML or other formatting; no more than 132 characters"
   },
   "manifest_action_default_title": {
     "message": "Рандомізуйте свого User-Agent",
-    "description": "Підказка, або заголовок, з'являється при наведенні користувачем миші на іконку розширення на панелі інструментів"
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
   "manifest_command_renew_useragent": {"message": "Отримати новий ідентифікатор"},
 

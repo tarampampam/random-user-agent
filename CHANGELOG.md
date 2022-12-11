@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## UNRELEASED
+
+### Added
+
+- 🇺🇦 Ukrainian and 🇵🇱 Polish localizations by [@webact1](https://github.com/webact1)
+
 ## v3.16.1
 
 ### Changed

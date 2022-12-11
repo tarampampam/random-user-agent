@@ -1,15 +1,15 @@
 {
   "manifest_name": {
     "message": "Random User-Agent (Switcher)",
-    "description": "Maksymalnie 45 znaków"
+    "description": "Maximum of 45 characters"
   },
   "manifest_description": {
     "message": "Automatycznie zmienia agenta użytkownika po określonym czasie na losowo wybrany, ukrywając w ten sposób swojego prawdziwego agenta użytkownika",
-    "description": "Bez HTML lub innego formatowania; nie więcej niż 132 znaki"
+    "description": "No HTML or other formatting; no more than 132 characters"
   },
   "manifest_action_default_title": {
     "message": "Randomizuj swój User-Agent",
-    "description": "Etykieta narzędzia, czyli tytuł, pojawia się, gdy użytkownik najedzie myszką na ikonę rozszerzenia w pasku narzędziowym"
+    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
   },
   "manifest_command_renew_useragent": {"message": "Zdobądź nowego agenta"},
 
