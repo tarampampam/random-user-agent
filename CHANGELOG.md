@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.16.2
+
+### Changed
+
+- Update of user agent versions
+
 ## v3.16.1
 
 ### Changed

@@ -20,10 +20,10 @@ abstract class Version {
 export const randomChromeVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Google_Chrome_version_history
   private variants = {
-    major: {min: 108, max: 110}, // periodically we should update those values
+    major: {min: 110, max: 113}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 5359, max: 5414},
-    build: {min: 94, max: 218},
+    patch: {min: 5481, max: 5563},
+    build: {min: 194, max: 226},
   }
 
   version(): BrowserVersion {
@@ -44,7 +44,7 @@ export const randomChromeVersion = new class extends Version {
 export const randomFirefoxVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Firefox_version_history
   private variants = {
-    major: {min: 108, max: 123}, // periodically we should update those values
+    major: {min: 110, max: 116}, // periodically we should update those values
     minor: {static: 0},
     patch: {variants: ['esr']},
   }
@@ -64,7 +64,7 @@ export const randomFirefoxVersion = new class extends Version {
 export const randomOperaVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Opera_version_history
   private variants = {
-    major: {min: 91, max: 93}, // periodically we should update those values
+    major: {min: 96, max: 97}, // periodically we should update those values
     minor: {static: 0},
     patch: {min: 2889, max: 4480},
     build: {min: 24, max: 198},
@@ -88,7 +88,7 @@ export const randomOperaVersion = new class extends Version {
 export const randomSafariVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Safari_version_history
   private variants = {
-    major: {min: 537, max: 611}, // periodically we should update those values
+    major: {min: 614, max: 632}, // periodically we should update those values
     minor: {min: 1, max: 36},
     patch: {min: 1, max: 15},
   }
@@ -110,9 +110,9 @@ export const randomSafariVersion = new class extends Version {
 export const randomEdgeVersion = new class extends Version {
   // all versions: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   private variants = {
-    major: {min: 105, max: 107}, // periodically we should update those values
+    major: {min: 110, max: 113}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 1245, max: 1418},
+    patch: {min: 1462, max: 1587},
     build: {min: 33, max: 62},
   }
 
