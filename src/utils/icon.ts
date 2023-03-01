@@ -29,5 +29,5 @@ export function setExtensionIcon(state: IconState, tabId?: number) {
     details.tabId = tabId
   }
 
-  chrome.browserAction.setIcon(details)
+  chrome.browserAction.setIcon(details, (): void => {})
 }
