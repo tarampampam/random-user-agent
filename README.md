@@ -109,6 +109,16 @@ Sure - user-agent renewal (`Ctrl+Shift+U` by default). You can
 change it in your browser settings: [chrome://extensions/shortcuts](chrome://extensions/shortcuts) (in Google Chrome).
 </details>
 
+<details markdown=1><summary markdown="span"><strong>How to install it on Firefox Mobile?</strong></summary>
+
+Following [this guide](https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/)
+you need to specify a collection ID to install the addon:
+
+![image](https://user-images.githubusercontent.com/7326800/205586504-46fa353c-919c-4322-8e5e-d5e6047089a6.png) ![image](https://user-images.githubusercontent.com/7326800/205586527-3183f72e-a3da-49f1-915d-438bb04541e2.png)
+
+Enter `14112060` / `rua`. After you tap "OK", the application will close and restart.
+</details>
+
 ## 🖥️ Run Locally
 
 After cloning the project, open the terminal and navigate to the project root directory (since I am a Linux adept, for
