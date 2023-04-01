@@ -40,7 +40,7 @@
     "terser-webpack-plugin": "^5.3.6",
     "ts-jest": "^27.1.4",
     "ts-loader": "^9.4.2",
-    "type-fest": "^3.6.1",
+    "type-fest": "^3.7.2",
     "typescript": "^4.9.5",
     "user-agent-data-types": "^0.3.0",
     "vue-loader": "^17.0.1",
