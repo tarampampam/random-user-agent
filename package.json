@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "randexp": "^0.5.3",
-    "ua-parser-js": "^1.0.33",
+    "ua-parser-js": "^1.0.34",
     "vue": "^3.2.47",
     "vuex": "^4.1.0"
   },
