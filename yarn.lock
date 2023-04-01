@@ -800,10 +800,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chrome@^0.0.218":
-  version "0.0.218"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.218.tgz#d354cf0ac85204c17cfbe03ba7eb8f58c75d03a4"
-  integrity sha512-GC/c9B3Eo3h3l+fV5G6A9cRMEZOYo46E21mjHHfkXz+/A5uypXstMVAMk04IeGY2DJ7PxVxbn26oFBPZOa4Dkw==
+"@types/chrome@^0.0.227":
+  version "0.0.227"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.227.tgz#06ac653adb4cb8a192f6e42d3a2079ef884cdf34"
+  integrity sha512-l1sVnf/1wZ/oNPw5X7OJMZjQlqVf3tPO50aE/aETHQRbrYhlHZkwv7lcuOWCimRSkFdHvAW4M+RIBAZACblXng==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
