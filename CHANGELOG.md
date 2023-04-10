@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ## UNRELEASED
 
+### Changed
+
+- Update of user agent versions
+
 ### Added
 
 - 🇺🇦 Ukrainian localization by [@Yctftcyfc](https://github.com/Yctftcyfc)

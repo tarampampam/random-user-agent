@@ -20,9 +20,9 @@ abstract class Version {
 export const randomChromeVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Google_Chrome_version_history
   private variants = {
-    major: {min: 110, max: 113}, // periodically we should update those values
+    major: {min: 112, max: 114}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 5481, max: 5563},
+    patch: {min: 5615, max: 5672},
     build: {min: 194, max: 226},
   }
 
@@ -44,7 +44,7 @@ export const randomChromeVersion = new class extends Version {
 export const randomFirefoxVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Firefox_version_history
   private variants = {
-    major: {min: 110, max: 116}, // periodically we should update those values
+    major: {min: 111, max: 123}, // periodically we should update those values
     minor: {static: 0},
     patch: {variants: ['esr']},
   }
@@ -110,9 +110,9 @@ export const randomSafariVersion = new class extends Version {
 export const randomEdgeVersion = new class extends Version {
   // all versions: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   private variants = {
-    major: {min: 110, max: 113}, // periodically we should update those values
+    major: {min: 111, max: 113}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 1462, max: 1587},
+    patch: {min: 1661, max: 1722},
     build: {min: 33, max: 62},
   }
 
