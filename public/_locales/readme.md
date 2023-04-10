@@ -18,6 +18,7 @@
 
 ## 👍 Translators
 
+- 🇺🇦 Ukrainian by anonymous contributor
 - 🇮🇩 Indonesian by [@tustoz](https://github.com/tustoz) and [@FerdinaKusumah](https://github.com/FerdinaKusumah)
 - 🇫🇷 French by [@maxgfr](https://github.com/maxgfr)
 - 🇩🇪 German by [@Xenorio](https://github.com/Xenorio)
