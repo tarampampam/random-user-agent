@@ -1,6 +1,6 @@
 {
   "manifest_name": {
-    "message": "Agente de usuario aleatorio (Switcher)"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
     "message": "Cambiar automáticamente el agente de usuario después de un período de tiempo especificado a uno seleccionado al azar, ocultando así su agente de usuario real"

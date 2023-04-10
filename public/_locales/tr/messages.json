@@ -1,6 +1,6 @@
 {
   "manifest_name": {
-    "message": "Rastgele Kullanıcı Aracısı (Switcher)"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
     "message": "Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına değiştirir, böylece gerçek kullanıcı aracınızı gizler"

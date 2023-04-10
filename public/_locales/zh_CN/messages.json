@@ -1,15 +1,12 @@
 {
   "manifest_name": {
-    "message": "Random User-Agent (Switcher)",
-    "description": "Maximum of 45 characters"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
-    "message": "按时自动更改用户代理字符串，隐藏您的真实用户代理。",
-    "description": "No HTML or other formatting; no more than 132 characters"
+    "message": "按时自动更改用户代理字符串，隐藏您的真实用户代理。"
   },
   "manifest_action_default_title": {
-    "message": "随机化您的 User-Agent",
-    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+    "message": "随机化您的 User-Agent"
   },
   "manifest_command_renew_useragent": {"message": "换个新的"},
 

@@ -1,6 +1,6 @@
 {
   "manifest_name": {
-    "message": "ランダムなユーザーエージェント（スイッチャー）"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
     "message": "指定した時間経過後に自動的にユーザーエージェントをランダムに変更し、実際のユーザーエージェントを隠します。"
