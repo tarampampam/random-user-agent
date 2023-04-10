@@ -1,0 +1,14 @@
+User-Agent - ziyaret ettiğiniz herhangi bir web sitesine gönderilen bir dize. Bu, tarayıcınızın geride bıraktığı ve içerdiği bir tür "parmak izidir":
+
+⭐️ Tarayıcınızın adı ve sürümü
+⭐️ İşletim sisteminin adı (Mac, Windows, Linux, vb.) ve sürümü
+⭐️ Tarayıcıda yüklü bazı eklentiler hakkında bilgi
+⭐️ Sizi tanımlayan ve ifşa eden diğer bilgiler
+
+🚀 Bu uzantı, veri sızıntısını durdurmak ve farklı cihazları en basit şekilde taklit etmek için oluşturulmuştur!
+
+Belirli bir süre sonra User-Agent dizelerini otomatik olarak rastgele bir dizeyle değiştirir. User-Agent dizeleri manuel olarak da ayarlanabilir. Uzantı inanılmaz derecede hafiftir ve çok az kaynak kullanır. User-Agent randomizasyonu kullanıcı tarafından özelleştirilebilir (hangi tarayıcıların ve işletim sistemlerinin taklit edileceği vb.). Joker karakter seçeneği ile istisnalar listesi mevcuttur. Kimliğinizi gizlemek ve anonimliğinizi korumak için Javascript istismarlarına karşı koruma sağlar.
+
+Tamamen ücretsiz ve reklamsız.
+
+Made with ❤️ Kaynak kodu: https://github.com/tarampampam/random-user-agent
