@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 - 🇵🇱 Polish localization by [@Yctftcyfc](https://github.com/Yctftcyfc)
 - 🇯🇵 Japanese localization by [@webact1](https://github.com/webact1)
 - 🇹🇷 Turkish localization by [@webact1](https://github.com/webact1)
+- 🇪🇸 Spanish localization by [@webact1](https://github.com/webact1)
 
 ## v3.16.2
 
