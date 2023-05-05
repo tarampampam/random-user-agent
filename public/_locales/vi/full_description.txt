@@ -1,14 +1,14 @@
-User-Agent - một chuỗi được gửi đến bất kỳ trang web nào bạn truy cập. Đây là một loại “vân tay” trình duyệt của bạn để lại phía sau có chứa:
+User-Agent - một dòng kí tự được gửi đến bất kỳ trang web nào bạn truy cập. Đây là một loại “vân tay” mà trình duyệt của bạn để lại bao gồm:
 
 ⭐️ Tên và phiên bản trình duyệt của bạn
-⭐️ Tên của hệ điều hành (Mac, Windows, Linux, vv) và phiên bản của nó
-⭐️ Thông tin về một số plugin được cài đặt trên trình duyệt
-⭐️ Các thông tin khác xác định và cho thấy bạn
+⭐️ Tên và phiên bản của hệ điều hành (Mac, Windows, Linux, vv)
+⭐️ Thông tin về một số phần mở rộng được cài đặt trên trình duyệt
+⭐️ Các thông tin khác cho phép xác định và làm lộ danh tính bạn
 
-🚀 Phần mở rộng này đã được tạo ra để ngăn chặn rò rỉ dữ liệu.
+🚀 Phần mở rộng này đã được tạo ra để ngăn chặn rò rỉ dữ liệu và giả lập những thiết bị khác một cách đơn giản nhất!
 
-Nó tự động thay thế chuỗi User-Agent sau một khoảng thời gian nhất định với một lựa chọn ngẫu nhiên. Chuỗi người dùng đại lý cũng có thể được đặt theo cách thủ công. Phần mở rộng là cực kỳ nhẹ, sử dụng rất ít tài nguyên. Người dùng ngẫu nhiên Agent có thể được tùy chỉnh bởi người dùng (những trình duyệt và hệ điều hành nào được giả mạo, v.v.). Danh sách ngoại lệ có sẵn với tùy chọn ký tự đại diện. Bảo vệ chống lại các khai thác Javascript để ẩn danh tính của bạn và bảo vệ tính ẩn danh của bạn.
+Nó tự động thay thế dòng User-Agent sau một khoảng thời gian nhất định với một dòng ngẫu nhiên. Dòng User-Agent cũng có thể được đặt thủ công. Phần mở rộng này cực kỳ nhẹ, sử dụng rất ít tài nguyên. Sự ngẫu nhiên hoá User-Agent có thể được tùy chỉnh bởi người dùng (những trình duyệt và hệ điều hành nào được giả lập, v.v.). Bao gồm danh sách ngoại lệ với tùy chọn ký tự đại diện. Bảo vệ khỏi những lỗ hổng Javascript để ẩn danh tính và bảo vệ sự ẩn danh của bạn.
 
 Hoàn toàn miễn phí và không có quảng cáo.
 
-Mã nguồn: https://github.com/tarampampam/random-user-agent
+Được làm với ❤️ Mã nguồn: https://github.com/tarampampam/random-user-agent
