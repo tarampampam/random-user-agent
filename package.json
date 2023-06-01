@@ -30,7 +30,7 @@
     "@types/jest": "^27.4.1",
     "@types/ua-parser-js": "^0.7.36",
     "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.7.3",
+    "css-loader": "^6.8.1",
     "filemanager-webpack-plugin": "^8.0.0",
     "jest": "^27.5.1",
     "json-minimizer-webpack-plugin": "^4.0.0",
