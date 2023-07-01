@@ -3967,10 +3967,10 @@ v8-to-istanbul@^8.1.0:
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
 
-vue-loader@^17.2.1:
-  version "17.2.1"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.2.1.tgz#d06aee3cfd80db03c2c9a66ca291219471115f1d"
-  integrity sha512-6vIZPxekZ23gWQtVlaJgT1sKW9zV7YeiW1kgtdQ0rpbMWmfoajeZ+GS17xtXDlz8ZpydrFKPza1CrwHSG4lIww==
+vue-loader@^17.2.2:
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.2.2.tgz#96148eb70c1365cc8c5bab4274923596811c79df"
+  integrity sha512-aqNvKJvnz2A/6VWeJZodAo8XLoAlVwBv+2Z6dama+LHsAF+P/xijQ+OfWrxIs0wcGSJduvdzvTuATzXbNKkpiw==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
