@@ -18,11 +18,11 @@ abstract class Version {
 }
 
 export const randomChromeVersion = new class extends Version {
-  // all versions: https://en.wikipedia.org/wiki/Google_Chrome_version_history
+  // all versions: https://chromereleases.googleblog.com/search/label/Desktop%20Update
   private variants = {
-    major: {min: 112, max: 114}, // periodically we should update those values
+    major: {min: 114, max: 116}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 5615, max: 5672},
+    patch: {min: 5735, max: 5845},
     build: {min: 194, max: 226},
   }
 
@@ -42,9 +42,9 @@ export const randomChromeVersion = new class extends Version {
 }
 
 export const randomFirefoxVersion = new class extends Version {
-  // all versions: https://en.wikipedia.org/wiki/Firefox_version_history
+  // all versions: https://www.mozilla.org/en-US/firefox/releases/
   private variants = {
-    major: {min: 111, max: 123}, // periodically we should update those values
+    major: {min: 113, max: 115}, // periodically we should update those values
     minor: {static: 0},
     patch: {variants: ['esr']},
   }
@@ -64,9 +64,9 @@ export const randomFirefoxVersion = new class extends Version {
 export const randomOperaVersion = new class extends Version {
   // all versions: https://en.wikipedia.org/wiki/Opera_version_history
   private variants = {
-    major: {min: 96, max: 97}, // periodically we should update those values
+    major: {min: 98, max: 100}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 2889, max: 4480},
+    patch: {min: 2889, max: 4815},
     build: {min: 24, max: 198},
   }
 
@@ -110,9 +110,9 @@ export const randomSafariVersion = new class extends Version {
 export const randomEdgeVersion = new class extends Version {
   // all versions: https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
   private variants = {
-    major: {min: 111, max: 113}, // periodically we should update those values
+    major: {min: 109, max: 114}, // periodically we should update those values
     minor: {static: 0},
-    patch: {min: 1661, max: 1722},
+    patch: {min: 1518, max: 1823},
     build: {min: 33, max: 62},
   }
 
