@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/chrome": "^0.0.244",
     "@types/jest": "^27.4.1",
-    "@types/ua-parser-js": "^0.7.36",
+    "@types/ua-parser-js": "^0.7.37",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "filemanager-webpack-plugin": "^8.0.0",
