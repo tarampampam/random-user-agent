@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - uses: actions/cache@v3
@@ -58,7 +58,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - uses: actions/cache@v3
@@ -93,7 +93,7 @@ jobs:
           name: extension-dist
           path: dist
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - run: yarn global add addons-linter
