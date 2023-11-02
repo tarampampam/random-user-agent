@@ -840,10 +840,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chrome@^0.0.246":
-  version "0.0.246"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.246.tgz#412ee1b162a67d1cfebe413887b9aa0c28998ef1"
-  integrity sha512-MxGxEomGxsJiL9xe/7ZwVgwdn8XVKWbPvxpVQl3nWOjrS0Ce63JsfzxUc4aU3GvRcUPYsfufHmJ17BFyKxeA4g==
+"@types/chrome@^0.0.248":
+  version "0.0.248"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.248.tgz#fdc188a4b7ab8cfd2c49cb666214ecab81599002"
+  integrity sha512-qtBzxZD1v3eWZn8XxH1i07pAhzJDHnxJBBVy7bmntXxXKxjzNXYxD41teqa5yOcX/Yy8brRFGZESEzGoINvBDg==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
