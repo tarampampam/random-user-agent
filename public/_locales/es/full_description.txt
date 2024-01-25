@@ -1,0 +1,14 @@
+User-Agent: cadena que se envía a cualquier sitio web que visite. Se trata de una especie de "huella digital" que deja su navegador y que contiene:
+
+⭐️ El nombre y la versión de su navegador
+⭐️ El nombre del sistema operativo (Mac, Windows, Linux, etc.) y su versión
+⭐️ Información sobre algunos plugins instalados en el navegador
+⭐️ Otros datos que te identifican y te dejan en evidencia
+
+🚀 ¡Esta extensión ha sido creada para detener la fuga de datos y emular diferentes dispositivos de la forma más sencilla!
+
+Reemplaza automáticamente las cadenas User-Agent después de un período de tiempo especificado por una aleatoria. Las cadenas User-Agent también se pueden configurar manualmente. La extensión es increíblemente ligera y utiliza muy pocos recursos. La aleatorización de User-Agent puede ser personalizada por el usuario (qué navegadores y SO son suplantados, etc.). Lista de excepciones disponible con la opción de comodines. Protege contra exploits Javascript para ocultar su identidad y proteger su anonimato.
+
+Completamente gratuito y sin anuncios.
+
+Hecho con ❤️ Código fuente: https://github.com/tarampampam/random-user-agent

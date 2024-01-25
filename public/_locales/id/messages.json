@@ -1,15 +1,12 @@
 {
   "manifest_name": {
-    "message": "User-Agent acak (Pengalih)",
-    "description": "Maximum of 45 characters"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
-    "message": "Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, sehingga menyembunyikan User-Agent kamu yang sebenarnya",
-    "description": "No HTML or other formatting; no more than 132 characters"
+    "message": "Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, sehingga menyembunyikan User-Agent kamu yang sebenarnya"
   },
   "manifest_action_default_title": {
-    "message": "Acak User-Agent kamu",
-    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+    "message": "Acak User-Agent kamu"
   },
   "manifest_command_renew_useragent": {"message": "Dapatkan User-Agent baru"},
 

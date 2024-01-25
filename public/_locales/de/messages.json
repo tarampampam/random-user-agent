@@ -1,15 +1,12 @@
 {
   "manifest_name": {
-    "message": "Zufälliger User-Agent (Umschalter)",
-    "description": "Maximum of 45 characters"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
-    "message": "Ändere den User-Agent automatisch nach einer bestimmten Zeitspanne, was deinen echten User-Agent versteckt",
-    "description": "No HTML or other formatting; no more than 132 characters"
+    "message": "Ändere den User-Agent automatisch nach einer bestimmten Zeitspanne, was deinen echten User-Agent versteckt"
   },
   "manifest_action_default_title": {
-    "message": "Randomisiere deinen User-Agent",
-    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+    "message": "Randomisiere deinen User-Agent"
   },
   "manifest_command_renew_useragent": {"message": "Neuen Agent anfordern"},
 

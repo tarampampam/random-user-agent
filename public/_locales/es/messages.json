@@ -1,0 +1,65 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent (Switcher)"
+  },
+  "manifest_description": {
+    "message": "Cambiar automáticamente el agente de usuario después de un período de tiempo especificado a uno seleccionado al azar, ocultando así su agente de usuario real"
+  },
+  "manifest_action_default_title": {
+    "message": "Aleatorice su User-Agent"
+  },
+  "manifest_command_renew_useragent": {"message": "Obtener nuevo agente"},
+
+  "active_user_agent": {"message": "Agente de usuario activo"},
+  "pause_switcher": {"message": "Conmutador de pausa"},
+  "unpause_switcher": {"message": "Reanudar el cambio"},
+  "enable_switcher": {"message": "Activar conmutador"},
+  "enabled_on_this_domain": {"message": "Activado en este dominio"},
+  "get_new_agent": {"message": "Obtener nuevo agente"},
+  "open_settings": {"message": "Abrir ajustes"},
+  "make_donation": {"message": "Donar"},
+  "bug_report": {"message": "Informe de error"},
+
+  "general_settings": {"message": "Configuración general"},
+  "general_settings_hint": {"message": "Cambia el comportamiento del conmutador para adaptarlo mejor a tus necesidades"},
+  "auto_renew": {"message": "Cambiar automáticamente el User-Agent después de un período de tiempo especificado"},
+  "auto_renew_interval": {"message": "Tiempo (en segundos) para actualizar automáticamente el User-Agent (por ejemplo, 1 hora = 3600)"},
+  "auto_renew_on_startup": {"message": "Cambiar el User-Agent al iniciar el navegador"},
+  "js_protection": {"message": "Protección contra la detección mediante JavaScript"},
+  "custom_useragent": {"message": "Utilice uno de (en el orden aleatorio) User-Agent personalizado en lugar generado"},
+  "custom_useragent_list": {"message": "User-Agents personalizados (establecer un User-Agents específico, uno por línea)"},
+  "generator_settings": {"message": "Ajustes del generador"},
+  "generator_settings_hint": {"message": "Aquí puede cambiar el comportamiento de cambio de agente"},
+  "blacklist_settings": {"message": "Configuración de la lista negra"},
+  "blacklist_settings_hint": {"message": "Modo Lista Negra - conmutación habilitada en todas partes, excepto en los dominios y reglas definidos. Lista blanca - por el contrario, desactivada en todas partes excepto en los dominios & reglas especificados"},
+  "blacklist_mode": {"message": "Modo lista negra"},
+  "whitelist_mode": {"message": "Modo de lista blanca"},
+  "blacklist_domains": {"message": "Lista de nombres de dominio (uno por línea)"},
+  "blacklist_custom_rules": {"message": "Reglas personalizadas (una por línea)"},
+  "blacklist_custom_rules_hint": {"message": "Puede utilizar comodines como * y ?. * coincide con cualquier número de caracteres (por ejemplo, *google.com coincide con google.com, www.google.com, mail.google.com, etc.), ? coincide con un solo carácter (por ejemplo, www.?oogle.com coincide con www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, etc.)."},
+  "remove": {"message": "Eliminar"},
+  "save_changes": {"message": "Guardar cambios"},
+  "error_occurred": {"message": "Se ha producido un error"},
+  "like_this_extension": {"message": "¿Le gusta esta extensión?"},
+  "give_a_star_on_github": {"message": "¡Danos una estrella en GitHub!"},
+  "remote_useragent_list": {"message": "Utilice uno de los User-Agents (en orden aleatorio) de la lista de la siguiente URL"},
+  "remote_useragent_list_hint": {"message": "La extensión lo descargará periódicamente para mantenerlo actualizado"},
+  "remote_useragent_updating_interval": {"message": "Intervalo de actualización (en segundos; por ejemplo, cada 3 horas = 60×60×3 = 10800)"},
+  "update_now": {"message": "Actualizar ahora"},
+  "please_rate_extension": {"message": "Por favor, valora este complemento"},
+
+  "edge_win": {"message": "Edge en Windows"},
+  "edge_mac": {"message": "Edge en Mac" },
+  "chrome_win": {"message": "Chrome en Windows"},
+  "chrome_mac": {"message": "Chrome en Mac"},
+  "chrome_linux": {"message": "Chrome en Linux"},
+  "chrome_android": {"message": "Chrome en Android"},
+  "firefox_win": {"message": "FireFox en Windows"},
+  "firefox_mac": {"message": "FireFox en Mac"},
+  "firefox_linux": {"message": "FireFox en Linux"},
+  "firefox_android": {"message": "Firefox en Android"},
+  "opera_win": {"message": "Opera en Windows"},
+  "opera_mac": {"message": "Opera en Mac"},
+  "safari_iphone": {"message": "Safari en iPhone"},
+  "safari_mac": {"message": "Safari en Mac"}
+}

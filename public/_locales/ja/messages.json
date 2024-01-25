@@ -1,0 +1,65 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent (Switcher)"
+  },
+  "manifest_description": {
+    "message": "指定した時間経過後に自動的にユーザーエージェントをランダムに変更し、実際のユーザーエージェントを隠します。"
+  },
+  "manifest_action_default_title": {
+    "message": "ユーザーエージェントのランダム化"
+  },
+  "manifest_command_renew_useragent": {"message": "新しいエージェントを取得する"},
+
+  "active_user_agent": {"message": "アクティブユーザーエージェント"},
+  "pause_switcher": {"message": "ポーズスイッチャー"},
+  "unpause_switcher": {"message": "レジュームスイッチャー"},
+  "enable_switcher": {"message": "イネーブルスイッチャー"},
+  "enabled_on_this_domain": {"message": "このドメインで有効"},
+  "get_new_agent": {"message": "新しいエージェントを取得する"},
+  "open_settings": {"message": "オープン設定"},
+  "make_donation": {"message": "寄付する"},
+  "bug_report": {"message": "バグレポート"},
+
+  "general_settings": {"message": "一般設定"},
+  "general_settings_hint": {"message": "ニーズに合わせてスイッチャーの動作を変更可能"},
+  "auto_renew": {"message": "指定時間経過後にUser-Agentを自動的に変更する。"},
+  "auto_renew_interval": {"message": "User-Agentを自動的に更新する時間（秒）（例：1時間＝3600）"},
+  "auto_renew_on_startup": {"message": "ブラウザ起動時のUser-Agentを変更する"},
+  "js_protection": {"message": "JavaScriptによる検出を防止する"},
+  "custom_useragent": {"message": "生成されたカスタムUser-Agentのいずれかを（ランダムな順序で）使用します。"},
+  "custom_useragent_list": {"message": "カスタムユーザエージェント (特定のUser-Agentsを1行に1つずつ設定する)"},
+  "generator_settings": {"message": "ジェネレーターの設定"},
+  "generator_settings_hint": {"message": "ここでは、エージェント切り替えの動作を変更することができます"},
+  "blacklist_settings": {"message": "ブラックリストの設定"},
+  "blacklist_settings_hint": {"message": "ブラックリストモード - 定義されたドメインとルールを除くすべての場所で切り替えが有効です。ホワイトリスト - 逆に、指定されたドメインとルール以外のすべての場所で無効化されます。"},
+  "blacklist_mode": {"message": "ブラックリストモード"},
+  "whitelist_mode": {"message": "ホワイトリストモード"},
+  "blacklist_domains": {"message": "ドメイン名リスト（1行に1つ）"},
+  "blacklist_custom_rules": {"message": "カスタムルール(1行に1つ)"},
+  "blacklist_custom_rules_hint": {"message": "や?などのワイルドカードを使用することができます。* は任意の長さの文字にマッチします（例：*google.com は google.com, www.google.com, mail.google.com などにマッチします）。 ? は1文字のみにマッチします（例： www.?oogle.com は www.oogle.com, www.moogle.com, www.google.com, www.woogle.com、などにマッチします）。"},
+  "remove": {"message": "削除"},
+  "save_changes": {"message": "変更を保存する"},
+  "error_occurred": {"message": "エラーが発生した"},
+  "like_this_extension": {"message": "このエクステンションが好きですか？"},
+  "give_a_star_on_github": {"message": "GitHubで星を付けてください。"},
+  "remote_useragent_list": {"message": "以下のURLのリストにあるUser-Agentのいずれかを（ランダムな順序で）使用します。"},
+  "remote_useragent_list_hint": {"message": "エクステンションは定期的にダウンロードし、最新の状態に保ちます"},
+  "remote_useragent_updating_interval": {"message": "更新間隔（秒単位、例：3時間ごと＝60×60×3＝10800）"},
+  "update_now": {"message": "現在アップデート中"},
+  "please_rate_extension": {"message": "このアドオンの評価をお願いします。"},
+
+  "edge_win": {"message": "Edge on Windows"},
+  "edge_mac": {"message": "Edge on Mac" },
+  "chrome_win": {"message": "Chrome on Windows"},
+  "chrome_mac": {"message": "Chrome on Mac"},
+  "chrome_linux": {"message": "Chrome on Linux"},
+  "chrome_android": {"message": "Chrome on Android"},
+  "firefox_win": {"message": "FireFox on Windows"},
+  "firefox_mac": {"message": "FireFox on Mac"},
+  "firefox_linux": {"message": "FireFox on Linux"},
+  "firefox_android": {"message": "Firefox on Android"},
+  "opera_win": {"message": "Opera on Windows"},
+  "opera_mac": {"message": "Opera on Mac"},
+  "safari_iphone": {"message": "Safari on iPhone"},
+  "safari_mac": {"message": "Safari on Mac"}
+}

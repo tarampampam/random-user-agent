@@ -1,0 +1,65 @@
+{
+  "manifest_name": {
+    "message": "Random User-Agent (Switcher)"
+  },
+  "manifest_description": {
+    "message": "Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına değiştirir, böylece gerçek kullanıcı aracınızı gizler"
+  },
+  "manifest_action_default_title": {
+    "message": "Kullanıcı Aracınızı Rastgele Ayarlayın"
+  },
+  "manifest_command_renew_useragent": {"message": "Yeni temsilci alın"},
+
+  "active_user_agent": {"message": "Aktif Kullanıcı-Agent"},
+  "pause_switcher": {"message": "Duraklatma Değiştirici"},
+  "unpause_switcher": {"message": "Devam Değiştirici"},
+  "enable_switcher": {"message": "Değiştiriciyi Etkinleştir"},
+  "enabled_on_this_domain": {"message": "Bu etki alanında etkinleştirildi"},
+  "get_new_agent": {"message": "Yeni temsilci alın"},
+  "open_settings": {"message": "Açık ayarlar"},
+  "make_donation": {"message": "Bağış Yapın"},
+  "bug_report": {"message": "Hata raporu"},
+
+  "general_settings": {"message": "Genel ayarlar"},
+  "general_settings_hint": {"message": "Değiştiricinin davranışını ihtiyaçlarınıza en uygun şekilde değiştirin"},
+  "auto_renew": {"message": "Belirli bir süre sonra Kullanıcı Aracısını otomatik olarak değiştir"},
+  "auto_renew_interval": {"message": "User-Agent'ın otomatik olarak güncelleneceği süre (saniye cinsinden) (örn. 1 saat = 3600)"},
+  "auto_renew_on_startup": {"message": "Tarayıcı başlangıcında User-Agent'ı değiştirme"},
+  "js_protection": {"message": "JavaScript tarafından algılanmaya karşı koruma"},
+  "custom_useragent": {"message": "Bunun yerine oluşturulan özel Kullanıcı Aracısından birini (rastgele sırayla) kullanın"},
+  "custom_useragent_list": {"message": "Özel Kullanıcı Temsilcileri (her satır için bir tane olmak üzere belirli bir Kullanıcı Temsilcisi ayarlayın)"},
+  "generator_settings": {"message": "Jeneratör ayarları"},
+  "generator_settings_hint": {"message": "Burada temsilci değiştirme davranışını değiştirebilirsiniz"},
+  "blacklist_settings": {"message": "Kara liste ayarları"},
+  "blacklist_settings_hint": {"message": "Kara liste modu - tanımlanan etki alanları ve kurallar dışında her yerde etkin anahtarlama. Beyaz liste - tam tersine, belirtilen etki alanları ve kurallar dışında her yerde devre dışı bırakılır"},
+  "blacklist_mode": {"message": "Kara liste modu"},
+  "whitelist_mode": {"message": "Beyaz liste modu"},
+  "blacklist_domains": {"message": "Alan adları listesi (her satır için bir tane)"},
+  "blacklist_custom_rules": {"message": "Özel kurallar (her satır için bir tane)"},
+  "blacklist_custom_rules_hint": {"message": "ve ? gibi joker karakterler kullanabilirsiniz. * herhangi bir karakter uzunluğuyla eşleşir (örneğin *google.com google.com, www.google.com, mail.google.com, vb. ile eşleşir), ? yalnızca tek bir karakterle eşleşir (örneğin www.?oogle.com www.oogle.com, www.moogle.com, www.google.com, www.woogle.com, vb. ile eşleşir)."},
+  "remove": {"message": "Kaldırmak"},
+  "save_changes": {"message": "Değişiklikleri kaydet"},
+  "error_occurred": {"message": "Hata oluştu"},
+  "like_this_extension": {"message": "Bu uzantıyı beğendiniz mi?"},
+  "give_a_star_on_github": {"message": "GitHub'da bize bir yıldız verin!"},
+  "remote_useragent_list": {"message": "Aşağıdaki URL ile listedeki Kullanıcı Aracılarından birini (rastgele sırayla) kullanın"},
+  "remote_useragent_list_hint": {"message": "Uzantı, güncel tutmak için periyodik olarak indirecektir"},
+  "remote_useragent_updating_interval": {"message": "Güncelleme aralığı (saniye cinsinden; örneğin her 3 saatte bir = 60×60×3 = 10800)"},
+  "update_now": {"message": "Şimdi güncelleyin"},
+  "please_rate_extension": {"message": "Lütfen bu eklentiyi değerlendirin!"},
+
+  "edge_win": {"message": "Edge üzerinde Windows"},
+  "edge_mac": {"message": "Edge üzerinde Mac" },
+  "chrome_win": {"message": "Chrome üzerinde Windows"},
+  "chrome_mac": {"message": "Chrome üzerinde Mac"},
+  "chrome_linux": {"message": "Chrome üzerinde Linux"},
+  "chrome_android": {"message": "Chrome üzerinde Android"},
+  "firefox_win": {"message": "FireFox üzerinde Windows"},
+  "firefox_mac": {"message": "FireFox üzerinde Mac"},
+  "firefox_linux": {"message": "FireFox üzerinde Linux"},
+  "firefox_android": {"message": "Firefox üzerinde Android"},
+  "opera_win": {"message": "Opera üzerinde Windows"},
+  "opera_mac": {"message": "Opera üzerinde Mac"},
+  "safari_iphone": {"message": "Safari üzerinde iPhone"},
+  "safari_mac": {"message": "Safari üzerinde Mac"}
+}

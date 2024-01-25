@@ -1,15 +1,12 @@
 {
   "manifest_name": {
-    "message": "Random User-Agent (Switcher)",
-    "description": "Maximum of 45 characters"
+    "message": "Random User-Agent (Switcher)"
   },
   "manifest_description": {
-    "message": "Mets à jour de manière automatique et aléatoire le User-Agent de ton navigateur afin de masquer au mieux ton identité",
-    "description": "No HTML or other formatting; no more than 132 characters"
+    "message": "Mets à jour de manière automatique et aléatoire le User-Agent de ton navigateur afin de masquer au mieux ton identité"
   },
   "manifest_action_default_title": {
-    "message": "User-Agent aléatoire",
-    "description": "The tooltip, or title, appears when the user hovers the mouse on the extension's icon in the toolbar"
+    "message": "User-Agent aléatoire"
   },
   "manifest_command_renew_useragent": {"message": "Générer un nouveau User-Agent"},
 

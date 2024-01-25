@@ -18,6 +18,11 @@
 
 ## 👍 Translators
 
+- 🇺🇦 Ukrainian by [@Yctftcyfc](https://github.com/Yctftcyfc)
+- 🇵🇱 Polish by [@Yctxtctx](https://github.com/Yctxtctx)
+- 🇯🇵 Japanese by [@webact1](https://github.com/webact1)
+- 🇹🇷 Turkish by [@webact1](https://github.com/webact1)
+- 🇪🇸 Spanish by [@webact1](https://github.com/webact1)
 - 🇮🇩 Indonesian by [@tustoz](https://github.com/tustoz) and [@FerdinaKusumah](https://github.com/FerdinaKusumah)
 - 🇫🇷 French by [@maxgfr](https://github.com/maxgfr)
 - 🇩🇪 German by [@Xenorio](https://github.com/Xenorio)

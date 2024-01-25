@@ -17,7 +17,7 @@ jobs:
     name: Gitleaks
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with: {fetch-depth: 0}
 
       - name: Check for GitLeaks
@@ -28,9 +28,9 @@ jobs:
     runs-on: ubuntu-20.04
     env: {FORCE_COLOR: 'true'}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - uses: actions/cache@v3
@@ -56,9 +56,9 @@ jobs:
     runs-on: ubuntu-20.04
     env: {FORCE_COLOR: 'true'}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - uses: actions/cache@v3
@@ -86,14 +86,14 @@ jobs:
     needs: [build]
     env: {FORCE_COLOR: 'true'}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/download-artifact@v3
         with:
           name: extension-dist
           path: dist
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
       - run: yarn global add addons-linter
