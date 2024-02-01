@@ -33,7 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: yarn-cache
         with:
           path: '**/node_modules'
@@ -61,7 +61,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '16'}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: yarn-cache
         with:
           path: '**/node_modules'
