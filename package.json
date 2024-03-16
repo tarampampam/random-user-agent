@@ -22,7 +22,7 @@
   "dependencies": {
     "randexp": "^0.5.3",
     "ua-parser-js": "^1.0.37",
-    "vue": "^3.4.15",
+    "vue": "^3.4.21",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
