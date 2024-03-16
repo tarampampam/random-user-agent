@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build the extension
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -15,7 +15,7 @@ jobs:
         id: slug
 
       - uses: actions/setup-node@v4
-        with: {node-version: '16'}
+        with: {node-version: '20'}
 
       - uses: actions/cache@v4
         id: yarn-cache

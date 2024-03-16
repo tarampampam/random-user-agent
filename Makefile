@@ -2,7 +2,7 @@
 # Makefile readme: <https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents>
 
 SHELL = /bin/sh
-NODE_IMAGE = node:16-alpine
+NODE_IMAGE = node:20-alpine
 RUN_ARGS = --rm -v "$(shell pwd):/src:rw" --workdir "/src" -u "$(shell id -u):$(shell id -g)" -t $(NODE_IMAGE)
 
 .PHONY : help install shell build watch test clean
