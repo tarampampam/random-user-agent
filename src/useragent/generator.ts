@@ -69,7 +69,7 @@ export default class Generator implements UseragentGenerator {
         // Mozilla/5.0 (Linux; Android 10; N20Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Mobile Safari/537.36
         // Mozilla/5.0 (Linux; Android 11; CPH1907) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Mobile Safari/537.36
         // Mozilla/5.0 (Linux; Android 6.0.1; SM-A300FU) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Mobile Safari/537.36
-        /Mozilla\/5\.0 \(Linux; Android (9|10|10|11); __MOBILE_VENDOR__\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/__VER__ Mobile Safari\/537\.36/,
+        /Mozilla\/5\.0 \(Linux; Android (12|13|13|14); __MOBILE_VENDOR__\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/__VER__ Mobile Safari\/537\.36/,
       ],
     },
     firefox: {
@@ -95,7 +95,7 @@ export default class Generator implements UseragentGenerator {
         // Mozilla/5.0 (Android 9; Mobile; rv:95.0) Gecko/95.0 Firefox/95.0
         // Mozilla/5.0 (Android 7.1.1; Mobile; rv:95.0) Gecko/95.0 Firefox/95.0
         // Mozilla/5.0 (Android; Tablet; Concierge; rv:25.0) Gecko/25.0 Firefox/25.0
-        /Mozilla\/5\.0 \(Android( (9|10|10|11)(\.[0-4]||)|); (Tablet|Mobile); rv:__VER__\) Gecko\/__VER__ Firefox\/__VER__/,
+        /Mozilla\/5\.0 \(Android( (12|13|13|14)(\.[0-4]||)|); (Tablet|Mobile); rv:__VER__\) Gecko\/__VER__ Firefox\/__VER__/,
       ],
     },
     safari: {
