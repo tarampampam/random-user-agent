@@ -6,10 +6,15 @@ updates:
   - package-ecosystem: npm
     directory: /
     open-pull-requests-limit: 15
+    groups:
+      production: {dependency-type: production}
+      development: {dependency-type: development}
     schedule: {interval: monthly}
     assignees: [tarampampam]
 
   - package-ecosystem: github-actions
     directory: /
+    groups:
+      any: {patterns: ['*']}
     schedule: {interval: monthly}
     assignees: [tarampampam]
