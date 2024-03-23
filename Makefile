@@ -6,7 +6,7 @@ RUN_ARGS = --rm -v "$(shell pwd):/src:rw" --workdir "/src" -u "$(shell id -u):$(
 
 .PHONY: install
 install: ## Install all dependencies
-	docker run $(RUN_ARGS) yarn install
+	docker run $(RUN_ARGS) npm install
 
 .PHONY: shell
 shell: ## Start shell into a container with node

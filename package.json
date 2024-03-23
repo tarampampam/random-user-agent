@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/tarampampam/random-user-agent#readme",
   "scripts": {
-    "fmt": "prettier --config package.json --write ./src && npm run lint:es -- --fix",
+    "fmt": "prettier --config package.json --write ./src ./*.ts && npm run lint:es -- --fix",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:ts": "tsc --noEmit",
     "lint:es": "eslint --config package.json ./src/**/*.{ts,tsx}",
@@ -30,7 +30,6 @@
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "^2.0.0-beta.23",
     "@types/chrome": "^0.0.263",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.69",
