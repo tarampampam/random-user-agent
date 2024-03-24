@@ -112,4 +112,7 @@ export default defineConfig({
     },
     sourcemap: false,
   },
+  test: {
+    root: __dirname,
+  },
 })

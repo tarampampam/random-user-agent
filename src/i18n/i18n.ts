@@ -7,7 +7,9 @@ export default function i18n(key: keyof Localization, fallback?: string): string
     if (localized.length > 0) {
       return localized
     }
-  } else if (fallback) {
+  }
+
+  if (fallback) {
     return fallback
   }
 
