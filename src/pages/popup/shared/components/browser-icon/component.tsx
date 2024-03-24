@@ -1,26 +1,25 @@
 import type React from 'react'
-import PauseIcon from './assets/pause-icon.svg'
-import UnpauseIcon from './assets/unpause-icon.svg'
-import RefreshIcon from './assets/refresh-icon.svg'
-import SettingsIcon from './assets/settings-icon.svg'
+import ChromeIcon from './assets/chrome.svg'
+import EdgeIcon from './assets/edge.svg'
+import FirefoxIcon from './assets/firefox.svg'
+import OperaIcon from './assets/opera.svg'
+import SafariIcon from './assets/safari.svg'
 
-export type ControlIconProps = {
-  icon: 'pause' | 'unpause' | 'refresh' | 'settings'
+export type BrowserIconProps = {
+  icon: 'chrome' | 'edge' | 'firefox' | 'opera' | 'safari'
   size?: string | number
-  title?: string
   style?: React.CSSProperties
   clickable?: boolean
   onClick?: () => void
 }
 
-export default function ControlIcon({
+export default function BrowserIcon({
   icon,
-  size = '1.89em',
-  title,
+  size = 32,
   style,
   clickable = false,
   onClick,
-}: ControlIconProps): React.JSX.Element {
+}: BrowserIconProps): React.JSX.Element {
   return (
     <div
       style={{
@@ -35,14 +34,16 @@ export default function ControlIcon({
       <img
         src={((): string => {
           switch (icon) {
-            case 'pause':
-              return PauseIcon
-            case 'unpause':
-              return UnpauseIcon
-            case 'refresh':
-              return RefreshIcon
-            case 'settings':
-              return SettingsIcon
+            case 'chrome':
+              return ChromeIcon
+            case 'edge':
+              return EdgeIcon
+            case 'firefox':
+              return FirefoxIcon
+            case 'opera':
+              return OperaIcon
+            case 'safari':
+              return SafariIcon
           }
         })()}
         style={{
@@ -51,7 +52,6 @@ export default function ControlIcon({
           cursor: 'inherit',
           ...style,
         }}
-        title={title}
         onClick={(): void => {
           if (clickable && onClick) {
             onClick()

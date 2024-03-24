@@ -1,26 +1,22 @@
 import type React from 'react'
-import PauseIcon from './assets/pause-icon.svg'
-import UnpauseIcon from './assets/unpause-icon.svg'
-import RefreshIcon from './assets/refresh-icon.svg'
-import SettingsIcon from './assets/settings-icon.svg'
+import MobileIcon from './assets/mobile.svg'
+import DesktopIcon from './assets/desktop.svg'
 
-export type ControlIconProps = {
-  icon: 'pause' | 'unpause' | 'refresh' | 'settings'
+export type DeviceIconProps = {
+  icon: 'mobile' | 'desktop'
   size?: string | number
-  title?: string
   style?: React.CSSProperties
   clickable?: boolean
   onClick?: () => void
 }
 
-export default function ControlIcon({
+export default function DeviceIcon({
   icon,
-  size = '1.89em',
-  title,
+  size = 32,
   style,
   clickable = false,
   onClick,
-}: ControlIconProps): React.JSX.Element {
+}: DeviceIconProps): React.JSX.Element {
   return (
     <div
       style={{
@@ -35,14 +31,10 @@ export default function ControlIcon({
       <img
         src={((): string => {
           switch (icon) {
-            case 'pause':
-              return PauseIcon
-            case 'unpause':
-              return UnpauseIcon
-            case 'refresh':
-              return RefreshIcon
-            case 'settings':
-              return SettingsIcon
+            case 'mobile':
+              return MobileIcon
+            case 'desktop':
+              return DesktopIcon
           }
         })()}
         style={{
@@ -51,7 +43,6 @@ export default function ControlIcon({
           cursor: 'inherit',
           ...style,
         }}
-        title={title}
         onClick={(): void => {
           if (clickable && onClick) {
             onClick()
