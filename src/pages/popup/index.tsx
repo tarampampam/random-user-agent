@@ -1,12 +1,20 @@
-import type React from 'react'
-import { StrictMode } from 'react'
+import React, { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import '~/theme/app.scss'
+import Header from './components/header/component'
+import './index.scss'
 
 const App = (): React.JSX.Element => {
-  console.log('Hello from the popup page!')
+  const [enabled, setEnabled] = useState<boolean>(true)
 
-  return <></>
+  return (
+    <Header
+      enabled={enabled}
+      onPauseResumeClick={(v) => {
+        console.log('onPauseResumeClick', v)
+        setEnabled(v)
+      }}
+    />
+  )
 }
 
 createRoot(document.getElementById('root') as HTMLElement).render(

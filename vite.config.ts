@@ -1,12 +1,13 @@
-import {defineConfig, type PluginOption, type ResolvedConfig} from 'vite'
+import { defineConfig, type PluginOption, type ResolvedConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import {join, resolve} from 'path'
-import {cpSync, createWriteStream, mkdirSync, writeFileSync} from 'fs'
+import { join, resolve } from 'path'
+import { cpSync, createWriteStream, mkdirSync, writeFileSync } from 'fs'
+import archiver from 'archiver'
 import manifestJson from './manifest.json'
 import packageJson from './package.json'
-import {locales} from './src/i18n/locales'
+import { locales } from './src/i18n/locales'
 
-const archiver = require('archiver')
+// const archiver = require('archiver')
 
 const distDir = resolve(__dirname, 'dist')
 const srcDir = resolve(__dirname, 'src')
@@ -16,7 +17,7 @@ const staticDir = resolve(__dirname, 'static')
 const copyManifestPlugin: PluginOption = {
   name: 'copy-manifest',
   writeBundle() {
-    const content: Partial<{$schema: string, version: string}> = {...manifestJson}
+    const content: Partial<{ $schema: string; version: string }> = { ...manifestJson }
 
     for (const key in content) {
       if (key.startsWith('$')) {
@@ -26,11 +27,7 @@ const copyManifestPlugin: PluginOption = {
 
     content.version = packageJson.version // set version from package.json
 
-    writeFileSync(
-      join(distDir, 'manifest.json'),
-      JSON.stringify(content),
-      {flag: 'w'},
-    )
+    writeFileSync(join(distDir, 'manifest.json'), JSON.stringify(content), { flag: 'w' })
   },
 }
 
@@ -44,13 +41,13 @@ const createLocalesPlugin: PluginOption = {
       const result: Record<string, { message: string }> = {}
 
       for (const key in data) {
-        result[key] = {message: data[key as keyof typeof data]}
+        result[key] = { message: data[key as keyof typeof data] }
       }
 
       const dirPath = join(distDir, '_locales', name)
 
-      mkdirSync(dirPath, {recursive: true})
-      writeFileSync(join(dirPath, 'messages.json'), JSON.stringify(result), {flag: 'w'})
+      mkdirSync(dirPath, { recursive: true })
+      writeFileSync(join(dirPath, 'messages.json'), JSON.stringify(result), { flag: 'w' })
     }
   },
 }
@@ -59,7 +56,7 @@ const createLocalesPlugin: PluginOption = {
 const copyContentAsIsPlugin: PluginOption = {
   name: 'copy-static-content',
   writeBundle() {
-    cpSync(staticDir, distDir, {recursive: true})
+    cpSync(staticDir, distDir, { recursive: true })
   },
 }
 
@@ -77,7 +74,7 @@ const zipDistPlugin = (): PluginOption => {
         return // do nothing in dev/watch mode
       }
 
-      const archive = archiver('zip', {zlib: {level: 9}})
+      const archive = archiver('zip', { zlib: { level: 9 } })
 
       archive.pipe(createWriteStream(resolve(__dirname, 'dist.zip')))
       archive.directory(distDir, false)

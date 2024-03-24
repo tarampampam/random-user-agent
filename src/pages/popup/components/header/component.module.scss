@@ -1,0 +1,25 @@
+@forward '~/theme/theme';
+
+.header {
+  min-height: 40px;
+  padding: 0 0.8em;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  > * {
+    display: flex;
+    align-items: center;
+  }
+
+  .caption {
+    font-weight: 600;
+    font-size: 1.2em;
+    padding-left: 0.4em;
+    color: var(--color-text-primary);
+  }
+
+  .buttons {
+  }
+}

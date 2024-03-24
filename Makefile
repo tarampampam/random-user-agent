@@ -12,6 +12,19 @@ install: ## Install all dependencies
 shell: ## Start shell into a container with node
 	docker run -e "PS1=\[\033[1;34m\]\w\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]" -i $(RUN_ARGS) sh
 
+.PHONY: build
+build: install ## Build the extension and pack it into a zip file
+	docker run $(RUN_ARGS) npm run build
+
+.PHONY: fmt
+fmt: ## Run prettier
+	docker run $(RUN_ARGS) npm run fmt
+
+.PHONE: test
+test: ## Run tests
+	docker run $(RUN_ARGS) npm run lint
+	docker run $(RUN_ARGS) npm run test
+
 .PHONY: watch
 watch: ## Start watch mode
 	docker run $(RUN_ARGS) npm run watch

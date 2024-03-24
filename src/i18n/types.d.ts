@@ -1,7 +1,7 @@
 /** @link https://developer.chrome.com/docs/extensions/reference/api/i18n#locales */
 export type LocaleCode =
   | 'ar' // Arabic
-  | 'am' //' // Amharic
+  | 'am' // Amharic
   | 'bg' // Bulgarian
   | 'bn' // Bengali
   | 'ca' // Catalan

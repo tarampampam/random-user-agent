@@ -1,6 +1,7 @@
 {
   "name": "random-user-agent",
   "version": "0.0.0",
+  "type": "module",
   "author": {
     "name": "paramtamtam",
     "url": "https://github.com/tarampampam"
