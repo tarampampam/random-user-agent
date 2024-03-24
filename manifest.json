@@ -1,3 +1,58 @@
 {
-  "manifest_version": 3
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "$docs": "https://developer.chrome.com/docs/extensions/reference/manifest",
+  "manifest_version": 3,
+  "version": "0.0.0",
+  "name": "__MSG_manifest_name__",
+  "description": "__MSG_manifest_description__",
+  "author": "https://github.com/tarampampam",
+  "homepage_url": "https://github.com/tarampampam/random-user-agent",
+  "default_locale": "en",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "__MSG_manifest_action_default_title__"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "renew-useragent": {
+      "description": "__MSG_manifest_command_renew_useragent__",
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      }
+    }
+  },
+  "permissions": [
+    "<all_urls>"
+  ],
+  "incognito": "spanning",
+  "minimum_chrome_version": "88"
 }

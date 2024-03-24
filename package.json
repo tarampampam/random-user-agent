@@ -30,6 +30,7 @@
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@types/archiver": "^6.0.2",
     "@types/chrome": "^0.0.263",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.69",
@@ -38,6 +39,7 @@
     "@typescript-eslint/parser": "^7.3.1",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.4.0",
+    "archiver": "^7.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
