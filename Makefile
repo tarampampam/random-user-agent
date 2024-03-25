@@ -21,7 +21,7 @@ fmt: ## Run prettier
 	docker run $(RUN_ARGS) npm run fmt
 
 .PHONE: test
-test: ## Run tests
+test: ## Run lint and tests
 	docker run $(RUN_ARGS) npm run lint
 	docker run $(RUN_ARGS) npm run test
 

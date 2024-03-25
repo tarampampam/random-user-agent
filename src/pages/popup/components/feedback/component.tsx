@@ -1,6 +1,21 @@
 import type React from 'react'
+import i18n from '~/i18n/i18n'
 import styles from './component.module.scss'
 
-export default function Feedback(): React.JSX.Element {
-  return <div className={styles.component}></div>
+export default function Feedback({ onRateLinkClick }: { onRateLinkClick?: () => void }): React.JSX.Element {
+  return (
+    <>
+      <a
+        className={styles.rateLink}
+        href="#"
+        onClick={() => {
+          if (onRateLinkClick) {
+            onRateLinkClick()
+          }
+        }}
+      >
+        {i18n('please_rate_extension', 'Please, rate this addon!')}
+      </a>
+    </>
+  )
 }

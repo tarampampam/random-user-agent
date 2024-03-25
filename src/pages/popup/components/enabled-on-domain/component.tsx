@@ -1,5 +1,5 @@
 import React, { useId } from 'react'
-import Checkbox from '../../shared/components/checkbox/component.tsx'
+import Checkbox from '../../shared/components/checkbox/component'
 import i18n from '~/i18n/i18n'
 import styles from './component.module.scss'
 

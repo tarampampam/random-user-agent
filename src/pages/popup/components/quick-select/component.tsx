@@ -1,55 +1,65 @@
-import React, { useState, useEffect, type ReactNode } from 'react'
-import styles from './component.module.scss'
+import React, { useState, type ReactNode } from 'react'
 import DeviceIcon, { type DeviceIconProps } from '~/pages/popup/shared/components/device-icon/component'
 import BrowserIcon, { type BrowserIconProps } from '~/pages/popup/shared/components/browser-icon/component'
+import styles from './component.module.scss'
 
 type DeviceType = 'mobile' | 'desktop'
 type BrowserType = 'chrome' | 'edge' | 'firefox' | 'opera' | 'safari'
 
-export type QuickSelectChangeHandler = ({ mobile, desktop }: { mobile: BrowserType[]; desktop: BrowserType[] }) => void
-
 export type QuickSelectProps = {
-  defaultSelectedMobileBrowsers?: BrowserType[]
-  defaultSelectedDesktopBrowsers?: BrowserType[]
-  onChange?: QuickSelectChangeHandler
+  defaults?: { mobile?: BrowserType[]; desktop?: BrowserType[] }
+  onChange?: ({ mobile, desktop }: { mobile: BrowserType[]; desktop: BrowserType[] }) => void
 }
 
 export default function QuickSelect({
-  defaultSelectedMobileBrowsers = [],
-  defaultSelectedDesktopBrowsers = [],
+  defaults = { mobile: [], desktop: [] },
   onChange = undefined,
 }: QuickSelectProps): React.JSX.Element {
-  const [selectedMobile, setSelectedMobile] = useState<BrowserType[]>(defaultSelectedMobileBrowsers)
-  const [selectedDesktop, setSelectedDesktop] = useState<BrowserType[]>(defaultSelectedDesktopBrowsers)
-
-  useEffect(() => {
-    if (onChange) {
-      onChange({ mobile: selectedMobile, desktop: selectedDesktop })
-    }
-  }, [selectedMobile, selectedDesktop, onChange])
+  const [selected, setSelected] = useState<Record<DeviceType, BrowserType[]>>({
+    mobile: defaults?.mobile || [],
+    desktop: defaults?.desktop || [],
+  })
 
   const handleDeviceTypeClick = (dev: DeviceType): void => {
+    const newSelected = { ...selected }
+
     if (dev === 'mobile') {
-      setSelectedMobile(selectedMobile.length !== 0 ? [] : ['chrome', 'firefox', 'safari'])
+      newSelected.mobile = selected.mobile.length !== 0 ? [] : ['chrome', 'edge', 'firefox']
     } else if (dev === 'desktop') {
-      setSelectedDesktop(selectedDesktop.length !== 0 ? [] : ['chrome', 'edge', 'firefox', 'opera', 'safari'])
+      newSelected.desktop = selected.desktop.length !== 0 ? [] : ['chrome', 'edge', 'firefox', 'opera', 'safari']
+    }
+
+    setSelected(newSelected)
+
+    if (onChange) {
+      onChange(newSelected)
     }
   }
 
   const handleBrowserTypeClick = (dev: DeviceType, br: BrowserType): void => {
+    const newSelected = { ...selected }
+
     if (dev === 'mobile') {
-      setSelectedMobile(selectedMobile.includes(br) ? selectedMobile.filter((b) => b !== br) : [...selectedMobile, br])
+      newSelected.mobile = selected.mobile.includes(br)
+        ? selected.mobile.filter((b) => b !== br)
+        : [...selected.mobile, br]
     } else if (dev === 'desktop') {
-      setSelectedDesktop(
-        selectedDesktop.includes(br) ? selectedDesktop.filter((b) => b !== br) : [...selectedDesktop, br]
-      )
+      newSelected.desktop = selected.desktop.includes(br)
+        ? selected.desktop.filter((b) => b !== br)
+        : [...selected.desktop, br]
+    }
+
+    setSelected(newSelected)
+
+    if (onChange) {
+      onChange(newSelected)
     }
   }
 
   const listItemClasses = (dev: DeviceType, br: BrowserType): string => {
     let classes = styles.item
 
-    if ((dev === 'mobile' && selectedMobile.includes(br)) || (dev === 'desktop' && selectedDesktop.includes(br))) {
+    if ((dev === 'mobile' && selected.mobile.includes(br)) || (dev === 'desktop' && selected.desktop.includes(br))) {
       classes += ` ${styles.active}`
     }
 

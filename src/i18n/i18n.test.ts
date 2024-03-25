@@ -1,5 +1,5 @@
 import { describe, expect, test, vitest, vi } from 'vitest'
-import i18n from './i18n.ts'
+import i18n from './i18n'
 
 describe('i18n', () => {
   test('fallback', () => {

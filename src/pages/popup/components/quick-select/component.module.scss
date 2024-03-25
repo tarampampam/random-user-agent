@@ -8,7 +8,7 @@ $selector-height: 40px;
   background-color: var(--color-bg-light);
   border-style: solid;
   border-color: var(--color-ui-border-light);
-  border-width: 0 0 0.1em 0;
+  border-width: 0.1em 0;
   font-size: 1.2em; // scale up a bit
 
   .deviceBased {
