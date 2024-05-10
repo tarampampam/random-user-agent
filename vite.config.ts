@@ -149,7 +149,7 @@ const copyAndModifyManifestPlugin: PluginOption = {
           background: { scripts: [content.background.service_worker], type: content.background.type },
           browser_specific_settings: {
             // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/updateDynamicRules
-            gecko: { strict_min_version: '113.0' },
+            gecko: { strict_min_version: '113.0', id: '{b43b974b-1d3a-4232-b226-eaa2ac6ebb69}' },
             gecko_android: { strict_min_version: '113.0' },
           },
         }),
