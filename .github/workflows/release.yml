@@ -16,7 +16,9 @@ jobs:
       - {uses: gacts/github-slug@v1, id: slug}
       - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
       - run: npm install
-      - run: npm version --no-git-tag-version "${{ steps.slug.outputs.version-semantic }}"
+      - run: >
+          npm version --no-git-tag-version
+          "${{ steps.slug.outputs.version-major }}.${{ steps.slug.outputs.version-minor }}.${{ steps.slug.outputs.version-patch }}"
       - run: npm run build
       - uses: svenstaro/upload-release-action@v2
         with:
