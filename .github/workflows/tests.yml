@@ -53,16 +53,15 @@ jobs:
       - run: npm install
       - run: npm run build
       - uses: actions/upload-artifact@v4
-        with: {name: chrome.zip, path: dist/chrome.zip, if-no-files-found: error, retention-days: 30}
+        with: {name: chrome.zip, path: ./dist/chrome.zip, if-no-files-found: error, retention-days: 30}
       - uses: actions/upload-artifact@v4
-        with: {name: firefox.zip, path: dist/firefox.zip, if-no-files-found: error, retention-days: 30}
+        with: {name: firefox.zip, path: ./dist/firefox.zip, if-no-files-found: error, retention-days: 30}
 
   addons-linter:
     name: 🧪 Run addon linter (mozilla)
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v4
       - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: firefox.zip}}
       - {uses: actions/setup-node@v4, with: {node-version: 21}}
       - run: npm install -g addons-linter
