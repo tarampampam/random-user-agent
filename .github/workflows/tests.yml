@@ -31,8 +31,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - {uses: gacts/setup-node-with-cache@v1, id: setup-node, with: {node-version-file: package.json}}
-      - {if: steps.setup-node.outputs.npm-cache-hit != 'true', run: npm ci}
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
       - run: npm run test
 
   eslint:
@@ -40,8 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - {uses: gacts/setup-node-with-cache@v1, id: setup-node, with: {node-version-file: package.json}}
-      - {if: steps.setup-node.outputs.npm-cache-hit != 'true', run: npm ci}
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
       - run: npm run lint
 
 #  build:
