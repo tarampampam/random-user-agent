@@ -62,10 +62,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: firefox.zip}}
+      - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: dist}}
       - {uses: actions/setup-node@v4, with: {node-version: 21}}
       - run: npm install -g addons-linter
-      - run: addons-linter firefox.zip
+      - run: addons-linter ./dist/firefox.zip
 
 #  addons-linter:
 #    name: Run addon linter (mozilla)
