@@ -1,0 +1,32 @@
+.grid {
+  display: block;
+
+  //background-color: rgba(255,0,0,0.5); // for debugging
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em 0;
+
+  &:not(:last-child) {
+    border: solid var(--color-ui-border-light);
+    border-width: 0 0 1px 0;
+  }
+
+  //background-color: rgba(0,255,0,0.5); // for debugging
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  //background-color: rgba(0,0,255,0.5); // for debugging
+}
+
+.hint {
+  opacity: 0.7;
+  font-size: 0.8em;
+  margin: 1em 0;
+}

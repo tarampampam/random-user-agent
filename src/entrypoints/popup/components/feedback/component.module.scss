@@ -1,0 +1,30 @@
+@forward '~/theme/theme';
+
+.rateLink {
+  display: block;
+  margin: 0.7em 1em;
+  text-align: center;
+
+  background-color: var(--color-bg-info);
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  border: 1px solid var(--color-ui-border-info);
+
+  animation: pulse 2s infinite;
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(125, 125, 125, 0.25);
+    }
+    70% {
+      box-shadow: 0 0 0 7px rgba(125, 125, 125, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(125, 125, 125, 0);
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,17 +1,20 @@
 # Privacy Policy
 
-Last updated: October 29, 2021
+Last updated: April 18, 2024
 
 ## Personal data
 
-Random User-Agent had never collected and will never collect any personal data, browsing history etc.
+Random User-Agent respects your privacy and is committed to protecting any information you share with us. We do not
+collect any personal data or browsing history.
 
-In future Random User-Agent may collect browser version, platform name and some kinds of user's settings (except
-blacklist/whitelist rules or any other data which can help identify user). This information is needed for decision on
-implementing new features, removing unused features or suggesting default settings for new users. It will happen only
-with your permission.
+In the future, Random User-Agent may collect anonymized user information, such as the version of the extension
+installed, whether the extension is enabled, and similar data. This information is used solely to understand how
+users interact with the extension and to improve its features. Rest assured that this data cannot be used to
+identify individual users or track them in any way.
+
+Any collection of data will occur only with your explicit consent.
 
 ## Third party services
 
-Random User-Agent uses Chrome (Chromium) or WebExtensions Storage Sync API for storing user's settings and browser's Web
-Storage API (localStorage) for storing user's Developer Tools fixes.
+Random User-Agent utilizes Chrome (Chromium) or WebExtensions Storage Sync API for storing user settings and the
+browser's Web Storage API (localStorage) for storing Developer Tools fixes.

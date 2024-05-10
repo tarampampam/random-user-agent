@@ -1,0 +1,9 @@
+@forward '~/theme/theme';
+
+.component {
+  background-color: var(--color-bg-light);
+  text-align: center;
+  padding: 1em 1.2em;
+  font-size: 0.75em;
+  color: var(--color-text-light);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    :root {
+      --color-bg-primary: #fff;
+      --color-text-primary: #454545;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg-primary: #2f2f2f;
+        --color-text-primary: #eaeaea;
+      }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-bg-primary);
+      color: var(--color-text-primary);
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      color: var(--color-text-primary);
+      display: inline-block;
+      position: relative;
+      font-size: 48px;
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+    }
+
+    .loader::after {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: currentColor;
+      position: absolute;
+      bottom: 10px;
+      right: -5px;
+      box-sizing: border-box;
+      animation: animloader 1s linear infinite;
+    }
+
+    @keyframes animloader {
+      0% {
+        box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+      }
+      50% {
+        box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+      }
+      100% {
+        box-shadow: 10px 0 white, 20px 0 white;
+      }
+    }
+  </style>
+  <title>Coming soon</title>
+</head>
+<body>
+<span class="loader">Coming soon</span>
+</body>
+</html>

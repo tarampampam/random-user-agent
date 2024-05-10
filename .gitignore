@@ -2,18 +2,17 @@
 /.vscode
 /.idea
 
-## Build
+## dependencies
+/node_modules
+
+## build
 /*.zip
 /crx
 /dist*
 
-## Temp files & dirs
+## etc
+/coverage
 /temp
 /tmp
-/coverage
-
-## Vendor
-/node_modules
-
-## Use yarn, not npm
-/package-lock.json
+.vite
+*.log

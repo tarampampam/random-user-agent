@@ -1,0 +1,23 @@
+@forward '~/theme/theme';
+
+$border-radius: 5px;
+
+.list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  border: 1px solid var(--color-ui-border-light);
+  border-radius: $border-radius;
+
+  li {
+    flex: 1;
+    text-align: center;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+    border-radius: $border-radius;
+  }
+}
+
+.selected {
+  background-color: var(--color-bg-info);
+}
