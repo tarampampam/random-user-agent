@@ -150,7 +150,7 @@ const copyAndModifyManifestPlugin: PluginOption = {
           browser_specific_settings: {
             // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/updateDynamicRules
             gecko: { strict_min_version: '113.0', id: '{b43b974b-1d3a-4232-b226-eaa2ac6ebb69}' },
-            gecko_android: { strict_min_version: '113.0' },
+            gecko_android: { strict_min_version: '120.0' },
           },
         }),
         { flag: 'w' }
