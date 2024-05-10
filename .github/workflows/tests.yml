@@ -44,6 +44,17 @@ jobs:
       - run: npm install
       - run: npm run lint
 
+  build:
+    name: 🏗️ Build extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with: {name: dist-zip, path: dist/*.zip, if-no-files-found: error, retention-days: 30}
+
 #  build:
 #    name: Try to build
 #    runs-on: ubuntu-latest
