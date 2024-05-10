@@ -145,6 +145,8 @@ const App = (): React.JSX.Element => {
       }
 
       setCurrentUserAgent(renewUserAgent)
+
+      await reloadCurrentTab(3000)
     },
     [setCurrentUserAgent]
   )

@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# docs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: 🚀 Release
+
+on:
+  release: # Docs: <https://help.github.com/en/articles/events-that-trigger-workflows#release-event-release>
+    types: [published]
+
+jobs:
+  build:
+    name: 🏗️ Build the extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - {uses: gacts/github-slug@v1, id: slug}
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
+      - run: npm version --no-git-tag-version "${{ steps.slug.outputs.version-semantic }}"
+      - run: npm run build
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./dist/chrome.zip
+          asset_name: random-user-agent-chrome.zip
+          tag: ${{ github.ref }}
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./dist/firefox.zip
+          asset_name: random-user-agent-firefox.zip
+          tag: ${{ github.ref }}
