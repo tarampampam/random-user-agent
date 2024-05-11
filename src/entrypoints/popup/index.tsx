@@ -148,7 +148,7 @@ const App = (): React.JSX.Element => {
 
       await reloadCurrentTab(3000)
     },
-    [setCurrentUserAgent]
+    [setCurrentUserAgent, reloadCurrentTab]
   )
 
   /** Handle the open options button click */
