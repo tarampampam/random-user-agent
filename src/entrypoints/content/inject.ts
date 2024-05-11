@@ -17,10 +17,6 @@ import type { DeepWriteable } from '~/types'
     setTimeout(() => delete ds[key], 1000) // remove the dataset attribute after 1 second
   }
 
-  const debug = (m: string, ...a: unknown[]): void => console.debug(`%c💣 [inject.js]: ${m}`, 'font-weight:bold', ...a)
-
-  debug('Injected script is running')
-
   /** Extracts the payload from the performance entries (which are sent by the background script) */
   const extractPayload = (): ContentScriptPayload | undefined => {
     for (const entry of performance.getEntriesByType('navigation')) {
