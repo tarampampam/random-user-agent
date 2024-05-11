@@ -1,5 +1,9 @@
 {
   "name": "RUA dev-container",
-  "image": "node:21-alpine",
+  "image": "node:21-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
   "postCreateCommand": "npm install"
 }
