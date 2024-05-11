@@ -1,14 +1,5 @@
 {
-  "name": "default-devcontainer",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "21"
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:1": {
-      "version": "latest",
-      "moby": true
-    }
-  },
+  "name": "RUA dev-container",
+  "image": "node:21-alpine",
   "postCreateCommand": "npm install"
 }
