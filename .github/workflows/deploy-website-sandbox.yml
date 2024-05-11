@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   publish:
-    name: 🚀 Publish the site
+    name: Publish the site
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

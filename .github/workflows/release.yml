@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: 🏗️ Build the extension
+    name: Build the extension
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

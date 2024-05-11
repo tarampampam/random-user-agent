@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   dependabot: # https://tinyurl.com/e69djmen
-    name: 🤖 Enable auto-merge for Dependabot PRs
+    name: Enable auto-merge for Dependabot PRs
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:

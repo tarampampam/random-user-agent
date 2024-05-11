@@ -20,14 +20,14 @@ env: {FORCE_COLOR: 'true'}
 
 jobs:
   gitleaks:
-    name: 🔐 Check for GitLeaks
+    name: Check for GitLeaks
     runs-on: ubuntu-latest
     steps:
       - {uses: actions/checkout@v4, with: {fetch-depth: 0}}
       - uses: gacts/gitleaks@v1
 
   unit-tests:
-    name: 🧪 Run unit tests
+    name: Run unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
       - run: npm run test
 
   eslint:
-    name: 🧹 Run code linter
+    name: Run code linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
       - run: npm run lint
 
   build:
-    name: 🏗️ Build extension
+    name: Build extension
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +58,7 @@ jobs:
         with: {name: firefox.zip, path: ./dist/firefox.zip, if-no-files-found: error, retention-days: 30}
 
   addons-linter:
-    name: 🧪 Run addon linter (mozilla)
+    name: Run addon linter (mozilla)
     runs-on: ubuntu-latest
     needs: [build]
     steps:
