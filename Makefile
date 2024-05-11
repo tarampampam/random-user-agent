@@ -1,6 +1,9 @@
 #!/usr/bin/make
 # Makefile readme: <https://www.gnu.org/software/make/manual/html_node/index.html#SEC_Contents>
 
+.DEFAULT_GOAL := build
+.MAIN := build
+
 NODE_IMAGE = node:21-alpine
 RUN_ARGS = --rm -v "$(shell pwd):/src:rw" \
 	-t --workdir "/src" \
@@ -16,7 +19,6 @@ install: ## Install all dependencies
 shell: ## Start shell into a container with node
 	docker run -e "PS1=\[\033[1;34m\]\w\[\033[0;35m\] \[\033[1;36m\]# \[\033[0m\]" -i $(RUN_ARGS) sh
 
-.DEFAULT_GOAL: build
 .PHONY: build
 build: install ## Build the extension and pack it into a zip file
 	docker run $(RUN_ARGS) npm run build
@@ -25,7 +27,7 @@ build: install ## Build the extension and pack it into a zip file
 fmt: ## Run prettier
 	docker run $(RUN_ARGS) npm run fmt
 
-.PHONE: test
+.PHONY: test
 test: ## Run lint and tests
 	docker run $(RUN_ARGS) npm run lint
 	docker run $(RUN_ARGS) npm run test
