@@ -5,25 +5,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang English
    *
-   * User-Agent - a string that is sent along to any website you visit. This is a sort of "fingerprint" your browser
-   * leaves behind which contains:
+   * User-Agent is like a secret code your browser shares with every website you visit. It reveals details about
+   * your browser, your operating system, and even some plugins you have installed. Essentially, it's your browser's
+   * fingerprint!
    *
-   * ⭐️ The name and version of your browser
-   * ⭐️ The name of the operating system (Mac, Windows, Linux, etc.) and its version
-   * ⭐️ Information about some plugins installed on the browser
-   * ⭐️ Other information that identifies and exposes you
+   * But here's the thing - sometimes you don't want to leave such a clear trail behind. That's where this
+   * extension comes in!
    *
-   * 🚀 This extension has been created to stop data leakage and emulate different devices in the simplest way!
+   * 🚀 We created this extension to shield your online privacy and make it super easy to appear as if you're
+   * browsing from different devices.
    *
-   * It automatically replaces User-Agent strings after a specified period of time with a randomized one. User-Agent
-   * strings can also be set manually. The extension is incredibly lightweight, using very few resources. User-Agent
-   * randomization can be customized by the user (what browsers and OS are spoofed, etc.). Exceptions list available
-   * with the option of wildcards. Protects against Javascript exploits to hide your identity and protect your
-   * anonymity.
+   * With this extension, your User-Agent string gets automatically swapped out with a randomized one at regular
+   * intervals. You can also manually set your User-Agent if you prefer. And guess what? It's super light on your
+   * system resources, so you won't even notice it's there.
    *
-   * Completely free and with no ads.
+   * Plus, you're in control! You can customize which browsers and operating systems you want to emulate. We've
+   * even got an exceptions list for those special cases.
    *
-   * Made with ❤️ Source code: https://github.com/tarampampam/random-user-agent
+   * And the best part? It keeps you safe from sneaky JavaScript tricks designed to uncover your identity. Best of
+   * all, it's completely free and ad-free. Give your online privacy a boost today!
+   *
+   * Made with ❤️ Check out the source code: https://github.com/tarampampam/random-user-agent
    */
   en: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -91,25 +93,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang German
    *
-   * User-Agent - eine Zeichenfolge die an jede Webseite die du besuchst gesendet wird. Er ist eine Art Fingerabdruck
-   * deines Browsers und beinhaltet:
+   * User-Agent ist wie ein geheimes Code, den dein Browser mit jeder Website teilt, die du besuchst. Es verrät
+   * Details über deinen Browser, dein Betriebssystem und sogar einige Plugins, die du installiert hast. Im
+   * Wesentlichen ist es der Fingerabdruck deines Browsers!
+   * Aber hier ist die Sache - manchmal möchtest du keine so klare Spur hinterlassen. Genau da kommt diese
+   * Erweiterung ins Spiel!
    *
-   * ⭐️ Den Namen und die Version deines Browsers
-   * ⭐️ Den Namen deines Betriebssystems (Mac, Windows, Linux, usw.) und dessen Version
-   * ⭐️ Informationen über manche installierte Plugins
-   * ⭐️ Andere Informationen, welche dich indentifizieren
+   * 🚀 Wir haben diese Erweiterung entwickelt, um deine Online-Privatsphäre zu schützen und es supereinfach zu
+   * machen, als ob du von verschiedenen Geräten aus surfst.
    *
-   * 🚀 Diese erweiterung wurde erstellt um Datenlecks zu stoppen.
+   * Mit dieser Erweiterung wird dein User-Agent-String automatisch in regelmäßigen Abständen durch einen
+   * zufälligen ersetzt. Du kannst deinen User-Agent auch manuell festlegen, wenn du möchtest. Und weißt du was?
+   * Es ist superleicht für deine Systemressourcen, sodass du es nicht einmal bemerkst.
    *
-   * Sie verändert den User-Agent nach einer bestimmten Zeitspanne automatisch zu einem zufällig ausgesuchten.
-   * User-Agents können auch manuell gesetzt werden. Die Erweiterung ist unglaublich leichtgewichtig, sie benutzt nur
-   * sehr wenige Ressourcen. Die User-Agent zufallsgenerierung kann vom Benutzer angepasst werden (welche Browser und
-   * Betriebssysteme ausgewählt werden, usw.). Eine Ausnahmeliste mit optionalen Wildcards ist verfügbar. Schützt vor
-   * JavaScript Schwachstellen um deine Identität zu verstecken und deine Anonymität zu schützen.
+   * Außerdem hast du die Kontrolle! Du kannst festlegen, welche Browser und Betriebssysteme du emulieren möchtest.
+   * Wir haben sogar eine Ausnahmeliste für diese speziellen Fälle.
    *
-   * Völlig kostenlos und ohne Werbung.
+   * Und das Beste daran? Es schützt dich vor hinterhältigen JavaScript-Tricks, die darauf abzielen, deine
+   * Identität aufzudecken. Und das Beste von allem: Es ist komplett kostenlos und werbefrei. Gib deiner
+   * Online-Privatsphäre heute einen Schub!
    *
-   * Made with ❤️ Quellcode: https://github.com/tarampampam/random-user-agent
+   * Mit ❤️ Entdecke den Quellcode: https://github.com/tarampampam/random-user-agent
    */
   de: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -179,26 +183,26 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Spanish
    *
-   * User-Agent: cadena que se envía a cualquier sitio web que visite. Se trata de una especie de "huella digital"
-   * que deja su navegador y que contiene:
+   * User-Agent es como un código secreto que tu navegador comparte con cada sitio web que visitas. Revela detalles
+   * sobre tu navegador, tu sistema operativo e incluso algunos complementos que tienes instalados. ¡Básicamente, es
+   * la huella digital de tu navegador!
+   * Pero aquí está la cosa: a veces no quieres dejar una huella tan clara. ¡Ahí es donde entra esta extensión!
    *
-   * ⭐️ El nombre y la versión de su navegador
-   * ⭐️ El nombre del sistema operativo (Mac, Windows, Linux, etc.) y su versión
-   * ⭐️ Información sobre algunos plugins instalados en el navegador
-   * ⭐️ Otros datos que te identifican y te dejan en evidencia
+   * 🚀 Creamos esta extensión para proteger tu privacidad en línea y hacer que sea súper fácil aparecer como si
+   * estuvieras navegando desde diferentes dispositivos.
    *
-   * 🚀 ¡Esta extensión ha sido creada para detener la fuga de datos y emular diferentes dispositivos de la forma
-   * más sencilla!
+   * Con esta extensión, tu cadena de User-Agent se intercambia automáticamente por una aleatoria a intervalos
+   * regulares. También puedes configurar manualmente tu User-Agent si lo prefieres. ¿Y sabes qué? Es súper ligero
+   * en tus recursos del sistema, así que ni siquiera te darás cuenta de que está ahí.
    *
-   * Reemplaza automáticamente las cadenas User-Agent después de un período de tiempo especificado por una aleatoria.
-   * Las cadenas User-Agent también se pueden configurar manualmente. La extensión es increíblemente ligera y utiliza
-   * muy pocos recursos. La aleatorización de User-Agent puede ser personalizada por el usuario (qué navegadores y SO
-   * son suplantados, etc.). Lista de excepciones disponible con la opción de comodines. Protege contra exploits
-   * Javascript para ocultar su identidad y proteger su anonimato.
+   * ¡Además, tienes el control! Puedes personalizar qué navegadores y sistemas operativos quieres emular. Incluso
+   * tenemos una lista de excepciones para esos casos especiales.
    *
-   * Completamente gratuito y sin anuncios.
+   * ¿Y la mejor parte? Te mantiene a salvo de los trucos astutos de JavaScript diseñados para descubrir tu
+   * identidad. Lo mejor de todo es que es completamente gratis y sin publicidad. ¡Dale un impulso a tu privacidad
+   * en línea hoy mismo!
    *
-   * Hecho con ❤️ Código fuente: https://github.com/tarampampam/random-user-agent
+   * Hecho con ❤️ Consulta el código fuente: https://github.com/tarampampam/random-user-agent
    */
   es: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -268,26 +272,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang French
    *
-   * User-Agent - est une en-tête envoyée à chaque site Web visité. Il s'agit d'une sorte d'"empreinte digitale"
-   * laissée par votre navigateur qui contient:
+   * User-Agent est comme un code secret que votre navigateur partage avec chaque site Web que vous visitez. Il révèle
+   * des détails sur votre navigateur, votre système d'exploitation et même certains plugins que vous avez installés.
+   * Fondamentalement, c'est l'empreinte digitale de votre navigateur!
+   * Mais voici la chose - parfois, vous ne voulez pas laisser une trace aussi claire. C'est là que cette extension
+   * intervient!
    *
-   * ⭐️ Le nom et la version de votre navigateur
-   * ⭐️ Le nom du système d'exploitation (Mac, Windows, Linux, etc.) et sa version
-   * ⭐️ Des informations sur certains plugins installés sur le navigateur
-   * ⭐️ D'autres informations qui vous identifient et vous exposent
+   * 🚀 Nous avons créé cette extension pour protéger votre vie privée en ligne et vous permettre de paraître
+   * facilement comme si vous naviguiez à partir de différents appareils.
    *
-   * 🚀 Cette extension a été créée pour arrêter la fuite de données.
+   * Avec cette extension, votre chaîne User-Agent est automatiquement remplacée par une chaîne aléatoire à
+   * intervalles réguliers. Vous pouvez également définir manuellement votre User-Agent si vous le préférez. Et
+   * devinez quoi? Elle est super légère sur vos ressources système, vous ne la remarquerez même pas.
    *
-   * Il remplace automatiquement les en-têtes User-Agent après une certaine période aléatoire. Les en-têtes
-   * User-Agent peuvent également être définies manuellement. L'extension est à la fois légère et peu énergivore
-   * en ressources. Les paramètres aléatoires de l'extension User-Agent peuvent être personnalisée par l'utilisateur
-   * (quels navigateurs et OS sont usurpés, etc.). Il est possible d'utiliser des caractères génériques pour mettre
-   * une liste d'exception en place. L'extension protège également contre les failles Javascript en cachant votre
-   * identité et protégeant votre anonymat.
+   * De plus, vous avez le contrôle! Vous pouvez personnaliser les navigateurs et systèmes d'exploitation que
+   * vous souhaitez émuler. Nous avons même une liste d'exceptions pour ces cas spéciaux.
    *
-   * Entièrement gratuit et sans publicité.
+   * Et la meilleure partie? Elle vous protège des astuces sournoises de JavaScript conçues pour découvrir votre
+   * identité. Et le meilleur de tout, c'est complètement gratuit et sans publicité. Donnez un coup de pouce à
+   * votre vie privée en ligne dès aujourd'hui!
    *
-   * Fabriqué avec ❤️ Code source: https://github.com/tarampampam/random-user-agent
+   * Fait avec ❤️ Consultez le code source: https://github.com/tarampampam/random-user-agent
    */
   fr: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -358,26 +363,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Indonesian
    *
-   * User-Agent - string yang dikirimkan ke situs web mana pun yang kamu kunjungi. Ini adalah semacam "sidik jari"
-   * yang ditinggalkan browser kamu yang berisi:
+   * User-Agent seperti kode rahasia yang dibagikan oleh browser Anda ke setiap situs web yang Anda kunjungi. Ini
+   * mengungkapkan detail tentang browser Anda, sistem operasi Anda, dan bahkan beberapa plugin yang Anda instal.
+   * Pada dasarnya, ini adalah sidik jari browser Anda!
+   * Tapi inilah masalahnya: kadang-kadang Anda tidak ingin meninggalkan jejak yang begitu jelas. Di situlah peran
+   * ekstensi ini!
    *
-   * ⭐️ Nama dan versi browser kamu
-   * ⭐️ Nama dari sistem operasi (Mac, Windows, Linux, dll.) dan versi lainya
-   * ⭐️ Informasi tentang beberapa plugin yang diinstal pada peramban
-   * ⭐️ Informasi lain yang mengidentifikasi dan memaparkan kamu
+   * 🚀 Kami menciptakan ekstensi ini untuk melindungi privasi online Anda dan membuatnya sangat mudah untuk muncul
+   * seolah-olah Anda sedang menjelajah dari perangkat yang berbeda.
    *
-   * 🚀 Ekstensi ini telah dibuat untuk menghentikan kebocoran data dan mensimulasi perangkat yang berbeda dengan
-   * cara yang paling sederhana!
+   * Dengan ekstensi ini, string User-Agent Anda otomatis diganti dengan salah satu yang diacak pada interval reguler.
+   * Anda juga bisa menyetel User-Agent secara manual jika Anda lebih suka. Dan tebak apa? Sangat ringan untuk sumber
+   * daya sistem Anda, sehingga Anda bahkan tidak akan menyadarinya.
    *
-   * Ini secara otomatis menggantikan string User-Agent setelah periode waktu tertentu dengan string yang diacak.
-   * String User-Agent juga dapat diatur secara manual. Ekstensi ini sangat ringan, menggunakan sumber daya yang
-   * sangat sedikit. Pengacakan Agen-Pengguna dapat disesuaikan oleh pengguna (browser dan OS apa yang dipalsukan,
-   * dll.). Daftar pengecualian tersedia dengan opsi wildcard. Melindungi dari eksploitasi Javascript untuk
-   * menyembunyikan identitas kamu dan melindungi anonimitas kamu.
+   * Plus, Anda memiliki kendali! Anda dapat menyesuaikan browser dan sistem operasi mana yang ingin Anda tiru. Kami
+   * bahkan memiliki daftar pengecualian untuk kasus-kasus khusus.
    *
-   * Benar-benar gratis dan tanpa iklan.
+   * Dan yang terbaik? Ini melindungi Anda dari trik JavaScript yang licik yang dirancang untuk mengungkap identitas
+   * Anda. Dan yang terbaik dari semua, ini benar-benar gratis dan bebas iklan. Berikan dorongan pada privasi online
+   * Anda hari ini!
    *
-   * Dibuat dengan ❤️ sumber kode: https://github.com/tarampampam/random-user-agent
+   * Dibuat dengan ❤️ Periksa kode sumber: https://github.com/tarampampam/random-user-agent
    */
   id: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -445,20 +451,23 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Japanese
    *
-   * User-Agent - あなたが訪問するすべてのウェブサイトに送信される文字列です。これは、あなたのブラウザが残す「指紋」のようなもので、以下の内容を含んでいます。
+   * User-Agentは、あなたが訪れるすべてのウェブサイトと共有される秘密のコードのようなものです。ブラウザの詳細、オペレーティングシステム、
+   * インストールされているプラグインについて明らかにします。基本的に、それはあなたのブラウザの指紋です！
    *
-   * ブラウザの名前とバージョン
-   * オペレーティングシステム名（Mac、Windows、Linux など）とそのバージョン。
-   * ブラウザにインストールされているいくつかのプラグインに関する情報
-   * ⭐️ その他、お客様を特定し、公開する情報
+   * しかし、ここがポイントです - 時々、そんなに明確な軌跡を残したくないことがあります。そこで、この拡張機能が登場します！
    *
-   * 🚀 この拡張機能は、データ漏洩を阻止し、最もシンプルな方法で異なるデバイスをエミュレートするために作成されました!
+   * 🚀 この拡張機能は、オンラインプライバシーを保護し、異なるデバイスからブラウジングしているかのように見せるのが超簡単になるように作成しました。
    *
-   * この拡張機能は、一定期間後にUser-Agent文字列を自動的にランダムなものに置き換えます。User-Agent文字列は、手動で設定することもできます。この拡張機能は非常に軽量で、使用するリソースもごくわずかです。User-Agentのランダム化は、ユーザーがカスタマイズすることができます（どのブラウザとOSが詐称されるか、など）。ワイルドカードのオプションで、例外リストを利用可能。Javascriptの悪用から保護し、あなたの身元を隠し、匿名性を保護します。
+   * この拡張機能では、定期的な間隔でUser-Agent文字列が自動的にランダムなものと交換されます。お好みで、手動でUser-Agentを設定することもできます。
+   * そして、何と？それはあなたのシステムリソースにほとんど影響を与えないので、それがそこにあることさえ気付かないでしょう。
    *
-   * 完全無料、広告なし。
+   * さらに、あなたがコントロールしています！エミュレートしたいブラウザやオペレーティングシステムをカスタマイズできます。
+   * 特別な場合のために例外リストも用意されています。
    *
-   * で作られた❤️ソースコード： https://github.com/tarampampam/random-user-agent
+   * そして、最高の部分？それは、あなたのアイデンティティを明らかにするために設計された、ずる賢いJavaScriptトリックからあなたを守ります。
+   * なんといっても、それは完全に無料で広告もありません。今日、オンラインプライバシーを強化しましょう！
+   *
+   * ❤️で作成されました。ソースコードをチェックしてください：https://github.com/tarampampam/random-user-agent
    */
   ja: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -526,26 +535,26 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Polish
    *
-   * User-Agent - ciąg znaków, który jest wysyłany do każdej odwiedzanej strony internetowej. Jest to rodzaj
-   * "odcisku palca", który pozostawia za sobą przeglądarka i który zawiera:
+   * User-Agent to jak tajny kod, który Twój przeglądarka udostępnia każdej odwiedzanej przez Ciebie witrynie.
+   * Ujawnia szczegóły dotyczące Twojej przeglądarki, systemu operacyjnego, a nawet niektórych zainstalowanych
+   * wtyczek. W zasadzie, jest to odcisk Twojej przeglądarki!
    *
-   * ⭐️ Nazwę i wersję Twojej przeglądarki.
-   * ⭐️ Nazwę systemu operacyjnego (Mac, Windows, Linux itp.) i jego wersję
-   * ⭐️ Informacje o niektórych wtyczkach zainstalowanych w przeglądarce
-   * ⭐️ Inne informacje, które Cię identyfikują i eksponują
+   * Ale oto sprawa - czasami nie chcesz zostawiać tak wyraźnego śladu. Właśnie wtedy pojawia się ta rozszerzenie!
    *
-   * 🚀 To rozszerzenie zostało stworzone, aby zatrzymać wyciek danych i emulować różne urządzenia w najprostszy
-   * sposób!
+   * 🚀 Stworzyliśmy to rozszerzenie, aby chronić Twoją prywatność online i sprawić, że będzie bardzo łatwo wydawać
+   * się, jakbyś przeglądał z różnych urządzeń.
    *
-   * Automatycznie zastępuje ciągi User-Agent po określonym czasie losowym. Ciągi User-Agent mogą być również
-   * ustawione ręcznie. Rozszerzenie jest niezwykle lekkie, używa bardzo mało zasobów. Randomizacja User-Agent
-   * może być dostosowana przez użytkownika (jakie przeglądarki i systemy operacyjne są spoofed, itp.). Lista
-   * wyjątków dostępna z opcją symboli wieloznacznych. Chroni przed exploitami Javascript, aby ukryć swoją
-   * tożsamość i chronić anonimowość.
+   * Dzięki temu rozszerzeniu, Twój ciąg User-Agent automatycznie zostaje zastąpiony losowym co jakiś czas. Możesz
+   * także ręcznie ustawić swój User-Agent, jeśli wolisz. I zgadnij co? Jest bardzo lekki dla zasobów Twojego systemu,
+   * więc nawet nie zauważysz, że jest zainstalowany.
    *
-   * Całkowicie darmowy i bez reklam.
+   * Dodatkowo, masz kontrolę! Możesz dostosować, jakie przeglądarki i systemy operacyjne chcesz emulować. Mamy nawet
+   * listę wyjątków dla tych specjalnych przypadków.
    *
-   * Made with ❤️ Kod źródłowy: https://github.com/tarampampam/random-user-agent
+   * A najlepsze? Chroni Cię przed podstępnymi trikami JavaScript zaprojektowanymi, aby ujawnić Twoją tożsamość. Co
+   * najlepsze, jest całkowicie darmowy i bez reklam. Wzmocnij dziś swoją prywatność online!
+   *
+   * Stworzone z ❤️. Sprawdź kod źródłowy: https://github.com/tarampampam/random-user-agent
    */
   pl: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -614,26 +623,26 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Portuguese (Brazil)
    *
-   * User-Agent (Agente de usuário) - é um conjunto de informações que é enviado para qualquer site que você
-   * visita. É um tipo de "impressão digital" do seu navegador, que contém:
+   * User-Agent é como um código secreto que o seu navegador compartilha com cada site que você visita. Ele revela
+   * detalhes sobre o seu navegador, seu sistema operacional e até alguns plugins que você tem instalados.
+   * Basicamente, é a impressão digital do seu navegador!
    *
-   * ⭐️ O nome e a versão do seu navegador;
-   * ⭐️ O nome de sistema operacional (Mac, Windows, Linux, etc.) e a sua versão;
-   * ⭐️ Informações sobre alguns plugins instalados no seu navegador;
-   * ⭐️ Outras informações que lhe identifica e expõe.
+   * Mas aqui está a questão - às vezes você não quer deixar um rastro tão claro. É aí que entra esta extensão!
    *
-   * 🚀 Esta extensão foi criada para impedir o vazamento de dados.
+   * 🚀 Criamos esta extensão para proteger sua privacidade online e tornar muito fácil parecer que você está
+   * navegando de dispositivos diferentes.
    *
-   * Ela substitui automaticamente identificação de Agente de usuário, após um período de tempo escolhido, por uma
-   * outra aleatória. As informações de Agente de usuário também podem ser especificadas manualmente. A extensão é
-   * incrivelmente leve e usa muito pouco recursos. A randomização de Agente de usuário pode ser personalizada pelo
-   * usuário (vários tipos de navegadores e SO são disponíveis, etc.). A lista de exceções pode ser criada com a
-   * opção de usar os caracteres especiais. Tem proteção contra explorações de Javascript para ocultar sua identidade
-   * e proteger seu anonimato.
+   * Com esta extensão, o seu string User-Agent é automaticamente trocado por um aleatório em intervalos regulares.
+   * Você também pode configurar manualmente o seu User-Agent, se preferir. E adivinha? É super leve em seus
+   * recursos de sistema, então você nem vai perceber que está lá.
    *
-   * Completamente gratuito e sem anúncios.
+   * Além disso, você está no controle! Você pode personalizar quais navegadores e sistemas operacionais deseja
+   * emular. Temos até uma lista de exceções para esses casos especiais.
    *
-   * Feito com ❤️ Código-fonte: https://github.com/tarampampam/random-user-agent
+   * E a melhor parte? Ele o protege contra truques JavaScript astutos projetados para descobrir sua identidade.
+   * Melhor de tudo, é completamente gratuito e sem anúncios. Reforce sua privacidade online hoje!
+   *
+   * Feito com ❤️. Confira o código fonte: https://github.com/tarampampam/random-user-agent
    */
   pt_BR: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -702,25 +711,28 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Russian
    *
-   * User-Agent - это строка, которая передается браузером вместе с запросом любой страницы в интернете. Это ваш
-   * своеобразный "отпечаток", в котором содержится:
+   * User-Agent - это своего рода секретный код, который ваш браузер отправляет каждому сайту, который вы посещаете.
+   * Он содержит детали о вашем браузере, операционной системе, а также некоторых установленных плагинах. Фактически,
+   * это уникальный отпечаток вашего браузера!
    *
-   * ⭐️ Название и версия вашего браузера
-   * ⭐️ Название операционной системы (Mac, Windows, Linux и т.д.) и её версия
-   * ⭐️ Информация о некоторых установленных плагинах в системе
-   * ⭐️ Прочая информация, идентифицирующая и раскрывающая вас
+   * Но вот в чем дело - иногда вы не хотите оставлять такой след, позволяющий идентифицировать ваши перемещения в
+   * сети. И вот тут-то и вступает в игру это расширение!
    *
-   * 🚀 Для того, чтобы прекратить эту утечку данных и эмулировать различные устройства и было создано это расширение!
+   * 🚀 Мы создали его, чтобы защитить вашу онлайн-приватность путая следы так, как будто вы серфите сеть с разных
+   * устройств.
    *
-   * Оно автоматически подменяет User-Agent через указанный промежуток времени на случайный. Так же строка User-Agent
-   * может быть указана вручную. Предоставляет защиту от раскрытия реального User-Agent даже средствами JavaScript!
-   * Данное расширение очень небольшое и бережно относится к ресурсам. Генерация случайного User-Agent может быть
-   * настроена (имеется выбор браузеров, которые необходимо имитировать). Поддерживаются удобные правила исключений
-   * и синхронизация настроек.
+   * С этим расширением ваш User-Agent будет автоматически заменяться на случайный через регулярные промежутки
+   * времени или при нажатии определенной кнопки. Вы также можете вручную задать свой User-Agent, если предпочитаете.
+   * Кроме того, оно почти не потребляет ресурсы вашего браузера, так что вы даже не заметите, что оно вообще есть.
    *
-   * Абсолютно бесплатное и без рекламы/трекеров.
+   * Плюс ко всему, вы можете настроить, какие браузеры и операционные системы вы хотите эмулировать. У нас даже есть
+   * список исключений для особых, если для каких-то сайтов не нужно выполнять подмену.
    *
-   * Разработано с ❤️ Исходный код: https://github.com/tarampampam/random-user-agent
+   * И лучшая часть - оно защищает вас от "коварных" JavaScript скриптов, созданных для раскрытия реального
+   * User-Agent'а. И, самое главное, оно абсолютно бесплатное и без рекламы. Бустаните свою онлайн-приватность
+   * прямо сейчас!
+   *
+   * Сделано с ❤️ Исходный код: https://github.com/tarampampam/random-user-agent
    */
   ru: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -790,25 +802,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Turkish
    *
-   * User-Agent - ziyaret ettiğiniz herhangi bir web sitesine gönderilen bir dize. Bu, tarayıcınızın geride
-   * bıraktığı ve içerdiği bir tür "parmak izidir":
+   * User-Agent, ziyaret ettiğiniz her web sitesine tarayıcınızın paylaştığı gizli bir kod gibidir. Tarayıcınızın,
+   * işletim sisteminizin ve hatta yüklediğiniz bazı eklentilerin ayrıntılarını ortaya çıkarır. Temelde, bu sizin
+   * tarayıcınızın parmak izidir!
    *
-   * ⭐️ Tarayıcınızın adı ve sürümü
-   * ⭐️ İşletim sisteminin adı (Mac, Windows, Linux, vb.) ve sürümü
-   * ⭐️ Tarayıcıda yüklü bazı eklentiler hakkında bilgi
-   * ⭐️ Sizi tanımlayan ve ifşa eden diğer bilgiler
+   * Ama işte şöyle bir durum var - bazen böyle belirgin bir iz bırakmak istemezsiniz. İşte burada bu uzantı devreye
+   * girer!
    *
-   * 🚀 Bu uzantı, veri sızıntısını durdurmak ve farklı cihazları en basit şekilde taklit etmek için oluşturulmuştur!
+   * 🚀 Bu uzantıyı, çevrimiçi gizliliğinizi korumak ve farklı cihazlardan geziniyormuş gibi görünmeyi son derece
+   * kolay hale getirmek için oluşturduk!
    *
-   * Belirli bir süre sonra User-Agent dizelerini otomatik olarak rastgele bir dizeyle değiştirir. User-Agent
-   * dizeleri manuel olarak da ayarlanabilir. Uzantı inanılmaz derecede hafiftir ve çok az kaynak kullanır. User-Agent
-   * randomizasyonu kullanıcı tarafından özelleştirilebilir (hangi tarayıcıların ve işletim sistemlerinin taklit
-   * edileceği vb.). Joker karakter seçeneği ile istisnalar listesi mevcuttur. Kimliğinizi gizlemek ve anonimliğinizi
-   * korumak için Javascript istismarlarına karşı koruma sağlar.
+   * Bu uzantı ile User-Agent dizginiz belirli aralıklarla otomatik olarak rastgele biriyle değiştirilir. Tercih
+   * ederseniz User-Agent'ınızı da manuel olarak ayarlayabilirsiniz. Ve biliyor musunuz? Sistem kaynaklarınızı çok az
+   * kullandığı için bileğinizde var olduğunu fark etmeyeceksiniz.
    *
-   * Tamamen ücretsiz ve reklamsız.
+   * Artı, siz kontrol ediyorsunuz! Hangi tarayıcıları ve işletim sistemlerini taklit etmek istediğinizi
+   * özelleştirebilirsiniz. Özel durumlar için hatta istisnalar listemiz var.
    *
-   * Made with ❤️ Kaynak kodu: https://github.com/tarampampam/random-user-agent
+   * Ve en güzel yanı? Kimliğinizi ortaya çıkarmak için tasarlanmış kurnaz JavaScript hilelerinden sizi koruyor.
+   * Ve en iyisi, tamamen ücretsiz ve reklamsız. Çevrimiçi gizliliğinizi bugün güçlendirin!
+   *
+   * ❤️ ile yapıldı. Kaynak kodunu kontrol edin: https://github.com/tarampampam/random-user-agent
    */
   tr: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -878,25 +892,28 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Ukrainian
    *
-   * User-Agent - рядок, який надсилається на будь-який веб-сайт, який ви відвідуєте. Це свого роду "відбиток пальця",
-   * який залишає ваш браузер:
+   * User-Agent - це свого роду секретний код, який ваш браузер надсилає кожному сайту, який ви відвідуєте.
+   * Він містить деталі про ваш браузер, операційну систему, а також деякі встановлені плагіни. Фактично, це
+   * унікальний відбиток вашого браузера!
    *
-   * ⭐️ Назва та версія вашого браузера
-   * ⭐️ Назва операційної системи (Mac, Windows, Linux тощо) та її версія
-   * ⭐️ Інформацію про деякі плагіни, встановлені в браузері
-   * ⭐️ Іншу інформацію, яка ідентифікує та викриває вас
+   * Але ось у чому річ - іноді ви не хочете залишати такий слід, що дає змогу ідентифікувати ваші переміщення в
+   * мережі. І ось тут-то і вступає в гру це розширення!
    *
-   * 🚀 Це розширення було створено, щоб зупинити витік даних і емулювати різні пристрої найпростішим способом!
+   * 🚀 Ми створили його, щоб захистити вашу онлайн-приватність, плутаючи сліди так, ніби ви серфите мережу з
+   * різних пристроїв.
    *
-   * Воно автоматично замінює рядки User-Agent через певний проміжок часу на рандомізовані. Рядки User-Agent також
-   * можуть бути встановлені вручну. Розширення неймовірно легке, використовує дуже мало ресурсів. Рандомізація
-   * User-Agent може бути налаштована користувачем (які браузери і ОС підміняються і т.д.). Доступний список
-   * винятків з можливістю використання підстановочних знаків. Захищає від експлойтів Javascript для приховування
-   * вашої особистості та захисту вашої анонімності.
+   * З цим розширенням ваш User-Agent буде автоматично замінюватися на випадковий через регулярні проміжки часу
+   * або при натисканні певної кнопки. Ви також можете вручну задати свій User-Agent, якщо віддаєте перевагу.
+   * Крім того, воно майже не споживає ресурси вашого браузера, так що ви навіть не помітите, що воно взагалі є.
    *
-   * Повністю безкоштовний і без реклами.
+   * Плюс до всього, ви можете налаштувати, які браузери та операційні системи ви хочете емулювати. У нас навіть є
+   * список винятків для особливих, якщо для якихось сайтів не потрібно виконувати підміну.
    *
-   * Зроблено за допомогою ❤️ Вихідний код: https://github.com/tarampampam/random-user-agent
+   * І найкраща частина - воно захищає вас від «підступних» JavaScript скриптів, створених для розкриття реального
+   * User-Agent'а. І, найголовніше, воно абсолютно безкоштовне і без реклами. Підвищіть свою онлайн-приватність
+   * просто зараз!
+   *
+   * Зроблено з ❤️ Вихідний код: https://github.com/tarampampam/random-user-agent
    */
   uk: {
     manifest_name: 'Random User-Agent (Switcher)',
@@ -964,25 +981,27 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Vietnamese
    *
-   * User-Agent - một dòng kí tự được gửi đến bất kỳ trang web nào bạn truy cập. Đây là một loại “vân tay” mà trình
-   * duyệt của bạn để lại bao gồm:
+   * User-Agent giống như một mã bí mật mà trình duyệt của bạn chia sẻ với mọi trang web bạn truy cập. Nó tiết lộ
+   * thông tin về trình duyệt của bạn, hệ điều hành của bạn, và thậm chí là một số plugin bạn đã cài đặt. Theo cách
+   * đơn giản, đó là dấu vân tay của trình duyệt của bạn!
    *
-   * ⭐️ Tên và phiên bản trình duyệt của bạn
-   * ⭐️ Tên và phiên bản của hệ điều hành (Mac, Windows, Linux, vv)
-   * ⭐️ Thông tin về một số phần mở rộng được cài đặt trên trình duyệt
-   * ⭐️ Các thông tin khác cho phép xác định và làm lộ danh tính bạn
+   * Nhưng vấn đề là - đôi khi bạn không muốn để lại dấu vết rõ ràng như vậy. Đó là lý do tại sao có phần mở rộng này!
    *
-   * 🚀 Phần mở rộng này đã được tạo ra để ngăn chặn rò rỉ dữ liệu và giả lập những thiết bị khác một cách đơn giản nhất!
+   * 🚀 Chúng tôi tạo ra phần mở rộng này để bảo vệ sự riêng tư trực tuyến của bạn và làm cho việc xuất hiện như bạn
+   * đang duyệt từ các thiết bị khác nhau trở nên cực kỳ dễ dàng!
    *
-   * Nó tự động thay thế dòng User-Agent sau một khoảng thời gian nhất định với một dòng ngẫu nhiên. Dòng User-Agent
-   * cũng có thể được đặt thủ công. Phần mở rộng này cực kỳ nhẹ, sử dụng rất ít tài nguyên. Sự ngẫu nhiên hoá User-Agent
-   * có thể được tùy chỉnh bởi người dùng (những trình duyệt và hệ điều hành nào được giả lập, v.v.). Bao gồm danh sách
-   * ngoại lệ với tùy chọn ký tự đại diện. Bảo vệ khỏi những lỗ hổng Javascript để ẩn danh tính và bảo vệ sự ẩn danh
-   * của bạn.
+   * Với phần mở rộng này, chuỗi User-Agent của bạn sẽ tự động được thay thế bằng một chuỗi ngẫu nhiên sau một khoảng
+   * thời gian nhất định. Bạn cũng có thể thiết lập User-Agent của mình bằng cách thủ công. Và biết điều gì không?
+   * Nó rất nhẹ nhàng với tài nguyên hệ thống của bạn, vì vậy bạn thậm chí không cần phải để ý đến nó.
    *
-   * Hoàn toàn miễn phí và không có quảng cáo.
+   * Ngoài ra, bạn có quyền kiểm soát! Bạn có thể tùy chỉnh những trình duyệt và hệ điều hành mà bạn muốn mô phỏng.
+   * Chúng tôi còn có một danh sách ngoại lệ cho những trường hợp đặc biệt.
    *
-   * Được làm với ❤️ Mã nguồn: https://github.com/tarampampam/random-user-agent
+   * Và điều tốt nhất? Nó giữ bạn an toàn trước các chiêu trò JavaScript mở lỗ hổng để tiết lộ danh tính của bạn.
+   * Quan trọng nhất, nó hoàn toàn miễn phí và không có quảng cáo. Hãy nâng cao sự riêng tư trực tuyến của bạn
+   * ngay hôm nay!
+   *
+   * Được làm với ❤️ Kiểm tra mã nguồn: https://github.com/tarampampam/random-user-agent
    */
   vi: {
     manifest_name: 'User-Agent ngẫu nhiên (Thay đổi)',
@@ -1052,20 +1071,21 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Chinese (China)
    *
-   * 用户代理（User-Agent）是在您访问网站时发送过去的一个标识字符串。这是您的浏览器留下的“指纹”之一。该字符串中包含：
+   * 用户代理就像是您的浏览器与您访问的每个网站分享的秘密代码。它揭示了关于您的浏览器、操作系统甚至一些已安装的插件的细节。本质上，
+   * 它就是您的浏览器的指纹！
    *
-   * ⭐️ 您的浏览器的名称和版本
-   * ⭐️ 操作系统的名称（如 Mac、Windows、Linux 等）及其版本
-   * ⭐️ 已安装在浏览器中的插件的一些信息
-   * ⭐️ 其他可以识别和认出您的信息
+   * 但是这里有个问题 - 有时您可能不想留下如此清晰的踪迹。这就是这个扩展程序的用处所在！
    *
-   * 🚀 本扩展是为了防止此种数据泄露您的信息。
+   * 🚀 我们创建了这个扩展程序，以保护您的在线隐私，并使您轻松地伪装成从不同设备上浏览的样子。
    *
-   * 它将按指定的时间间隔来随机切换一个用户代理字符串。您也可手动设置用户代理字符串。该扩展非常轻量级，只需很少的资源。用户可定制用户代理的随机化，包括伪装为哪种浏览器和操作系统。本扩展提供有一个例外列表来避免特定域名受伪装影响。本扩展还可防止通过 JavaScript 发掘您的真实信息。
+   * 通过这个扩展程序，您的用户代理字符串将定期自动更换为随机的字符串。您还可以手动设置用户代理，如果您喜欢的话。
+   * 而且猜怎么着？它对您的系统资源消耗非常小，所以您甚至不会注意到它的存在。
    *
-   * 完全免费，没有广告。
+   * 此外，您拥有控制权！您可以自定义要模拟的浏览器和操作系统。我们甚至为特殊情况准备了一个例外列表。
    *
-   * 用❤️制作 源代码：https://github.com/tarampampam/random-user-agent
+   * 最棒的部分呢？它可以保护您免受那些旨在揭示您身份的狡猾的 JavaScript 技巧的侵害。最重要的是，它完全免费，没有广告。立即提升您的在线隐私！
+   *
+   * 用 ❤️ 制作。查看源代码：https://github.com/tarampampam/random-user-agent
    */
   zh_CN: {
     manifest_name: 'Random User-Agent (Switcher)',
