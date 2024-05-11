@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# docs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: 🚀 Deploy the website index
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [rewrite] #[master, main] # TODO: change this
+    tags-ignore: ['**']
+    paths: [website/index/**, .github/workflows/deploy-website-index.yml]
+
+concurrency:
+  group: ${{ github.ref }}-website-index
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: 🚀 Publish the site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cloudflare/wrangler-action@v3
+        env:
+          PROJECT_NAME: random-user-agent-index
+          DIST_DIR: ./website/index
+          CF_BRANCH_NAME: main # to deploy as "Production" environment on Cloudflare Pages
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command:
+            pages deploy ${{ env.DIST_DIR }}
+              --project-name=${{ env.PROJECT_NAME }}
+              --branch ${{ env.CF_BRANCH_NAME }}
+              --commit-dirty=true

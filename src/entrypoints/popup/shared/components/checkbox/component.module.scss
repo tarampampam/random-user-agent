@@ -1,0 +1,66 @@
+@forward '~/theme/theme';
+
+// @link: <https://codepen.io/mallendeo/pen/eLIiG>
+
+.toggle {
+  display: none;
+
+  // add default box-sizing for this scope
+  &,
+  &:after,
+  &:before,
+  & *,
+  & *:after,
+  & *:before,
+  & + .toggleBtn {
+    box-sizing: border-box;
+
+    &::selection {
+      background: none;
+    }
+  }
+
+  + .toggleBtn {
+    outline: 0;
+    display: block;
+    width: 2.7em;
+    height: 1.5em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+
+    background: var(--color-ui-off);
+    border-radius: 1.5em;
+    padding: 2px;
+    transition: all 0.3s ease;
+
+    &:after,
+    &:before {
+      position: relative;
+      display: block;
+      content: '';
+      width: 50%;
+      height: 100%;
+    }
+
+    &:after {
+      left: 0;
+
+      border-radius: 50%;
+      background: var(--color-ui-spacer);
+      transition: all 0.045s ease;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &:checked + .toggleBtn {
+    background: var(--color-ui-on);
+  }
+
+  &:checked + .toggleBtn:after {
+    left: 50%;
+  }
+}

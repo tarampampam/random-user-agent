@@ -1,0 +1,55 @@
+.notification {
+  position: absolute;
+  left: 50%;
+  max-width: 600px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 1em 2em;
+  border-radius: 5px;
+
+  .closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    padding: 0.2em 0.4em 0 0;
+    cursor: pointer;
+    opacity: 0.6;
+
+    &::before {
+      content: '×';
+    }
+  }
+}
+
+$hide-speed: 450ms;
+$show-speed: calc($hide-speed / 2);
+$transition-function: ease-in-out;
+
+.visible {
+  top: 1em;
+  opacity: 1;
+  transition:
+    top $show-speed $transition-function,
+    opacity $show-speed $transition-function;
+}
+
+.hidden {
+  top: -2em;
+  opacity: 0;
+  transition:
+    top $hide-speed $transition-function,
+    opacity $hide-speed $transition-function;
+}
+
+.info {
+  // a special class for info notifications
+  background-color: var(--color-text-info);
+  color: var(--color-ui-border-info);
+}
+
+.error {
+  // a special class for error notifications
+  background-color: var(--color-text-err);
+  color: var(--color-ui-border-err);
+}

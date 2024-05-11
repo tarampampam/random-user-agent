@@ -1,0 +1,74 @@
+@forward '~/theme/theme';
+
+.component {
+  width: 3em;
+  height: 1.6em;
+  position: relative;
+  cursor: pointer;
+}
+
+.input {
+  width: 3em;
+  height: 1.6em;
+  cursor: pointer;
+  appearance: none;
+  background: var(--color-ui-off);
+  border-radius: 3px;
+  position: relative;
+  outline: 0;
+  transition: all 0.02s;
+
+  &:after {
+    // brick
+    position: absolute;
+    content: '';
+    top: 0.3em;
+    left: 0.3em;
+    height: 1em;
+    width: 1em;
+    background: var(--color-ui-spacer);
+    z-index: 2;
+    border-radius: 2px;
+    transition: all 0.035s;
+  }
+
+  // checked state
+  &:checked {
+    background: var(--color-ui-on);
+  }
+
+  &:checked:after {
+    left: calc(100% - 1.25em);
+  }
+
+  &:checked + label .isChecked {
+    transform: translateX(0) translateY(-30%) scale(0.7);
+  }
+
+  &:checked ~ label .isUnchecked {
+    transform: translateX(-190%) translateY(-30%) scale(0);
+  }
+}
+
+.label {
+  svg {
+    position: absolute;
+    top: 40%;
+    transform-origin: 50% 50%;
+    fill: var(--color-ui-spacer);
+    transition: all 0.025s;
+    z-index: 1;
+  }
+}
+
+.isChecked {
+  width: 1em;
+  left: 15%;
+  transform: translateX(190%) translateY(-30%) scale(0);
+}
+
+.isUnchecked {
+  width: 1em;
+  right: 15%;
+  transform: translateX(0) translateY(-30%) scale(0.5);
+}

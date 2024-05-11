@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# docs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+name: 🧪 Tests
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [master, main]
+    tags-ignore: ['**']
+    paths-ignore: ['**.md', 'website/**', 'static/**']
+  pull_request:
+    paths-ignore: ['**.md', 'website/**', 'static/**']
+
+concurrency:
+  group: ${{ github.ref }}-tests
+  cancel-in-progress: true
+
+env: {FORCE_COLOR: 'true'}
+
+jobs:
+  gitleaks:
+    name: 🔐 Check for GitLeaks
+    runs-on: ubuntu-latest
+    steps:
+      - {uses: actions/checkout@v4, with: {fetch-depth: 0}}
+      - uses: gacts/gitleaks@v1
+
+  unit-tests:
+    name: 🧪 Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
+      - run: npm run test
+
+  eslint:
+    name: 🧹 Run code linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
+      - run: npm run lint
+
+  build:
+    name: 🏗️ Build extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - {uses: gacts/setup-node-with-cache@v1, with: {node-version: 21}}
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with: {name: chrome.zip, path: ./dist/chrome.zip, if-no-files-found: error, retention-days: 30}
+      - uses: actions/upload-artifact@v4
+        with: {name: firefox.zip, path: ./dist/firefox.zip, if-no-files-found: error, retention-days: 30}
+
+  addons-linter:
+    name: 🧪 Run addon linter (mozilla)
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: dist}}
+      - {uses: actions/setup-node@v4, with: {node-version: 21}}
+      - run: npm install -g addons-linter
+      - run: addons-linter ./dist/firefox.zip

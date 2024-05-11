@@ -11,16 +11,23 @@
 
 ## 🔥 Features list
 
-- Incredibly lightweight (`~100KiB` archived)
+- Incredibly lightweight (`~140KiB` archived)
 - Available in the official stores ([chrome][link-chrome-store], [firefox][link-ff-store], [edge][link-edge-store], [opera][link-opera-store])
 - Can automatically change the User-Agent after a specified period of time
 - Change User-Agent on browser startup
 - Replaces `User-Agent` HTTP header
 - Protect against detection by JavaScript
 - User-Agent randomization can be customized by the user (what browsers and OS are spoofed, etc.)
-- Exceptions list (blacklist/whitelist) available with option of wildcards
+- Exceptions list (blacklist/whitelist) available
 - Allows using the remote User-Agents list
 - Doesn't need initial setup - just install and forget about the real user-agent leaking
+
+[link-chrome-store]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
+[link-ff-store]:https://addons.mozilla.org/firefox/addon/random_user_agent/
+[link-edge-store]:https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded
+[link-opera-store]:https://addons.opera.com/en/extensions/details/random-user-agent/
+
+<!-- TODO: update the documentation below
 
 ## 📷 Screenshots
 
@@ -183,7 +190,5 @@ Full privacy policy text can be found [here](PRIVACY_POLICY.md).
 [discussions]:https://github.com/tarampampam/random-user-agent/discussions
 [releases]:https://github.com/tarampampam/random-user-agent/releases
 [contributors]:https://github.com/tarampampam/random-user-agent/graphs/contributors
-[link-chrome-store]:https://chrome.google.com/webstore/detail/random-hide-user-agent/einpaelgookohagofgnnkcfjbkkgepnp
-[link-ff-store]:https://addons.mozilla.org/firefox/addon/random_user_agent/
-[link-edge-store]:https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded
-[link-opera-store]:https://addons.opera.com/en/extensions/details/random-user-agent/
+
+-->

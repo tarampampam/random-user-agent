@@ -1,0 +1,48 @@
+@forward '~/theme/theme';
+
+.action {
+  display: flex;
+  align-items: center;
+  padding: 0.75em 1em;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background-color 120ms ease-in-out;
+  font-size: 1.2em; // scale up a bit
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+  }
+
+  span {
+    padding-left: 0.4em;
+  }
+
+  &.blinkingBackground {
+    @keyframes blinkingBackground {
+      0% {
+        background-color: transparent;
+      }
+      30% {
+        background-color: rgba(87, 222, 114, 0.2);
+      }
+      50% {
+        background-color: rgba(87, 222, 114, 0.25);
+      }
+      100% {
+        background-color: transparent;
+      }
+    }
+
+    animation: blinkingBackground 2s infinite;
+    text-shadow: 0 0 4px var(--color-bg-primary);
+  }
+
+  &:hover,
+  &:hover .blinkingBackground {
+    background-color: var(--color-bg-light);
+    animation: none;
+  }
+}

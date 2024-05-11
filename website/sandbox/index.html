@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /**
+     * @param {String} msg
+     * @param {...*} [args]
+     *
+     * @returns {void}
+     */
+    const debug = (msg, ...args) => console.debug(`%c🧪 ${msg}`, 'font-weight:bold', ...args)
+    debug('The first line of JavaScript code is executed now')
+
+    class CapturedData extends Object {
+      /**
+       * `Date.now()`
+       *
+       * @type {Number}
+       */
+      timestamp
+
+      /** @type {String|undefined} */
+      caption
+
+      /**
+       * `navigator.userAgent`
+       *
+       * @type {String}
+       */
+      navigatorUserAgent
+
+      /**
+       * `navigator.appVersion`
+       *
+       * @type {String|undefined}
+       */
+      navigatorAppVersion
+
+      /**
+       * `navigator.userAgent`
+       *
+       * @type {String|undefined}
+       */
+      navigatorPlatform
+
+      /**
+       * `navigator.oscpu`
+       *
+       * @type {String|undefined}
+       */
+      navigatorOsCPU
+
+      /**
+       * `navigator.vendor`
+       *
+       * @type {String|undefined}
+       */
+      navigatorVendor
+
+      /**
+       * `navigator.userAgentData.brands`
+       *
+       * @type {Array<Record<string, string>>|undefined}
+       */
+      navigatorUserAgentDataBrands
+
+      /**
+       * `navigator.userAgentData.mobile`
+       *
+       * @type {Boolean|undefined}
+       */
+      navigatorUserAgentDataMobile
+
+      /**
+       * `navigator.userAgentData.platform`
+       *
+       * @type {String|undefined}
+       */
+      navigatorUserAgentDataPlatform
+
+      /**
+       * `navigator.userAgentData.toJSON()`
+       *
+       * @type {Record<string, *>|undefined}
+       */
+      navigatorUserAgentDataAsJSON
+
+      /**
+       * `await navigator.userAgentData.getHighEntropyValues([...])`
+       *
+       * @type {Record<string, *>|undefined}
+       */
+      navigatorUserAgentDataHighEntropyValues
+    }
+
+    /** @type {Array<String>} */
+    const highEntropyValues = [
+      'architecture',
+      'bitness',
+      'formFactor',
+      'fullVersionList',
+      'model',
+      'platformVersion',
+      'uaFullVersion',
+      'wow64',
+    ]
+
+    /**
+     * @link https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/getHighEntropyValues
+     *
+     * @param {Navigator} n
+     *
+     * @returns {Promise<Record<string, *>|undefined>}
+     */
+    const captureHighEntropyValues = (n) => {
+      if (n.userAgentData && n.userAgentData.getHighEntropyValues) {
+        return n.userAgentData.getHighEntropyValues(highEntropyValues)
+      }
+
+      return undefined
+    }
+
+    /**
+     * @param {Navigator} n
+     * @param {Boolean} withHighEntropyValues
+     * @param {String} [caption]
+     *
+     * @returns {Promise<CapturedData>|CapturedData}
+     */
+    const capture = (n, withHighEntropyValues = true, caption = undefined) => {
+      const data = new CapturedData()
+
+      data.timestamp = Date.now()
+      data.caption = caption
+      data.navigatorUserAgent = n.userAgent
+      data.navigatorAppVersion = n?.appVersion
+      data.navigatorPlatform = n?.platform
+      data.navigatorOsCPU = n.oscpu ? String(n.oscpu) : undefined
+      data.navigatorVendor = n?.vendor
+      data.navigatorUserAgentDataBrands = n?.userAgentData?.brands
+      data.navigatorUserAgentDataMobile = n?.userAgentData?.mobile
+      data.navigatorUserAgentDataPlatform = n?.userAgentData?.platform
+      data.navigatorUserAgentDataAsJSON = n?.userAgentData?.toJSON()
+      data.navigatorUserAgentDataHighEntropyValues = undefined // do not call it here, coz it's async
+
+      if (!withHighEntropyValues) {
+        return data
+      }
+
+      return new Promise((resolve, reject) => {
+        captureHighEntropyValues(navigator)
+          .then((highEntropyValues) => {
+            data.navigatorUserAgentDataHighEntropyValues = highEntropyValues
+            resolve(data)
+          })
+          .catch(reject)
+      })
+    }
+
+    /** @type {CapturedData} */
+    const veryFirstUserAgentData = capture(navigator, false, 'Initial data')
+    debug('Aggressive user-agent data capturing is done', veryFirstUserAgentData)
+  </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+  <style>
+    html, body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main {
+      text-align: center;
+      max-width: 1200px;
+    }
+
+    .no-js {
+      background-color: #e74c3c;
+      color: #1a1a1a;
+      padding: 2em 3em;
+      border-radius: 0.5em;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .test-description {
+      font-size: 1.1em;
+      margin-bottom: 2em;
+      font-style: italic;
+    }
+
+    .test-description p {
+      margin-bottom: 1em;
+    }
+
+    .test-description p.small {
+      font-size: 0.75em;
+    }
+
+    #history {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #history li {
+      padding-bottom: 2em;
+      margin-bottom: 2em;
+      border: solid rgba(255, 255, 255, 0.1);
+      border-width: 0 0 1px 0;
+    }
+
+    #history li:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-width: 0;
+    }
+
+    #history table {
+      font-family: monospace;
+      table-layout: fixed;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #history table tr {
+      border: solid rgba(255, 255, 255, 0.03);
+      border-width: 0 0 1px 0;
+    }
+
+    #history table tr:last-child {
+      border-width: 0;
+    }
+
+    #history table tr:hover {
+      background-color: rgba(255, 255, 255, 0.04);
+    }
+
+    #history table td {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      padding: 0.75em 0;
+      background-color: transparent;
+    }
+
+    #history table td.key {
+      text-align: left;
+      width: 33.333%;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    #history table td.value {
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding-right: 1em;
+    }
+  </style>
+  <!--
+    Note: to avoid javascript execution blocking during the external resources loading, we need to load them
+    asynchronously
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css"
+        integrity="sha512-bfLTSZK4qMP/TWeS1XJAR/VDX0Uhe84nN5YmpKk5x8lMkV0D+LwbuxaJMYTPIV13FzEv4CUOhHoc+xZBDgG9QA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'"/>
+  <title>User-agent test</title>
+</head>
+<body>
+<main>
+  <noscript>
+    <p class="no-js">
+      This test requires JavaScript to run. Please enable JavaScript in your browser and reload the page.
+    </p>
+  </noscript>
+  <div class="test-description">
+    <p>
+      This test checks the user-agent and its data every 5 milliseconds using JavaScript and displays it in a table
+      below.
+    </p>
+    <p>
+      If you see more than one item in the list, it indicates that the user-agent data has changed during the page
+      load. Sometimes, you may need to refresh the page <strong>multiple times</strong> to see the changes. If you see
+      only <strong>one item</strong>, it means that the user-agent data has not changed once the page is loaded
+      (<strong>ensure it's spoofed if the extension is enabled</strong>).
+    </p>
+    <p class="small">
+      Items marked with 🗑️ are deprecated, 🧪 denotes experimental features, and (!🦊 !🧭) indicates features
+      <strong>not</strong> supported in Firefox and Safari (unless marked with 🦊, which means supported
+      <strong>only</strong> in Firefox at the time this test was created).
+    </p>
+  </div>
+  <ul id="history">
+    <li>Waiting for the first check...</li>
+  </ul>
+</main>
+
+<script type="module">
+  /* global hljs */
+
+  debug('The page is loaded and the script is running')
+
+  /** @type {HTMLUListElement} */
+  const historyList = document.getElementById('history')
+
+  /**
+   * Render the history items in the list (the list will be cleared first).
+   *
+   * @param {HTMLUListElement} list
+   * @param {Array<CapturedData>} arr
+   */
+  const renderHistoryItems = (list, arr) => {
+    // clear the list
+    while (historyList.firstChild) {
+      historyList.removeChild(historyList.firstChild)
+    }
+
+    /**
+     * @param {HTMLTableSectionElement} tbody
+     * @param {String} key
+     * @param {String} value
+     * @param {String|undefined} keyLink
+     */
+    const addTableRow = (tbody, key, value, keyLink = undefined) => {
+      const tr = document.createElement('tr')
+      const tdKey = document.createElement('td')
+      const tdValue = document.createElement('td')
+
+      tdKey.classList.add('key')
+      tdValue.classList.add('value')
+
+      if (keyLink) {
+        tdKey.onclick = () => window.open(keyLink, '_blank')
+        tdKey.style.cursor = 'pointer'
+      }
+
+      tdKey.textContent = key
+      tdValue.textContent = value
+
+      tr.appendChild(tdKey)
+      tr.appendChild(tdValue)
+
+      tbody.appendChild(tr)
+    }
+
+    // loop over the array and render each item
+    arr.map((item, i) => {
+      const li = document.createElement('li')
+      const table = document.createElement('table')
+      const tbody = document.createElement('tbody')
+      const emptyPlaceholder = '<nothing>'
+
+      const sincePrev = i === 0 ? 0 : arr[i]?.timestamp - arr[i - 1]?.timestamp
+
+      item.timestamp && addTableRow(tbody,
+        '⏱ timestamp',
+        new Date(item.timestamp).toISOString() + (sincePrev === 0 ? '' : ` (+${sincePrev}ms)`)
+      )
+
+      item.caption && addTableRow(tbody, '📜 details (not an UA data)', item.caption)
+      addTableRow(tbody,
+        '🤖 navigator.userAgent', item.navigatorUserAgent ?? emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent'
+      )
+      addTableRow(tbody,
+        '🤖 navigator.appVersion', item.navigatorAppVersion ?? emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/appVersion'
+      )
+      addTableRow(tbody,
+        '🗑️ navigator.platform', item.navigatorPlatform ?? emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform'
+      )
+      addTableRow(tbody,
+        '🗑️ navigator.oscpu (🦊)', item.navigatorOsCPU ?? emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/oscpu#browser_compatibility'
+      )
+      addTableRow(tbody,
+        '🗑️ navigator.vendor', item.navigatorVendor ?? emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vendor'
+      )
+      addTableRow(tbody,
+        '🧪 userAgentData.brands (!🦊 !🧭)',
+        item.navigatorUserAgentDataBrands
+          ? JSON.stringify(item.navigatorUserAgentDataBrands)
+          : emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/brands'
+      )
+      addTableRow(tbody,
+        '🧪 userAgentData.mobile (!🦊 !🧭)', typeof item.navigatorUserAgentDataMobile !== 'undefined'
+          ? String(item.navigatorUserAgentDataMobile)
+          : emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/mobile'
+      )
+      addTableRow(tbody,
+        '🧪 userAgentData.platform (!🦊 !🧭)', item.navigatorUserAgentDataPlatform,
+        'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/platform'
+      )
+      addTableRow(tbody,
+        '🧪 userAgentData.toJSON() (!🦊 !🧭)',
+        item.navigatorUserAgentDataAsJSON
+          ? JSON.stringify(item.navigatorUserAgentDataAsJSON)
+          : emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/toJSON'
+      )
+      addTableRow(tbody,
+        '🧪 userAgentData.getHighEntropyValues() (!🦊 !🧭)',
+        item.navigatorUserAgentDataHighEntropyValues
+          ? JSON.stringify(item.navigatorUserAgentDataHighEntropyValues)
+          : emptyPlaceholder,
+        'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData/getHighEntropyValues'
+      )
+
+      table.appendChild(tbody)
+      li.appendChild(table)
+
+      list.appendChild(li)
+    })
+
+    // highlight the code blocks
+    typeof hljs !== 'undefined' && hljs.highlightAll()
+  }
+
+  /**
+   * The history items array. It's a proxy object to handle the array changes and render the items.
+   *
+   * @type {Array<CapturedData>}
+   */
+  const historyItems = new Proxy([], {
+    deleteProperty: function (target, property) {
+      delete target[property]
+
+      renderHistoryItems(historyList, target)
+
+      return true
+    },
+    set: function (target, property, value) {
+      target[property] = value
+
+      renderHistoryItems(historyList, target)
+
+      return true
+    },
+  })
+
+  /**
+   * Check the user-agent and add it to the history.
+   *
+   * @param {Navigator} n
+   * @param {String} caption
+   *
+   * @return {Promise<void>}
+   */
+  const check = async (n, caption) => {
+    const captured = capture(n, false, caption)
+    let previous = historyItems.toSorted((a, b) => a.timestamp - b.timestamp)[historyItems.length - 1] ?? undefined
+
+    if (previous) {
+      previous = { ...previous } // make a copy of the object to avoid changing the original one
+
+      // unset some values to compare the objects without them
+      previous.timestamp = captured.timestamp = 0
+      previous.navigatorUserAgentDataHighEntropyValues = captured.navigatorUserAgentDataHighEntropyValues = undefined
+      previous.caption = captured.caption = undefined
+
+      if (JSON.stringify(previous) === JSON.stringify(captured)) {
+        return
+      }
+    }
+
+    captured.timestamp = Date.now()
+    captured.navigatorUserAgentDataHighEntropyValues = await captureHighEntropyValues(n)
+    captured.caption = caption
+
+    debug('The user-agent data has changed', captured)
+
+    historyItems.push(captured)
+  }
+
+  // add high-entropy values to the very first item (later is better than never)
+  veryFirstUserAgentData.navigatorUserAgentDataHighEntropyValues = await captureHighEntropyValues(navigator)
+
+  // add the very first item to the history
+  historyItems.push(veryFirstUserAgentData)
+
+  // initial check
+  check(navigator, 'Captured in runtime (initial)')
+    .then(() => debug('The initial check is done'))
+    // .then(async () => {
+    //   const iframe = document.createElement('iframe')
+    //
+    //   iframe.src = 'javascript:false'
+    //   iframe.style.display = 'none'
+    //   iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts')
+    //
+    //   try {
+    //     document.documentElement.appendChild(iframe)
+    //
+    //     debug('Checking the user-agent in the iframe')
+    //     await check(iframe.contentWindow.navigator, 'Captured in the iframe')
+    //   } finally {
+    //     iframe.remove()
+    //   }
+    // })
+
+  // start periodically checking the user-agent
+  setInterval(() => check(navigator, 'Captured in runtime'), 5)
+
+  debug('To get the actual property/method values, you can use one of the following code snippet:\n' + [
+    'navigator.userAgent',
+    'navigator.appVersion',
+    'navigator.platform',
+    'navigator.oscpu',
+    'navigator.vendor',
+    'navigator.userAgentData.brands',
+    'navigator.userAgentData.mobile',
+    'navigator.userAgentData.platform',
+    'navigator.userAgentData.toJSON()',
+    `await navigator.userAgentData.getHighEntropyValues([${highEntropyValues.map(s => `'${s}'`).join(', ')}])`,
+  ].map((s) => '\t 💡 ' + s).join('\n'))
+
+  // check the highlight.js availability and highlight the code blocks (initially)
+  const t = setInterval(() => {
+    if (typeof hljs !== 'undefined' && hljs.highlightAll) {
+      clearInterval(t)
+
+      hljs.configure({cssSelector: '.key, .value'})
+      hljs.highlightAll()
+    }
+  }, 100)
+</script>
+<!--
+  Note: to avoid javascript execution blocking during the external resources loading, we need to load them
+  asynchronously
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+        integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer async></script>
+</body>
+</html>
