@@ -30,6 +30,7 @@ const uniqueInjectFileName: string = randomstring.generate({ length: 8, charset:
 const uniqueHeaderKeyName: string = randomstring.generate({ length: 8, charset: 'alphabetic' })
 
 enum ProjectURLs {
+  GITHUB = 'https://github.com/tarampampam/random-user-agent',
   BUGREPORT = 'https://github.com/tarampampam/random-user-agent/issues/new/choose',
   CHROME = 'https://chromewebstore.google.com/detail/random-user-agent-switche/einpaelgookohagofgnnkcfjbkkgepnp',
   FIREFOX = 'https://addons.mozilla.org/firefox/addon/random_user_agent',
@@ -216,6 +217,7 @@ export default defineConfig({
     __UNIQUE_INJECT_FILENAME__: JSON.stringify(`${uniqueInjectFileName}.js`),
     __UNIQUE_HEADER_KEY_NAME__: JSON.stringify(uniqueHeaderKeyName),
 
+    __GITHUB_URL__: JSON.stringify(ProjectURLs.GITHUB),
     __BUGREPORT_URL__: JSON.stringify(ProjectURLs.BUGREPORT),
     __CHROME_STORE_URL__: JSON.stringify(ProjectURLs.CHROME),
     __MOZILLA_STORE_URL__: JSON.stringify(ProjectURLs.FIREFOX),

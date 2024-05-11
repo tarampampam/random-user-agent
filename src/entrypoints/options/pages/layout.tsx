@@ -34,8 +34,7 @@ export default function Layout(): React.JSX.Element {
             {i18n('like_this_extension')}
 
             <span style={{ padding: '0 .4em' }}>⭐</span>
-            {/** TODO: move link to the vite config */}
-            <a href="https://github.com/tarampampam/random-user-agent" target="_blank" rel="noreferrer">
+            <a href={__GITHUB_URL__} target="_blank" rel="noreferrer">
               {i18n('give_a_star_on_github')}
             </a>
           </span>

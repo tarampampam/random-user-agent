@@ -122,7 +122,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Switcher fortsetzen',
     enable_switcher: 'Switcher aktivieren',
     enabled_on_this_domain: 'Auf dieser Domain aktiviert',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Synchronisieren Sie das aktuelle Betriebssystem mit dem generierten Benutzer-Agenten',
     get_new_agent: 'Neuen Agent anfordern',
     open_settings: 'Einstellungen öffnen',
     make_donation: 'Spenden',
@@ -211,7 +211,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Reanudar el cambio',
     enable_switcher: 'Activar conmutador',
     enabled_on_this_domain: 'Activado en este dominio',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Sincronizar el sistema operativo actual con el agente de usuario generado',
     get_new_agent: 'Obtener nuevo agente',
     open_settings: 'Abrir ajustes',
     make_donation: 'Donar',
@@ -300,7 +300,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Réactiver le Switcher',
     enable_switcher: 'Activer le Switcher',
     enabled_on_this_domain: 'Autoriser ce domaine',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: "Synchroniser le système d'exploitation actuel avec l'agent utilisateur généré",
     get_new_agent: 'Générer un nouveau User-Agent',
     open_settings: 'Ouvrir les paramètres',
     make_donation: 'Faire une donation',
@@ -390,7 +390,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Lanjutkan Pengalih',
     enable_switcher: 'Aktifkan Pengalih',
     enabled_on_this_domain: 'Aktifkan pada domain ini',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Sinkronkan sistem operasi saat ini dengan agen pengguna yang dihasilkan',
     get_new_agent: 'Dapatkan User-Agent baru',
     open_settings: 'Buka pengaturan',
     make_donation: 'Donasi',
@@ -471,7 +471,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'レジュームスイッチャー',
     enable_switcher: 'イネーブルスイッチャー',
     enabled_on_this_domain: 'このドメインで有効',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: '現在のOSを生成されたユーザーエージェントと同期させる',
     get_new_agent: '新しいエージェントを取得する',
     open_settings: 'オープン設定',
     make_donation: '寄付する',
@@ -558,7 +558,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Wznów przełącznik',
     enable_switcher: 'Włącz przełącznik',
     enabled_on_this_domain: 'Włączone w tej domenie',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Synchronizuj bieżący system operacyjny z wygenerowanym agentem użytkownika',
     get_new_agent: 'Zdobądź nowego agenta',
     open_settings: 'Otwórz ustawienia',
     make_donation: 'Darowizna',
@@ -646,7 +646,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Retomar alteração',
     enable_switcher: 'Ativar alteração',
     enabled_on_this_domain: 'Activado neste dominio',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Sincronize o sistema operacional atual com o agente de usuário gerado',
     get_new_agent: 'Alterar para outro Agente',
     open_settings: 'Abrir configurações',
     make_donation: 'Doar',
@@ -733,7 +733,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Возобновить подмену',
     enable_switcher: 'Включить подмену',
     enabled_on_this_domain: 'Включен на этом домене',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Синхронизировать текущую ОС с генерируемым user-agent',
     get_new_agent: 'Установить новый',
     open_settings: 'Открыть настройки',
     make_donation: 'Купить автору кофе',
@@ -821,7 +821,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Devam Değiştirici',
     enable_switcher: 'Değiştiriciyi Etkinleştir',
     enabled_on_this_domain: 'Bu etki alanında etkinleştirildi',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Mevcut işletim sistemini oluşturulan kullanıcı ajanıyla senkronize edin',
     get_new_agent: 'Yeni temsilci alın',
     open_settings: 'Açık ayarlar',
     make_donation: 'Bağış Yapın',
@@ -909,7 +909,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Запустити розширення',
     enable_switcher: 'Активувати розширення',
     enabled_on_this_domain: 'Включено на цьому домені',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Синхронізуйте поточну ОС зі згенерованим агентом користувача',
     get_new_agent: 'Отримати нового агента',
     open_settings: 'Відкрити налаштування',
     make_donation: 'Пожертвувати',
@@ -995,7 +995,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: 'Tiếp tục thay đổi',
     enable_switcher: 'Cho phép thay đổi',
     enabled_on_this_domain: 'Được cho phép ở tên miền này',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: 'Đồng bộ hóa hệ điều hành hiện tại với trình diễn người dùng được tạo ra',
     get_new_agent: 'Tạo User-Agent mới',
     open_settings: 'Mở phần cài đặt',
     make_donation: 'Ủng hộ tài chính',
@@ -1077,7 +1077,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     unpause_switcher: '恢复切换器',
     enable_switcher: '启用切换器',
     enabled_on_this_domain: '已为此域启用',
-    sync_useragent_with_host_os: '', // TODO: Translate
+    sync_useragent_with_host_os: '将当前操作系统与生成的用户代理同步',
     get_new_agent: '换个新的',
     open_settings: '打开设置',
     make_donation: '捐助',

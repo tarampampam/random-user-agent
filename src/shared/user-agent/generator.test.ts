@@ -4,8 +4,7 @@ import generate from './generator'
 describe('generate', () => {
   const generalUserAgentRe = /^Mozilla\/5\.0 /
 
-  for (let i = 1; i <= 5; i++) {
-    // TODO: set 100?
+  for (let i = 1; i <= 30; i++) {
     describe('chrome_linux', () => {
       test('auto', () => {
         const result = generate('chrome_linux')
