@@ -44,6 +44,9 @@ enum HeaderNames {
 
 const allResourceTypes = Object.values(ResourceType)
 
+// the following domains are always excluded from the rules
+const alwaysExcludedFor: ReadonlyArray<string> = ['challenges.cloudflare.com'].map(canonizeDomain)
+
 /**
  * Enables the request headers modification.
  *
@@ -99,6 +102,20 @@ export async function setRequestHeaders(
     if (list.length) {
       condition.excludedInitiatorDomains = condition.excludedRequestDomains = list
     }
+  }
+
+  // add the always excluded domains to the condition
+  if (condition.excludedInitiatorDomains) {
+    condition.excludedInitiatorDomains = [...new Set(condition.excludedInitiatorDomains.concat(alwaysExcludedFor))]
+  } else {
+    condition.excludedInitiatorDomains = [...alwaysExcludedFor]
+  }
+
+  // and do the same for the request domains
+  if (condition.excludedRequestDomains) {
+    condition.excludedRequestDomains = [...new Set(condition.excludedRequestDomains.concat(alwaysExcludedFor))]
+  } else {
+    condition.excludedRequestDomains = [...alwaysExcludedFor]
   }
 
   const brandsWithMajor = (() => {
