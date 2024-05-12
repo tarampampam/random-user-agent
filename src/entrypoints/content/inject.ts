@@ -49,7 +49,11 @@ import type { DeepWriteable } from '~/types'
     t: T,
     prop: T extends Navigator ? keyof T | 'oscpu' : keyof T,
     value: unknown,
-    options: { force?: boolean; configurable?: boolean } = { force: false, configurable: false }
+    options: { force?: boolean; configurable?: boolean; writable?: boolean } = {
+      force: false,
+      configurable: false,
+      writable: false,
+    }
   ): void => {
     let target: T = t
 
@@ -66,7 +70,7 @@ import type { DeepWriteable } from '~/types'
             newAttributes.get = () => value
           } else {
             newAttributes.value = value
-            newAttributes.writable = false
+            newAttributes.writable = options.writable
           }
 
           Object.defineProperty(target, prop, newAttributes)
@@ -75,7 +79,7 @@ import type { DeepWriteable } from '~/types'
             value,
             configurable: options.configurable,
             enumerable: true,
-            writable: false,
+            writable: options.writable,
           })
         }
 
@@ -361,7 +365,7 @@ import type { DeepWriteable } from '~/types'
       // currently existing
       Array(...document.getElementsByTagName('iframe')).forEach(patchNavigatorInIframe)
 
-      const overloadOpts: Parameters<typeof overload>[3] = { configurable: true, force: true }
+      const overloadOpts: Parameters<typeof overload>[3] = { configurable: true, force: true, writable: true }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const proxyInvoke = <T extends (...args: readonly any[]) => unknown>(what: T): T =>
