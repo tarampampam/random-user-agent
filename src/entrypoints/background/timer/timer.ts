@@ -16,12 +16,12 @@ export default class Timer {
 
   /**
    * Create a new timer. Keep in mind that the minimum interval is 30 seconds, and the timer should be started
-   * manually.
+   * manually. The name of the timer should be unique.
    */
-  constructor(intervalSec: number, handler: (timer: Timer) => void) {
+  constructor(name: string, intervalSec: number, handler: (timer: Timer) => void) {
     this.intervalSec = Math.max(this.minDelayInSeconds, intervalSec)
 
-    this.name = crypto.randomUUID()
+    this.name = name
     this.handler = handler
   }
 

@@ -22,6 +22,21 @@ const debug = (msg: string, ...args: Array<unknown>): void => console.debug(`%cð
 const m2s = (millis: number): number => Math.round(millis / 1000)
 let stats: StatsCollector | undefined = undefined
 
+// register the error handler to catch global errors (unhandled exceptions) and unhandled promise rejections to
+// send the error events to the stats collector
+;((): void => {
+  const errorsHandler = (error: unknown): void => {
+    if (stats && error) {
+      stats.send(newErrorEvent(error, { page: 'background' })).then((err) => err && debug('stats error', err))
+    }
+  }
+
+  if (self && self.addEventListener) {
+    self.addEventListener('error', errorsHandler)
+    self.addEventListener('error', errorsHandler)
+  }
+})()
+
 // run the background script
 ;(async () => {
   // register the content scripts
@@ -93,19 +108,23 @@ let stats: StatsCollector | undefined = undefined
   }
 
   // create a timer to renew the user-agent automatically
-  const userAgentRenewTimer = new Timer(m2s(initSettings.renew.intervalMillis), async () => {
+  const userAgentRenewTimer = new Timer('renew-user-agent', m2s(initSettings.renew.intervalMillis), async () => {
     await renewUserAgent(settings, currentUserAgent, remoteUserAgentList, hostOS, latestBrowserVersions)
     debug('user-agent was renewed automatically', await currentUserAgent.get())
   })
 
   // create a timer to update the remote user-agents list automatically
-  const remoteListUpdateTimer = new Timer(m2s(initSettings.remoteUseragentList.updateIntervalMillis), async () => {
-    await remoteUserAgentList.update()
-    debug('remote user-agent list updated automatically', await remoteUserAgentList.get(false))
-  })
+  const remoteListUpdateTimer = new Timer(
+    'update-remote-list',
+    m2s(initSettings.remoteUseragentList.updateIntervalMillis),
+    async () => {
+      await remoteUserAgentList.update()
+      debug('remote user-agent list updated automatically', await remoteUserAgentList.get(false))
+    }
+  )
 
   // create a timer to update the latest browser versions automatically (once in 6 hours)
-  const latestBrowserVersionsTimer = new Timer(60 * 60 * 6, async () => {
+  const latestBrowserVersionsTimer = new Timer('update-latest-browser-versions', 60 * 60 * 6, async () => {
     await latestBrowserVersions.update()
     debug('latest browser versions updated automatically', latestBrowserVersions.get())
   })
