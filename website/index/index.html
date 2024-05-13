@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
   <link rel="manifest" href="/site.webmanifest">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <style>
     :root {
       --color-bg-primary: #fff;
-      --color-text-primary: #454545;
+      --color-bg-inverted: #202020;
+      --color-text-primary: #202020;
+      --color-text-inverted: #fff;
+      --aside-width: 30%;
+      --logo-width: 350px;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --color-bg-primary: #2f2f2f;
-        --color-text-primary: #eaeaea;
+        --color-bg-primary: #101010;
+        --color-bg-inverted: #fff;
+        --color-text-primary: #fff;
+        --color-text-inverted: #101010;
       }
     }
 
@@ -29,50 +35,299 @@
       width: 100%;
       background-color: var(--color-bg-primary);
       color: var(--color-text-primary);
+      font-family: monospace;
+      font-size: 16px;
     }
 
-    body {
+    a {
+      color: var(--color-text-primary);
+      text-decoration: underline;
+    }
+
+    main {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+      height: 100%;
 
-    .loader {
-      color: var(--color-text-primary);
-      display: inline-block;
-      position: relative;
-      font-size: 48px;
-      font-family: Arial, Helvetica, sans-serif;
-      box-sizing: border-box;
-    }
-
-    .loader::after {
-      content: '';
-      width: 5px;
-      height: 5px;
-      background: currentColor;
-      position: absolute;
-      bottom: 10px;
-      right: -5px;
-      box-sizing: border-box;
-      animation: animloader 1s linear infinite;
-    }
-
-    @keyframes animloader {
-      0% {
-        box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+      aside, section {
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
-      50% {
-        box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+
+      section {
+        width: calc(100% - var(--aside-width));
+        background-color: var(--color-bg-primary);
+        justify-content: flex-end;
+        padding-right: calc((var(--logo-width) / 2) + 2em);
+
+        article {
+          width: 100%;
+          max-width: 800px;
+
+          h1 {
+            font-size: 4em;
+            font-weight: normal;
+            text-transform: uppercase;
+            margin: 0;
+
+            small {
+              font-size: 0.85em;
+              display: block;
+            }
+          }
+
+          h2 {
+            font-size: 2.2em;
+            font-weight: normal;
+            margin: 1.3em 0 1.5em 0;
+          }
+
+          .get-extension {
+            margin: 2em 0;
+
+            button {
+              padding: 1.5em 2em;
+              font-size: 1.5em;
+              font-weight: bolder;
+              background-color: var(--color-bg-inverted);
+              color: var(--color-text-inverted);
+              border: none;
+              border-radius: 3px;
+              font-family: monospace;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              user-select: none;
+
+              &:disabled {
+                opacity: 0.8;
+              }
+
+              &:not(:disabled) {
+                cursor: pointer;
+                animation: pulseAround 2s infinite;
+              }
+
+              img {
+                width: 1.3em;
+                height: auto;
+                padding-right: 0.3em;
+              }
+            }
+          }
+
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+              display: inline-block;
+
+              &:not(:last-child)::after {
+                content: "/";
+              }
+            }
+          }
+        }
+      }
+
+      aside {
+        position: relative;
+        width: var(--aside-width);
+        background: var(--color-bg-inverted);
+        background-size: cover;
+        color: var(--color-text-inverted);
+        justify-content: flex-start;
+        padding-left: calc((var(--logo-width) / 2) + 2em);
+
+        img#logo {
+          position: absolute;
+          width: var(--logo-width);
+          height: auto;
+          left: calc((var(--logo-width) / 2) * -1);
+          filter: drop-shadow(0 0 10px rgba(0, 0, 0, .4));
+          animation: pulse 1s infinite;
+          user-select: none;
+        }
+      }
+    }
+
+    @keyframes pulse {
+      10% {
+        transform: scale(1.02);
+        filter: drop-shadow(0 0 14px rgba(0, 0, 0, .4));
+      }
+    }
+
+    @keyframes pulseAround {
+      0% {
+        box-shadow: 0 0 0 0 rgba(125, 125, 125, 0.25);
+      }
+      70% {
+        box-shadow: 0 0 0 0.7em rgba(125, 125, 125, 0);
       }
       100% {
-        box-shadow: 10px 0 white, 20px 0 white;
+        box-shadow: 0 0 0 0 rgba(125, 125, 125, 0);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      :root {
+        --logo-width: 250px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      html, body {
+        font-size: 13px;
+      }
+
+      main {
+        section {
+          width: 100%;
+          padding: 0 1em;
+        }
+
+        aside {
+          display: none;
+        }
       }
     }
   </style>
-  <title>Coming soon</title>
+
+  <title>Random User-Agent and Switcher (browser extension)</title>
+
+  <meta name="title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta name="description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://random-user-agent.com/"/>
+  <meta property="og:title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta property="og:description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="og:image" content="https://random-user-agent.com/assets/og-card.png"/>
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="https://random-user-agent.com/"/>
+  <meta property="twitter:title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta property="twitter:description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="twitter:image" content="https://random-user-agent.com/assets/og-card.png"/>
 </head>
 <body>
-<span class="loader">Coming soon</span>
+<main>
+  <section>
+    <article>
+      <h1>Random User-Agent <small>and switcher</small></h1>
+      <h2>Boost your privacy in one click</h2>
+
+      <div class="get-extension">
+        <button id="install-extension" disabled>
+          Get for your browser
+        </button>
+      </div>
+
+      <ul>
+        <li>
+          <a href="https://github.com/tarampampam/random-user-agent" target="_blank">GitHub</a>
+        </li>
+        <li>
+          <a href="https://github.com/tarampampam/random-user-agent/issues/new/choose" target="_blank">File a bug</a>
+        </li>
+        <li>
+          <a href="https://github.com/tarampampam/random-user-agent/releases/latest" target="_blank">Latest release</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+  <aside>
+    <img src="assets/logo.svg" alt="logo" id="logo" draggable="false"/>
+  </aside>
+</main>
+<script type="module">
+  /** @typedef {'opera'|'firefox'|'edge'|'chrome'} BrowserType */
+
+  /** @returns {BrowserType|undefined} */
+  const detectCurrentBrowserType = () => {
+    if (self.window['opr'] || self.window['opera']) {
+      return 'opera'
+    } else if (/Firefox|FxiOS/i.test(self.navigator.userAgent)) {
+      return 'firefox'
+    } else if (self.navigator && /Edg/i.test(self.navigator.userAgent)) {
+      return 'edge'
+    } else if (self.window['chrome'] || typeof chrome === 'object') {
+      return 'chrome'
+    }
+
+    return undefined
+  }
+
+  const $btn = document.getElementById('install-extension')
+  const browser = detectCurrentBrowserType() || 'chrome'
+
+  if (!$btn) {
+    throw new Error('Required elements not found')
+  }
+
+  /**
+   * @param {BrowserType} browserType
+   * @returns {void}
+   */
+  const handleButtonClick = (browserType) => {
+    const openLink = (url) => window.open(url, '_blank').focus()
+
+    switch (browserType) {
+      case 'chrome':
+        openLink('https://chrome.google.com/webstore/detail/random-user-agent-switche/einpaelgookohagofgnnkcfjbkkgepnp')
+        break
+
+      case 'firefox':
+        openLink('https://addons.mozilla.org/firefox/addon/random_user_agent')
+        break
+
+      case 'opera':
+        openLink('https://addons.opera.com/extensions/details/random-user-agent')
+        break
+
+      case 'edge':
+        openLink('https://microsoftedge.microsoft.com/addons/detail/random-useragent-switch/addfjgllfhpnacoahmmcafmaacjloded')
+        break
+    }
+  }
+
+  /**
+   * @param {BrowserType} browserType
+   * @returns {HTMLImageElement}
+   */
+  const newBrowserImage = (browserType) => {
+    const $img = document.createElement('img')
+
+    $img.src = `assets/browsers/${browserType}.svg`
+    $img.onerror = () => $img.remove() // remove image if it's not found
+
+    return $img
+  }
+
+  $btn.disabled = false
+  $btn.innerText = (() => {
+    switch (browser) {
+      case 'chrome':
+        return 'Get for Chrome'
+
+      case 'firefox':
+        return 'Get for Firefox'
+
+      case 'opera':
+        return 'Get for Opera'
+
+      case 'edge':
+        return 'Get for Edge'
+    }
+  })()
+  $btn.prepend(newBrowserImage(browser))
+  $btn.addEventListener('click', () => handleButtonClick(browser))
+</script>
 </body>
 </html>
