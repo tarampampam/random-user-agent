@@ -305,6 +305,7 @@
     const $img = document.createElement('img')
 
     $img.src = `assets/browsers/${browserType}.svg`
+    $img.alt = browserType
     $img.onerror = () => $img.remove() // remove image if it's not found
 
     return $img
