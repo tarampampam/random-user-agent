@@ -1,0 +1,4 @@
+Host: https://random-user-agent.com/
+
+User-agent: ia_archiver
+Disallow: /
