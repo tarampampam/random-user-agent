@@ -6,7 +6,7 @@ name: 🚀 Deploy the website index
 on:
   workflow_dispatch: {}
   push:
-    branches: [rewrite] #[master, main] # TODO: change this
+    branches: [master, main]
     tags-ignore: ['**']
     paths: [website/index/**, .github/workflows/deploy-website-index.yml]
 

@@ -6,7 +6,7 @@ name: 🚀 Deploy the CF challenge test website
 on:
   workflow_dispatch: {}
   push:
-    branches: [rewrite] #[master, main] # TODO: change this
+    branches: [master, main]
     tags-ignore: ['**']
     paths: [website/cf-challenge-test/**, .github/workflows/deploy-website-cf-challenge-test.yml]
 

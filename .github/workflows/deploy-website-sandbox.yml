@@ -6,7 +6,7 @@ name: 🚀 Deploy the sandbox website
 on:
   workflow_dispatch: {}
   push:
-    branches: [rewrite] #[master, main] # TODO: change this
+    branches: [master, main]
     tags-ignore: ['**']
     paths: [website/sandbox/**, .github/workflows/deploy-website-sandbox.yml]
 
