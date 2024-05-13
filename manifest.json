@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "$docs": "https://developer.chrome.com/docs/extensions/reference/manifest",
+  "manifest_version": 3,
+  "version": "0.0.0",
+  "name": "__MSG_manifest_name__",
+  "description": "__MSG_manifest_description__",
+  "author": "https://github.com/tarampampam",
+  "homepage_url": "https://random-user-agent.com/",
+  "default_locale": "en",
+  "icons": {
+    "16": "assets/icons/16.png",
+    "32": "assets/icons/32.png",
+    "48": "assets/icons/48.png",
+    "128": "assets/icons/128.png"
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "assets/icons/16.png",
+      "32": "assets/icons/32.png",
+      "48": "assets/icons/48.png",
+      "128": "assets/icons/128.png"
+    },
+    "default_title": "__MSG_manifest_action_default_title__"
+  },
+  "commands": {
+    "renew-useragent": {
+      "description": "__MSG_manifest_command_renew_useragent__",
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      }
+    }
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "permissions": [
+    "tabs",
+    "alarms",
+    "storage",
+    "scripting",
+    "declarativeNetRequest"
+  ],
+  "$what_the_specified_permissions_are_for": {
+    "tabs": "Obtaining the current tab URL to verify if the extension is enabled for the specific URL in the popup",
+    "alarms": "Scheduling user-agent renewal and other periodic tasks",
+    "storage": "Managing and synchronizing user settings across browser sessions",
+    "scripting": "Injecting user-agent modification code into web pages",
+    "declarativeNetRequest": "Modifying HTTP headers"
+  },
+  "incognito": "spanning",
+  "minimum_chrome_version": "120"
+}

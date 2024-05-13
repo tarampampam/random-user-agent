@@ -1,0 +1,56 @@
+@forward '~/theme/theme';
+
+.center {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+
+  .wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: row;
+
+    .left {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 42%;
+      min-width: 100px;
+      padding-right: 2em;
+
+      .logo {
+        width: 100%;
+      }
+    }
+
+    .options {
+      width: 100%;
+      min-width: 300px;
+
+      li {
+        margin-bottom: 0.6em;
+      }
+    }
+  }
+}
+
+.embeddedContent {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 850px) {
+  .container {
+    font-size: 1em;
+  }
+}

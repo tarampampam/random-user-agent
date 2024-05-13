@@ -1,4 +1,5 @@
-# Docs: <https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/customizing-dependency-updates>
+# yaml-language-server: $schema=https://json.schemastore.org/dependabot-2.0.json
+# docs: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/customizing-dependency-updates
 
 version: 2
 
@@ -7,14 +8,12 @@ updates:
     directory: /
     open-pull-requests-limit: 15
     groups:
-      production: {dependency-type: production, update-types: [minor, patch]}
-      development: {dependency-type: development, update-types: [minor, patch]}
+      npm-production: {dependency-type: production, update-types: [minor, patch]}
+      npm-development: {dependency-type: development, update-types: [minor, patch]}
     schedule: {interval: monthly}
-    assignees: [tarampampam]
 
   - package-ecosystem: github-actions
     directory: /
     groups:
-      any: {patterns: ['*']}
+      github-actions: {patterns: ['*']}
     schedule: {interval: monthly}
-    assignees: [tarampampam]
