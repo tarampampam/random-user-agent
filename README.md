@@ -27,6 +27,9 @@
 [link-edge-store]:https://microsoftedge.microsoft.com/addons/detail/random-useragent/addfjgllfhpnacoahmmcafmaacjloded
 [link-opera-store]:https://addons.opera.com/en/extensions/details/random-user-agent/
 
+> [!NOTE]
+> Readme file will be updated soon.
+
 <!-- TODO: update the documentation below
 
 ## 📷 Screenshots
