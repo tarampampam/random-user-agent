@@ -108,13 +108,6 @@
 
           .get-extension {
             margin: 2em 0;
-            transition: scale var(--showing-speed), opacity calc(var(--showing-speed) * 2), filter calc(var(--showing-speed) * 3);
-
-            &.await-loading {
-              opacity: 0;
-              scale: 0;
-              filter: blur(5px);
-            }
 
             button {
               padding: 1.5em 2em;
@@ -153,7 +146,6 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            transition: opacity var(--showing-speed), filter var(--showing-speed);
 
             li {
               display: inline-block;
@@ -161,11 +153,6 @@
               &:not(:last-child)::after {
                 content: "/";
               }
-            }
-
-            &.await-loading {
-              opacity: 0;
-              filter: blur(5px);
             }
           }
         }
@@ -181,12 +168,6 @@
         color: var(--color-text-inverted);
         justify-content: flex-start;
         padding-left: calc((var(--logo-width) / 2) + 2em);
-        transition: width var(--showing-speed), padding-left calc(var(--showing-speed) / 3);
-
-        &.await-loading {
-          width: 0;
-          padding-left: 0;
-        }
 
         img#logo {
           position: absolute;
@@ -196,12 +177,6 @@
           filter: drop-shadow(0 0 10px rgba(0, 0, 0, .4));
           animation: pulse 1s infinite;
           user-select: none;
-          transition: opacity var(--showing-speed);
-
-          &.await-loading {
-            width: 0;
-            opacity: 0;
-          }
         }
       }
     }
@@ -262,13 +237,13 @@
       <h1>Random User-Agent <small>and switcher</small></h1>
       <h2>Boost your privacy in one click</h2>
 
-      <div class="get-extension await-loading">
+      <div class="get-extension">
         <button id="install-extension" disabled>
           Get for your browser
         </button>
       </div>
 
-      <ul class="await-loading" data-delay="600">
+      <ul>
         <li>
           <a href="https://github.com/tarampampam/random-user-agent" rel="noopener noreferrer">GitHub</a>
         </li>
@@ -283,8 +258,8 @@
       </ul>
     </article>
   </section>
-  <aside class="await-loading" data-delay="100">
-    <img src="assets/logo.svg" alt="logo" id="logo" draggable="false" class="await-loading" data-delay="400"/>
+  <aside>
+    <img src="assets/logo.svg" alt="logo" id="logo" draggable="false"/>
   </aside>
 </main>
 <script type="module">
@@ -370,19 +345,6 @@
   })()
   $btn.prepend(newBrowserImage(browser))
   $btn.addEventListener('click', () => handleButtonClick(browser))
-
-  window.document.addEventListener('DOMContentLoaded', () => {
-    // remove 'await-loading' class from aside element after delay, defined in 'data-delay' attribute
-    document.querySelectorAll('.await-loading').forEach($el => {
-      let delay = parseInt($el.getAttribute('data-delay') || '0', 10)
-
-      if (isNaN(delay) || !isFinite(delay)) {
-        delay = 0
-      }
-
-      window.setTimeout(() => $el.classList.remove('await-loading'), delay)
-    })
-  })
 </script>
 </body>
 </html>
