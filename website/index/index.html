@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+  <link rel="manifest" href="site.webmanifest"/>
+  <meta name="msapplication-TileColor" content="#da532c"/>
+  <meta name="theme-color" content="#ffffff"/>
+
+  <title>Random User-Agent and Switcher (browser extension)</title>
+
+  <meta name="title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta name="description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://random-user-agent.com/"/>
+  <meta property="og:title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta property="og:description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="og:image" content="https://random-user-agent.com/assets/og-card.png"/>
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="https://random-user-agent.com/"/>
+  <meta property="twitter:title" content="Random User-Agent and Switcher (browser extension)"/>
+  <meta property="twitter:description"
+        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
+  <meta property="twitter:image" content="https://random-user-agent.com/assets/og-card.png"/>
+
   <style>
     :root {
       --color-bg-primary: #fff;
@@ -17,6 +36,7 @@
       --color-text-inverted: #fff;
       --aside-width: 30%;
       --logo-width: 350px;
+      --showing-speed: 300ms;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -31,7 +51,8 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      height: 100vh;
+      min-height: 100%;
       width: 100%;
       background-color: var(--color-bg-primary);
       color: var(--color-text-primary);
@@ -65,6 +86,7 @@
         article {
           width: 100%;
           max-width: 800px;
+          padding: 2em 1em;
 
           h1 {
             font-size: 4em;
@@ -86,6 +108,13 @@
 
           .get-extension {
             margin: 2em 0;
+            transition: scale var(--showing-speed), opacity calc(var(--showing-speed) * 2), filter calc(var(--showing-speed) * 3);
+
+            &.await-loading {
+              opacity: 0;
+              scale: 0;
+              filter: blur(5px);
+            }
 
             button {
               padding: 1.5em 2em;
@@ -100,6 +129,8 @@
               align-items: center;
               justify-content: center;
               user-select: none;
+              -webkit-font-smoothing: antialiased;
+
 
               &:disabled {
                 opacity: 0.8;
@@ -122,6 +153,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            transition: opacity var(--showing-speed), filter var(--showing-speed);
 
             li {
               display: inline-block;
@@ -130,18 +162,31 @@
                 content: "/";
               }
             }
+
+            &.await-loading {
+              opacity: 0;
+              filter: blur(5px);
+            }
           }
         }
       }
 
       aside {
         position: relative;
+        min-height: 100vh;
+        height: 100%;
         width: var(--aside-width);
         background: var(--color-bg-inverted);
         background-size: cover;
         color: var(--color-text-inverted);
         justify-content: flex-start;
         padding-left: calc((var(--logo-width) / 2) + 2em);
+        transition: width var(--showing-speed), padding-left calc(var(--showing-speed) / 3);
+
+        &.await-loading {
+          width: 0;
+          padding-left: 0;
+        }
 
         img#logo {
           position: absolute;
@@ -151,6 +196,12 @@
           filter: drop-shadow(0 0 10px rgba(0, 0, 0, .4));
           animation: pulse 1s infinite;
           user-select: none;
+          transition: opacity var(--showing-speed);
+
+          &.await-loading {
+            width: 0;
+            opacity: 0;
+          }
         }
       }
     }
@@ -174,13 +225,13 @@
       }
     }
 
-    @media (max-width: 1200px) {
+    @media screen and (max-width: 1200px) {
       :root {
         --logo-width: 250px;
       }
     }
 
-    @media (max-width: 780px) {
+    @media screen and (max-width: 780px), screen and (max-height: 600px) {
       html, body {
         font-size: 13px;
       }
@@ -189,6 +240,12 @@
         section {
           width: 100%;
           padding: 0 1em;
+
+          article {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
 
         aside {
@@ -197,24 +254,6 @@
       }
     }
   </style>
-
-  <title>Random User-Agent and Switcher (browser extension)</title>
-
-  <meta name="title" content="Random User-Agent and Switcher (browser extension)"/>
-  <meta name="description"
-        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://random-user-agent.com/"/>
-  <meta property="og:title" content="Random User-Agent and Switcher (browser extension)"/>
-  <meta property="og:description"
-        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
-  <meta property="og:image" content="https://random-user-agent.com/assets/og-card.png"/>
-  <meta property="twitter:card" content="summary_large_image"/>
-  <meta property="twitter:url" content="https://random-user-agent.com/"/>
-  <meta property="twitter:title" content="Random User-Agent and Switcher (browser extension)"/>
-  <meta property="twitter:description"
-        content="This extension is designed to shield your online privacy and make it super easy to appear as if you're browsing from different devices."/>
-  <meta property="twitter:image" content="https://random-user-agent.com/assets/og-card.png"/>
 </head>
 <body>
 <main>
@@ -223,27 +262,29 @@
       <h1>Random User-Agent <small>and switcher</small></h1>
       <h2>Boost your privacy in one click</h2>
 
-      <div class="get-extension">
+      <div class="get-extension await-loading">
         <button id="install-extension" disabled>
           Get for your browser
         </button>
       </div>
 
-      <ul>
+      <ul class="await-loading" data-delay="600">
         <li>
-          <a href="https://github.com/tarampampam/random-user-agent" target="_blank">GitHub</a>
+          <a href="https://github.com/tarampampam/random-user-agent" rel="noopener noreferrer">GitHub</a>
         </li>
         <li>
-          <a href="https://github.com/tarampampam/random-user-agent/issues/new/choose" target="_blank">File a bug</a>
+          <a href="https://github.com/tarampampam/random-user-agent/issues/new/choose" rel="noopener noreferrer">File a
+            bug</a>
         </li>
         <li>
-          <a href="https://github.com/tarampampam/random-user-agent/releases/latest" target="_blank">Latest release</a>
+          <a href="https://github.com/tarampampam/random-user-agent/releases/latest" rel="noopener noreferrer">Latest
+            release</a>
         </li>
       </ul>
     </article>
   </section>
-  <aside>
-    <img src="assets/logo.svg" alt="logo" id="logo" draggable="false"/>
+  <aside class="await-loading" data-delay="100">
+    <img src="assets/logo.svg" alt="logo" id="logo" draggable="false" class="await-loading" data-delay="400"/>
   </aside>
 </main>
 <script type="module">
@@ -329,6 +370,19 @@
   })()
   $btn.prepend(newBrowserImage(browser))
   $btn.addEventListener('click', () => handleButtonClick(browser))
+
+  window.document.addEventListener('DOMContentLoaded', () => {
+    // remove 'await-loading' class from aside element after delay, defined in 'data-delay' attribute
+    document.querySelectorAll('.await-loading').forEach($el => {
+      let delay = parseInt($el.getAttribute('data-delay') || '0', 10)
+
+      if (isNaN(delay) || !isFinite(delay)) {
+        delay = 0
+      }
+
+      window.setTimeout(() => $el.classList.remove('await-loading'), delay)
+    })
+  })
 </script>
 </body>
 </html>
