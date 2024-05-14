@@ -55,7 +55,7 @@ let stats: StatsCollector | undefined = undefined
 
   // settings are stored in the 'sync' storage area because they need to be synchronized between different devices,
   // and only if the 'sync' storage area is not available, we use the 'local' storage area
-  const settings = new Settings(new StorageArea('settings-struct-v3', 'sync', 'local'))
+  const settings = new Settings(new StorageArea('settings-struct-v3', 'sync', 'local'), detectBrowser())
   const initSettings = await settings.get()
   debug('settings', initSettings)
 
