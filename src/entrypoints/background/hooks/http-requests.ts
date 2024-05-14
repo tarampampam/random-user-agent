@@ -64,7 +64,7 @@ export async function setRequestHeaders(
   sendPayload: boolean = false
 ): Promise<Array<chrome.declarativeNetRequest.Rule>> {
   const condition: chrome.declarativeNetRequest.RuleCondition = {
-    resourceTypes: Object.values(chrome?.declarativeNetRequest?.ResourceType),
+    resourceTypes: Object.values(chrome?.declarativeNetRequest?.ResourceType || {}),
   }
 
   if (filter?.applyToDomains && filter.applyToDomains.length > 0) {
