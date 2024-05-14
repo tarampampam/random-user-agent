@@ -1,3 +1,4 @@
+import { parse } from 'ipaddr.js'
 import punycode from 'punycode'
 
 /**
@@ -35,3 +36,38 @@ export const deCanonizeDomain = (domain: string): string =>
       .replace(/\s/g, '') // remove spaces, tabs, and newlines
       .replace(/\.{2,}/g, '.') // replace multiple dots with a single one
   )
+
+const containsLetterRe = /[a-z]/i
+const simpleDomainCheckRe = /^(|[a-z0-9-]+([\-.][a-z0-9-]+)*\.)[a-z][a-z0-9-]*$/i
+
+/** Validates the domain or IP address. */
+export const validateDomainOrIP = (domain: string): boolean => {
+  if (!domain) {
+    return false
+  }
+
+  try {
+    const ip = parse(domain)
+    const kind = ip.kind()
+
+    // the IPv4 shorthand notation is not allowed
+    if (kind === 'ipv4' && domain !== ip.toNormalizedString()) {
+      return false
+    }
+
+    const parts = ip.toByteArray()
+
+    return kind === 'ipv4'
+      ? parts.length === 4 && parts.every((part) => part >= 0 && part <= 255) // IPv4
+      : parts.length === 16 && parts.every((part) => part >= 0 && part <= 255) // IPv6
+  } catch (_) {
+    // do nothing
+  }
+
+  // if the domain does not contain any letters, it is not a domain (unfortunately!)
+  if (!containsLetterRe.test(domain)) {
+    return false
+  }
+
+  return simpleDomainCheckRe.test(domain)
+}
