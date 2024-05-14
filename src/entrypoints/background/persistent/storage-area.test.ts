@@ -47,7 +47,7 @@ describe('storage', () => {
     try {
       expect(await storage.get()).toStrictEqual({ some: 'data' })
       expect(global.chrome.storage.sync.get).toHaveBeenCalledTimes(2)
-      expect(global.chrome.storage.sync.get).toHaveBeenCalledWith(null)
+      expect(global.chrome.storage.sync.get).toHaveBeenCalledWith(storage.testKey)
       expect(global.chrome.storage.sync.get).toHaveBeenCalledWith('some-key')
 
       // the second shouldn't make an additional call to chrome.storage.sync.get
@@ -97,11 +97,13 @@ describe('storage', () => {
     const localGetMock = vi.spyOn(global.chrome.storage.local, 'get')
 
     try {
-      expect(await new StorageArea('some-key', 'sync', 'local').get()).toStrictEqual({ some: 'data' })
+      const storage = new StorageArea('some-key', 'sync', 'local')
+
+      expect(await storage.get()).toStrictEqual({ some: 'data' })
       expect(global.chrome.storage.sync.get).toHaveBeenCalledTimes(1)
-      expect(global.chrome.storage.sync.get).toHaveBeenCalledWith(null)
+      expect(global.chrome.storage.sync.get).toHaveBeenCalledWith(storage.testKey)
       expect(global.chrome.storage.local.get).toHaveBeenCalledTimes(2)
-      expect(global.chrome.storage.local.get).toHaveBeenCalledWith(null)
+      expect(global.chrome.storage.local.get).toHaveBeenCalledWith(storage.testKey)
       expect(global.chrome.storage.local.get).toHaveBeenCalledWith('some-key')
     } finally {
       syncGetMock.mockRestore()
