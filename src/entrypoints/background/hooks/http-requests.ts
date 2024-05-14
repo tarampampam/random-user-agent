@@ -1,8 +1,6 @@
 import { browserBrands, isMobile, platform } from '~/shared/client-hint'
-import { canonizeDomain } from '~/shared'
+import { canonizeDomain, validateDomainOrIP } from '~/shared'
 import type { ContentScriptPayload, ReadonlyUserAgentState } from '~/shared/types'
-import ResourceType = chrome.declarativeNetRequest.ResourceType
-import Rule = chrome.declarativeNetRequest.Rule
 
 // copy-paste of chrome.declarativeNetRequest.RuleActionType type (FireFox v124 does not have it)
 // https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest#type-RuleActionType
@@ -42,8 +40,6 @@ enum HeaderNames {
   SERVER_TIMING = 'server-timing', // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing
 }
 
-const allResourceTypes = Object.values(ResourceType)
-
 // the following domains are always excluded from the rules
 const alwaysExcludedFor: ReadonlyArray<string> = ['challenges.cloudflare.com'].map(canonizeDomain)
 
@@ -66,9 +62,9 @@ export async function setRequestHeaders(
   ua: ReadonlyUserAgentState,
   filter?: { applyToDomains?: ReadonlyArray<string>; exceptDomains?: ReadonlyArray<string> },
   sendPayload: boolean = false
-): Promise<Array<Rule>> {
+): Promise<Array<chrome.declarativeNetRequest.Rule>> {
   const condition: chrome.declarativeNetRequest.RuleCondition = {
-    resourceTypes: allResourceTypes,
+    resourceTypes: Object.values(chrome?.declarativeNetRequest?.ResourceType || {}),
   }
 
   if (filter?.applyToDomains && filter.applyToDomains.length > 0) {
@@ -82,7 +78,7 @@ export async function setRequestHeaders(
     //
     // https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest#type-MatchedRulesFilter
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/RuleCondition
-    const list = filter.applyToDomains.map(canonizeDomain).filter(Boolean)
+    const list = filter.applyToDomains.map(canonizeDomain).filter(validateDomainOrIP)
 
     if (list.length) {
       condition.initiatorDomains = condition.requestDomains = list
@@ -97,7 +93,7 @@ export async function setRequestHeaders(
     //   excludedRequestDomains: The rule does not match network requests when the domains matches one from this
     //                           list. If the list is empty or omitted, no domains are excluded. This takes
     //                           precedence over requestDomains. A canonical domain should be used.
-    const list = filter.exceptDomains.map(canonizeDomain).filter(Boolean)
+    const list = filter.exceptDomains.map(canonizeDomain).filter(validateDomainOrIP)
 
     if (list.length) {
       condition.excludedInitiatorDomains = condition.excludedRequestDomains = list
@@ -157,7 +153,7 @@ export async function setRequestHeaders(
     isMobile: setIsMobile,
   }
 
-  const rules: Array<Rule> = [
+  const rules: Array<chrome.declarativeNetRequest.Rule> = [
     {
       id: RuleIDs.ReplaceUserAgent,
       action: {
