@@ -38,7 +38,7 @@ export const deCanonizeDomain = (domain: string): string =>
   )
 
 const containsLetterRe = /[a-z]/i
-const simpleDomainCheckRe = /^(|[a-z0-9-]+([\-.][a-z0-9-]+)*\.)[a-z][a-z0-9-]*$/i
+const simpleDomainCheckRe = /^(|[a-z0-9-]+([-.][a-z0-9-]+)*\.)[a-z][a-z0-9-]*$/i
 
 /** Validates the domain or IP address. */
 export const validateDomainOrIP = (domain: string): boolean => {
