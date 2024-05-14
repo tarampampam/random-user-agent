@@ -35,7 +35,7 @@
       --color-text-primary: #202020;
       --color-text-inverted: #fff;
       --aside-width: 30%;
-      --logo-width: 350px;
+      --logo-width: 200px;
       --showing-speed: 300ms;
     }
 
@@ -89,7 +89,7 @@
           padding: 2em 1em;
 
           h1 {
-            font-size: 4em;
+            font-size: 2em;
             font-weight: normal;
             text-transform: uppercase;
             margin: 0;
@@ -101,7 +101,7 @@
           }
 
           h2 {
-            font-size: 2.2em;
+            font-size: 1.5em;
             font-weight: normal;
             margin: 1.3em 0 1.5em 0;
           }
@@ -110,8 +110,8 @@
             margin: 2em 0;
 
             button {
-              padding: 1.5em 2em;
-              font-size: 1.5em;
+              padding: 1em 1.5em;
+              font-size: 1.2em;
               font-weight: bolder;
               background-color: var(--color-bg-inverted);
               color: var(--color-text-inverted);
@@ -199,9 +199,19 @@
       }
     }
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (min-width: 2000px) {
       :root {
         --logo-width: 250px;
+      }
+
+      html, body {
+        font-size: 22px;
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      :root {
+        --logo-width: 150px;
       }
     }
 
