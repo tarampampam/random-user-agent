@@ -11,8 +11,6 @@ type AreaName = 'sync' | 'local'
 export default class<TState extends Record<string, unknown> = Record<string, unknown>> {
   /** The key used to store the data */
   private readonly key: string
-  /** The key used to test the storage area availability */
-  readonly testKey: string
   /** The storage area to use and fallback to if the main area is not available */
   private readonly areaName: { main: AreaName; fallback?: AreaName }
   /** Do not use this property directly, use getStorage() method instead */
@@ -21,7 +19,6 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
   constructor(key: string, mainArea: AreaName, fallbackArea?: AreaName) {
     this.key = key
     this.areaName = { main: mainArea, fallback: fallbackArea }
-    this.testKey = crypto.randomUUID()
   }
 
   /**
@@ -37,7 +34,7 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
     try {
       const main = this.areaName.main === 'sync' ? chrome.storage.sync : chrome.storage.local
 
-      await main.get(this.testKey) // try to get main storage
+      await main.get(null) // try to get main storage
 
       if (!chrome.runtime.lastError) {
         this.storage = main
@@ -52,7 +49,7 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
       const fallback = this.areaName.fallback === 'sync' ? chrome.storage.sync : chrome.storage.local
 
       try {
-        await fallback.get(this.testKey) // try to get fallback storage
+        await fallback.get(null) // try to get fallback storage
       } catch (err) {
         throw new Error(String(err))
       }
