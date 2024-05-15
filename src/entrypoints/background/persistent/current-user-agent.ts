@@ -75,7 +75,7 @@ export default class {
 
       const clone = deepFreeze(structuredClone(updated))
 
-      this.changeListeners.forEach((listener) => listener(clone))
+      this.changeListeners.forEach((listener) => queueMicrotask(() => listener(clone)))
 
       return clone
     }

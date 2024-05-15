@@ -251,7 +251,7 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[ext]',
       },
     },
-    sourcemap: false,
+    sourcemap: process.argv.includes('--watch'),
   },
   esbuild: {
     legalComments: 'none',

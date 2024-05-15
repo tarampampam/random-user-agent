@@ -73,13 +73,8 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
    */
   async get(): Promise<TState | undefined> {
     const items = await (await this.getStorage()).get(this.key)
-    const lastError = chrome.runtime.lastError
 
-    if (lastError) {
-      throw new Error(lastError.message)
-    }
-
-    if (this.key in items) {
+    if (items && this.key in items) {
       return items[this.key]
     }
 
@@ -93,11 +88,6 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
    */
   async set(value: TState): Promise<void> {
     await (await this.getStorage()).set({ [this.key]: value })
-    const lastError = chrome.runtime.lastError
-
-    if (lastError) {
-      throw new Error(lastError.message)
-    }
   }
 
   /**
