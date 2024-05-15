@@ -5,10 +5,10 @@
   Automatically <strong>replaces the User-Agent</strong> with a <strong>randomized one</strong>
 </p>
 <p align="center">
-  <a href="https://bit.ly/4dCzvut"><img alt="chrome" src="https://bit.ly/44FfWhb" /></a> &nbsp;
-  <a href="https://mzl.la/4dHvNzH"><img alt="firefox" src="https://bit.ly/3QLahQJ" /></a> &nbsp;
-  <a href="https://bit.ly/3V0biH7"><img alt="edge" src="https://bit.ly/3R9fkuP" /></a> &nbsp;
-  <a href="https://bit.ly/3Vb8PtT"><img alt="opera" src="https://bit.ly/3yhs3VE" /></a>
+  <a href="https://bit.ly/4dCzvut"><img alt="chrome" src="https://img.shields.io/chrome-web-store/v/einpaelgookohagofgnnkcfjbkkgepnp.svg?style=for-the-badge&cacheSeconds=120&logo=google-chrome&label=google%20chrome&logoColor=white" /></a> &nbsp;
+  <a href="https://mzl.la/4dHvNzH"><img alt="firefox" src="https://img.shields.io/amo/v/random_user_agent.svg?style=for-the-badge&cacheSeconds=120&logo=firefox-browser&label=firefox&logoColor=white" /></a> &nbsp;
+  <a href="https://bit.ly/3V0biH7"><img alt="edge" src="https://img.shields.io/badge/Edge-555555.svg?&style=for-the-badge&logo=microsoft-edge&logoColor=white" /></a> &nbsp;
+  <a href="https://bit.ly/3Vb8PtT"><img alt="opera" src="https://img.shields.io/badge/Opera-555555.svg?&style=for-the-badge&logo=opera&logoColor=white" /></a>
 </p>
 <p align="center">
   Random User-Agent is an <strong>open-source</strong> MIT-licensed <strong>browser extension</strong> that is
@@ -36,6 +36,9 @@
 [link-ff-store]:https://mzl.la/4dHvNzH
 [link-edge-store]:https://bit.ly/3V0biH7
 [link-opera-store]:https://bit.ly/3Vb8PtT
+
+> [!NOTE]
+> 🐞 If you encounter a **bug** with the extension but don't have a GitHub account (and prefer not to register for one), feel free to email it to [`bugreport@random-user-agent.com`](mailto:bugreport@random-user-agent.com) along with details about how to reproduce the bug, your operating system, and browser. Thank you!
 
 ## 🧩 Installation
 
