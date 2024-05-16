@@ -173,14 +173,14 @@ export async function setRequestHeaders(
       action: {
         type: RuleActionType.MODIFY_HEADERS,
         requestHeaders: [
-          brandsWithMajor
+          brandsWithMajor.length
             ? {
                 operation: HeaderOperation.SET,
                 header: HeaderNames.CLIENT_HINT_BRAND_MAJOR,
                 value: brandsWithMajor.map((b) => `"${b.brand}";v="${b.version}"`).join(', '),
               }
             : { operation: HeaderOperation.REMOVE, header: HeaderNames.CLIENT_HINT_BRAND_MAJOR },
-          brandsWithFull
+          brandsWithFull.length
             ? {
                 operation: HeaderOperation.SET,
                 header: HeaderNames.CLIENT_HINT_BRAND_FULL,
@@ -227,10 +227,6 @@ export async function setRequestHeaders(
     addRules: rules,
   })
 
-  if (chrome.runtime.lastError) {
-    throw new Error(chrome.runtime.lastError.message)
-  }
-
   return rules
 }
 
@@ -239,8 +235,4 @@ export async function unsetRequestHeaders(): Promise<void> {
   await chrome.declarativeNetRequest.updateDynamicRules({
     removeRuleIds: Object.values(RuleIDs), // remove existing rules
   })
-
-  if (chrome.runtime.lastError) {
-    throw new Error(chrome.runtime.lastError.message)
-  }
 }

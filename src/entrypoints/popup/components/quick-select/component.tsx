@@ -36,8 +36,6 @@ export default function QuickSelect({
   useEffect(() => {
     const [, oses] = generatorTypesToSets(setsToGeneratorTypes(browserTypes.length ? browserTypes : 'any', 'any'))
 
-    console.log('browserTypes', browserTypes, 'osList', osList)
-
     setSupportedOSes([...oses])
   }, [setSupportedOSes, browserTypes, osList])
 
