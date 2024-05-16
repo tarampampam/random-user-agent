@@ -149,18 +149,14 @@ You can find the full privacy policy text [here](PRIVACY_POLICY.md).
 
 1. Make the required changes in this repository and test them locally
 2. Publish a new release using the [releases page][releases]
-3. Once the CI process is complete, download the `random-user-agent-chrome.zip` and `random-user-agent-firefox.zip`
-files to my computer
-4. Open the "[Chrome Web Store Developer Dashboard][chrome-upload-new]" and click the "Upload new package" button.
-Proceed through the steps to publish the new package
-5. Download the `main.crx` file from the dashboard, rename it to `random-user-agent.crx`, and upload it to the
+3. Open the "[Chrome Web Store Developer Dashboard][chrome-upload-new]", send a draft to review
+4. Download the `main.crx` file from the dashboard, rename it to `random-user-agent.crx`, and upload it to the
 [release on GitHub][releases]
-6. Open the "[Mozilla add-on developer hub][ff-upload-new]", select the file, and proceed through the steps to
-upload and publish the extension
-7. Download the `random_user_agent_X.X.X-blabla.xpi` file from the dashboard (after receiving `Approved` status
-for the version), rename it to `random-user-agent.xpi`, and upload it to the [release on GitHub][releases]
-8. Don't forget to update the [Edge][edge-upload-new] and [Opera][opera-upload-new] stores
-9. Open a bottle of beer; you've earned it!
+5. Open the "[Mozilla add-on developer hub][ff-upload-new]", download the `random_user_agent_X.X.X-blabla.xpi`
+file from the dashboard (**after** receiving `Approved` status for the version), rename it to
+`random-user-agent.xpi`, and upload it to the [release on GitHub][releases]
+6. Don't forget to update the [Edge][edge-upload-new] and [Opera][opera-upload-new] stores
+7. Open a bottle of beer; you've earned it!
 </details>
 
 [chrome-upload-new]:https://chrome.google.com/webstore/devconsole/ea9e18ff-c849-424a-acba-9b43eaad29c8/einpaelgookohagofgnnkcfjbkkgepnp/edit/package
