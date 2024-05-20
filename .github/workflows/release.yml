@@ -46,7 +46,7 @@ jobs:
           tag: ${{ github.ref }}
 
   chrome:
-    name: Publish on the Chrome Web Store
+    name: Publish on Chrome Web Store
     runs-on: ubuntu-latest
     needs: [build]
     steps:

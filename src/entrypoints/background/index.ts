@@ -20,6 +20,10 @@ import { setExtensionIcon, setExtensionTitle } from './ui'
 const debug = (msg: string, ...args: Array<unknown>): void => console.debug(`%c😈 ${msg}`, 'font-weight:bold', ...args)
 /** Convert milliseconds to seconds */
 const m2s = (millis: number): number => Math.round(millis / 1000)
+
+// stats collector is used to collect statistics about the extension usage. personal information is not collected
+// and will never be collected. the collected data is used to overview the extension usage and track the most popular
+// features
 let stats: StatsCollector | undefined = undefined
 
 // register the error handler to catch global errors (unhandled exceptions) and unhandled promise rejections to
@@ -81,14 +85,20 @@ let stats: StatsCollector | undefined = undefined
   const latestBrowserVersions = new LatestBrowserVersions(new StorageArea('latest-browser-versions', 'local'))
   debug('initial latest browser versions', ...(await latestBrowserVersions.get()))
 
-  // stats collector is used to collect statistics about the extension usage. personal information is not collected
-  // and will never be collected. the collected data is used to overview the extension usage and track the most popular
-  // features
-  stats = new GaCollector(uuid, {
-    extVersion: chrome.runtime.getManifest().version,
-    osFamily: hostOS,
-    browser: detectBrowser(),
-  })
+  // creates a new stats collector instance with the given UUID (or unset if the UUID is not provided)
+  const newStatsCollector = (uuid: string) => {
+    return new GaCollector(uuid, {
+      extVersion: chrome.runtime.getManifest().version,
+      osFamily: hostOS,
+      browser: detectBrowser(),
+    })
+  }
+
+  if (initSettings.stats.enabled) {
+    stats = newStatsCollector(uuid) // initialize the stats collector on startup
+  } else {
+    debug('collection of usage statistics is disabled')
+  }
 
   // handlers is a map of functions that can be called from the popup or content scripts (and not only from them).
   // think about them as a kind of API for the extension
@@ -205,7 +215,16 @@ let stats: StatsCollector | undefined = undefined
       debug('all features have been disabled')
     }
 
-    // update the remote user-agents list URI on changes, if needed
+    // 🚀 re-initialize the stats collector on changes, if needed
+    if (s.stats.enabled && !stats) {
+      stats = newStatsCollector(uuid)
+      debug('collection of usage statistics is enabled')
+    } else if (!s.stats.enabled) {
+      stats = undefined
+      debug('collection of usage statistics is disabled')
+    }
+
+    // 🚀 update the remote user-agents list URI on changes, if needed
     if (remoteUserAgentList.url?.toString() !== s.remoteUseragentList.uri) {
       if (remoteUserAgentList.setUrl(s.remoteUseragentList.uri)) {
         // note: we do not await the result because we do not want to block the execution
@@ -266,7 +285,7 @@ let stats: StatsCollector | undefined = undefined
   listenRuntime(handlers)
 
   // send an initial event about the extension loading
-  stats.send(newExtensionLoadedEvent(initSettings)).then((err) => err && debug('stats error', err))
+  stats?.send(newExtensionLoadedEvent(initSettings)).then((err) => err && debug('stats error', err))
 })().catch((error: unknown): void => {
   if (stats) {
     stats.send(newErrorEvent(error, { page: 'background' })).then((err) => err && debug('stats error', err))

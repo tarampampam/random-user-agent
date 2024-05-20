@@ -38,6 +38,9 @@ export default class {
       mode: 'blacklist',
       domains: ['localhost', '127.0.0.1'],
     },
+    stats: {
+      enabled: true,
+    },
   }
 
   /** A list of change listeners */

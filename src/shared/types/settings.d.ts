@@ -80,6 +80,12 @@ type SettingsState = {
     //   rules: string[]
     // }
   }
+
+  // Usage statistics settings
+  stats: {
+    // Is enabled?
+    enabled: boolean
+  }
 }
 
 export type ReadonlySettingsState = DeepReadonly<SettingsState>

@@ -42,6 +42,7 @@ export default function General(): React.JSX.Element {
   const [remoteUAUpdIntervalSec, setRemoteUAUpdIntervalSec] = useState<number>()
   const [remoteListUpdateBtnEnabled, setRemoteListUpdateBtnEnabled] = useState<boolean>(true)
   const [remoteListUpdateStatus, setRemoteListUpdateStatus] = useState<string>()
+  const [statsEnabled, setStatsEnabled, setStatsEnabledId] = [...useState<boolean>(false), useId()]
 
   // on component mount
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function General(): React.JSX.Element {
       setRemoteUAListEnabled(settings.remoteUseragentList.enabled)
       setRemoteUAListUrl(settings.remoteUseragentList.uri)
       setRemoteUAUpdIntervalSec(Math.round(settings.remoteUseragentList.updateIntervalMillis / 1000))
+      setStatsEnabled(settings.stats.enabled)
     })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -250,6 +252,23 @@ export default function General(): React.JSX.Element {
               onChange={async (v) => {
                 setRemoteUAListEnabled(v)
                 await saveSettings({ remoteUseragentList: { enabled: v } }, delayFor.switch)
+              }}
+            />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column>
+            <label htmlFor={setStatsEnabledId}>{i18n('stats_enabled')}</label>
+            <Grid.Hint>{i18n('stats_enabled_hint')}</Grid.Hint>
+          </Grid.Column>
+          <Grid.Column>
+            <Switch
+              id={setStatsEnabledId}
+              checked={statsEnabled}
+              onChange={async (v) => {
+                setStatsEnabled(v)
+                await saveSettings({ stats: { enabled: v } }, delayFor.switch)
               }}
             />
           </Grid.Column>
