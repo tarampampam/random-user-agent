@@ -30,7 +30,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   en: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Automatically change the user agent after specified period of time to a randomly selected one, thus hiding your real user agent',
+      'Automatically change the user agent after specified period of time to a randomly selected one, ' +
+      'thus hiding your real user agent',
     manifest_action_default_title: 'Randomize your User-Agent',
     manifest_command_renew_useragent: 'Get new agent',
     active_user_agent: 'Active User-Agent',
@@ -55,7 +56,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Here you can change the agent switching behavior',
     blacklist_settings: 'Blacklist settings',
     blacklist_settings_hint:
-      'Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the contrary, disabled everywhere except the specified domains & rules',
+      'Blacklist mode - switching enabled everywhere, except the defined domains & rules. Whitelist - on the ' +
+      'contrary, disabled everywhere except the specified domains & rules',
     blacklist_mode: 'Blacklist mode',
     whitelist_mode: 'Whitelist mode',
     blacklist_domains: 'Domain names list (one per line)',
@@ -88,6 +90,12 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'to inject the necessary scripts into the pages to prevent real user-agent and other data leaks',
     grant_permission_button: 'Grant permissions',
+    stats_enabled: 'Enable the collection of extension usage statistics',
+    stats_enabled_hint:
+      'This will help us improve the extension. For example, when an error occurs, we will ' +
+      'receive a report with the error details and address it as soon as possible. We will not collect any ' +
+      'personal data, browsing history, or any information that can be used to identify you. Please help us ' +
+      'improve the extension by keeping this option enabled',
   },
 
   /**
@@ -143,7 +151,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Hier kannst du das Verhalten des Switchers anpassen',
     blacklist_settings: 'Blacklist Einstellungen',
     blacklist_settings_hint:
-      'Blacklist Modus - wechseln überall aktiviert, außer die definierten Domains & Regeln. Whitelist - andersherum, überall deaktiviert außer die definierten Domains & Regeln',
+      'Blacklist Modus - wechseln überall aktiviert, außer die definierten Domains & Regeln. Whitelist - ' +
+      'andersherum, überall deaktiviert außer die definierten Domains & Regeln',
     blacklist_mode: 'Blacklist Modus',
     whitelist_mode: 'Whitelist Modus',
     blacklist_domains: 'Domainnamen Liste (eine pro Zeile)',
@@ -176,8 +185,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     why_we_need_permissions: 'Um ordnungsgemäß zu funktionieren, benötigt die Erweiterung folgende Berechtigungen',
     read_and_modify_data: 'Lesen und Ändern aller Ihrer Daten auf den von Ihnen besuchten Websites',
     read_and_modify_data_reason:
-      'um die erforderlichen Skripte in die Seiten einzufügen, um echte Benutzeragenten und andere Datenlecks zu verhindern',
+      'um die erforderlichen Skripte in die Seiten einzufügen, um echte Benutzeragenten und andere Datenlecks ' +
+      'zu verhindern',
     grant_permission_button: 'Berechtigungen erteilen',
+    stats_enabled: 'Aktivieren Sie die Sammlung von Nutzungsstatistiken der Erweiterung',
+    stats_enabled_hint:
+      'Dies wird uns helfen, die Erweiterung zu verbessern. Zum Beispiel, wenn ein Fehler auftritt, erhalten wir ' +
+      'einen Bericht mit den Fehlerdetails und beheben das Problem so schnell wie möglich. Wir werden keine ' +
+      'persönlichen Daten, Browserverlauf oder Informationen sammeln, die zu Ihrer Identifikation verwendet ' +
+      'werden können. Bitte helfen Sie uns, die Erweiterung zu verbessern, indem Sie diese Option aktiviert lassen',
   },
 
   /**
@@ -207,7 +223,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   es: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Cambiar automáticamente el agente de usuario después de un período de tiempo especificado a uno seleccionado al azar, ocultando así su agente de usuario real',
+      'Cambiar automáticamente el agente de usuario después de un período de tiempo especificado a uno seleccionado ' +
+      'al azar, ocultando así su agente de usuario real',
     manifest_action_default_title: 'Aleatorice su User-Agent',
     manifest_command_renew_useragent: 'Obtener nuevo agente',
     active_user_agent: 'Agente de usuario activo',
@@ -233,7 +250,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Aquí puede cambiar el comportamiento de cambio de agente',
     blacklist_settings: 'Configuración de la lista negra',
     blacklist_settings_hint:
-      'Modo Lista Negra - conmutación habilitada en todas partes, excepto en los dominios y reglas definidos. Lista blanca - por el contrario, desactivada en todas partes excepto en los dominios & reglas especificados',
+      'Modo Lista Negra - conmutación habilitada en todas partes, excepto en los dominios y reglas definidos. ' +
+      'Lista blanca - por el contrario, desactivada en todas partes excepto en los dominios & reglas especificados',
     blacklist_mode: 'Modo lista negra',
     whitelist_mode: 'Modo de lista blanca',
     blacklist_domains: 'Lista de nombres de dominio (uno por línea)',
@@ -265,8 +283,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     why_we_need_permissions: 'Para funcionar correctamente, la extensión requiere los siguientes permisos',
     read_and_modify_data: 'Leer y modificar todos tus datos en los sitios web que visitas',
     read_and_modify_data_reason:
-      'para inyectar los scripts necesarios en las páginas y evitar la filtración del agente de usuario real y otros datos',
+      'para inyectar los scripts necesarios en las páginas y evitar la filtración del agente de usuario real y ' +
+      'otros datos',
     grant_permission_button: 'Conceder permisos',
+    stats_enabled: 'Habilitar la recopilación de estadísticas de uso de la extensión',
+    stats_enabled_hint:
+      'Esto nos ayudará a mejorar la extensión. Por ejemplo, cuando ocurra un error, recibiremos un informe con ' +
+      'los detalles del error y lo solucionaremos lo antes posible. No recopilaremos ningún dato personal, ' +
+      'historial de navegación ni ninguna información que pueda usarse para identificarlo. Por favor, ayúdenos ' +
+      'a mejorar la extensión manteniendo esta opción habilitada',
   },
 
   /**
@@ -297,7 +322,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   fr: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Mets à jour de manière automatique et aléatoire le User-Agent de ton navigateur afin de masquer au mieux ton identité',
+      'Mets à jour de manière automatique et aléatoire le User-Agent de ton navigateur afin de masquer au mieux ' +
+      'ton identité',
     manifest_action_default_title: 'User-Agent aléatoire',
     manifest_command_renew_useragent: 'Générer un nouveau User-Agent',
     active_user_agent: 'User-Agent actif',
@@ -324,7 +350,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Ici vous pouvez sélectionner les navigateurs générant le User-Agent',
     blacklist_settings: 'Paramètres du blacklist',
     blacklist_settings_hint:
-      'Blacklist mode - activée partout, sauf pour les domaines et les règles définies. Whitelist mode - désactivé partout sauf pour les domaines et les règles spécifiées',
+      'Blacklist mode - activée partout, sauf pour les domaines et les règles définies. Whitelist mode - désactivé ' +
+      'partout sauf pour les domaines et les règles spécifiées',
     blacklist_mode: 'Blacklist mode',
     whitelist_mode: 'Whitelist mode',
     blacklist_domains: 'Liste des noms de domaines names (un par ligne)',
@@ -356,8 +383,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     why_we_need_permissions: "Pour fonctionner correctement, l'extension nécessite les autorisations suivantes",
     read_and_modify_data: 'Lire et modifier toutes vos données sur les sites Web que vous visitez',
     read_and_modify_data_reason:
-      "pour injecter les scripts nécessaires dans les pages afin de prévenir les fuites de données réelles sur l'utilisateur et autres",
+      'pour injecter les scripts nécessaires dans les pages afin de prévenir les fuites de données réelles ' +
+      "sur l'utilisateur et autres",
     grant_permission_button: 'Accorder les autorisations',
+    stats_enabled: "Activer la collecte des statistiques d'utilisation de l'extension",
+    stats_enabled_hint:
+      "Cela nous aidera à améliorer l'extension. Par exemple, lorsqu'une erreur se produit, nous recevrons un " +
+      "rapport avec les détails de l'erreur et nous y remédierons dès que possible. Nous ne collecterons aucune " +
+      'donnée personnelle, historique de navigation ou information pouvant être utilisée pour vous identifier. ' +
+      "Veuillez nous aider à améliorer l'extension en gardant cette option activée",
   },
 
   /**
@@ -388,7 +422,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   id: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, sehingga menyembunyikan User-Agent kamu yang sebenarnya',
+      'Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, ' +
+      'sehingga menyembunyikan User-Agent kamu yang sebenarnya',
     manifest_action_default_title: 'Acak User-Agent kamu',
     manifest_command_renew_useragent: 'Dapatkan User-Agent baru',
     active_user_agent: 'User-Agent aktif',
@@ -413,7 +448,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Di sini Anda dapat mengubah perilaku User-Agent',
     blacklist_settings: 'Pengaturan daftar hitam',
     blacklist_settings_hint:
-      'Mode daftar hitam - pengalihan diaktifkan di mana saja, kecuali domain & aturan yang ditentukan. Daftar putih - sebaliknya, dinonaktifkan di mana saja kecuali domain & aturan yang ditentukan',
+      'Mode daftar hitam - pengalihan diaktifkan di mana saja, kecuali domain & aturan yang ditentukan. ' +
+      'Daftar putih - sebaliknya, dinonaktifkan di mana saja kecuali domain & aturan yang ditentukan',
     blacklist_mode: 'Mode daftar hitam',
     whitelist_mode: 'Mode daftar putih',
     blacklist_domains: 'Daftar nama domain (satu per baris)',
@@ -444,8 +480,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     why_we_need_permissions: 'Untuk berfungsi dengan baik, ekstensi memerlukan izin berikut',
     read_and_modify_data: 'Baca dan ubah semua data Anda pada situs web yang Anda kunjungi',
     read_and_modify_data_reason:
-      'untuk menyuntikkan skrip yang diperlukan ke halaman untuk mencegah identitas pengguna asli dan kebocoran data lainnya',
+      'untuk menyuntikkan skrip yang diperlukan ke halaman untuk mencegah identitas pengguna asli dan ' +
+      'kebocoran data lainnya',
     grant_permission_button: 'Berikan izin',
+    stats_enabled: 'Aktifkan pengumpulan statistik penggunaan ekstensi',
+    stats_enabled_hint:
+      'Ini akan membantu kami meningkatkan ekstensi. Misalnya, ketika terjadi kesalahan, kami akan menerima laporan ' +
+      'dengan detail kesalahan dan menanganinya secepat mungkin. Kami tidak akan mengumpulkan data pribadi, riwayat ' +
+      'penjelajahan, atau informasi apa pun yang dapat digunakan untuk mengidentifikasi Anda. Tolong bantu kami ' +
+      'meningkatkan ekstensi dengan tetap mengaktifkan opsi ini',
   },
 
   /**
@@ -497,7 +540,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'ここでは、エージェント切り替えの動作を変更することができます',
     blacklist_settings: 'ブラックリストの設定',
     blacklist_settings_hint:
-      'ブラックリストモード - 定義されたドメインとルールを除くすべての場所で切り替えが有効です。ホワイトリスト - 逆に、指定されたドメインとルール以外のすべての場所で無効化されます。',
+      'ブラックリストモード - 定義されたドメインとルールを除くすべての場所で切り替えが有効です。ホワイトリスト - 逆に、' +
+      '指定されたドメインとルール以外のすべての場所で無効化されます。',
     blacklist_mode: 'ブラックリストモード',
     whitelist_mode: 'ホワイトリストモード',
     blacklist_domains: 'ドメイン名リスト（1行に1つ）',
@@ -530,6 +574,11 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       '必要なスクリプトをページに注入し、実際のユーザーエージェントや他のデータ漏洩を防ぐため',
     grant_permission_button: '許可を付与する',
+    stats_enabled: '拡張機能の使用統計の収集を有効にする',
+    stats_enabled_hint:
+      'これにより、拡張機能の改善に役立ちます。例えば、エラーが発生した場合、エラーの詳細を含むレポートを受け取り、' +
+      'できるだけ早く対処します。個人データ、閲覧履歴、または識別に使用できる情報は収集しません。このオプションを有効にしたままにして、' +
+      '拡張機能の改善にご協力ください',
   },
 
   /**
@@ -559,7 +608,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   pl: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Automatycznie zmienia User-Agenta po określonym czasie na losowo wybranego, ukrywając w ten sposób prawdziwego User-Agenta',
+      'Automatycznie zmienia User-Agenta po określonym czasie na losowo wybranego, ukrywając w ten sposób ' +
+      'prawdziwego User-Agenta',
     manifest_action_default_title: 'Losuj swojego User-Agenta',
     manifest_command_renew_useragent: 'Zdobądź nowego agenta',
     active_user_agent: 'Aktywny User-Agent',
@@ -584,7 +634,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Tutaj możesz zmienić zachowanie przełączania agenta',
     blacklist_settings: 'Ustawienia czarnej listy',
     blacklist_settings_hint:
-      'Tryb czarnej listy - przełączanie włączone wszędzie, z wyjątkiem określonych domen i reguł. Biała lista - wręcz przeciwnie, wyłączone wszędzie poza określonymi domenami i regułami',
+      'Tryb czarnej listy - przełączanie włączone wszędzie, z wyjątkiem określonych domen i reguł. Biała lista - ' +
+      'wręcz przeciwnie, wyłączone wszędzie poza określonymi domenami i regułami',
     blacklist_mode: 'Tryb czarnej listy',
     whitelist_mode: 'Tryb białej listy',
     blacklist_domains: 'Lista nazw domen (jedna w wierszu)',
@@ -616,8 +667,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data:
       'Odczytywanie i modyfikowanie wszystkich danych na odwiedzanych przez Ciebie stronach internetowych',
     read_and_modify_data_reason:
-      'aby wstrzykiwać niezbędne skrypty na strony w celu zapobiegania realnemu przeciekom danych, takim jak prawdziwy identyfikator użytkownika (user-agent) i inne',
+      'aby wstrzykiwać niezbędne skrypty na strony w celu zapobiegania realnemu przeciekom danych, takim jak ' +
+      'prawdziwy identyfikator użytkownika (user-agent) i inne',
     grant_permission_button: 'Udziel uprawnień',
+    stats_enabled: 'Włącz zbieranie statystyk użytkowania rozszerzenia',
+    stats_enabled_hint:
+      'To pomoże nam poprawić rozszerzenie. Na przykład, gdy wystąpi błąd, otrzymamy raport ze szczegółami błędu ' +
+      'i naprawimy go tak szybko, jak to możliwe. Nie będziemy zbierać żadnych danych osobowych, historii ' +
+      'przeglądania ani informacji, które mogłyby posłużyć do identyfikacji. Prosimy o pomoc w poprawie ' +
+      'rozszerzenia poprzez utrzymanie tej opcji włączonej',
   },
 
   /**
@@ -647,7 +705,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   pt_BR: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Altera automaticamente seu Agente de usuário após um tempo escolhido, para um outro e portanto oculta a sua verdadeira identidade',
+      'Altera automaticamente seu Agente de usuário após um tempo escolhido, para um outro e portanto oculta a ' +
+      'sua verdadeira identidade',
     manifest_action_default_title: 'Randomize seu Agente de usuário',
     manifest_command_renew_useragent: 'Alterar para outro Agente',
     active_user_agent: 'Agente de usuário ativo',
@@ -672,7 +731,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Aqui você pode mudar o comportamento de alteração de Agente',
     blacklist_settings: 'Configurações de lista negra',
     blacklist_settings_hint:
-      'Modo de lista negra - alteração ativada em todos os lugares, menos em domínios e regras especificadas. Lista branca - ao contrário, desativada em todos os lugares, menos em domínios e regras especificadas',
+      'Modo de lista negra - alteração ativada em todos os lugares, menos em domínios e regras especificadas. ' +
+      'Lista branca - ao contrário, desativada em todos os lugares, menos em domínios e regras especificadas',
     blacklist_mode: 'Lista negra',
     whitelist_mode: 'Lista branca',
     blacklist_domains: 'Lista de nomes de domínio (um por linha)',
@@ -706,6 +766,12 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'para injetar os scripts necessários nas páginas para evitar o vazamento de dados reais do usuário e outros',
     grant_permission_button: 'Conceder permissões',
+    stats_enabled: 'Habilitar a coleta de estatísticas de uso da extensão',
+    stats_enabled_hint:
+      'Isso nos ajudará a melhorar a extensão. Por exemplo, quando ocorrer um erro, receberemos um relatório com ' +
+      'os detalhes do erro e resolveremos o problema o mais rápido possível. Não coletaremos quaisquer dados ' +
+      'pessoais, histórico de navegação ou qualquer informação que possa ser usada para identificá-lo. Por ' +
+      'favor, ajude-nos a melhorar a extensão mantendo esta opção habilitada',
   },
 
   /**
@@ -763,7 +829,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Укажите те типы браузеров, User-Agent которых следует генерировать',
     blacklist_settings: 'Настройки черного списка',
     blacklist_settings_hint:
-      'При включении режима черного списка подмена включена везде, кроме перечисленных ниже доменов и правил; белый же список наоборот - подмена выключена везде, кроме указанных доменов и правил',
+      'При включении режима черного списка подмена включена везде, кроме перечисленных ниже доменов и правил; ' +
+      'белый же список наоборот - подмена выключена везде, кроме указанных доменов и правил',
     blacklist_mode: 'Режим черного списка',
     whitelist_mode: 'Режим белого списка',
     blacklist_domains: 'Список имен доменов (по одному на строку)',
@@ -797,6 +864,12 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'для вставки необходимых скриптов на страницы для предотвращения реального user-agent и других утечек данных',
     grant_permission_button: 'Предоставить разрешения',
+    stats_enabled: 'Включить сбор статистики использования расширения',
+    stats_enabled_hint:
+      'Это поможет нам улучшить расширение. Например, когда происходит ошибка, мы получаем отчет с деталями ошибки ' +
+      'и устраняем ее как можно скорее. Мы не будем собирать личные данные, историю просмотров или любую информацию, ' +
+      'которая может быть использована для вашей идентификации. Пожалуйста, помогите нам улучшить расширение, ' +
+      'оставив эту опцию включенной',
   },
 
   /**
@@ -827,7 +900,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   tr: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına değiştirir, böylece gerçek kullanıcı aracınızı gizler',
+      'Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına ' +
+      'değiştirir, böylece gerçek kullanıcı aracınızı gizler',
     manifest_action_default_title: 'Kullanıcı Aracınızı Rastgele Ayarlayın',
     manifest_command_renew_useragent: 'Yeni temsilci alın',
     active_user_agent: 'Aktif Kullanıcı-Agent',
@@ -853,7 +927,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Burada temsilci değiştirme davranışını değiştirebilirsiniz',
     blacklist_settings: 'Kara liste ayarları',
     blacklist_settings_hint:
-      'Kara liste modu - tanımlanan etki alanları ve kurallar dışında her yerde etkin anahtarlama. Beyaz liste - tam tersine, belirtilen etki alanları ve kurallar dışında her yerde devre dışı bırakılır',
+      'Kara liste modu - tanımlanan etki alanları ve kurallar dışında her yerde etkin anahtarlama. Beyaz liste - ' +
+      'tam tersine, belirtilen etki alanları ve kurallar dışında her yerde devre dışı bırakılır',
     blacklist_mode: 'Kara liste modu',
     whitelist_mode: 'Beyaz liste modu',
     blacklist_domains: 'Alan adları listesi (her satır için bir tane)',
@@ -887,6 +962,12 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'gerçek kullanıcı ajanı ve diğer veri sızıntılarını önlemek için gereken betikleri sayfalara enjekte etmek için',
     grant_permission_button: 'İzinleri ver',
+    stats_enabled: 'Uzantı kullanım istatistiklerinin toplanmasını etkinleştir',
+    stats_enabled_hint:
+      'Bu, uzantıyı geliştirmemize yardımcı olacaktır. Örneğin, bir hata oluştuğunda, hata ayrıntılarıyla ' +
+      'birlikte bir rapor alırız ve sorunu en kısa sürede çözeriz. Kişisel verileri, tarayıcı geçmişini veya ' +
+      'kimliğinizi belirlemek için kullanılabilecek herhangi bir bilgiyi toplamayacağız. Lütfen bu seçeneği ' +
+      'etkin tutarak uzantıyı geliştirmemize yardımcı olun',
   },
 
   /**
@@ -918,7 +999,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   uk: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Автоматична зміна агента користувача через заданий проміжок часу на випадково обраного, таким чином приховуючи вашого реального агента користувача',
+      'Автоматична зміна агента користувача через заданий проміжок часу на випадково обраного, таким чином ' +
+      'приховуючи вашого реального агента користувача',
     manifest_action_default_title: 'Рандомізуйте свого User-Agent',
     manifest_command_renew_useragent: 'Отримати новий ідентифікатор',
     active_user_agent: 'Поточний User-Agent',
@@ -943,7 +1025,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Тут ви можете змінити поведінку перемикання агентів',
     blacklist_settings: 'Налаштування чорного списку',
     blacklist_settings_hint:
-      'Режим чорного списку - перемикання включено скрізь, крім заданих доменів і правил. Білий список - навпаки, відключений всюди, крім зазначених доменів і правил',
+      'Режим чорного списку - перемикання включено скрізь, крім заданих доменів і правил. Білий список - навпаки, ' +
+      'відключений всюди, крім зазначених доменів і правил',
     blacklist_mode: 'Режим чорного списку',
     whitelist_mode: 'Режим білого списку',
     blacklist_domains: 'Список доменних імен (по одному в рядку)',
@@ -974,8 +1057,15 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     why_we_need_permissions: 'Для належної роботи розширення потрібні наступні дозволи',
     read_and_modify_data: 'Читати та змінювати всі ваші дані на відвідуваних вами веб-сайтах',
     read_and_modify_data_reason:
-      'для впровадження необхідних скриптів на сторінках для запобігання реального використання користувача та інших витоків даних',
+      'для впровадження необхідних скриптів на сторінках для запобігання реального використання користувача та ' +
+      'інших витоків даних',
     grant_permission_button: 'Надати дозволи',
+    stats_enabled: 'Увімкнути збір статистики використання розширення',
+    stats_enabled_hint:
+      'Це допоможе нам покращити розширення. Наприклад, коли виникає помилка, ми отримуємо звіт з деталями помилки ' +
+      'і вирішуємо її якомога швидше. Ми не будемо збирати особисті дані, історію переглядів або будь-яку інформацію, ' +
+      'яка може бути використана для ідентифікації вас. Будь ласка, допоможіть нам покращити розширення, залишаючи ' +
+      'цю опцію ввімкненою',
   },
 
   /**
@@ -1032,7 +1122,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: 'Ở đây bạn có thể tuỳ chỉnh hành vi thay đổi',
     blacklist_settings: 'Cài đặt danh sách đen',
     blacklist_settings_hint:
-      'Chế độ danh sách đen - cho phép ở tất cả các trang trừ những trang cho trước. Chế độ danh sách trắng - ngược lại, không cho phép ở mọi trang miền trừ những trang cho trước',
+      'Chế độ danh sách đen - cho phép ở tất cả các trang trừ những trang cho trước. Chế độ danh sách trắng - ' +
+      'ngược lại, không cho phép ở mọi trang miền trừ những trang cho trước',
     blacklist_mode: 'Chế độ danh sách đen',
     whitelist_mode: 'Chế độ danh sách trắng',
     blacklist_domains: 'Danh sách tên miền (mỗi dòng 1 tên)',
@@ -1066,6 +1157,12 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'để chèn các kịch bản cần thiết vào các trang để ngăn chặn thông tin người dùng thật và rò rỉ dữ liệu khác',
     grant_permission_button: 'Cấp quyền',
+    stats_enabled: 'Bật thu thập thống kê sử dụng tiện ích mở rộng',
+    stats_enabled_hint:
+      'Điều này sẽ giúp chúng tôi cải thiện tiện ích mở rộng. Ví dụ, khi xảy ra lỗi, chúng tôi sẽ nhận được báo cáo ' +
+      'với các chi tiết lỗi và giải quyết nó càng sớm càng tốt. Chúng tôi sẽ không thu thập bất kỳ dữ liệu cá nhân, ' +
+      'lịch sử duyệt web hoặc bất kỳ thông tin nào có thể được sử dụng để nhận dạng bạn. Vui lòng giúp chúng tôi cải ' +
+      'thiện tiện ích mở rộng bằng cách giữ tùy chọn này được bật',
   },
 
   /**
@@ -1114,7 +1211,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     generator_settings_hint: '',
     blacklist_settings: '黑名单设置',
     blacklist_settings_hint:
-      '黑名单模式 - 默认启用，全面启用用户代理切换，除非符合已定义的域名和规则。白名单模式相反，仅针对符合已定义的域名和规则的访问启用用户代理切换。',
+      '黑名单模式 - 默认启用，全面启用用户代理切换，除非符合已定义的域名和规则。白名单模式相反，' +
+      '仅针对符合已定义的域名和规则的访问启用用户代理切换。',
     blacklist_mode: '黑名单模式',
     whitelist_mode: '白名单模式',
     blacklist_domains: '域名列表（每行一条）',
@@ -1146,6 +1244,10 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data: '读取并修改您在访问的网站上的所有数据',
     read_and_modify_data_reason: '以注入必要的脚本到页面中，防止真实用户代理和其他数据泄漏',
     grant_permission_button: '授予权限',
+    stats_enabled: '启用扩展使用统计信息收集',
+    stats_enabled_hint:
+      '这将帮助我们改进扩展功能。例如，当发生错误时，我们将收到包含错误详情的报告并尽快处理。我们不会收集任何个人数据、' +
+      '浏览历史或任何可用于识别您的信息。请通过保持此选项启用来帮助我们改进扩展',
   },
 }
 /* v8 ignore stop */

@@ -183,4 +183,8 @@ export type Localization<T extends string = string> = {
   read_and_modify_data_reason: T
   /** Grant permissions */
   grant_permission_button: T
+  /** Enable the collection of extension usage statistics */
+  stats_enabled: T
+  /** This will help us improve the extension. For example, when an error occurs ... */
+  stats_enabled_hint: T
 }
