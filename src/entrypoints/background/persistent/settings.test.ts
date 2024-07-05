@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import type { SettingsState } from '../../../shared/types/settings'
 import Settings from './settings'
 import StorageArea from './storage-area'
 
@@ -12,7 +13,7 @@ describe('settings', () => {
     }
 
     async set<T>(v: T): Promise<void> {
-      this.state = v as Record<string, unknown>
+      this.state = JSON.parse(JSON.stringify(v)) as Record<string, unknown>
     }
 
     async get<T>(): Promise<T | undefined> {
@@ -50,6 +51,40 @@ describe('settings', () => {
     await settings.update({ blacklist: { domains: ['bar', 'baz'] }, renew: { intervalMillis: 666 } })
     expect((await settings.get()).blacklist.domains).toEqual(['bar', 'baz'])
     expect((await settings.get()).renew.intervalMillis).toEqual(30000)
+  })
+
+  test('partial from storage', async () => {
+    const area: StorageArea<SettingsState> = new StorageAreaMock('some-key', 'local')
+    const settings = new Settings(area)
+
+    await settings.update({ enabled: false, remoteUseragentList: { uri: 'foo' } }) // force to save
+
+    // read the current state and remove some key
+    {
+      const current = await area.get()
+      if (!current) {
+        throw new Error('current is undefined')
+      }
+
+      // @ts-expect-error - emulate partial data!
+      delete current.stats
+
+      await area.set(current)
+    }
+
+    let executed = false
+
+    settings.onChange((s) => {
+      expect(s.stats).not.toBeUndefined()
+      expect(s.remoteUseragentList.uri).toEqual('foo')
+      expect(s.enabled).toBeTruthy()
+
+      executed = true
+    })
+
+    await settings.update({ enabled: true }) // force to save
+
+    expect(executed).toBeTruthy()
   })
 
   test('onChange listener', async () => {
