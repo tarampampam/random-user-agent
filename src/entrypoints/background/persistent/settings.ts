@@ -106,8 +106,8 @@ export default class {
       delete updated.blacklist.custom
     }
 
-    const current = await this.storage.get()
-    const [merged, changes] = this.merge(structuredClone(current ?? this.defaults), updated)
+    const [current] = this.merge(this.defaults, (await this.storage.get()) ?? this.defaults)
+    const [merged, changes] = this.merge(structuredClone(current), updated)
 
     if (changes > 0) {
       // to clean in the storage
