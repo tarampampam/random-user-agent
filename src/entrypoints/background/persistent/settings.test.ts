@@ -66,7 +66,7 @@ describe('settings', () => {
         throw new Error('current is undefined')
       }
 
-      // @ts-expect-error - emulate partial data
+      // @ts-expect-error - emulate partial data!
       delete current.stats
 
       await area.set(current)
