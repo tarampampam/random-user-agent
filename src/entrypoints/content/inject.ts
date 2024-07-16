@@ -198,6 +198,16 @@ import type { DeepWriteable } from '~/types'
           overload(n, 'oscpu', undefined, { force: true })
       }
 
+      /**
+       * @link https://developer.mozilla.org/en-US/docs/Web/API/Navigator/maxTouchPoints
+       */
+      switch (payload.current.os) {
+        case 'android':
+        case 'iOS':
+          overload(n, 'maxTouchPoints', 10)
+          break
+      }
+
       // to test, execute in the console: `console.log(navigator.vendor)`
       switch (payload.current.browser) {
         case 'chrome':
