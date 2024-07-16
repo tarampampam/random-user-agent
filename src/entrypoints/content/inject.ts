@@ -204,7 +204,7 @@ import type { DeepWriteable } from '~/types'
       switch (payload.current.os) {
         case 'android':
         case 'iOS':
-          overload(n, 'maxTouchPoints', 10)
+          overload(n, 'maxTouchPoints', n.maxTouchPoints || 10)
           break
       }
 
