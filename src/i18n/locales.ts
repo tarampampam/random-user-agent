@@ -224,7 +224,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
       'Cambiar automáticamente el agente de usuario después de un período de tiempo especificado a uno seleccionado ' +
-      'al azar, ocultando así su agente de usuario real',
+      'al azar',
     manifest_action_default_title: 'Aleatorice su User-Agent',
     manifest_command_renew_useragent: 'Obtener nuevo agente',
     active_user_agent: 'Agente de usuario activo',
