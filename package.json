@@ -60,7 +60,7 @@
     "sass": "^1.77.8",
     "typescript": "^5.5.4",
     "user-agent-data-types": "^0.4.2",
-    "vite": "^5.4.2",
+    "vite": "^5.4.6",
     "vitest": "^1.4.0"
   },
   "eslintConfig": {
