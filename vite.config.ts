@@ -223,13 +223,6 @@ export default defineConfig({
     __MOZILLA_STORE_URL__: JSON.stringify(ProjectURLs.FIREFOX),
     __OPERA_STORE_URL__: JSON.stringify(ProjectURLs.OPERA),
     __MICROSOFT_STORE_URL__: JSON.stringify(ProjectURLs.MICROSOFT),
-
-    // The events dashboard located here: https://bit.ly/448MU9g
-    __MIXPANEL_PROJECT_TOKEN__: JSON.stringify(atob('MGIyYjZhZjJjOTRjYjRiNTcwNmIxMDU3YTUyZjFmYTk=')),
-
-    // The events dashboard located here: https://bit.ly/4aLsR3i
-    __GA_MEASUREMENT_ID__: JSON.stringify(atob('Ry0xVjVLNlE2R1A2')), // https://bit.ly/3W5dVZd -> Stream details -> Measurement ID
-    __GA_API_SECRET__: JSON.stringify(atob('b1lUTjFvU0ZTeS1OVWJvLUwyZVl3QQ==')), // https://bit.ly/3W5dVZd -> Measurement Protocol API secrets
   },
   root: entrypointDir,
   assetsInclude: 'public/**/*',

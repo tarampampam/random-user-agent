@@ -1,5 +1,4 @@
 import type { PartialSettingsState, ReadonlySettingsState } from '../types'
-import type { StatsEvent } from '../stats'
 
 const sign: Readonly<string> = 'rua-proto-v2' // some unique string
 
@@ -27,9 +26,6 @@ export type HandlersMap = {
 
   /** Updates the remote user-agent list now. */
   updateRemoteListNow: (clearBefore?: boolean) => Promise<Readonly<{ url: string; gotListSize: number }>>
-
-  /** Fires the given stats events. */
-  fireStatsEvents: (...events: Array<StatsEvent>) => Promise<Error | undefined>
 }
 
 type HandlerName = keyof HandlersMap // union type of all handler names

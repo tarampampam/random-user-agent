@@ -38,9 +38,6 @@ export default class {
       mode: 'blacklist',
       domains: ['localhost', '127.0.0.1'],
     },
-    stats: {
-      enabled: true,
-    },
   }
 
   /** A list of change listeners */
@@ -85,6 +82,11 @@ export default class {
         delete merged.blacklist.custom
       }
 
+      if ('stats' in merged) {
+        // stats.enabled is deprecated and should be removed
+        delete merged.stats
+      }
+
       // the minimum interval for auto-renewal is 30 seconds (depends on alarms API)
       merged.renew.intervalMillis = Math.max(30 * 1000, merged.renew.intervalMillis)
 
@@ -106,6 +108,11 @@ export default class {
       delete updated.blacklist.custom
     }
 
+    // stats.enabled is deprecated and should be removed
+    if ('stats' in updated) {
+      delete updated.stats
+    }
+
     const [current] = this.merge(this.defaults, (await this.storage.get()) ?? this.defaults)
     const [merged, changes] = this.merge(structuredClone(current), updated)
 
@@ -113,6 +120,10 @@ export default class {
       // to clean in the storage
       if ('custom' in merged.blacklist) {
         delete merged.blacklist.custom
+      }
+
+      if ('stats' in merged) {
+        delete merged.stats
       }
 
       await this.storage.set(merged)
