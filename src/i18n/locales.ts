@@ -30,8 +30,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   en: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Automatically change the user agent after specified period of time to a randomly selected one, ' +
-      'thus hiding your real user agent',
+      'Automatically change the user agent after specified period of time to a randomly selected one',
     manifest_action_default_title: 'Randomize your User-Agent',
     manifest_command_renew_useragent: 'Get new agent',
     active_user_agent: 'Active User-Agent',
@@ -398,8 +397,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   id: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak, ' +
-      'sehingga menyembunyikan User-Agent kamu yang sebenarnya',
+      'Secara otomatis mengubah User-Agent setelah jangka waktu tertentu menjadi yang dipilih secara acak',
     manifest_action_default_title: 'Acak User-Agent kamu',
     manifest_command_renew_useragent: 'Dapatkan User-Agent baru',
     active_user_agent: 'User-Agent aktif',
@@ -848,7 +846,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
       'Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına ' +
-      'değiştirir, böylece gerçek kullanıcı aracınızı gizler',
+      'değiştirir',
     manifest_action_default_title: 'Kullanıcı Aracınızı Rastgele Ayarlayın',
     manifest_command_renew_useragent: 'Yeni temsilci alın',
     active_user_agent: 'Aktif Kullanıcı-Agent',
@@ -939,9 +937,7 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
    */
   uk: {
     manifest_name: 'Random User-Agent (Switcher)',
-    manifest_description:
-      'Автоматична зміна агента користувача через заданий проміжок часу на випадково обраного, таким чином ' +
-      'приховуючи вашого реального агента користувача',
+    manifest_description: 'Автоматична зміна агента користувача через заданий проміжок часу на випадково обраного',
     manifest_action_default_title: 'Рандомізуйте свого User-Agent',
     manifest_command_renew_useragent: 'Отримати новий ідентифікатор',
     active_user_agent: 'Поточний User-Agent',
