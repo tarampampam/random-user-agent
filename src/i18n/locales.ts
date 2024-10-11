@@ -90,12 +90,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'to inject the necessary scripts into the pages to prevent real user-agent and other data leaks',
     grant_permission_button: 'Grant permissions',
-    stats_enabled: 'Enable the collection of extension usage statistics',
-    stats_enabled_hint:
-      'This will help us improve the extension. For example, when an error occurs, we will ' +
-      'receive a report with the error details and address it as soon as possible. We will not collect any ' +
-      'personal data, browsing history, or any information that can be used to identify you. Please help us ' +
-      'improve the extension by keeping this option enabled',
   },
 
   /**
@@ -188,12 +182,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'um die erforderlichen Skripte in die Seiten einzufügen, um echte Benutzeragenten und andere Datenlecks ' +
       'zu verhindern',
     grant_permission_button: 'Berechtigungen erteilen',
-    stats_enabled: 'Aktivieren Sie die Sammlung von Nutzungsstatistiken der Erweiterung',
-    stats_enabled_hint:
-      'Dies wird uns helfen, die Erweiterung zu verbessern. Zum Beispiel, wenn ein Fehler auftritt, erhalten wir ' +
-      'einen Bericht mit den Fehlerdetails und beheben das Problem so schnell wie möglich. Wir werden keine ' +
-      'persönlichen Daten, Browserverlauf oder Informationen sammeln, die zu Ihrer Identifikation verwendet ' +
-      'werden können. Bitte helfen Sie uns, die Erweiterung zu verbessern, indem Sie diese Option aktiviert lassen',
   },
 
   /**
@@ -286,12 +274,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'para inyectar los scripts necesarios en las páginas y evitar la filtración del agente de usuario real y ' +
       'otros datos',
     grant_permission_button: 'Conceder permisos',
-    stats_enabled: 'Habilitar la recopilación de estadísticas de uso de la extensión',
-    stats_enabled_hint:
-      'Esto nos ayudará a mejorar la extensión. Por ejemplo, cuando ocurra un error, recibiremos un informe con ' +
-      'los detalles del error y lo solucionaremos lo antes posible. No recopilaremos ningún dato personal, ' +
-      'historial de navegación ni ninguna información que pueda usarse para identificarlo. Por favor, ayúdenos ' +
-      'a mejorar la extensión manteniendo esta opción habilitada',
   },
 
   /**
@@ -386,12 +368,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'pour injecter les scripts nécessaires dans les pages afin de prévenir les fuites de données réelles ' +
       "sur l'utilisateur et autres",
     grant_permission_button: 'Accorder les autorisations',
-    stats_enabled: "Activer la collecte des statistiques d'utilisation de l'extension",
-    stats_enabled_hint:
-      "Cela nous aidera à améliorer l'extension. Par exemple, lorsqu'une erreur se produit, nous recevrons un " +
-      "rapport avec les détails de l'erreur et nous y remédierons dès que possible. Nous ne collecterons aucune " +
-      'donnée personnelle, historique de navigation ou information pouvant être utilisée pour vous identifier. ' +
-      "Veuillez nous aider à améliorer l'extension en gardant cette option activée",
   },
 
   /**
@@ -483,12 +459,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'untuk menyuntikkan skrip yang diperlukan ke halaman untuk mencegah identitas pengguna asli dan ' +
       'kebocoran data lainnya',
     grant_permission_button: 'Berikan izin',
-    stats_enabled: 'Aktifkan pengumpulan statistik penggunaan ekstensi',
-    stats_enabled_hint:
-      'Ini akan membantu kami meningkatkan ekstensi. Misalnya, ketika terjadi kesalahan, kami akan menerima laporan ' +
-      'dengan detail kesalahan dan menanganinya secepat mungkin. Kami tidak akan mengumpulkan data pribadi, riwayat ' +
-      'penjelajahan, atau informasi apa pun yang dapat digunakan untuk mengidentifikasi Anda. Tolong bantu kami ' +
-      'meningkatkan ekstensi dengan tetap mengaktifkan opsi ini',
   },
 
   /**
@@ -574,11 +544,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       '必要なスクリプトをページに注入し、実際のユーザーエージェントや他のデータ漏洩を防ぐため',
     grant_permission_button: '許可を付与する',
-    stats_enabled: '拡張機能の使用統計の収集を有効にする',
-    stats_enabled_hint:
-      'これにより、拡張機能の改善に役立ちます。例えば、エラーが発生した場合、エラーの詳細を含むレポートを受け取り、' +
-      'できるだけ早く対処します。個人データ、閲覧履歴、または識別に使用できる情報は収集しません。このオプションを有効にしたままにして、' +
-      '拡張機能の改善にご協力ください',
   },
 
   /**
@@ -670,12 +635,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'aby wstrzykiwać niezbędne skrypty na strony w celu zapobiegania realnemu przeciekom danych, takim jak ' +
       'prawdziwy identyfikator użytkownika (user-agent) i inne',
     grant_permission_button: 'Udziel uprawnień',
-    stats_enabled: 'Włącz zbieranie statystyk użytkowania rozszerzenia',
-    stats_enabled_hint:
-      'To pomoże nam poprawić rozszerzenie. Na przykład, gdy wystąpi błąd, otrzymamy raport ze szczegółami błędu ' +
-      'i naprawimy go tak szybko, jak to możliwe. Nie będziemy zbierać żadnych danych osobowych, historii ' +
-      'przeglądania ani informacji, które mogłyby posłużyć do identyfikacji. Prosimy o pomoc w poprawie ' +
-      'rozszerzenia poprzez utrzymanie tej opcji włączonej',
   },
 
   /**
@@ -766,12 +725,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'para injetar os scripts necessários nas páginas para evitar o vazamento de dados reais do usuário e outros',
     grant_permission_button: 'Conceder permissões',
-    stats_enabled: 'Habilitar a coleta de estatísticas de uso da extensão',
-    stats_enabled_hint:
-      'Isso nos ajudará a melhorar a extensão. Por exemplo, quando ocorrer um erro, receberemos um relatório com ' +
-      'os detalhes do erro e resolveremos o problema o mais rápido possível. Não coletaremos quaisquer dados ' +
-      'pessoais, histórico de navegação ou qualquer informação que possa ser usada para identificá-lo. Por ' +
-      'favor, ajude-nos a melhorar a extensão mantendo esta opção habilitada',
   },
 
   /**
@@ -864,12 +817,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'для вставки необходимых скриптов на страницы для предотвращения реального user-agent и других утечек данных',
     grant_permission_button: 'Предоставить разрешения',
-    stats_enabled: 'Включить сбор статистики использования расширения',
-    stats_enabled_hint:
-      'Это поможет нам улучшить расширение. Например, когда происходит ошибка, мы получаем отчет с деталями ошибки ' +
-      'и устраняем ее как можно скорее. Мы не будем собирать личные данные, историю просмотров или любую информацию, ' +
-      'которая может быть использована для вашей идентификации. Пожалуйста, помогите нам улучшить расширение, ' +
-      'оставив эту опцию включенной',
   },
 
   /**
@@ -962,12 +909,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'gerçek kullanıcı ajanı ve diğer veri sızıntılarını önlemek için gereken betikleri sayfalara enjekte etmek için',
     grant_permission_button: 'İzinleri ver',
-    stats_enabled: 'Uzantı kullanım istatistiklerinin toplanmasını etkinleştir',
-    stats_enabled_hint:
-      'Bu, uzantıyı geliştirmemize yardımcı olacaktır. Örneğin, bir hata oluştuğunda, hata ayrıntılarıyla ' +
-      'birlikte bir rapor alırız ve sorunu en kısa sürede çözeriz. Kişisel verileri, tarayıcı geçmişini veya ' +
-      'kimliğinizi belirlemek için kullanılabilecek herhangi bir bilgiyi toplamayacağız. Lütfen bu seçeneği ' +
-      'etkin tutarak uzantıyı geliştirmemize yardımcı olun',
   },
 
   /**
@@ -1060,12 +1001,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
       'для впровадження необхідних скриптів на сторінках для запобігання реального використання користувача та ' +
       'інших витоків даних',
     grant_permission_button: 'Надати дозволи',
-    stats_enabled: 'Увімкнути збір статистики використання розширення',
-    stats_enabled_hint:
-      'Це допоможе нам покращити розширення. Наприклад, коли виникає помилка, ми отримуємо звіт з деталями помилки ' +
-      'і вирішуємо її якомога швидше. Ми не будемо збирати особисті дані, історію переглядів або будь-яку інформацію, ' +
-      'яка може бути використана для ідентифікації вас. Будь ласка, допоможіть нам покращити розширення, залишаючи ' +
-      'цю опцію ввімкненою',
   },
 
   /**
@@ -1157,12 +1092,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data_reason:
       'để chèn các kịch bản cần thiết vào các trang để ngăn chặn thông tin người dùng thật và rò rỉ dữ liệu khác',
     grant_permission_button: 'Cấp quyền',
-    stats_enabled: 'Bật thu thập thống kê sử dụng tiện ích mở rộng',
-    stats_enabled_hint:
-      'Điều này sẽ giúp chúng tôi cải thiện tiện ích mở rộng. Ví dụ, khi xảy ra lỗi, chúng tôi sẽ nhận được báo cáo ' +
-      'với các chi tiết lỗi và giải quyết nó càng sớm càng tốt. Chúng tôi sẽ không thu thập bất kỳ dữ liệu cá nhân, ' +
-      'lịch sử duyệt web hoặc bất kỳ thông tin nào có thể được sử dụng để nhận dạng bạn. Vui lòng giúp chúng tôi cải ' +
-      'thiện tiện ích mở rộng bằng cách giữ tùy chọn này được bật',
   },
 
   /**
@@ -1244,10 +1173,6 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     read_and_modify_data: '读取并修改您在访问的网站上的所有数据',
     read_and_modify_data_reason: '以注入必要的脚本到页面中，防止真实用户代理和其他数据泄漏',
     grant_permission_button: '授予权限',
-    stats_enabled: '启用扩展使用统计信息收集',
-    stats_enabled_hint:
-      '这将帮助我们改进扩展功能。例如，当发生错误时，我们将收到包含错误详情的报告并尽快处理。我们不会收集任何个人数据、' +
-      '浏览历史或任何可用于识别您的信息。请通过保持此选项启用来帮助我们改进扩展',
   },
 }
 /* v8 ignore stop */

@@ -66,16 +66,12 @@ describe('settings', () => {
         throw new Error('current is undefined')
       }
 
-      // @ts-expect-error - emulate partial data!
-      delete current.stats
-
       await area.set(current)
     }
 
     let executed = false
 
     settings.onChange((s) => {
-      expect(s.stats).not.toBeUndefined()
       expect(s.remoteUseragentList.uri).toEqual('foo')
       expect(s.enabled).toBeTruthy()
 

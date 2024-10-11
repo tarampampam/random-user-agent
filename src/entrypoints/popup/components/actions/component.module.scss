@@ -21,6 +21,9 @@
   }
 
   &.blinkingBackground {
+    animation: blinkingBackground 2s infinite;
+    text-shadow: 0 0 4px var(--color-bg-primary);
+
     @keyframes blinkingBackground {
       0% {
         background-color: transparent;
@@ -35,9 +38,6 @@
         background-color: transparent;
       }
     }
-
-    animation: blinkingBackground 2s infinite;
-    text-shadow: 0 0 4px var(--color-bg-primary);
   }
 
   &:hover,

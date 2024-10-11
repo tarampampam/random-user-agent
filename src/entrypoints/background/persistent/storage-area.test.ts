@@ -32,7 +32,7 @@ describe('storage', () => {
           .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
           .mockImplementation(async (key) => {
             if (key === 'some-key') {
-              return { [key]: { some: 'data' } }
+              return { [key as string]: { some: 'data' } }
             }
 
             return {}
@@ -68,7 +68,7 @@ describe('storage', () => {
           .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
           .mockImplementation(async (key) => {
             if (key === 'some-key') {
-              return { [key]: { some: 'data' } }
+              return { [key as string]: { some: 'data' } }
             }
 
             return {}

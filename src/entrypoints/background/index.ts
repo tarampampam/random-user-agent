@@ -1,18 +1,9 @@
 import { checkPermissions, detectBrowser, watchPermissionsChange } from '~/shared'
 import { type HandlersMap, listen as listenRuntime } from '~/shared/messaging'
-import { newErrorEvent, newExtensionLoadedEvent } from '~/shared/stats'
 import { isApplicableForDomain, reloadRequestHeaders, renewUserAgent, updateRemoteUserAgentList } from './api'
 import { registerContentScripts, unsetRequestHeaders } from './hooks'
 import { registerHotkeys } from './hotkeys'
-import {
-  CurrentUserAgent,
-  RemoteUserAgentList,
-  Settings,
-  StorageArea,
-  UserID,
-  LatestBrowserVersions,
-} from './persistent'
-import { type Collector as StatsCollector, GaCollector } from './stats'
+import { CurrentUserAgent, RemoteUserAgentList, Settings, StorageArea, LatestBrowserVersions } from './persistent'
 import { Timer } from './timer'
 import { setExtensionIcon, setExtensionTitle } from './ui'
 
@@ -20,26 +11,6 @@ import { setExtensionIcon, setExtensionTitle } from './ui'
 const debug = (msg: string, ...args: Array<unknown>): void => console.debug(`%c😈 ${msg}`, 'font-weight:bold', ...args)
 /** Convert milliseconds to seconds */
 const m2s = (millis: number): number => Math.round(millis / 1000)
-
-// stats collector is used to collect statistics about the extension usage. personal information is not collected
-// and will never be collected. the collected data is used to overview the extension usage and track the most popular
-// features
-let stats: StatsCollector | undefined = undefined
-
-// register the error handler to catch global errors (unhandled exceptions) and unhandled promise rejections to
-// send the error events to the stats collector
-;((): void => {
-  const errorsHandler = (error: unknown): void => {
-    if (stats && error) {
-      stats.send(newErrorEvent(error, { page: 'background' })).then((err) => err && debug('stats error', err))
-    }
-  }
-
-  if (self && self.addEventListener) {
-    self.addEventListener('error', errorsHandler)
-    self.addEventListener('error', errorsHandler)
-  }
-})()
 
 // run the background script
 ;(async () => {
@@ -73,32 +44,10 @@ let stats: StatsCollector | undefined = undefined
   const remoteUserAgentList = new RemoteUserAgentList(new StorageArea('useragent-remote-list', 'local'))
   debug('remote user-agent list', await remoteUserAgentList.get(false))
 
-  // to identify the user, we use the 'sync' storage area because we need to synchronize the user ID between different
-  // devices. if the 'sync' storage area is not available, we use the 'local' storage area
-  // the user id is generated once and stored in the storage area. it does not change over time and does not contain
-  // any personal information (in fact, it's just a random UUID)
-  const uuid = (await new UserID(new StorageArea('user-id', 'sync', 'local')).get()).userID
-  debug('unique user id (uuid)', uuid)
-
   // the latest browser versions are stored in the 'local' storage area because they do not require synchronization
   // between devices. the data is updated automatically
   const latestBrowserVersions = new LatestBrowserVersions(new StorageArea('latest-browser-versions', 'local'))
   debug('initial latest browser versions', ...(await latestBrowserVersions.get()))
-
-  // creates a new stats collector instance with the given UUID (or unset if the UUID is not provided)
-  const newStatsCollector = (uuid: string) => {
-    return new GaCollector(uuid, {
-      extVersion: chrome.runtime.getManifest().version,
-      osFamily: hostOS,
-      browser: detectBrowser(),
-    })
-  }
-
-  if (initSettings.stats.enabled) {
-    stats = newStatsCollector(uuid) // initialize the stats collector on startup
-  } else {
-    debug('collection of usage statistics is disabled')
-  }
 
   // handlers is a map of functions that can be called from the popup or content scripts (and not only from them).
   // think about them as a kind of API for the extension
@@ -114,7 +63,6 @@ let stats: StatsCollector | undefined = undefined
     updateSettings: async (part) => (await settings.update(part)) && settings.get(),
     isApplicableForDomain: async (domain) => isApplicableForDomain(await settings.get(), domain),
     updateRemoteListNow: async (clear) => await updateRemoteUserAgentList(remoteUserAgentList, clear),
-    fireStatsEvents: async (...events) => await stats?.send(...events),
   }
 
   // create a timer to renew the user-agent automatically
@@ -215,15 +163,6 @@ let stats: StatsCollector | undefined = undefined
       debug('all features have been disabled')
     }
 
-    // 🚀 re-initialize the stats collector on changes, if needed
-    if (s.stats.enabled && !stats) {
-      stats = newStatsCollector(uuid)
-      debug('collection of usage statistics is enabled')
-    } else if (!s.stats.enabled) {
-      stats = undefined
-      debug('collection of usage statistics is disabled')
-    }
-
     // 🚀 update the remote user-agents list URI on changes, if needed
     if (remoteUserAgentList.url?.toString() !== s.remoteUseragentList.uri) {
       if (remoteUserAgentList.setUrl(s.remoteUseragentList.uri)) {
@@ -283,13 +222,6 @@ let stats: StatsCollector | undefined = undefined
   await setExtensionIcon(initSettings.enabled)
 
   listenRuntime(handlers)
-
-  // send an initial event about the extension loading
-  stats?.send(newExtensionLoadedEvent(initSettings)).then((err) => err && debug('stats error', err))
 })().catch((error: unknown): void => {
-  if (stats) {
-    stats.send(newErrorEvent(error, { page: 'background' })).then((err) => err && debug('stats error', err))
-  }
-
   throw error
 })

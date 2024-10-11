@@ -81,11 +81,11 @@ type SettingsState = {
     // }
   }
 
-  // Usage statistics settings
-  stats: {
-    // Is enabled?
-    enabled: boolean
-  }
+  // REMOVED: Usage statistics settings
+  // stats: {
+  //   // Is enabled?
+  //   enabled: boolean
+  // }
 }
 
 export type ReadonlySettingsState = DeepReadonly<SettingsState>
