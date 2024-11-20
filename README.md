@@ -56,6 +56,7 @@ Open one of the links below both with and without the extension enabled:
 | Resource                                            |          Test           |
 |-----------------------------------------------------|:-----------------------:|
 | [What is my User Agent][test-webbrowsertools]       | ✅ 5 Passed / ❌ 1 Failed |
+| [vytal scan][test-vytal]                            | ✅ 2 Passed / ❌ 1 Failed |
 | [whoer][test-whoer]                                 |        ✅ Passed         |
 | [Browser Leaks][test-browserleaks]                  |        ✅ Passed         |
 | [Device Info][test-deviceinfo]                      |        ✅ Passed         |
@@ -66,6 +67,7 @@ Open one of the links below both with and without the extension enabled:
 [test-browserleaks]:https://browserleaks.com/javascript
 [test-deviceinfo]:https://www.deviceinfo.me/
 [test-creepjs]:https://abrahamjuliot.github.io/creepjs/
+[test-vytal]:https://vytal.io/scan
 
 ## 📡 Remote User-Agent List
 
