@@ -259,6 +259,7 @@ export default defineConfig({
  * \t${ProjectURLs.BUGREPORT}
  */`.trim(),
   },
+  // @ts-ignore-next-line The `vite` type definitions are not up-to-date
   test: {
     root: __dirname,
   },
