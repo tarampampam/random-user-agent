@@ -9,7 +9,9 @@ export default function (): (settings: PartialSettingsState, throttle?: number) 
 
   return useCallback((settings: PartialSettingsState, throttle: number = 400): Promise<ReadonlySettingsState> => {
     return new Promise((resolve: (_: ReadonlySettingsState) => void, reject: (_: Error) => void) => {
-      saveTimer.current && clearTimeout(saveTimer.current) // remove the previous timer
+      if (saveTimer.current) {
+        clearTimeout(saveTimer.current) // remove the previous timer
+      }
 
       saveTimer.current = setTimeout(async () => {
         const { updateSettings } = await send({ updateSettings: [settings] })
@@ -18,7 +20,10 @@ export default function (): (settings: PartialSettingsState, throttle?: number) 
           return reject(updateSettings)
         }
 
-        saveTimer.current && clearTimeout(saveTimer.current) // clear the timer
+        if (saveTimer.current) {
+          clearTimeout(saveTimer.current) // clear the timer
+        }
+
         saveTimer.current = undefined // unset the reference
 
         return resolve(updateSettings)

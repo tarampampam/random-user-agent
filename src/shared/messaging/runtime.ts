@@ -122,7 +122,6 @@ export function listen<TMode extends 'complete' | 'partial' = 'complete'>(
         return
       }
 
-      // eslint-disable-next-line no-extra-semi
       ;(async () => {
         const promises = Object.entries(message.batch).map(async ([key, args]) => {
           const handlerName = key as HandlerName

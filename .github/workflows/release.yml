@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - {uses: gacts/github-slug@v1, id: slug}
-      - {uses: actions/setup-node@v4, with: {node-version: 21, cache: 'npm'}}
+      - {uses: actions/setup-node@v4, with: {node-version-file: ./package.json, cache: 'npm'}}
       - run: npm install
       - run: >
           npm version --no-git-tag-version

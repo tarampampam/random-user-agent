@@ -60,6 +60,7 @@ export const validateDomainOrIP = (domain: string): boolean => {
     return kind === 'ipv4'
       ? parts.length === 4 && parts.every((part) => part >= 0 && part <= 255) // IPv4
       : parts.length === 16 && parts.every((part) => part >= 0 && part <= 255) // IPv6
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_) {
     // do nothing
   }

@@ -1,7 +1,7 @@
-import UAParser from 'ua-parser-js'
+import { UAParser } from 'ua-parser-js'
 import type { ReadonlySettingsState, ReadonlyUserAgentState } from '~/shared/types'
 import { generateUserAgent } from '~/shared/user-agent'
-import { type BrowserType, generatorTypesToSets, type OSType } from '../../../shared'
+import { type BrowserType, generatorTypesToSets, type OSType } from '~/shared'
 import {
   Settings,
   CurrentUserAgent,
