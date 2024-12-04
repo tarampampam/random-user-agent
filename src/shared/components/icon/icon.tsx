@@ -46,7 +46,9 @@ export default function Icon({
           ...style?.img,
         }}
         onClick={(): void => {
-          !disabled && onClick?.()
+          if (!disabled) {
+            onClick?.()
+          }
         }}
         title={title}
         draggable={false}

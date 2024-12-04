@@ -18,6 +18,7 @@ const validateUrl = (url: string): boolean => {
     const u = new URL(url)
 
     return u.protocol === 'http:' || u.protocol === 'https:'
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_) {
     // ignore invalid URLs
   }

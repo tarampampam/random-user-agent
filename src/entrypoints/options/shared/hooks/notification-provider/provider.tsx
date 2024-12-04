@@ -40,7 +40,10 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     setType(type)
     setIsVisible(true)
 
-    timer && clearTimeout(timer.current)
+    if (timer) {
+      clearTimeout(timer.current)
+    }
+
     timer.current = setTimeout(hide, Math.max(0, delay))
   }
 

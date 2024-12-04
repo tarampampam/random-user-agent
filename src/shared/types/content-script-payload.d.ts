@@ -1,4 +1,4 @@
-import type { DeepReadonly } from '../../types'
+import type { DeepReadonly } from '~/types'
 import type { ReadonlyUserAgentState } from './user-agent-state'
 
 /** The payload sent by the background script to the content script. */

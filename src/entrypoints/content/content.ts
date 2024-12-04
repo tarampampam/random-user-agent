@@ -1,7 +1,7 @@
 // ⚠ DO NOT IMPORT ANYTHING EXCEPT TYPES HERE DUE THE `import()` ERRORS ⚠
 
 // wrap everything to avoid polluting the global scope
-// eslint-disable-next-line no-extra-semi
+
 ;(() => {
   try {
     // Important Note:

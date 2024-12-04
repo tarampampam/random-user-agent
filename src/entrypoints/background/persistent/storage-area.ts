@@ -41,6 +41,7 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
 
         return this.storage // return main storage
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (syncErr) {
       // ignore any errors, proceed to fallback storage
     }

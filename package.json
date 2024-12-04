@@ -16,10 +16,10 @@
   },
   "homepage": "https://github.com/tarampampam/random-user-agent#readme",
   "scripts": {
-    "fmt": "prettier --config package.json --write ./src ./*.ts && npm run lint:es -- --fix",
+    "fmt": "prettier --write ./src ./*.ts && npm run lint:es -- --fix",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:ts": "tsc --noEmit",
-    "lint:es": "eslint --config package.json ./src/**/*.{ts,tsx}",
+    "lint:es": "eslint ./src/**/*.{ts,tsx}",
     "test": "vitest --run --logHeapUsage --dir ./src",
     "test:cover": "vitest --run --dir ./src --coverage --coverage.provider=v8 --coverage.reporter=clover --coverage.reporter=text-summary",
     "watch": "vite build --watch --minify=false",
@@ -33,9 +33,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.1",
-    "ua-parser-js": "^1.0.39"
+    "ua-parser-js": "^2.0.0"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.3",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
     "@types/archiver": "^6.0.3",
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
@@ -44,15 +47,16 @@
     "@types/react-dom": "^18.3.1",
     "@types/ua-parser-js": "^0.7.39",
     "@types/ungap__structured-clone": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^1.6.0",
     "archiver": "^7.0.1",
-    "eslint": "^8.57.1",
+    "eslint": "^9.16.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.13.0",
     "jest-environment-jsdom": "^29.7.0",
     "npm": "^10.9.1",
     "prettier": "^3.4.1",
@@ -63,50 +67,10 @@
     "vite": "^5.4.10",
     "vitest": "^1.4.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": 2022,
-      "sourceType": "module",
-      "project": true
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "react-refresh",
-      "react"
-    ],
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "rules": {
-      "react/react-in-jsx-scope": "off",
-      "no-case-declarations": "off"
-    },
-    "ignorePatterns": [
-      "dist/*"
-    ]
-  },
-  "prettier": {
-    "semi": false,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "printWidth": 120,
-    "trailingComma": "es5"
+  "volta": {
+    "node": "22"
   },
   "engines": {
-    "node": ">=21"
+    "node": ">=22"
   }
 }

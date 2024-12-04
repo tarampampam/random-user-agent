@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import type { SettingsState } from '../../../shared/types/settings'
+import type { SettingsState } from '~/shared/types/settings'
 import Settings from './settings'
 import StorageArea from './storage-area'
 

@@ -70,8 +70,13 @@ export const toSets = (
       }
     })()
 
-    browser && browsers.add(browser)
-    os && oses.add(os)
+    if (browser) {
+      browsers.add(browser)
+    }
+
+    if (os) {
+      oses.add(os)
+    }
   }
 
   return [Array.from(browsers).sort(), Array.from(oses).sort()]
@@ -151,7 +156,9 @@ export const fromSets = (
           }
         })()
 
-        type && types.add(type)
+        if (type) {
+          types.add(type)
+        }
       }
     }
   }

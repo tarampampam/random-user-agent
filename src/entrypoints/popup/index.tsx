@@ -46,13 +46,18 @@ const App = (): React.JSX.Element => {
   /** Function to reload the current tab with a throttle time */
   const reloadCurrentTab = useCallback(
     async (throttle: number): Promise<void> => {
-      reloadTimer.current && clearTimeout(reloadTimer.current) // remove the previous timer
+      if (reloadTimer.current) {
+        clearTimeout(reloadTimer.current) // remove the previous timer
+      }
+
       reloadTimer.current = setTimeout(async () => {
         if (typeof currentTabId === 'number') {
           await chrome.tabs.reload(currentTabId)
         }
 
-        reloadTimer.current && clearTimeout(reloadTimer.current) // clear the timer
+        if (reloadTimer.current) {
+          clearTimeout(reloadTimer.current) // clear the timer
+        }
         reloadTimer.current = undefined // unset the reference
       }, throttle) // and set a new one
     },
@@ -154,21 +159,33 @@ const App = (): React.JSX.Element => {
   /** Handle the open options button click */
   const handleOpenOptions = useCallback(async (): Promise<void> => {
     await chrome.runtime.openOptionsPage()
-    window && window.close()
+
+    if (window) {
+      window.close()
+    }
   }, [])
 
   /** Handle the rate link click */
   const handleRateLinkClick = useCallback(async (): Promise<void> => {
     localStorage.setItem(rateStateKey, '1')
-    storeUrl && (await chrome.tabs.create({ url: storeUrl }))
-    window && window.close()
+    if (storeUrl) {
+      await chrome.tabs.create({ url: storeUrl })
+    }
+
+    if (window) {
+      window.close()
+    }
+
     setIsShowRateBtn(false)
   }, [])
 
   /** Handle the bug report button click */
   const handleBugReportClick = useCallback(async (): Promise<void> => {
     await chrome.tabs.create({ url: __BUGREPORT_URL__ })
-    window && window.close()
+
+    if (window) {
+      window.close()
+    }
   }, [])
 
   /** Get the current extension settings and other data */

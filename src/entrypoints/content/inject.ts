@@ -3,7 +3,6 @@ import type { ContentScriptPayload } from '~/shared/types'
 import type { DeepWriteable } from '~/types'
 
 // wrap everything to avoid polluting the global scope
-// eslint-disable-next-line no-extra-semi
 ;(() => {
   // prevent the script from running multiple times
   {
@@ -85,6 +84,7 @@ import type { DeepWriteable } from '~/types'
 
         target = Object.getPrototypeOf(target)
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_) {
       // do nothing
     }
@@ -361,7 +361,10 @@ import type { DeepWriteable } from '~/types'
 
         ds[key] = flag
 
-        iFrame.contentWindow && patchNavigator(iFrame.contentWindow.navigator)
+        if (iFrame.contentWindow) {
+          patchNavigator(iFrame.contentWindow.navigator)
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (_) {
         // An error occurred while patching the navigator object in the iframe
       }
@@ -385,7 +388,9 @@ import type { DeepWriteable } from '~/types'
             const result = Reflect.apply(target, thisArg, args)
 
             // patch the navigator object in the appended node
-            Array.isArray(args) && args.forEach((node) => patchNavigatorInIframe(node))
+            if (Array.isArray(args)) {
+              args.forEach((node) => patchNavigatorInIframe(node))
+            }
 
             return result
           },

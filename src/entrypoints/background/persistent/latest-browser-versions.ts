@@ -1,4 +1,4 @@
-import type { DeepReadonly } from '../../../types'
+import type { DeepReadonly } from '~/types'
 import type StorageArea from './storage-area.ts'
 
 type State = {
