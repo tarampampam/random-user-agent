@@ -5,7 +5,7 @@ import type { PartialSettingsState, ReadonlySettingsState } from '~/shared/types
 /** Save the settings with throttle */
 export default function (): (settings: PartialSettingsState, throttle?: number) => Promise<ReadonlySettingsState> {
   // the timer us used to throttle the save operations
-  const saveTimer = useRef<NodeJS.Timeout>()
+  const saveTimer = useRef<NodeJS.Timeout>(undefined)
 
   return useCallback((settings: PartialSettingsState, throttle: number = 400): Promise<ReadonlySettingsState> => {
     return new Promise((resolve: (_: ReadonlySettingsState) => void, reject: (_: Error) => void) => {
