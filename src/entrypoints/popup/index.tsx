@@ -41,7 +41,7 @@ const App = (): React.JSX.Element => {
   const [isShowRateBtn, setIsShowRateBtn] = useState<boolean>(!!storeUrl && !localStorage.getItem(rateStateKey))
 
   // the timer us used to throttle the reload requests
-  const reloadTimer = useRef<NodeJS.Timeout>()
+  const reloadTimer = useRef<NodeJS.Timeout>(undefined)
 
   /** Function to reload the current tab with a throttle time */
   const reloadCurrentTab = useCallback(

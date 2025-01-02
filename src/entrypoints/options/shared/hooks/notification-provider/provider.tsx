@@ -16,7 +16,7 @@ const context = createContext<Context>({
 })
 
 export function NotificationProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
-  const timer = useRef<NodeJS.Timeout>()
+  const timer = useRef<NodeJS.Timeout>(undefined)
 
   const [message, setMessage] = useState<React.ReactNode>(null)
   const [isVisible, setIsVisible] = useState(false)
