@@ -820,92 +820,89 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
   /**
    * @lang Turkish
    *
-   * User-Agent, ziyaret ettiğiniz her web sitesine tarayıcınızın paylaştığı gizli bir kod gibidir. Tarayıcınızın,
+   * User-Agent ziyaret ettiğiniz her web sitesine tarayıcınızın paylaştığı gizli bir kod gibidir. Tarayıcınızın,
    * işletim sisteminizin ve hatta yüklediğiniz bazı eklentilerin ayrıntılarını ortaya çıkarır. Temelde, bu sizin
    * tarayıcınızın parmak izidir!
    *
-   * Ama işte şöyle bir durum var - bazen böyle belirgin bir iz bırakmak istemezsiniz. İşte burada bu uzantı devreye
+   * Ama şöyle bir durum var - bazen böyle belirgin bir iz bırakmak istemezsiniz. İşte burada bu uzantı devreye
    * girer!
    *
-   * 🚀 Bu uzantıyı, çevrimiçi gizliliğinizi korumak ve farklı cihazlardan geziniyormuş gibi görünmeyi son derece
+   * 🚀 Bu uzantıyı çevrimiçi gizliliğinizi korumak ve farklı cihazlardan geziniyormuş gibi görünmeyi son derece
    * kolay hale getirmek için oluşturduk!
    *
    * Bu uzantı ile User-Agent dizginiz belirli aralıklarla otomatik olarak rastgele biriyle değiştirilir. Tercih
-   * ederseniz User-Agent'ınızı da manuel olarak ayarlayabilirsiniz. Ve biliyor musunuz? Sistem kaynaklarınızı çok az
-   * kullandığı için bileğinizde var olduğunu fark etmeyeceksiniz.
+   * ederseniz User-Agent'ınızı manuel olarak da ayarlayabilirsiniz. Ve biliyor musunuz? Sistem kaynaklarınızı çok az
+   * kullandığı için çalıştığını bile fark etmeyeceksiniz.
    *
-   * Artı, siz kontrol ediyorsunuz! Hangi tarayıcıları ve işletim sistemlerini taklit etmek istediğinizi
-   * özelleştirebilirsiniz. Özel durumlar için hatta istisnalar listemiz var.
+   * Ek olarak tüm kontrol sizde! Hangi tarayıcıları ve işletim sistemlerini taklit etmek istediğinizi
+   * özelleştirebilirsiniz. Hatta bu özel durumlar için bir istisna listemiz bile var..
    *
-   * Ve en güzel yanı? Kimliğinizi ortaya çıkarmak için tasarlanmış kurnaz JavaScript hilelerinden sizi koruyor.
-   * Ve en iyisi, tamamen ücretsiz ve reklamsız. Çevrimiçi gizliliğinizi bugün güçlendirin!
+   * Ve en iyi yanı? Kimliğinizi ortaya çıkarmak için tasarlanmış sinsi JavaScript hilelerine karşı sizi korur.
+   * Ve en iyisi tamamen ücretsiz ve reklamsızdır. Çevrimiçi gizliliğinize bugün bir destek verin!
    *
    * ❤️ ile yapıldı. Kaynak kodunu kontrol edin: https://github.com/tarampampam/random-user-agent
    */
   tr: {
     manifest_name: 'Random User-Agent (Switcher)',
     manifest_description:
-      'Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir kullanıcı aracısına ' +
-      'değiştirir',
-    manifest_action_default_title: 'Kullanıcı Aracınızı Rastgele Ayarlayın',
-    manifest_command_renew_useragent: 'Yeni temsilci alın',
-    active_user_agent: 'Aktif Kullanıcı-Agent',
-    pause_switcher: 'Duraklatma Değiştirici',
-    unpause_switcher: 'Devam Değiştirici',
+      'Belirli bir süre sonra kullanıcı aracısını otomatik olarak rastgele seçilen bir aracıyla değiştir',
+    manifest_action_default_title: 'User-Agent bilgilerini rastgele hale getir',
+    manifest_command_renew_useragent: 'Yeni aracı alın',
+    active_user_agent: 'Aktif User-Agent',
+    pause_switcher: 'Değiştiriciyi Durdur',
+    unpause_switcher: 'Değiştiriciyi Devam Ettir',
     enable_switcher: 'Değiştiriciyi Etkinleştir',
-    enabled_on_this_domain: 'Bu etki alanında etkinleştirildi',
-    sync_useragent_with_host_os: 'Mevcut işletim sistemini oluşturulan kullanıcı ajanıyla senkronize edin',
-    get_new_agent: 'Yeni temsilci alın',
-    open_settings: 'Açık ayarlar',
+    enabled_on_this_domain: 'Bu alan adında etkinleştir',
+    sync_useragent_with_host_os: 'Mevcut işletim sistemini oluşturulan kullanıcı aracısıyla senkronize edin',
+    get_new_agent: 'Yeni aracı al',
+    open_settings: 'Ayarları Aç',
     make_donation: 'Bağış Yapın',
-    bug_report: 'Hata raporu',
+    bug_report: 'Hata raporla',
     general_settings: 'Genel ayarlar',
     general_settings_hint: 'Değiştiricinin davranışını ihtiyaçlarınıza en uygun şekilde değiştirin',
-    auto_renew: 'Belirli bir süre sonra Kullanıcı Aracısını otomatik olarak değiştir',
-    auto_renew_interval: "User-Agent'ın otomatik olarak güncelleneceği süre (saniye cinsinden) (örn. 1 saat = 3600)",
-    auto_renew_on_startup: "Tarayıcı başlangıcında User-Agent'ı değiştirme",
-    js_protection: 'JavaScript tarafından algılanmaya karşı koruma',
-    custom_useragent: 'Bunun yerine oluşturulan özel Kullanıcı Aracısından birini (rastgele sırayla) kullanın',
-    custom_useragent_list:
-      'Özel Kullanıcı Temsilcileri (her satır için bir tane olmak üzere belirli bir Kullanıcı Temsilcisi ayarlayın)',
-    generator_settings: 'Jeneratör ayarları',
-    generator_settings_hint: 'Burada temsilci değiştirme davranışını değiştirebilirsiniz',
+    auto_renew: 'Belirli bir süre sonra User-Agent bilgilerini otomatik olarak değiştir',
+    auto_renew_interval: "User-Agent bilgisini otomatik olarak güncellemek için gereken süre (saniye cinsinden) (örn. 1 saat = 3600)",
+    auto_renew_on_startup: 'User-Agent bilgisini tarayıcı başlangıcında yenile',
+    js_protection: 'JavaScript ile tespit edilmeye karşı koruma',
+    custom_useragent: "Bunun yerine özel olarak oluşturulan User-Agent'lardan birini (rastgele sırayla) kullanın",
+    custom_useragent_list: "Özel User-Agent'lar (satır başına birer tane User-Agent'lar ayarlayın)",
+    generator_settings: 'Oluşturucu ayarları',
+    generator_settings_hint: 'Burada aracı değiştirme davranışını değiştirebilirsiniz',
     blacklist_settings: 'Kara liste ayarları',
     blacklist_settings_hint:
-      'Kara liste modu - tanımlanan etki alanları ve kurallar dışında her yerde etkin anahtarlama. Beyaz liste - ' +
-      'tam tersine, belirtilen etki alanları ve kurallar dışında her yerde devre dışı bırakılır',
+      'Kara liste modu - değiştirme tanımlanan alan adları ve kurallar dışında her yerde etkinleştirilir. Beyaz liste - aksine, ' +
+      'belirtilen alan adları ve kurallar dışında her yerde devre dışı bırakılır.',
     blacklist_mode: 'Kara liste modu',
     whitelist_mode: 'Beyaz liste modu',
-    blacklist_domains: 'Alan adları listesi (her satır için bir tane)',
-    remove: 'Kaldırmak',
+    blacklist_domains: 'Alan adları listesi (her satıra bir tane)',
+    remove: 'Sil',
     save_changes: 'Değişiklikleri kaydet',
     error_occurred: 'Hata oluştu',
-    like_this_extension: 'Bu uzantıyı beğendiniz mi?',
-    give_a_star_on_github: "GitHub'da bize bir yıldız verin!",
-    remote_useragent_list: 'Aşağıdaki URL ile listedeki Kullanıcı Aracılarından birini (rastgele sırayla) kullanın',
-    remote_useragent_list_hint: 'Uzantı, güncel tutmak için periyodik olarak indirecektir',
-    remote_useragent_updating_interval:
-      'Güncelleme aralığı (saniye cinsinden; örneğin her 3 saatte bir = 60×60×3 = 10800)',
-    update_now: 'Şimdi güncelleyin',
-    please_rate_extension: 'Lütfen bu eklentiyi değerlendirin!',
-    edge_win: 'Edge üzerinde Windows',
-    edge_mac: 'Edge üzerinde Mac',
-    chrome_win: 'Chrome üzerinde Windows',
-    chrome_mac: 'Chrome üzerinde Mac',
-    chrome_linux: 'Chrome üzerinde Linux',
-    chrome_android: 'Chrome üzerinde Android',
-    firefox_win: 'FireFox üzerinde Windows',
-    firefox_mac: 'FireFox üzerinde Mac',
-    firefox_linux: 'FireFox üzerinde Linux',
-    firefox_android: 'Firefox üzerinde Android',
-    opera_win: 'Opera üzerinde Windows',
-    opera_mac: 'Opera üzerinde Mac',
-    safari_iphone: 'Safari üzerinde iPhone',
-    safari_mac: 'Safari üzerinde Mac',
-    why_we_need_permissions: 'Uzantının düzgün çalışması için aşağıdaki izinlere ihtiyacı vardır',
+    like_this_extension: 'Eklentiyi beğendin mi?',
+    give_a_star_on_github: "Bize GitHub'ta bir yıldız ver!",
+    remote_useragent_list: "Aşağıdaki URL'ye göre listeden User-Agent'lardan birini (rastgele sırayla) kullanın",
+    remote_useragent_list_hint: 'Uzantı güncel kalmak için periyodik olarak indirme yapacaktır',
+    remote_useragent_updating_interval: 'Güncelleme aralığı (saniye cinsinden; örneğin her 3 saatte bir = 60×60×3 = 10800)',
+    update_now: 'Şimdi güncelle',
+    please_rate_extension: 'Lütfen bu eklentiyi oylayın!',
+    edge_win: 'Windows üzerinde Edge',
+    edge_mac: 'Mac üzerinde Edge',
+    chrome_win: 'Windows üzerinde Chrome',
+    chrome_mac: 'Mac üzerinde Chrome',
+    chrome_linux: 'Linux üzerinde Chrome',
+    chrome_android: 'Android üzerinde Chrome',
+    firefox_win: 'Windows üzerinde Firefox',
+    firefox_mac: 'Firefox on Mac üzerinde Firefox',
+    firefox_linux: 'Linux üzerinde Firefox',
+    firefox_android: 'Android üzerinde Firefox',
+    opera_win: 'Windows üzerinde Opera',
+    opera_mac: 'Mac üzerinde Opera',
+    safari_iphone: 'iPhone üzerinde Safari',
+    safari_mac: 'Mac üzerinde Safari',
+    why_we_need_permissions: 'Uzantının düzgün şekilde çalışması için aşağıdaki izinler gereklidir',
     read_and_modify_data: 'Ziyaret ettiğiniz web sitelerindeki tüm verilerinizi okuyun ve değiştirin',
     read_and_modify_data_reason:
-      'gerçek kullanıcı ajanı ve diğer veri sızıntılarını önlemek için gereken betikleri sayfalara enjekte etmek için',
+      'gerçek User-Agent ve diğer veri sızıntılarını önlemek için gerekli komut dosyalarını sayfalara enjekte eder',
     grant_permission_button: 'İzinleri ver',
   },
 
