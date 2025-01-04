@@ -1,6 +1,6 @@
 import type React from 'react'
 import { i18n } from '~/i18n'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default function Feedback({ onRateLinkClick }: { onRateLinkClick?: () => void }): React.JSX.Element {
   return (

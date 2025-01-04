@@ -22,34 +22,30 @@
   }
 }
 
-$hide-speed: 450ms;
-$show-speed: calc($hide-speed / 2);
-$transition-function: ease-in-out;
-
 .visible {
   top: 1em;
   opacity: 1;
   transition:
-    top $show-speed $transition-function,
-    opacity $show-speed $transition-function;
+    top calc(450ms / 2) ease-in-out,
+    opacity calc(450ms / 2) ease-in-out;
 }
 
 .hidden {
   top: -2em;
   opacity: 0;
   transition:
-    top $hide-speed $transition-function,
-    opacity $hide-speed $transition-function;
+    top 450ms ease-in-out,
+    opacity 450ms ease-in-out;
 }
 
 .info {
-  // a special class for info notifications
+  /* a special class for info notifications */
   background-color: var(--color-text-info);
   color: var(--color-ui-border-info);
 }
 
 .error {
-  // a special class for error notifications
+  /* a special class for error notifications */
   background-color: var(--color-text-err);
   color: var(--color-ui-border-err);
 }

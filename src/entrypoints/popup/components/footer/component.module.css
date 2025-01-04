@@ -1,5 +1,3 @@
-@forward '~/theme/theme';
-
 .component {
   background-color: var(--color-bg-light);
   text-align: center;

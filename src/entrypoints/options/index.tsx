@@ -4,7 +4,8 @@ import { createRoot } from 'react-dom/client'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 import { routes } from './routes'
 import ErrorBoundary, { NotificationProvider, useNotification } from './shared/hooks'
-import './index.scss'
+import '~/theme/theme.css'
+import './index.css'
 
 const App = (): React.JSX.Element => {
   const { show } = useNotification()

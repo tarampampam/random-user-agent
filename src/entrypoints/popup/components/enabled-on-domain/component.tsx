@@ -2,7 +2,7 @@ import type React from 'react'
 import { useId } from 'react'
 import { i18n } from '~/i18n'
 import Checkbox from '../../shared/components/checkbox'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default function EnabledOnDomain({
   isEnabled,

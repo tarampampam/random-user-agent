@@ -1,7 +1,7 @@
 .grid {
   display: block;
 
-  //background-color: rgba(255,0,0,0.5); // for debugging
+  /* background-color: rgba(255,0,0,0.5); // for debugging */
 }
 
 .row {
@@ -14,7 +14,7 @@
     border-width: 0 0 1px 0;
   }
 
-  //background-color: rgba(0,255,0,0.5); // for debugging
+  /* background-color: rgba(0,255,0,0.5); // for debugging */
 }
 
 .column {
@@ -22,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
 
-  //background-color: rgba(0,0,255,0.5); // for debugging
+  /* background-color: rgba(0,0,255,0.5); // for debugging */
 }
 
 .hint {

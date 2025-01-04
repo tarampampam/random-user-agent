@@ -1,11 +1,3 @@
-@forward '~/theme/theme';
-
-@mixin center-inside-main {
-  width: 100%;
-  max-width: 990px;
-  margin: 0 auto;
-}
-
 .main {
   display: flex;
   flex-direction: column;
@@ -13,7 +5,9 @@
   min-height: 100vh;
 
   .header {
-    @include center-inside-main;
+    width: 100%;
+    max-width: 990px;
+    margin: 0 auto;
 
     height: 5em;
     display: flex;
@@ -23,7 +17,9 @@
   }
 
   .container {
-    @include center-inside-main;
+    width: 100%;
+    max-width: 990px;
+    margin: 0 auto;
 
     flex-grow: 1;
     display: flex;
@@ -87,7 +83,9 @@
     background-color: var(--color-bg-light);
 
     & > div {
-      @include center-inside-main;
+      width: 100%;
+      max-width: 990px;
+      margin: 0 auto;
 
       display: flex;
       align-items: center;

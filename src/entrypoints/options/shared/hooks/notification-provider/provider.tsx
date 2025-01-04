@@ -1,7 +1,7 @@
 import type React from 'react'
 import { useRef, useState } from 'react'
 import { createContext, useContext } from 'react'
-import styles from './provider.module.scss'
+import styles from './provider.module.css'
 
 type NotificationType = 'info' | 'error'
 

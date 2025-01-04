@@ -1,15 +1,10 @@
-@forward '~/theme/theme';
-
-$border-radius: 5px;
-$selector-height: 40px;
-
 .quickSelect {
   padding: 0.5em 1em;
   background-color: var(--color-bg-light);
   border-style: solid;
   border-color: var(--color-ui-border-light);
   border-width: 0.1em 0;
-  font-size: 1.2em; // scale up a bit
+  font-size: 1.2em; /* scale up a bit */
 
   ul {
     list-style: none;
@@ -47,35 +42,33 @@ $selector-height: 40px;
       align-items: center;
       justify-content: space-around;
 
-      border-radius: $border-radius;
+      border-radius: 5px;
       background-color: var(--color-bg-light);
       box-shadow: inset 0 0 0 0.1em var(--color-bg-primary);
 
       .item {
-        $active-border-size: 2px;
-
         display: flex;
         align-items: center;
         justify-content: center;
         flex: 1;
         transition: background-color 120ms ease-in-out;
         box-sizing: border-box;
-        padding-top: $active-border-size;
-        padding-bottom: $active-border-size;
-        height: $selector-height;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        height: 40px;
 
         &:first-child {
-          border-radius: $border-radius 0 0 $border-radius;
+          border-radius: 5px 0 0 5px;
         }
 
         &:last-child {
-          border-radius: 0 $border-radius $border-radius 0;
+          border-radius: 0 5px 5px 0;
         }
 
         &.active {
           background-color: var(--color-bg-primary);
           border: solid var(--color-ui-border-active);
-          border-width: 0 0 $active-border-size 0;
+          border-width: 0 0 2px 0;
           padding-bottom: 0;
         }
 

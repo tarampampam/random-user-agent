@@ -2,7 +2,7 @@ import type React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { i18n } from '~/i18n'
 import { pathTo, RouteIDs, useCurrentRouteID } from '../routes'
-import styles from './layout.module.scss'
+import styles from './layout.module.css'
 
 export default function Layout(): React.JSX.Element {
   const currentRouteID = useCurrentRouteID()

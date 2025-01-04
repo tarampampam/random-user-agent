@@ -861,7 +861,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     general_settings: 'Genel ayarlar',
     general_settings_hint: 'Değiştiricinin davranışını ihtiyaçlarınıza en uygun şekilde değiştirin',
     auto_renew: 'Belirli bir süre sonra User-Agent bilgilerini otomatik olarak değiştir',
-    auto_renew_interval: "User-Agent bilgisini otomatik olarak güncellemek için gereken süre (saniye cinsinden) (örn. 1 saat = 3600)",
+    auto_renew_interval:
+      'User-Agent bilgisini otomatik olarak güncellemek için gereken süre (saniye cinsinden) (örn. 1 saat = 3600)',
     auto_renew_on_startup: 'User-Agent bilgisini tarayıcı başlangıcında yenile',
     js_protection: 'JavaScript ile tespit edilmeye karşı koruma',
     custom_useragent: "Bunun yerine özel olarak oluşturulan User-Agent'lardan birini (rastgele sırayla) kullanın",
@@ -882,7 +883,8 @@ export const locales: Partial<Record<LocaleCode, Localization>> = {
     give_a_star_on_github: "Bize GitHub'ta bir yıldız ver!",
     remote_useragent_list: "Aşağıdaki URL'ye göre listeden User-Agent'lardan birini (rastgele sırayla) kullanın",
     remote_useragent_list_hint: 'Uzantı güncel kalmak için periyodik olarak indirme yapacaktır',
-    remote_useragent_updating_interval: 'Güncelleme aralığı (saniye cinsinden; örneğin her 3 saatte bir = 60×60×3 = 10800)',
+    remote_useragent_updating_interval:
+      'Güncelleme aralığı (saniye cinsinden; örneğin her 3 saatte bir = 60×60×3 = 10800)',
     update_now: 'Şimdi güncelle',
     please_rate_extension: 'Lütfen bu eklentiyi oylayın!',
     edge_win: 'Windows üzerinde Edge',

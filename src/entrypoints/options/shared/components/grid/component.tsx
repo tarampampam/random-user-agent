@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default class Grid extends React.Component<{ children: React.ReactNode }> {
   static Row = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }): React.JSX.Element => {

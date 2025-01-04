@@ -6,7 +6,7 @@ import { allSettingsGeneratorTypes } from '~/shared'
 import { throwIfErr } from '../../shared'
 import { Grid, Switch } from '../../shared/components'
 import { useTitle, useSaveSettings, useRenewUserAgent } from '../../shared/hooks'
-import styles from './page.module.scss'
+import styles from './page.module.css'
 
 export default function Generator(): React.JSX.Element {
   useTitle(i18n('generator_settings'))

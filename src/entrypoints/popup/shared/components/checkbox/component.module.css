@@ -1,11 +1,9 @@
-@forward '~/theme/theme';
-
-// @link: <https://codepen.io/mallendeo/pen/eLIiG>
+/* @link: <https://codepen.io/mallendeo/pen/eLIiG> */
 
 .toggle {
   display: none;
 
-  // add default box-sizing for this scope
+  /* add default box-sizing for this scope */
   &,
   &:after,
   &:before,

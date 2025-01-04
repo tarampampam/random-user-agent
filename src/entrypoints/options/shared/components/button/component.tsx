@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default class Button extends React.Component<{ children: React.ReactNode }> {
   static Primary = ({

@@ -5,7 +5,8 @@ import { i18n } from '~/i18n'
 import { askForPermissions, checkPermissions } from '~/shared/permissions'
 import Button from './components/button'
 import Container from './components/container'
-import './index.scss'
+import '~/theme/theme.css'
+import './index.css'
 
 const App = (): React.JSX.Element => {
   // watch for permissions and close the window when granted automatically

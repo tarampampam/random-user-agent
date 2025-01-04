@@ -16,7 +16,7 @@ import {
 } from '~/shared/assets/icons'
 import { type BrowserType, generatorTypesToSets, type OSType, setsToGeneratorTypes } from '~/shared'
 import Checkbox from '../../shared/components/checkbox'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export type QuickSelectProps = {
   defaults?: { browsers: Array<BrowserType>; os: Array<OSType>; syncOs: boolean }

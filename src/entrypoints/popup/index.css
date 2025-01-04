@@ -1,9 +1,7 @@
-@forward '~/theme/theme';
-
 *,
 :after,
 :before {
-  user-select: none; // disable user-selection by default
+  user-select: none; /* disable user-selection by default */
 }
 
 ::selection {

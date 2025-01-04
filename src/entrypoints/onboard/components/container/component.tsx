@@ -1,7 +1,7 @@
 import type React from 'react'
 import i18n from '~/i18n/i18n'
 import logo from '~/shared/assets/logo.svg'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default function Container({ children = null }: { children?: React.ReactNode }): React.JSX.Element {
   return (

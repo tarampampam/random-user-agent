@@ -1,4 +1,4 @@
-@forward '~/theme/theme';
+@import '~/theme/theme.css';
 
 html,
 body {
@@ -6,9 +6,6 @@ body {
   color: var(--color-text-primary);
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family:
     'Open Sans',
     -apple-system,
@@ -18,15 +15,13 @@ body {
     Ubuntu,
     Arial,
     sans-serif;
+  font-weight: 400;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   font-size: 16px;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-
-  a {
-    color: var(--color-link-primary);
-  }
-
-  label {
-    cursor: pointer;
-  }
 }

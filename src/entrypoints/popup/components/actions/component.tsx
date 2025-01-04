@@ -2,7 +2,7 @@ import type React from 'react'
 import { i18n } from '~/i18n'
 import Icon, { type IconProps } from '~/shared/components/icon'
 import { PauseIcon, RefreshIcon, SettingsIcon, UnpauseIcon } from '~/shared/assets/icons'
-import styles from './component.module.scss'
+import styles from './component.module.css'
 
 export default function Actions({
   isExtensionEnabled,

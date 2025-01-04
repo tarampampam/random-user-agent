@@ -1,5 +1,3 @@
-@forward '~/theme/theme';
-
 .component {
   display: flex;
   justify-content: space-between;

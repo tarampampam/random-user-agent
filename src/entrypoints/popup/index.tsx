@@ -13,7 +13,8 @@ import {
   Feedback,
   Footer,
 } from './components'
-import './index.scss'
+import '~/theme/theme.css'
+import './index.css'
 
 const storeUrl = ((): string | undefined => {
   switch (detectBrowser()) {
