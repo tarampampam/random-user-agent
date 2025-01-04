@@ -8,9 +8,9 @@ const fromRange = (min: number, max: number): number => {
 /** @link https://chromereleases.googleblog.com/search/label/Desktop%20Update */
 export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 126, max: 128 }, // 👈 periodically we should update those values
-    patch: { min: 6478, max: 6668 }, // 👈 same here
-    build: { min: 29, max: 234 }, // 👈 and here
+    major: { min: 131, max: 133 }, // 👈 periodically we should update those values
+    patch: { min: 6778, max: 6834 }, // 👈 same here
+    build: { min: 57, max: 85 }, // 👈 and here
   }
 
   if (maxMajor) {
@@ -29,7 +29,7 @@ export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://www.mozilla.org/en-US/firefox/releases/ */
 export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 128, max: 130 }, // 👈 periodically we should update those values
+    major: { min: 131, max: 133 }, // 👈 periodically we should update those values
   }
 
   if (maxMajor) {
@@ -45,8 +45,8 @@ export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: numb
 /** @link https://en.wikipedia.org/wiki/Opera_version_history */
 export const opera = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 107, max: 111 }, // 👈 periodically we should update those values
-    patch: { min: 4251, max: 5067 }, // 👈 same here
+    major: { min: 111, max: 115 }, // 👈 periodically we should update those values
+    patch: { min: 5067, max: 5322 }, // 👈 same here
     build: { min: 16, max: 198 }, // 👈 and here
   }
 
@@ -86,9 +86,9 @@ export const safari = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel */
 export const edge = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 126, max: 128 }, // 👈 periodically we should update those values
-    patch: { min: 2592, max: 2739 }, // 👈 same here
-    build: { min: 63, max: 132 }, // 👈 and here
+    major: { min: 131, max: 131 }, // 👈 periodically we should update those values
+    patch: { min: 2739, max: 2903 }, // 👈 same here
+    build: { min: 99, max: 112 }, // 👈 and here
   }
 
   if (maxMajor) {
