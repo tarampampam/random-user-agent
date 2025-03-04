@@ -28,15 +28,13 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async (key) => {
-            if (typeof key === 'string' && key === 'some-key') {
-              return { [key as string]: { some: 'data' } }
-            }
+        get: vi.fn().mockImplementation(async (key) => {
+          if (key === 'some-key') {
+            return { [key as string]: { some: 'data' } }
+          }
 
-            return {}
-          }),
+          return {}
+        }),
       },
       { lastError: undefined }
     )
@@ -64,22 +62,18 @@ describe('storage', () => {
 
     mockChromeStorage(
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async (key) => {
-            if (typeof key === 'string' && key === 'some-key') {
-              return { [key as string]: { some: 'data' } }
-            }
+        get: vi.fn().mockImplementation(async (key) => {
+          if (key === 'some-key') {
+            return { [key as string]: { some: 'data' } }
+          }
 
-            return {}
-          }),
+          return {}
+        }),
       },
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
       },
       {
         get lastError() {
@@ -115,11 +109,9 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
       },
       {
         get lastError() {
@@ -140,12 +132,10 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
-        set: vi.fn<[Parameters<BrowserStorageArea['set']>[0]], Promise<void>>().mockImplementation(async (value) => {
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
+        set: vi.fn().mockImplementation(async (value) => {
           expect(value).toStrictEqual({ 'some-key': { some: 'data' } })
         }),
       },
@@ -169,12 +159,10 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
-        set: vi.fn<[Parameters<BrowserStorageArea['set']>[0]], Promise<void>>().mockImplementation(async (value) => {
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
+        set: vi.fn().mockImplementation(async (value) => {
           expect(value).toStrictEqual({ 'some-key': { some: 'data' } })
         }),
       },
@@ -205,16 +193,12 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
-        remove: vi
-          .fn<[Parameters<BrowserStorageArea['remove']>[0]], Promise<void>>()
-          .mockImplementation(async (key) => {
-            expect(key).toBe('some-key')
-          }),
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
+        remove: vi.fn().mockImplementation(async (key) => {
+          expect(key).toBe('some-key')
+        }),
       },
       { lastError: undefined }
     )
@@ -236,16 +220,12 @@ describe('storage', () => {
     mockChromeStorage(
       {},
       {
-        get: vi
-          .fn<[Parameters<BrowserStorageArea['get']>[0]], Promise<{ [key: string]: unknown }>>()
-          .mockImplementation(async () => {
-            return {}
-          }),
-        remove: vi
-          .fn<[Parameters<BrowserStorageArea['remove']>[0]], Promise<void>>()
-          .mockImplementation(async (key) => {
-            expect(key).toBe('some-key')
-          }),
+        get: vi.fn().mockImplementation(async () => {
+          return {}
+        }),
+        remove: vi.fn().mockImplementation(async (key) => {
+          expect(key).toBe('some-key')
+        }),
       },
       {
         get lastError() {

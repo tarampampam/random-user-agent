@@ -32,7 +32,7 @@ export default class Input {
         autoComplete="off"
         className={styles.number}
         disabled={disabled}
-        id={id ?? useId()}
+        id={id ?? useId()} //eslint-disable-line react-hooks/rules-of-hooks
         value={value}
         min={min}
         max={max}
@@ -85,7 +85,7 @@ export default class Input {
         maxLength={maxLength}
         placeholder={placeholder}
         disabled={disabled}
-        id={id ?? useId()}
+        id={id ?? useId()} //eslint-disable-line react-hooks/rules-of-hooks
         value={value}
         style={style}
         onInput={(e) => {
@@ -127,7 +127,7 @@ export default class Input {
         autoComplete="off"
         className={styles.textarea}
         disabled={disabled}
-        id={id ?? useId()}
+        id={id ?? useId()} //eslint-disable-line react-hooks/rules-of-hooks
         value={value}
         maxLength={maxLength}
         cols={cols}
