@@ -10,7 +10,7 @@ describe('storage', () => {
   const mockChromeStorage = (
     localMock: Partial<BrowserStorageArea>,
     syncMock: Partial<BrowserStorageArea>,
-    runtime?: { lastError?: chrome.runtime.LastError }
+    runtime?: { lastError?: typeof chrome.runtime.lastError }
   ) => {
     Object.defineProperty(global, 'chrome', {
       value: {

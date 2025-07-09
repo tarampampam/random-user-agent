@@ -18,7 +18,7 @@ export default async function renewUserAgent(
   s: Settings,
   current: CurrentUserAgent,
   remote: RemoteUserAgentList,
-  hostOS: chrome.runtime.PlatformOs,
+  hostOS: `${chrome.runtime.PlatformOs}`,
   latestVersions: LatestBrowserVersions
 ): Promise<
   Readonly<{
@@ -101,7 +101,7 @@ const remoteUserAgent = async (remote: RemoteUserAgentList): Promise<ReadonlyUse
 
 const generatedUserAgent = (
   settings: ReadonlySettingsState,
-  hostOS: chrome.runtime.PlatformOs,
+  hostOS: `${chrome.runtime.PlatformOs}`,
   latest?: ReadonlyVersionsState
 ): ReadonlyUserAgentState => {
   const { types, syncOsWithHost } = settings.generator
