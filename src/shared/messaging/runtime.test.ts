@@ -8,7 +8,7 @@ describe('send', () => {
     delete (global as { chrome: unknown }).chrome
   })
 
-  const mockChromeRuntimeSendMessage = (mock: Mock, lastError?: chrome.runtime.LastError) => {
+  const mockChromeRuntimeSendMessage = (mock: Mock, lastError?: typeof chrome.runtime.lastError) => {
     Object.defineProperty(global, 'chrome', {
       value: {
         runtime: {
@@ -120,7 +120,7 @@ describe('listen', () => {
 
   const mockChromeRuntimeOnMessageAddListener = (
     mock: typeof chrome.runtime.onMessage.addListener,
-    lastError?: chrome.runtime.LastError
+    lastError?: typeof chrome.runtime.lastError
   ) => {
     Object.defineProperty(global, 'chrome', {
       value: {
