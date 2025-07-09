@@ -8,9 +8,9 @@ const fromRange = (min: number, max: number): number => {
 /** @link https://chromereleases.googleblog.com/search/label/Desktop%20Update */
 export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 131, max: 133 }, // 👈 periodically we should update those values
-    patch: { min: 6778, max: 6834 }, // 👈 same here
-    build: { min: 57, max: 85 }, // 👈 and here
+    major: { min: 136, max: 138 }, // 👈 periodically we should update those values
+    patch: { min: 6834, max: 7204 }, // 👈 same here
+    build: { min: 85, max: 101 }, // 👈 and here
   }
 
   if (maxMajor) {
@@ -29,7 +29,7 @@ export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://www.mozilla.org/en-US/firefox/releases/ */
 export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 131, max: 133 }, // 👈 periodically we should update those values
+    major: { min: 138, max: 140 }, // 👈 periodically we should update those values
   }
 
   if (maxMajor) {
@@ -45,7 +45,7 @@ export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: numb
 /** @link https://en.wikipedia.org/wiki/Opera_version_history */
 export const opera = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 111, max: 115 }, // 👈 periodically we should update those values
+    major: { min: 116, max: 119 }, // 👈 periodically we should update those values
     patch: { min: 5067, max: 5322 }, // 👈 same here
     build: { min: 16, max: 198 }, // 👈 and here
   }
@@ -86,8 +86,8 @@ export const safari = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel */
 export const edge = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 131, max: 131 }, // 👈 periodically we should update those values
-    patch: { min: 2739, max: 2903 }, // 👈 same here
+    major: { min: 136, max: 138 }, // 👈 periodically we should update those values
+    patch: { min: 2903, max: 3351 }, // 👈 same here
     build: { min: 99, max: 112 }, // 👈 and here
   }
 
