@@ -12,7 +12,7 @@ jobs:
     name: Build the extension
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - {uses: gacts/github-slug@v1, id: slug}
       - {uses: actions/setup-node@v4, with: {node-version-file: ./package.json, cache: 'npm'}}
       - run: npm install
