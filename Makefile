@@ -4,7 +4,7 @@
 .DEFAULT_GOAL := build
 .MAIN := build
 
-NODE_IMAGE = node:22-alpine
+NODE_IMAGE = node:24-alpine
 RUN_ARGS = --rm -v "$(shell pwd):/src:rw" \
 	-t --workdir "/src" \
 	-u "$(shell id -u):$(shell id -g)" \
