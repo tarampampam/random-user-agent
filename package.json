@@ -32,8 +32,8 @@
     "randexp": "^0.5.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.3",
-    "ua-parser-js": "^2.0.5"
+    "react-router-dom": "^7.9.5",
+    "ua-parser-js": "^2.0.6"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
