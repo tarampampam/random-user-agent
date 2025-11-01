@@ -20,9 +20,9 @@ jobs:
           npm version --no-git-tag-version
           "${{ steps.slug.outputs.version-major }}.${{ steps.slug.outputs.version-minor }}.${{ steps.slug.outputs.version-patch }}"
       - run: npm run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: {name: chrome.zip, path: ./dist/chrome.zip, if-no-files-found: error, retention-days: 7}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: {name: firefox.zip, path: ./dist/firefox.zip, if-no-files-found: error, retention-days: 7}
 
   upload-to-release:

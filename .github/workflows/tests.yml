@@ -52,9 +52,9 @@ jobs:
       - {uses: actions/setup-node@v4, with: {node-version-file: ./package.json, cache: 'npm'}}
       - run: npm install
       - run: npm run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: {name: chrome.zip, path: ./dist/chrome.zip, if-no-files-found: error, retention-days: 30}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with: {name: firefox.zip, path: ./dist/firefox.zip, if-no-files-found: error, retention-days: 30}
 
   addons-linter:
