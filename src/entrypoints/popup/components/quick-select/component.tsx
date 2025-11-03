@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useId } from 'react'
+import React, { useCallback, useId, useMemo } from 'react'
 import { type ReactNode, useState } from 'react'
 import { i18n } from '~/i18n'
 import Icon, { type IconProps } from '~/shared/components/icon'
@@ -30,14 +30,15 @@ export default function QuickSelect({
   const [browserTypes, setBrowserTypes] = useState<BrowserType[]>(defaults?.browsers || [])
   const [osList, setOsList] = useState<OSType[]>(defaults?.os || [])
   const [syncOs, setSyncOs] = useState<boolean>(defaults?.syncOs || false)
-  const [supportedOSes, setSupportedOSes] = useState<OSType[]>([])
 
-  // automatically update the supported OSes when the browser or OS list changes
-  useEffect(() => {
+  // derive supported OSes from the selected browsers/OS list
+  const supportedOSes = useMemo(() => {
+    // compute allowed OSes for the current browser selection
     const [, oses] = generatorTypesToSets(setsToGeneratorTypes(browserTypes.length ? browserTypes : 'any', 'any'))
 
-    setSupportedOSes([...oses])
-  }, [setSupportedOSes, browserTypes, osList])
+    // return a shallow copy so callers can safely mutate their own array if needed
+    return [...oses]
+  }, [browserTypes])
 
   /** Handle the browser change */
   const handleBrowserChange = useCallback(
