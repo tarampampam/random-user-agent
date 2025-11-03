@@ -64,7 +64,7 @@
     "typescript": "^5.9.3",
     "user-agent-data-types": "^0.4.2",
     "vite": "^7.1.12",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.6"
   },
   "volta": {
     "node": "24"
