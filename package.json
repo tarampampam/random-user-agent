@@ -36,7 +36,7 @@
     "ua-parser-js": "^2.0.6"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
+    "@eslint/compat": "^2.0.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.39.0",
     "@types/archiver": "^7.0.0",
