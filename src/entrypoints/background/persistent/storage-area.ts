@@ -81,10 +81,10 @@ export default class<TState extends Record<string, unknown> = Record<string, unk
     }
 
     if (items && this.key in items) {
-      return items[this.key]
+      return items[this.key] as TState
     }
 
-    return undefined // storage does not contains expected data
+    return undefined // storage does not contain expected data
   }
 
   /**
