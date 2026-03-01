@@ -38,7 +38,7 @@
   "devDependencies": {
     "@eslint/compat": "^2.0.2",
     "@eslint/eslintrc": "^3.3.4",
-    "@eslint/js": "^9.39.0",
+    "@eslint/js": "^10.0.1",
     "@types/archiver": "^7.0.0",
     "@types/chrome": "^0.1.37",
     "@types/node": "^25.3.3",
