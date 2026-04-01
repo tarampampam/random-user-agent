@@ -51,7 +51,7 @@ jobs:
     needs: [build]
     steps:
       - {uses: actions/download-artifact@v4, with: {name: chrome.zip, path: dist}}
-      - uses: mnao305/chrome-extension-upload@v5.0.0
+      - uses: mnao305/chrome-extension-upload@v6.0.0
         with:
           file-path: dist/chrome.zip
           extension-id: einpaelgookohagofgnnkcfjbkkgepnp
