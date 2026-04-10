@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - {uses: gacts/github-slug@v1, id: slug}
-      - {uses: actions/setup-node@v4, with: {node-version-file: ./package.json, cache: 'npm'}}
+      - uses: gacts/github-slug@v1
+        id: slug
+      - uses: actions/setup-node@v4
+        with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
       - run: >
           npm version --no-git-tag-version
@@ -30,14 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - {uses: actions/download-artifact@v4, with: {name: chrome.zip, path: dist}}
+      - uses: actions/download-artifact@v4
+        with: {name: chrome.zip, path: dist}
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./dist/chrome.zip
           asset_name: random-user-agent-chrome.zip
           tag: ${{ github.ref }}
-      - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: dist}}
+      - uses: actions/download-artifact@v4
+        with: {name: firefox.zip, path: dist}
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -50,7 +54,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - {uses: actions/download-artifact@v4, with: {name: chrome.zip, path: dist}}
+      - uses: actions/download-artifact@v4
+        with: {name: chrome.zip, path: dist}
       - uses: mnao305/chrome-extension-upload@v6.0.0
         with:
           file-path: dist/chrome.zip
@@ -65,7 +70,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - {uses: actions/download-artifact@v4, with: {name: firefox.zip, path: dist}}
+      - uses: actions/download-artifact@v4
+        with: {name: firefox.zip, path: dist}
       - uses: wdzeng/firefox-addon@v1
         with:
           addon-guid: '{b43b974b-1d3a-4232-b226-eaa2ac6ebb69}'
