@@ -12,7 +12,8 @@ import {
   writeFileSync,
   renameSync,
 } from 'fs'
-import archiver from 'archiver'
+// @ts-ignore-next-line `@types/archiver` still describes v7 default export, but v8 exports classes
+import { ZipArchive } from 'archiver'
 import randomstring from 'randomstring'
 import manifestJson from './manifest.json'
 import packageJson from './package.json'
@@ -178,7 +179,7 @@ const zipDistPlugin = (): PluginOption => {
 
         {
           // chrome
-          const archive = archiver('zip', { zlib: { level: 9 } })
+          const archive = new ZipArchive({ zlib: { level: 9 } })
 
           archive.pipe(createWriteStream(resolve(distDir, 'chrome.zip')))
           archive.directory(distChromeDir, false)
@@ -188,7 +189,7 @@ const zipDistPlugin = (): PluginOption => {
 
         {
           // firefox
-          const archive = archiver('zip', { zlib: { level: 9 } })
+          const archive = new ZipArchive({ zlib: { level: 9 } })
 
           archive.pipe(createWriteStream(resolve(distDir, 'firefox.zip')))
           archive.directory(distFireFoxDir, false)
