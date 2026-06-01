@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: cloudflare/wrangler-action@v3
+      - uses: cloudflare/wrangler-action@v4
         env:
           PROJECT_NAME: random-user-agent-ua-test-sandbox
           DIST_DIR: ./website/sandbox
