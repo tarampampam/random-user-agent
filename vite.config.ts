@@ -13,21 +13,12 @@ import {
   writeFileSync,
   renameSync,
 } from 'fs'
+import archiver from 'archiver'
 import randomstring from 'randomstring'
 import manifestJson from './manifest.json'
 import packageJson from './package.json'
 import { locales } from './src/i18n/locales'
 import ManifestV3 = chrome.runtime.ManifestV3
-
-type ZipArchiveWriter = {
-  pipe(destination: NodeJS.WritableStream): ZipArchiveWriter
-  directory(dirpath: string, destpath: false | string): ZipArchiveWriter
-  finalize(): Promise<void>
-}
-
-const isArchiverFunction = (
-  value: unknown
-): value is (format: 'zip', options: { zlib: { level: number } }) => ZipArchiveWriter => typeof value === 'function'
 
 const distDir = resolve(__dirname, 'dist')
 const distChromeDir = join(distDir, 'chrome')
@@ -186,15 +177,9 @@ const zipDistPlugin = (): PluginOption => {
           return // do nothing in dev/watch mode
         }
 
-        const importedArchiver = (await import('archiver')).default
-
-        if (!isArchiverFunction(importedArchiver)) {
-          throw new TypeError('Expected archiver default export to be a function')
-        }
-
         {
           // chrome
-          const archive = importedArchiver('zip', { zlib: { level: 9 } })
+          const archive = archiver('zip', { zlib: { level: 9 } })
 
           archive.pipe(createWriteStream(resolve(distDir, 'chrome.zip')))
           archive.directory(distChromeDir, false)
@@ -204,7 +189,7 @@ const zipDistPlugin = (): PluginOption => {
 
         {
           // firefox
-          const archive = importedArchiver('zip', { zlib: { level: 9 } })
+          const archive = archiver('zip', { zlib: { level: 9 } })
 
           archive.pipe(createWriteStream(resolve(distDir, 'firefox.zip')))
           archive.directory(distFireFoxDir, false)
