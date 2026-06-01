@@ -1,4 +1,5 @@
-import { defineConfig, type PluginOption, type ResolvedConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
+import type { PluginOption, ResolvedConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { join, resolve } from 'path'
 import {
@@ -12,7 +13,6 @@ import {
   writeFileSync,
   renameSync,
 } from 'fs'
-// @ts-expect-error `@types/archiver` still describes v7 default export, but v8 exports classes
 import { ZipArchive } from 'archiver'
 import randomstring from 'randomstring'
 import manifestJson from './manifest.json'
@@ -260,7 +260,6 @@ export default defineConfig({
  * \t${ProjectURLs.BUGREPORT}
  */`.trim(),
   },
-  // @ts-expect-error The `vite` type definitions are not up-to-date
   test: {
     root: __dirname,
   },
