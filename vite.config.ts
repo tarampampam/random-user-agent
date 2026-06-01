@@ -12,7 +12,7 @@ import {
   writeFileSync,
   renameSync,
 } from 'fs'
-// @ts-ignore-next-line `@types/archiver` still describes v7 default export, but v8 exports classes
+// @ts-expect-error `@types/archiver` still describes v7 default export, but v8 exports classes
 import { ZipArchive } from 'archiver'
 import randomstring from 'randomstring'
 import manifestJson from './manifest.json'
