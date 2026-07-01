@@ -23,7 +23,7 @@ jobs:
     name: Check for GitLeaks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with: {fetch-depth: 0}
       - uses: gacts/gitleaks@v1
 
@@ -31,7 +31,7 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
@@ -41,7 +41,7 @@ jobs:
     name: Run code linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
@@ -51,7 +51,7 @@ jobs:
     name: Build extension
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install

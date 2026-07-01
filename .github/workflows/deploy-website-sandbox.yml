@@ -19,7 +19,7 @@ jobs:
     name: Publish the site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: cloudflare/wrangler-action@v4
         env:
