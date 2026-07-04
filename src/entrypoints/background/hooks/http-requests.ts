@@ -43,6 +43,26 @@ enum HeaderNames {
 // the following domains are always excluded from the rules
 const alwaysExcludedFor: ReadonlyArray<string> = ['challenges.cloudflare.com'].map(canonizeDomain)
 
+// hardcoded fallback for chrome.declarativeNetRequest.ResourceType — the enum may not be available
+// in the service worker context in some Chrome versions, which would cause rules to match zero requests
+const allResourceTypes: ReadonlyArray<string> = [
+  'main_frame',
+  'sub_frame',
+  'stylesheet',
+  'script',
+  'image',
+  'font',
+  'object',
+  'xmlhttprequest',
+  'ping',
+  'csp_report',
+  'media',
+  'websocket',
+  'webtransport',
+  'webbundle',
+  'other',
+]
+
 /**
  * Enables the request headers modification.
  *
@@ -64,50 +84,33 @@ export async function setRequestHeaders(
   sendPayload: boolean = false
 ): Promise<Array<chrome.declarativeNetRequest.Rule>> {
   const condition: chrome.declarativeNetRequest.RuleCondition = {
-    resourceTypes: Object.values(chrome?.declarativeNetRequest?.ResourceType || {}),
+    resourceTypes: Object.values(chrome?.declarativeNetRequest?.ResourceType || {}).length
+      ? Object.values(chrome.declarativeNetRequest.ResourceType)
+      : ([...allResourceTypes] as chrome.declarativeNetRequest.ResourceType[]),
   }
 
   if (filter?.applyToDomains && filter.applyToDomains.length > 0) {
-    // initiatorDomains: The rule only matches network requests originating from this list of domains. If the list
-    //                   is omitted, the rule is applied to requests from all domains. An empty list is not allowed.
-    //                   A canonical domain should be used. This matches against the request initiator and not the
-    //                   request URL.
-    //   requestDomains: The rule only matches network requests when the domain matches one from this list. If the
-    //                   list is omitted, the rule is applied to requests from all domains. An empty list is not
-    //                   allowed. A canonical domain should be used.
-    //
-    // https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest#type-MatchedRulesFilter
-    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/RuleCondition
     const list = filter.applyToDomains.map(canonizeDomain).filter(validateDomainOrIP)
 
     if (list.length) {
-      condition.initiatorDomains = condition.requestDomains = list
+      // only set requestDomains — using both initiatorDomains AND requestDomains creates an AND condition
+      // in Chrome's declarativeNetRequest, meaning BOTH must match. For whitelist mode, we want requests
+      // TO whitelisted domains to be modified, regardless of the initiator page
+      condition.requestDomains = list
     }
   }
 
   if (filter?.exceptDomains && filter.exceptDomains.length > 0) {
-    // excludedInitiatorDomains: The rule does not match network requests originating from this list of domains.
-    //                           If the list is empty or omitted, no domains are excluded. This takes precedence
-    //                           over initiatorDomains. A canonical domain should be used. This matches against
-    //                           the request initiator and not the request URL.
-    //   excludedRequestDomains: The rule does not match network requests when the domains matches one from this
-    //                           list. If the list is empty or omitted, no domains are excluded. This takes
-    //                           precedence over requestDomains. A canonical domain should be used.
     const list = filter.exceptDomains.map(canonizeDomain).filter(validateDomainOrIP)
 
     if (list.length) {
-      condition.excludedInitiatorDomains = condition.excludedRequestDomains = list
+      // only set excludedRequestDomains (not excludedInitiatorDomains) — matches the reference
+      // extension behavior and avoids potential Chrome 130+ validation issues with both set
+      condition.excludedRequestDomains = list
     }
   }
 
-  // add the always excluded domains to the condition
-  if (condition.excludedInitiatorDomains) {
-    condition.excludedInitiatorDomains = [...new Set(condition.excludedInitiatorDomains.concat(alwaysExcludedFor))]
-  } else {
-    condition.excludedInitiatorDomains = [...alwaysExcludedFor]
-  }
-
-  // and do the same for the request domains
+  // add the always excluded domains to the condition (only excludedRequestDomains)
   if (condition.excludedRequestDomains) {
     condition.excludedRequestDomains = [...new Set(condition.excludedRequestDomains.concat(alwaysExcludedFor))]
   } else {
@@ -222,17 +225,35 @@ export async function setRequestHeaders(
     })
   }
 
-  await chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: Object.values(RuleIDs), // remove existing rules
-    addRules: rules,
-  })
+  try {
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: Object.values(RuleIDs), // remove existing rules
+      addRules: rules,
+    })
+  } catch (err) {
+    console.warn('RUA: Failed to update dynamic rules:', err)
+    // try once more after clearing all rules
+    try {
+      await chrome.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: Object.values(RuleIDs),
+        addRules: rules,
+      })
+    } catch (retryErr) {
+      console.error('RUA: Failed to update dynamic rules on retry:', retryErr)
+      throw retryErr
+    }
+  }
 
   return rules
 }
 
 /** Unsets the request headers. */
 export async function unsetRequestHeaders(): Promise<void> {
-  await chrome.declarativeNetRequest.updateDynamicRules({
-    removeRuleIds: Object.values(RuleIDs), // remove existing rules
-  })
+  try {
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: Object.values(RuleIDs), // remove existing rules
+    })
+  } catch (err) {
+    console.warn('RUA: Failed to unset dynamic rules:', err)
+  }
 }
