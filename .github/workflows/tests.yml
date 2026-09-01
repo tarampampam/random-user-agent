@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
       - run: npm run test
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
       - run: npm run lint
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with: {node-version-file: ./package.json, cache: 'npm'}
       - run: npm install
       - run: npm run build
@@ -68,7 +68,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with: {name: firefox.zip, path: dist}
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with: {node-version: 21}
       - run: npm install -g addons-linter
       - run: addons-linter ./dist/firefox.zip
