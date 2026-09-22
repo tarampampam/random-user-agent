@@ -218,6 +218,29 @@ const m2s = (millis: number): number => Math.round(millis / 1000)
     },
   })
 
+  // ensure declarativeNetRequest rules are re-applied on extension install/update — Chrome 130+ may
+  // terminate the service worker before the IIFE completes, so explicit handlers guarantee rule setup
+  chrome.runtime.onInstalled.addListener(async (details) => {
+    debug('onInstalled', details.reason)
+
+    if (details.reason === 'install' || details.reason === 'update') {
+      // renew the user-agent and re-apply rules on install/update
+      await renewUserAgent(settings, currentUserAgent, remoteUserAgentList, hostOS, latestBrowserVersions)
+      debug('rules re-applied on install/update', await currentUserAgent.get())
+    }
+  })
+
+  chrome.runtime.onStartup.addListener(async () => {
+    debug('onStartup')
+
+    // ensure rules are re-applied on browser startup
+    const current = await currentUserAgent.get()
+    if (current) {
+      const reloaded = await reloadRequestHeaders(await settings.get(), current)
+      debug('rules re-applied on startup', reloaded)
+    }
+  })
+
   // set the extension icon state on startup
   await setExtensionIcon(initSettings.enabled)
 
