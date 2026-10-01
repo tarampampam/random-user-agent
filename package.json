@@ -50,7 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.68.0",
     "@vitejs/plugin-react": "^5.1.4",
-    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/coverage-v8": "^5.0.1",
     "archiver": "^7.0.1",
     "eslint": "^9.39.0",
     "eslint-plugin-react": "^7.37.5",
