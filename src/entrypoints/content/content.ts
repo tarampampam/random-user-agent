@@ -15,7 +15,8 @@
     const script = document.createElement('script')
     const parent = document.head || document.documentElement
 
-    script.type = 'module'
+    // Keep this a classic script: a module injected at document_start can make Firefox reject later import maps,
+    // breaking sites such as GitHub (https://github.com/tarampampam/random-user-agent/issues/786).
     script.setAttribute('id', __UNIQUE_INJECT_FILENAME__)
     script.src = chrome.runtime.getURL(__UNIQUE_INJECT_FILENAME__)
 
