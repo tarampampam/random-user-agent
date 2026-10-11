@@ -15,7 +15,7 @@
     const script = document.createElement('script')
     const parent = document.head || document.documentElement
 
-    script.type = 'module'
+    // script.type = 'module' // https://github.com/tarampampam/random-user-agent/issues/786
     script.setAttribute('id', __UNIQUE_INJECT_FILENAME__)
     script.src = chrome.runtime.getURL(__UNIQUE_INJECT_FILENAME__)
 
