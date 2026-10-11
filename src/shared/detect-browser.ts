@@ -15,7 +15,6 @@ export default function (): BrowserName | undefined {
     }
   }
 
-  // @ts-expect-error window['browser'] is not defined in typescript
   if (typeof self['browser'] === 'object' && typeof self['browser'].runtime === 'object') {
     return 'firefox'
   } else {
