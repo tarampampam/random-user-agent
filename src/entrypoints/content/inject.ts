@@ -373,6 +373,78 @@ import type { DeepWriteable } from '~/types'
     // patch the current navigator object
     patchNavigator(navigator)
 
+    // intercept fetch() and XMLHttpRequest to override User-Agent header BEFORE service workers see it
+    // declarativeNetRequest modifies headers at the network layer (after SW interception), so we need
+    // to patch at the page level to defeat the "UA Header via service worker" detection method
+    {
+      const spoofedUA = ((): string => {
+        switch (payload.current.browser) {
+          case 'chrome':
+          case 'opera':
+          case 'edge': {
+            const masked = payload.current.userAgent.replaceAll(
+              payload.current.version.browser.full,
+              payload.current.version.browser.major +
+                '.0'.repeat(Math.max(0, payload.current.version.browser.full.split('.').length - 1))
+            )
+            if (payload.current.version.underHood) {
+              return masked.replaceAll(
+                payload.current.version.underHood.full || '',
+                payload.current.version.underHood.major +
+                  '.0'.repeat(Math.max(0, payload.current.version.underHood.full.split('.').length - 1))
+              )
+            }
+            return masked
+          }
+        }
+        return payload.current.userAgent
+      })()
+
+      // override fetch()
+      const originalFetch = window.fetch
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      window.fetch = function (this: any, input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+        if (init?.headers) {
+          if (init.headers instanceof Headers) {
+            init.headers.set('User-Agent', spoofedUA)
+          } else if (Array.isArray(init.headers)) {
+            init.headers = init.headers.filter(([key]) => key.toLowerCase() !== 'user-agent')
+            init.headers.push(['User-Agent', spoofedUA])
+          } else if (typeof init.headers === 'object') {
+            ;(init.headers as Record<string, string>)['User-Agent'] = spoofedUA
+          }
+        } else {
+          init = { ...init, headers: { 'User-Agent': spoofedUA } }
+        }
+        return originalFetch.call(this, input, init)
+      } as typeof fetch
+
+      // override XMLHttpRequest to inject User-Agent header
+      const origOpen = XMLHttpRequest.prototype.open
+      const origSend = XMLHttpRequest.prototype.send
+      const RUA_KEY = '__rua_ua__'
+
+      Object.defineProperty(XMLHttpRequest.prototype, 'open', {
+        value: function (this: XMLHttpRequest & Record<string, string>, ...args: unknown[]) {
+          this[RUA_KEY] = spoofedUA
+          return (origOpen as Function).apply(this, args as never)
+        },
+        writable: true,
+        configurable: true,
+      })
+
+      Object.defineProperty(XMLHttpRequest.prototype, 'send', {
+        value: function (this: XMLHttpRequest & Record<string, string>, ...args: unknown[]) {
+          if (this[RUA_KEY]) {
+            this.setRequestHeader('User-Agent', this[RUA_KEY])
+          }
+          return (origSend as Function).apply(this, args as never)
+        },
+        writable: true,
+        configurable: true,
+      })
+    }
+
     // patch iframes navigators
     {
       // currently existing

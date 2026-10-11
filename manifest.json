@@ -48,14 +48,14 @@
     "alarms",
     "storage",
     "scripting",
-    "declarativeNetRequest"
+    "declarativeNetRequestWithHostAccess"
   ],
   "$what_the_specified_permissions_are_for": {
     "tabs": "Obtaining the current tab URL to verify if the extension is enabled for the specific URL in the popup",
     "alarms": "Scheduling user-agent renewal and other periodic tasks",
     "storage": "Managing and synchronizing user settings across browser sessions",
     "scripting": "Injecting user-agent modification code into web pages",
-    "declarativeNetRequest": "Modifying HTTP headers"
+    "declarativeNetRequestWithHostAccess": "Modifying HTTP headers (requires host_permissions)"
   },
   "incognito": "spanning",
   "minimum_chrome_version": "120"

@@ -1,9 +1,12 @@
 import RegisteredContentScript = chrome.scripting.RegisteredContentScript
 
 // the common properties for the content scripts
+// matchOriginAsFallback: true allows scripts to run in sandboxed iframes (those without allow-same-origin),
+// which is essential for spoofing navigator properties inside sandboxed iframe contexts
 const common: Omit<RegisteredContentScript, 'id'> = {
   matches: ['<all_urls>'],
   allFrames: true,
+  matchOriginAsFallback: true,
   runAt: 'document_start',
 }
 
