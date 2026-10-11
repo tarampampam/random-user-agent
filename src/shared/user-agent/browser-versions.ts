@@ -8,9 +8,9 @@ const fromRange = (min: number, max: number): number => {
 /** @link https://chromereleases.googleblog.com/search/label/Desktop%20Update */
 export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 136, max: 138 }, // 👈 periodically we should update those values
-    patch: { min: 6834, max: 7204 }, // 👈 same here
-    build: { min: 85, max: 101 }, // 👈 and here
+    major: { min: 155, max: 157 }, // 👈 periodically we should update those values
+    patch: { min: 8059, max: 8092 }, // 👈 same here
+    build: { min: 39, max: 12 }, // 👈 and here
   }
 
   if (maxMajor) {
@@ -29,7 +29,7 @@ export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://www.mozilla.org/en-US/firefox/releases/ */
 export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 138, max: 140 }, // 👈 periodically we should update those values
+    major: { min: 154, max: 157 }, // 👈 periodically we should update those values
   }
 
   if (maxMajor) {
@@ -45,9 +45,9 @@ export const firefox = (maxMajor?: number, majorDelta: number = 2): [major: numb
 /** @link https://en.wikipedia.org/wiki/Opera_version_history */
 export const opera = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 116, max: 119 }, // 👈 periodically we should update those values
-    patch: { min: 5067, max: 5322 }, // 👈 same here
-    build: { min: 16, max: 198 }, // 👈 and here
+    major: { min: 135, max: 137 }, // 👈 periodically we should update those values
+    patch: { min: 5973, max: 6036 }, // 👈 same here
+    build: { min: 39, max: 123 }, // 👈 and here
   }
 
   if (maxMajor) {
@@ -86,9 +86,9 @@ export const safari = (maxMajor?: number, majorDelta: number = 2): [major: numbe
 /** @link https://docs.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel */
 export const edge = (maxMajor?: number, majorDelta: number = 2): [major: number, full: string] => {
   const variants = {
-    major: { min: 136, max: 138 }, // 👈 periodically we should update those values
-    patch: { min: 2903, max: 3351 }, // 👈 same here
-    build: { min: 99, max: 112 }, // 👈 and here
+    major: { min: 152, max: 155 }, // 👈 periodically we should update those values
+    patch: { min: 4191, max: 4283 }, // 👈 same here
+    build: { min: 45, max: 122 }, // 👈 and here
   }
 
   if (maxMajor) {
