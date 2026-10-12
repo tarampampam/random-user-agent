@@ -108,12 +108,12 @@ export default class {
       | 'opera_android',
   >(browser: T): Promise<Array<MDNReleaseRecord> | null> {
     // the filename is the same as the browser name (e.g. "chrome.json") in current major version (v5) of the MDN data:
-    // https://cdn.jsdelivr.net/gh/mdn/browser-compat-data@5/browsers/ - list of all available files
+    // https://cdn.jsdelivr.net/gh/mdn/browser-compat-data@latest/browsers/ - list of all available files
     // https://github.com/mdn/browser-compat-data/tree/main/browsers - GitHub repository
     //
     // about the caching on the jsdelivr side - the data is cached for 7 days:
     // https://www.jsdelivr.com/documentation#id-caching
-    const resp = await fetch(`https://cdn.jsdelivr.net/gh/mdn/browser-compat-data@5/browsers/${browser}.json`)
+    const resp = await fetch(`https://cdn.jsdelivr.net/gh/mdn/browser-compat-data@latest/browsers/${browser}.json`)
     if (resp.ok) {
       const releases = (await resp.json())?.browsers[browser]?.releases
       if (releases) {
