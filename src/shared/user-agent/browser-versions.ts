@@ -10,7 +10,7 @@ export const chrome = (maxMajor?: number, majorDelta: number = 2): [major: numbe
   const variants = {
     major: { min: 155, max: 157 }, // 👈 periodically we should update those values
     patch: { min: 8059, max: 8092 }, // 👈 same here
-    build: { min: 39, max: 12 }, // 👈 and here
+    build: { min: 12, max: 39 }, // 👈 and here
   }
 
   if (maxMajor) {
