@@ -83,6 +83,9 @@ export async function setRequestHeaders(
     if (list.length) {
       // A top-level navigation has no initiator. Restricting the rule with both
       // fields prevents the payload from reaching pages opened directly.
+      //
+      // https://github.com/tarampampam/random-user-agent/pull/787
+      // condition.initiatorDomains = condition.requestDomains = list
       condition.requestDomains = list
     }
   }
