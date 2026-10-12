@@ -81,7 +81,12 @@ export async function setRequestHeaders(
     const list = filter.applyToDomains.map(canonizeDomain).filter(validateDomainOrIP)
 
     if (list.length) {
-      condition.initiatorDomains = condition.requestDomains = list
+      // A top-level navigation has no initiator. Restricting the rule with both
+      // fields prevents the payload from reaching pages opened directly.
+      //
+      // https://github.com/tarampampam/random-user-agent/pull/787
+      // condition.initiatorDomains = condition.requestDomains = list
+      condition.requestDomains = list
     }
   }
 
